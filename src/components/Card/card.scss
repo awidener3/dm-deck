@@ -1,7 +1,8 @@
 .dmd-card {
 	// Card styling
 	padding: 20px;
-	border: 1px solid black;
+	border: 1px solid #000000;
+	background-color: #ffffff;
 	width: 20rem;
 	height: 30rem;
 	border-radius: 1rem;
@@ -18,7 +19,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			font-size: 0.8rem;
+			font-size: 0.7rem;
 			font-weight: 700;
 		}
 		.cr-circle {
@@ -41,6 +42,7 @@
 		}
 	}
 	.dmd-card-row {
+		// Icons
 		.hp-icon {
 			color: #cf1414;
 			height: 20px;
@@ -56,9 +58,10 @@
 			height: 16px;
 			width: 16px;
 		}
+		// Stats
 		.stat-title {
 			font-family: 'Mukta Vaani', sans-serif;
-			font-size: 1rem;
+			font-size: 0.8rem;
 			font-weight: 700;
 			span {
 				font-weight: 400;
@@ -68,7 +71,32 @@
 			font-size: 0.8rem;
 		}
 		.stat-text {
-			font-size: 0.9rem;
+			font-size: 0.8rem;
+		}
+		// Abilities
+		.ability-title {
+			font-size: 0.8rem;
+			font-weight: 700;
+			font-style: italic;
+		}
+		.ability-text {
+			font-size: 0.8rem;
+		}
+		// Actions
+		.actions-header {
+			font-size: 1rem;
+			font-weight: 700;
+		}
+		.action-title {
+			font-size: 1rem;
+			font-weight: 700;
+			font-style: italic;
+		}
+		.action-btn {
+			font-size: 0.8rem;
+		}
+		.ranged-icon {
+			transform: rotate(-90deg);
 		}
 	}
 }
