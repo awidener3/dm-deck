@@ -1,0 +1,44 @@
+.hero-card {
+    // Card styling
+    padding: 20px;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    width: 20rem;
+    min-height: 30rem;
+    border-radius: 0.5rem;
+    position: relative;
+    .hero-name {
+        font-weight: 700;
+    }
+    .player-name {
+        font-style: italic;
+        font-size: 1.5rem;
+    }
+}
+
+.hero-stats {
+    position: absolute;
+    top: 0;
+}
+
+.icon-container {
+    position: relative;
+    .hp-icon {
+        font-size: 3rem;
+        color: #cf1414;
+    }
+    .ac-icon {
+        font-size: 3rem;
+        color: #29901f;
+    }
+    .icon-value {
+        position: absolute;
+        font-size: 1.2rem;
+        font-weight: 700;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        color: white;
+    }
+}
