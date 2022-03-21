@@ -9,28 +9,37 @@ import { GiPointySword } from 'react-icons/gi';
 import { GiPocketBow } from 'react-icons/gi';
 import { GiBattleAxe } from 'react-icons/gi';
 
-import monsters from './cardData';
+// import monsters from './cardData';
 
-const Card = () => {
-	console.log(monsters[0]);
+const Card = ({monster}) => {
+	// Returns random num between 1 and 20 + monster modifier
+	const rollToHit = (modifier) => {
+		console.log((Math.floor(Math.random() * 20) + 1) + modifier);
+	}
+
+	// Returns damage based on monster die and modifiers
+	const rollDamage = ({damage_die, damage_die_num, damage_modifier}) => {
+		console.log(((Math.floor(Math.random() * damage_die)) * damage_die_num) + damage_modifier)
+	}
+
 	return (
-		<div className="dmd-card">
+		<div className="dmd-card m-3">
 			{/* TOP RIGHT CIRCLES */}
 			<div className="circle-container d-flex p-2">
 				<div className="stat-circle cr-circle">
-					{monsters[0].challenge_rating}
+					{monster.challenge_rating}
 				</div>
 				<div className="stat-circle race-circle">
-					{monsters[0].race_short}
+					{monster.race_short}
 				</div>
 				<div className="stat-circle alignment-circle">
-					{monsters[0].alignment_short}
+					{monster.alignment_short}
 				</div>
 			</div>
 
 			{/* HEADER */}
 			<div className="dmd-card-header">
-				<h1 className="name">{monsters[0].name}</h1>
+				<h1 className="name">{monster.name}</h1>
 			</div>
 
 			{/* BASE STATS */}
@@ -40,7 +49,7 @@ const Card = () => {
 					<p className="stat-title m-0">
 						HP{' '}
 						<span>
-							{monsters[0].hitpoints} ({monsters[0].hitpoint_dice}
+							{monster.hitpoints} ({monster.hitpoint_dice}
 							)
 						</span>
 					</p>
@@ -48,13 +57,13 @@ const Card = () => {
 				<div className="d-flex align-items-center">
 					<RiShieldFill className="dmd-card-icon ac-icon me-1" />
 					<p className="stat-title m-0">
-						AC <span>{monsters[0].armor_class}</span>
+						AC <span>{monster.armor_class}</span>
 					</p>
 				</div>
 				<div className="d-flex align-items-center">
 					<FaArrowCircleRight className="dmd-card-icon speed-icon me-1" />
 					<p className="stat-title m-0">
-						SPD <span>{monsters[0].speed} ft.</span>
+						SPD <span>{monster.speed} ft.</span>
 					</p>
 				</div>
 			</div>
@@ -64,9 +73,9 @@ const Card = () => {
 				<div>
 					<p className="stat-title m-0">STR</p>
 					<p className="stat-num m-0">
-						{monsters[0].ability_scores.strength} (
+						{monster.ability_scores.strength} (
 						{Math.floor(
-							(monsters[0].ability_scores.strength - 10) / 2
+							(monster.ability_scores.strength - 10) / 2
 						)}
 						)
 					</p>
@@ -74,9 +83,9 @@ const Card = () => {
 				<div>
 					<p className="stat-title m-0">DEX</p>
 					<p className="stat-num m-0">
-						{monsters[0].ability_scores.dexterity} (
+						{monster.ability_scores.dexterity} (
 						{Math.floor(
-							(monsters[0].ability_scores.dexterity - 10) / 2
+							(monster.ability_scores.dexterity - 10) / 2
 						)}
 						)
 					</p>
@@ -84,9 +93,9 @@ const Card = () => {
 				<div>
 					<p className="stat-title m-0">CON</p>
 					<p className="stat-num m-0">
-						{monsters[0].ability_scores.constitution} (
+						{monster.ability_scores.constitution} (
 						{Math.floor(
-							(monsters[0].ability_scores.constitution - 10) / 2
+							(monster.ability_scores.constitution - 10) / 2
 						)}
 						)
 					</p>
@@ -94,9 +103,9 @@ const Card = () => {
 				<div>
 					<p className="stat-title m-0">INT</p>
 					<p className="stat-num m-0">
-						{monsters[0].ability_scores.intelligence} (
+						{monster.ability_scores.intelligence} (
 						{Math.floor(
-							(monsters[0].ability_scores.intelligence - 10) / 2
+							(monster.ability_scores.intelligence - 10) / 2
 						)}
 						)
 					</p>
@@ -104,9 +113,9 @@ const Card = () => {
 				<div>
 					<p className="stat-title m-0">WIS</p>
 					<p className="stat-num m-0">
-						{monsters[0].ability_scores.wisdom} (
+						{monster.ability_scores.wisdom} (
 						{Math.floor(
-							(monsters[0].ability_scores.wisdom - 10) / 2
+							(monster.ability_scores.wisdom - 10) / 2
 						)}
 						)
 					</p>
@@ -114,9 +123,9 @@ const Card = () => {
 				<div>
 					<p className="stat-title m-0">CHA</p>
 					<p className="stat-num m-0">
-						{monsters[0].ability_scores.charisma} (
+						{monster.ability_scores.charisma} (
 						{Math.floor(
-							(monsters[0].ability_scores.charisma - 10) / 2
+							(monster.ability_scores.charisma - 10) / 2
 						)}
 						)
 					</p>
@@ -125,82 +134,69 @@ const Card = () => {
 
 			{/* EXTRA STATS */}
 			<div className="dmd-card-row d-flex flex-column py-2 border-bottom">
+				{/* Skills */}
+				{monster.skills 
+					? <div className='d-flex'>
+						<span className="stat-title">Skills </span> {monster.skills.map((skill) => <p className="stat-text my-0 ms-1" key={skill}> {skill}</p>)}
+					</div>
+				 	: null}
+				{/* Senses */}
 				<p className="stat-text m-0">
-					<span className="stat-title">Skills</span>{' '}
-					{monsters[0].skills[0]}
+					<span className="stat-title">Senses</span>{' '}
+					{monster.senses[0]}, {monster.senses[1]}
 				</p>
-				<p className="stat-text m-0">
-					<span className="stat-title">Senses</span>
-					{monsters[0].senses[0]}, {monsters[0].senses[1]}
-				</p>
+				{/* Languages */}
 				<p className="stat-text m-0">
 					<span className="stat-title">Languages</span>{' '}
-					{monsters[0].languages[0]}, {monsters[0].languages[1]}
+					{monster.languages[0]}, {monster.languages[1]}
 				</p>
+				{/* Proficiency */}
 				<p className="stat-text m-0">
 					<span className="stat-title">Proficiency Bonus</span> +
-					{monsters[0].proficiency_bonus}
+					{monster.proficiency_bonus}
 				</p>
 			</div>
 
 			{/* SPECIAL TRAITS */}
-			<div className="dmd-card-row py-2 border-bottom">
+			{monster.special_traits ? <div className="dmd-card-row py-2 border-bottom">
 				<p className="ability-text m-0">
 					<span className="ability-title">
-						{monsters[0].special_traits[0].title}.
+						{monster.special_traits[0].title}.
 					</span>{' '}
-					{monsters[0].special_traits[0].description}
+					{monster.special_traits[0].description}
 				</p>
-			</div>
+			</div> : null}
 
 			{/* ACTIONS */}
 			<div className="dmd-card-row py-2">
 				<h2 className="actions-header">Actions</h2>
-				{/* Action 1 */}
-				<div className="d-flex justify-content-between align-items-center mb-1">
-					<p className="action-title m-0">
-						<GiBattleAxe /> {monsters[0].actions[0].weapon}
-					</p>
-					<div>
-						<button
-							id="toHitBtn"
-							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-						>
-							<GiPointySword /> +
-							{monsters[0].actions[0].hit_modifier}
-						</button>
-						<button
-							id="getDamageBtn"
-							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-						>
-							<GiMineExplosion />{' '}
-							{monsters[0].actions[0].damage_dice}
-						</button>
+
+				{monster.actions.map((action) => (
+					<div key={action.weapon} className="d-flex justify-content-between align-items-center mb-1">
+						<p className="action-title m-0">
+							{action.action_type === 'melee' ? <GiBattleAxe /> : <GiPocketBow className="ranged-icon me-1" />}
+							{' '}{action.weapon}
+						</p>
+						<div>
+							<button
+								id="toHitBtn"
+								className="action-btn btn btn-outline-secondary btn-sm ms-1"
+								onClick={() => rollToHit(action.hit_modifier)}
+							>
+								<GiPointySword /> +
+								{action.hit_modifier}
+							</button>
+							<button
+								id="getDamageBtn"
+								className="action-btn btn btn-outline-secondary btn-sm ms-1"
+								onClick={() => rollDamage(action)}
+							>
+								<GiMineExplosion />{' '}
+								{action.damage_dice_text}
+							</button>
+						</div>
 					</div>
-				</div>
-				{/* Action 2 */}
-				<div className="d-flex justify-content-between align-items-center mb-1">
-					<p className="action-title m-0">
-						<GiPocketBow className="ranged-icon me-1" />
-						{monsters[0].actions[1].weapon}
-					</p>
-					<div>
-						<button
-							id="toHitBtn"
-							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-						>
-							<GiPointySword /> +
-							{monsters[0].actions[1].hit_modifier}
-						</button>
-						<button
-							id="getDamageBtn"
-							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-						>
-							<GiMineExplosion />{' '}
-							{monsters[0].actions[1].damage_dice}
-						</button>
-					</div>
-				</div>
+				))}
 			</div>
 		</div>
 	);
