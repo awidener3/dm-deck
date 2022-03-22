@@ -20,3 +20,17 @@ a {
 body {
 	background-color: #e6e6e6;
 }
+
+.card-container {
+	position: relative;
+
+	width: 75rem;
+	height: 32rem;
+}
+
+.background-block {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
