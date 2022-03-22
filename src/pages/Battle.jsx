@@ -10,25 +10,33 @@ import '../App.scss';
 const Battle = () => {
 	const [monsterData, setMonsterData] = useState(monsters);
 	const [index, setIndex] = useState(0);
+	const [round, setRound] = useState(1);
+	const [turn, setTurn] = useState(1);
 
 	useEffect(() => {
 		addInitiative();
 	}, []);
 
 	const slideLeft = () => {
+		// Previous turn
 		if (index - 1 >= 0) {
+			setTurn(turn - 1);
 			setIndex(index - 1);
 		}
 	};
 
 	const slideRight = () => {
-		console.log(index, monsters.length);
+		// Next turn
 		if (index + 1 <= monsters.length - 1) {
+			setTurn(turn + 1);
 			setIndex(index + 1);
 		}
 
+		// Next round
 		if (index === monsters.length - 1) {
 			setIndex(0);
+			setTurn(1);
+			setRound(round + 1);
 		}
 	};
 
@@ -71,14 +79,24 @@ const Battle = () => {
 	return (
 		<div className="p-4 d-flex flex-column justify-content-center align-items-center container">
 			<h1>Example Battle</h1>
+			<div className="battle-stats d-flex border">
+				<p className="battle-stat m-2">Round: {round}</p>
+				<p className="battle-stat m-2">Turn: {turn}</p>
+			</div>
 
 			{/* <Hero /> */}
-			<FaChevronLeft onClick={slideLeft} className="leftBtn" />
-			<FaChevronRight onClick={slideRight} className="rightBtn" />
+			<div className="d-flex align-items-center">
+				<FaChevronLeft onClick={slideLeft} className="battle-chevron" />
 
-			<div className="card-container container d-flex justify-content-center">
-				<div className="background-block"></div>
-				{monsterData[0].initiative ? renderCards() : null}
+				<div className="card-container container d-flex justify-content-center">
+					<div className="background-block"></div>
+					{monsterData[0].initiative ? renderCards() : null}
+				</div>
+
+				<FaChevronRight
+					onClick={slideRight}
+					className="battle-chevron"
+				/>
 			</div>
 		</div>
 	);
