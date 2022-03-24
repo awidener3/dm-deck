@@ -19,6 +19,16 @@ const heroes = [
 		armor_class: 10,
 		hit_points: 60,
 	},
+	{
+		type: 'hero',
+		character_name: 'Krump',
+		player_name: 'Ian',
+		level: 5,
+		race: 'Half-Orc',
+		class: 'Barbarian',
+		armor_class: 14,
+		hit_points: 80,
+	},
 ];
 
 export default heroes;

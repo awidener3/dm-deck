@@ -5,12 +5,19 @@ import Hero from '../components/Hero';
 
 import monsters from '../components/Card/cardData';
 import heroes from '../components/Hero/heroData';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import {
+	FaChevronLeft,
+	FaChevronRight,
+	FaChevronCircleLeft,
+	FaChevronCircleRight,
+} from 'react-icons/fa';
 import '../App.scss';
+import { Button } from 'bootstrap';
 
 const Battle = () => {
 	const [monsterData, setMonsterData] = useState(monsters);
 	const [heroData, setHeroData] = useState(heroes);
+	const [totalDamage, setTotalDamage] = useState(0);
 	const [index, setIndex] = useState(0);
 	const [round, setRound] = useState(1);
 	const [turn, setTurn] = useState(1);
@@ -26,6 +33,13 @@ const Battle = () => {
 		if (index - 1 >= 0) {
 			setTurn(turn - 1);
 			setIndex(index - 1);
+		}
+
+		// Previous round
+		if (index === 0 && round !== 1) {
+			setIndex(sortedData.length - 1);
+			setTurn(sortedData.length);
+			setRound(round - 1);
 		}
 	};
 
@@ -103,25 +117,47 @@ const Battle = () => {
 	};
 
 	return (
-		<div className="p-4 d-flex flex-column justify-content-center align-items-center container">
+		<div className="battle-container p-4 d-flex flex-column justify-content-center align-items-center container">
 			<h1>Example Battle</h1>
-			<div className="battle-stats d-flex border">
-				<p className="battle-stat m-2">Round: {round}</p>
-				<p className="battle-stat m-2">Turn: {turn}</p>
+			<div className="battle-stats d-flex">
+				<h4 className="battle-stat m-2">Round: {round}</h4>
+				<h4 className="battle-stat m-2">
+					Turn: {turn}/{sortedData.length}
+				</h4>
 			</div>
 
 			<div className="d-flex align-items-center">
-				<FaChevronLeft onClick={slideLeft} className="battle-chevron" />
+				{/* DYNAMIC RENDER OF LEFT CHEVRON */}
+				{round === 1 && turn === 1 ? null : turn === 1 ? (
+					<FaChevronCircleLeft
+						onClick={slideLeft}
+						className="battle-chevron left-chevron"
+					/>
+				) : (
+					<FaChevronLeft
+						onClick={slideLeft}
+						className="battle-chevron left-chevron"
+					/>
+				)}
 
+				{/* BATTLE CONTENT */}
 				<div className="card-container container d-flex justify-content-center">
 					<div className="background-block"></div>
 					{monsterData[0].initiative ? renderCards() : null}
 				</div>
 
-				<FaChevronRight
-					onClick={slideRight}
-					className="battle-chevron"
-				/>
+				{/* DYNAMIC RENDER OF RIGHT CHEVRON */}
+				{turn === sortedData.length ? (
+					<FaChevronCircleRight
+						onClick={slideRight}
+						className="battle-chevron right-chevron"
+					/>
+				) : (
+					<FaChevronRight
+						onClick={slideRight}
+						className="battle-chevron right-chevron"
+					/>
+				)}
 			</div>
 		</div>
 	);

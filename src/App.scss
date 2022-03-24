@@ -34,3 +34,17 @@ body {
 	height: 100%;
 	z-index: 0;
 }
+
+.battle-container {
+	position: relative;
+	.battle-chevron {
+		font-size: 2rem;
+		position: absolute;
+	}
+	.left-chevron {
+		left: 0;
+	}
+	.right-chevron {
+		right: 0;
+	}
+}

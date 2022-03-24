@@ -1,18 +1,12 @@
 import React from 'react';
+import './hero.scss';
+
+// Icons
 import { BsShieldFill } from 'react-icons/bs';
 import { BsHeartFill } from 'react-icons/bs';
 import { GiPointySword, GiSpellBook, GiBarbedCoil } from 'react-icons/gi';
-import './hero.scss';
 
-const HealthIcon = ({ hp }) => {
-	return (
-		<div className="icon-container m-2">
-			<BsHeartFill className="hp-icon" />
-			<h3 className="icon-value">{hp}</h3>
-		</div>
-	);
-};
-
+// Render AC icon with ac stat inside
 const ArmorClassIcon = ({ ac }) => {
 	return (
 		<div className="icon-container m-2">
@@ -22,8 +16,17 @@ const ArmorClassIcon = ({ ac }) => {
 	);
 };
 
+// Render HP icon with hp stat inside
+const HealthIcon = ({ hp }) => {
+	return (
+		<div className="icon-container m-2">
+			<BsHeartFill className="hp-icon" />
+			<h3 className="icon-value">{hp}</h3>
+		</div>
+	);
+};
+
 const Hero = ({ hero, cardStyle }) => {
-	// console.log(hero);
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="hero-card m-3 d-flex flex-column justify-content-center align-items-center">
@@ -32,11 +35,13 @@ const Hero = ({ hero, cardStyle }) => {
 					<ArmorClassIcon ac={hero.armor_class} />
 					<HealthIcon hp={hero.hit_points} />
 				</div>
+
 				{/* PC INFO */}
 				<div className="container text-center pb-2 border-bottom">
 					<h1 className="hero-name m-0">{hero.character_name}</h1>
 					<h2 className="player-name">{hero.player_name}</h2>
 				</div>
+
 				{/* ACTIONS + ABILITIES */}
 				<div className="pt-2 d-flex flex-column">
 					<h3>Actions:</h3>
@@ -50,6 +55,7 @@ const Hero = ({ hero, cardStyle }) => {
 						<GiBarbedCoil /> Add Effect
 					</button>
 				</div>
+
 				{/* INITIATIVE */}
 				<div className="initiative-div d-flex justify-content-center align-items-center mb-2">
 					{hero.initiative}

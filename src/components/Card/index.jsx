@@ -1,13 +1,15 @@
 import React from 'react';
 import './card.scss';
 
-import { RiHeartFill } from 'react-icons/ri';
-import { RiShieldFill } from 'react-icons/ri';
+// Icons
+import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
 import { FaArrowCircleRight } from 'react-icons/fa';
-import { GiMineExplosion } from 'react-icons/gi';
-import { GiPointySword } from 'react-icons/gi';
-import { GiPocketBow } from 'react-icons/gi';
-import { GiBattleAxe } from 'react-icons/gi';
+import {
+	GiMineExplosion,
+	GiPointySword,
+	GiPocketBow,
+	GiBattleAxe,
+} from 'react-icons/gi';
 
 const Card = ({ monster, cardStyle }) => {
 	const rollToHit = (modifier) => {
