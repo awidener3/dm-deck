@@ -1,3 +1,0 @@
-# DM Deck
-
-Coming soon!
