@@ -4,8 +4,6 @@ import Home from '../../pages/Home';
 import Battle from '../../pages/Battle';
 import CreateBattle from '../../pages/CreateBattle';
 
-// ! removed "homepage": "https://awidener3.github.io/dm-deck/", from package.json
-
 const Header = () => {
 	return (
 		<div>
