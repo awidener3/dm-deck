@@ -11,7 +11,7 @@ const Header = () => {
 				<div className="container">
 					<h1 className="navbar-brand">🐲 DM Deck</h1>
 					<ul className="navbar-nav">
-						<Link to="/dm-deck" className="nav-link m-2">
+						<Link to="/dm-deck/" className="nav-link m-2">
 							Home
 						</Link>
 						<Link to="/dm-deck/battle" className="nav-link m-2">
@@ -27,7 +27,7 @@ const Header = () => {
 				</div>
 			</nav>
 			<Routes>
-				<Route path="/dm-deck" element={<Home />} />
+				<Route path="/dm-deck/" element={<Home />} />
 				<Route path="/dm-deck/battle" element={<Battle />} />
 				<Route
 					path="/dm-deck/create-battle"

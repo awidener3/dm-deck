@@ -17,7 +17,7 @@ import { Button } from 'bootstrap';
 const Battle = () => {
 	const [monsterData, setMonsterData] = useState(monsters);
 	const [heroData, setHeroData] = useState(heroes);
-	const [totalDamage, setTotalDamage] = useState(0);
+	const [totalMonsterDamage, setTotalMonsterDamage] = useState(0);
 	const [index, setIndex] = useState(0);
 	const [round, setRound] = useState(1);
 	const [turn, setTurn] = useState(1);
@@ -124,6 +124,12 @@ const Battle = () => {
 				<h4 className="battle-stat m-2">
 					Turn: {turn}/{sortedData.length}
 				</h4>
+			</div>
+
+			<div className="battle-stats d-flex">
+				<h5 className="battle-stat m-2">
+					Total Monster Dmg: {totalMonsterDamage}
+				</h5>
 			</div>
 
 			<div className="d-flex align-items-center">
