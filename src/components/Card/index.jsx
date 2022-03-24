@@ -9,7 +9,7 @@ import { GiPointySword } from 'react-icons/gi';
 import { GiPocketBow } from 'react-icons/gi';
 import { GiBattleAxe } from 'react-icons/gi';
 
-const Card = ({ handleMouseDown, monster, cardStyle }) => {
+const Card = ({ monster, cardStyle }) => {
 	const rollToHit = (modifier) => {
 		console.log(Math.floor(Math.random() * 20) + 1 + modifier);
 	};
