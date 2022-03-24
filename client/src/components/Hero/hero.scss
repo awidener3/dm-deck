@@ -1,0 +1,84 @@
+.wrapper {
+	position: absolute;
+}
+
+.prevCard {
+	left: 0%;
+	opacity: 0;
+}
+
+.activeCard {
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.nextCard {
+	left: 100%;
+	transform: translateX(calc(-100% - 2rem));
+	opacity: 0;
+}
+
+article {
+	position: asbolute;
+	transition: all 1s;
+}
+
+.hero-card {
+	// Card styling
+	padding: 20px;
+	border: 1px solid #000000;
+	outline: 1px solid #aaaaaa;
+	outline-offset: -5px;
+	background-color: #ffffff;
+	width: 20rem;
+	min-height: 30rem;
+	border-radius: 0.5rem;
+	position: relative;
+	.hero-name {
+		font-weight: 700;
+	}
+	.player-name {
+		font-style: italic;
+		font-size: 1.5rem;
+	}
+	.initiative-div {
+		pointer-events: none;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+		border: 2px solid #aaaaaa;
+		width: 35px;
+		height: 35px;
+		border-radius: 100%;
+		font-family: 'Asul', sans-serif;
+		font-weight: 700;
+	}
+}
+
+.hero-stats {
+	position: absolute;
+	top: 0;
+}
+
+.icon-container {
+	position: relative;
+	.hp-icon {
+		font-size: 3rem;
+		color: #cf1414;
+	}
+	.ac-icon {
+		font-size: 3rem;
+		color: #29901f;
+	}
+	.icon-value {
+		position: absolute;
+		font-size: 1.2rem;
+		font-weight: 700;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+		color: white;
+	}
+}
