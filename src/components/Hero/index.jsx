@@ -1,6 +1,7 @@
 import React from 'react';
 import { BsShieldFill } from 'react-icons/bs';
 import { BsHeartFill } from 'react-icons/bs';
+import { GiPointySword, GiSpellBook, GiBarbedCoil } from 'react-icons/gi';
 import './hero.scss';
 
 const HealthIcon = ({ hp }) => {
@@ -26,12 +27,29 @@ const Hero = ({ hero, cardStyle }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="hero-card m-3 d-flex flex-column justify-content-center align-items-center">
+				{/* AC + HP Icons */}
 				<div className="hero-stats d-flex justify-content-between w-100">
 					<ArmorClassIcon ac={hero.armor_class} />
 					<HealthIcon hp={hero.hit_points} />
 				</div>
-				<h1 className="hero-name m-0">{hero.character_name}</h1>
-				<h2 className="player-name">{hero.player_name}</h2>
+				{/* PC INFO */}
+				<div className="container text-center pb-2 border-bottom">
+					<h1 className="hero-name m-0">{hero.character_name}</h1>
+					<h2 className="player-name">{hero.player_name}</h2>
+				</div>
+				{/* ACTIONS + ABILITIES */}
+				<div className="pt-2 d-flex flex-column">
+					<h3>Actions:</h3>
+					<button className="btn btn-outline-secondary mb-2">
+						<GiPointySword /> Attack
+					</button>
+					<button className="btn btn-outline-secondary mb-2">
+						<GiSpellBook /> Cast Spell
+					</button>
+					<button className="btn btn-outline-secondary mb-2">
+						<GiBarbedCoil /> Add Effect
+					</button>
+				</div>
 				{/* INITIATIVE */}
 				<div className="initiative-div d-flex justify-content-center align-items-center mb-2">
 					{hero.initiative}
