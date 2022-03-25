@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import Card from '../components/Card';
+import Monster from '../components/Monster';
 import Hero from '../components/Hero';
 
 // Dummy data
-import monsters from '../components/Card/cardData';
+import monsters from '../components/Monster/monsterData';
 import heroes from '../components/Hero/heroData';
 
 import {
@@ -19,7 +19,6 @@ import '../App.scss';
 const Battle = () => {
 	const [monsterData, setMonsterData] = useState(monsters);
 	const [heroData, setHeroData] = useState(heroes);
-	const [totalMonsterDamage, setTotalMonsterDamage] = useState(0);
 	const [index, setIndex] = useState(0);
 	const [round, setRound] = useState(1);
 	const [turn, setTurn] = useState(1);
@@ -98,7 +97,7 @@ const Battle = () => {
 
 				if (creature.type === 'monster') {
 					return (
-						<Card
+						<Monster
 							key={creature.name}
 							monster={creature}
 							cardStyle={position}
@@ -126,12 +125,6 @@ const Battle = () => {
 				<h4 className="battle-stat m-2">
 					Turn: {turn}/{sortedData.length}
 				</h4>
-			</div>
-
-			<div className="battle-stats d-flex">
-				<h5 className="battle-stat m-2">
-					Total Monster Dmg: {totalMonsterDamage}
-				</h5>
 			</div>
 
 			<div className="d-flex align-items-center">

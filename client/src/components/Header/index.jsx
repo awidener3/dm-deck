@@ -26,6 +26,7 @@ const Header = () => {
 					</ul>
 				</div>
 			</nav>
+
 			<Routes>
 				<Route path="/dm-deck/" element={<Home />} />
 				<Route path="/dm-deck/battle" element={<Battle />} />

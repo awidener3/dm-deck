@@ -1,0 +1,118 @@
+.dmd-card {
+	// Card styling
+	padding: 20px;
+	border: 1px solid #000000;
+	outline: 1px solid #aaaaaa;
+	outline-offset: -5px;
+	background-color: #ffffff;
+	width: 20rem;
+	min-height: 30rem;
+	border-radius: 0.5rem;
+	position: relative;
+	.circle-container {
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		top: 0;
+		.stat-circle {
+			width: 25px;
+			height: 25px;
+			border-radius: 100%;
+			margin: 5px 3px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 0.7rem;
+			font-weight: 900;
+		}
+		.cr-circle {
+			background-color: #aae6a5;
+		}
+		.race-circle {
+			background-color: #e6e5a5;
+		}
+		.alignment-circle {
+			background-color: #e6a7a5;
+		}
+	}
+	.dmd-card-header {
+		.name {
+			font-size: 2rem;
+			font-weight: 700;
+		}
+		.challenge-rating {
+			font-weight: 700;
+		}
+	}
+	.dmd-card-row {
+		// Icons
+		.hp-icon {
+			color: #cf1414;
+			height: 20px;
+			width: 20px;
+		}
+		.ac-icon {
+			color: #29901f;
+			height: 18px;
+			width: 18px;
+		}
+		.speed-icon {
+			color: #1b6db1;
+			height: 16px;
+			width: 16px;
+		}
+		// Stats
+		.stat-title {
+			font-family: 'Mukta Vaani', sans-serif;
+			font-size: 0.8rem;
+			font-weight: 700;
+			span {
+				font-weight: 400;
+			}
+		}
+		.stat-num {
+			font-size: 0.8rem;
+		}
+		.stat-text {
+			font-size: 0.8rem;
+		}
+		// Abilities
+		.ability-title {
+			font-size: 0.8rem;
+			font-weight: 700;
+			font-style: italic;
+		}
+		.ability-text {
+			font-size: 0.8rem;
+		}
+		// Actions
+		.actions-header {
+			font-size: 1rem;
+			font-weight: 700;
+		}
+		.action-title {
+			font-size: 1rem;
+			font-weight: 700;
+			font-style: italic;
+		}
+		.action-btn {
+			font-size: 0.8rem;
+		}
+		.ranged-icon {
+			transform: rotate(-90deg);
+		}
+	}
+	.initiative-div {
+		pointer-events: none;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+		border: 2px solid #aaaaaa;
+		width: 35px;
+		height: 35px;
+		border-radius: 100%;
+		font-family: 'Asul', sans-serif;
+		font-weight: 700;
+	}
+}
