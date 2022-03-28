@@ -3,6 +3,27 @@ import React, { useState } from 'react';
 import heroes from '../components/Hero/heroData';
 
 const CreateBattle = () => {
+	const [selectedHeroes, setSelectedHeroes] = useState([]);
+
+	console.log(selectedHeroes);
+
+	const handleSelect = (character_name) => {
+		heroes.forEach((hero) => {
+			if (
+				hero.character_name === character_name &&
+				!selectedHeroes.includes(hero)
+			) {
+				setSelectedHeroes([...selectedHeroes, hero]);
+			} else {
+				setSelectedHeroes(
+					[...selectedHeroes].filter(
+						(hero) => hero.character_name !== character_name
+					)
+				);
+			}
+		});
+	};
+
 	return (
 		<div className="container py-4">
 			<h1 className="text-center">Create New Battle</h1>
@@ -13,6 +34,7 @@ const CreateBattle = () => {
 					<li
 						key={hero.character_name}
 						className="list-group-item d-flex align-items-center justify-content-between"
+						onClick={() => handleSelect(hero.character_name)}
 					>
 						<h3 className="m-0">
 							{hero.character_name}{' '}
@@ -31,6 +53,12 @@ const CreateBattle = () => {
 			<button className="btn btn-primary mt-3 disabled">
 				Add New Hero
 			</button>
+
+			<ul>
+				{selectedHeroes.map((hero) => (
+					<li key={hero.character_name}>{hero.character_name}</li>
+				))}
+			</ul>
 		</div>
 	);
 };
