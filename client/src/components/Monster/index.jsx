@@ -64,7 +64,7 @@ const Monster = ({ monster, cardStyle }) => {
 					<div className="d-flex align-items-center">
 						<FaArrowCircleRight className="dmd-card-icon speed-icon me-1" />
 						<p className="stat-title m-0">
-							SPD <span>{monster.speed} ft.</span>
+							SPD <span>{monster.speed.walking} ft.</span>
 						</p>
 					</div>
 				</div>

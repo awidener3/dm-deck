@@ -6,6 +6,7 @@ import monsters from '../components/Monster/monsterData';
 const CreateBattle = () => {
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
 	const [selectedMonsters, setSelectedMonsters] = useState([]);
+	const [difficultyRating, setDifficultyRating] = useState('Easy');
 
 	const handleHeroSelect = (character_name) => {
 		heroes.forEach((hero) => {
@@ -72,6 +73,17 @@ const CreateBattle = () => {
 					</li>
 				))}
 			</ul>
+
+			<button className="btn btn-primary mt-3 disabled">
+				Add Custom Monster
+			</button>
+
+			<hr />
+
+			<div className="card text-center m-auto p-4 w-50">
+				<p className="lead m-0">Difficulty Rating</p>
+				{difficultyRating}
+			</div>
 
 			<div className="d-flex justify-content-around">
 				<article className="card mt-4 me-2 p-3 w-100">
