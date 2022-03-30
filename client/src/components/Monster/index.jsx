@@ -9,6 +9,7 @@ import {
 	GiPointySword,
 	GiPocketBow,
 	GiBattleAxe,
+	GiTwirlCenter,
 } from 'react-icons/gi';
 
 const Monster = ({ monster, cardStyle }) => {
@@ -23,16 +24,45 @@ const Monster = ({ monster, cardStyle }) => {
 		);
 	};
 
-	const AbilityScore = ({ monster, ability }) => {
+	// Returns a <p> tag with ability score and calculated modifier
+	const AbilityScore = ({ monster, ability, short }) => {
 		let score = monster.ability_scores[`${ability}`];
 		let modifier = Math.floor((score - 10) / 2);
-		console.log(modifier);
-
 		return (
-			<p className="stat-num m-0">
-				{score} {modifier >= 0 ? `(+${modifier})` : `(${modifier})`}
-			</p>
+			<div>
+				<p className="stat-title m-0">{short}</p>
+				<p className="stat-num m-0">
+					{score} {modifier >= 0 ? `(+${modifier})` : `(${modifier})`}
+				</p>
+			</div>
 		);
+	};
+
+	const renderAbilityScores = (monster) => {
+		let abilityScores = [];
+		let shortName = [
+			['strength', 'STR'],
+			['dexterity', 'DEX'],
+			['constitution', 'CON'],
+			['intelligence', 'INT'],
+			['wisdom', 'WIS'],
+			['charisma', 'CHA'],
+		];
+		for (let ability in monster.ability_scores) {
+			let shortIndex = shortName.findIndex(
+				(stat) => stat.indexOf(ability) !== -1
+			);
+
+			abilityScores.push(
+				<AbilityScore
+					key={ability}
+					monster={monster}
+					ability={ability}
+					short={shortName[shortIndex][1]}
+				/>
+			);
+		}
+		return <>{abilityScores}</>;
 	};
 
 	return (
@@ -91,7 +121,9 @@ const Monster = ({ monster, cardStyle }) => {
 
 				{/* ABILITY SCORES */}
 				<div className="dmd-card-row d-flex justify-content-between py-2 text-center border-bottom">
-					<div>
+					{renderAbilityScores(monster)}
+
+					{/* <div>
 						<p className="stat-title m-0">STR</p>
 						<AbilityScore monster={monster} ability={'strength'} />
 					</div>
@@ -120,7 +152,7 @@ const Monster = ({ monster, cardStyle }) => {
 					<div>
 						<p className="stat-title m-0">CHA</p>
 						<AbilityScore monster={monster} ability={'charisma'} />
-					</div>
+					</div> */}
 				</div>
 
 				{/* EXTRA STATS */}
@@ -178,8 +210,10 @@ const Monster = ({ monster, cardStyle }) => {
 							<p className="action-title m-0">
 								{action.action_type === 'melee' ? (
 									<GiBattleAxe />
-								) : (
+								) : action.action_type === 'ranged' ? (
 									<GiPocketBow className="ranged-icon me-1" />
+								) : (
+									<GiTwirlCenter />
 								)}{' '}
 								{action.weapon}
 							</p>

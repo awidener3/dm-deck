@@ -145,10 +145,10 @@ const Battle = () => {
 				<div className="card-container container d-flex justify-content-center">
 					<div className="background-block"></div>
 					{/* //! TESTING */}
-					<Monster monster={monsters[4]} />
+					{/* <Monster monster={monsters[4]} /> */}
 
 					{/* //! UNCOMMENT */}
-					{/* {monsterData[0].initiative ? renderCards() : null} */}
+					{monsterData[0].initiative ? renderCards() : null}
 				</div>
 
 				{/* DYNAMIC RENDER OF RIGHT CHEVRON */}
