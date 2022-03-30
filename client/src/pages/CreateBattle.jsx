@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 
 import heroes from '../components/Hero/heroData';
+import monsters from '../components/Monster/monsterData';
 
 const CreateBattle = () => {
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
+	const [selectedMonsters, setSelectedMonsters] = useState([]);
 
-	console.log(selectedHeroes);
-
-	const handleSelect = (character_name) => {
-		for (let i = 0; i < heroes.length; i++) {
+	const handleHeroSelect = (character_name) => {
+		heroes.forEach((hero) => {
 			if (
-				heroes[i].character_name === character_name &&
-				!selectedHeroes.includes(heroes[i])
-			) {
-				setSelectedHeroes([...selectedHeroes, heroes[i]]);
-			}
-		}
+				hero.character_name === character_name &&
+				!selectedHeroes.includes(hero)
+			)
+				setSelectedHeroes([...selectedHeroes, hero]);
+		});
+	};
+
+	const handleMonsterSelect = (name) => {
+		console.log(name);
+		monsters.forEach((monster) => {
+			if (monster.name === name && !selectedMonsters.includes(monster))
+				setSelectedMonsters([...selectedMonsters, monster]);
+		});
+		console.log(selectedMonsters);
 	};
 
 	return (
@@ -28,7 +36,7 @@ const CreateBattle = () => {
 					<li
 						key={hero.character_name}
 						className="list-group-item d-flex align-items-center justify-content-between"
-						onClick={() => handleSelect(hero.character_name)}
+						onClick={() => handleHeroSelect(hero.character_name)}
 					>
 						<h3 className="m-0">
 							{hero.character_name}{' '}
@@ -48,11 +56,47 @@ const CreateBattle = () => {
 				Add New Hero
 			</button>
 
-			<ul>
-				{selectedHeroes.map((hero) => (
-					<li key={hero.character_name}>{hero.character_name}</li>
+			<h2 className="mt-5">Select Your Monsters</h2>
+			<ul className="list-group pt-4">
+				{monsters.map((monster) => (
+					<li
+						key={monster.name}
+						className="list-group-item d-flex align-items-center justify-content-between"
+						onClick={() => handleMonsterSelect(monster.name)}
+					>
+						<h3 className="m-0">{monster.name} </h3>
+
+						<div>
+							<p className="m-0">CR {monster.challenge_rating}</p>
+						</div>
+					</li>
 				))}
 			</ul>
+
+			<div className="d-flex justify-content-around">
+				<article className="card mt-4 me-2 p-3 w-100">
+					<h2 className="text-center">Hero Roster</h2>
+					<hr />
+					<ul>
+						{selectedHeroes.map((hero) => (
+							<li key={hero.character_name}>
+								{hero.character_name}
+							</li>
+						))}
+					</ul>
+				</article>
+
+				<article className="card mt-4 ms-2 p-3 w-100">
+					<h2 className="text-center">Monster Roster</h2>
+					<hr />
+
+					<ul>
+						{selectedMonsters.map((monster) => (
+							<li key={monster.name}>{monster.name}</li>
+						))}
+					</ul>
+				</article>
+			</div>
 		</div>
 	);
 };
