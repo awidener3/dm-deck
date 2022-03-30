@@ -23,6 +23,18 @@ const Monster = ({ monster, cardStyle }) => {
 		);
 	};
 
+	const AbilityScore = ({ monster, ability }) => {
+		let score = monster.ability_scores[`${ability}`];
+		let modifier = Math.floor((score - 10) / 2);
+		console.log(modifier);
+
+		return (
+			<p className="stat-num m-0">
+				{score} {modifier >= 0 ? `(+${modifier})` : `(${modifier})`}
+			</p>
+		);
+	};
+
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
@@ -63,7 +75,15 @@ const Monster = ({ monster, cardStyle }) => {
 					</div>
 					<div className="d-flex align-items-center">
 						<FaArrowCircleRight className="dmd-card-icon speed-icon me-1" />
-						<p className="stat-title m-0">
+						<p
+							title={`Walking: ${
+								monster.speed.walking
+							} ft., Flying: ${monster.speed.flying}, Swimming: ${
+								monster.speed.swimming ||
+								monster.speed.walking / 2
+							} ft.`}
+							className="stat-title m-0"
+						>
 							SPD <span>{monster.speed.walking} ft.</span>
 						</p>
 					</div>
@@ -73,63 +93,33 @@ const Monster = ({ monster, cardStyle }) => {
 				<div className="dmd-card-row d-flex justify-content-between py-2 text-center border-bottom">
 					<div>
 						<p className="stat-title m-0">STR</p>
-						<p className="stat-num m-0">
-							{monster.ability_scores.strength} (
-							{Math.floor(
-								(monster.ability_scores.strength - 10) / 2
-							)}
-							)
-						</p>
+						<AbilityScore monster={monster} ability={'strength'} />
 					</div>
 					<div>
 						<p className="stat-title m-0">DEX</p>
-						<p className="stat-num m-0">
-							{monster.ability_scores.dexterity} (
-							{Math.floor(
-								(monster.ability_scores.dexterity - 10) / 2
-							)}
-							)
-						</p>
+						<AbilityScore monster={monster} ability={'dexterity'} />
 					</div>
 					<div>
 						<p className="stat-title m-0">CON</p>
-						<p className="stat-num m-0">
-							{monster.ability_scores.constitution} (
-							{Math.floor(
-								(monster.ability_scores.constitution - 10) / 2
-							)}
-							)
-						</p>
+						<AbilityScore
+							monster={monster}
+							ability={'constitution'}
+						/>
 					</div>
 					<div>
 						<p className="stat-title m-0">INT</p>
-						<p className="stat-num m-0">
-							{monster.ability_scores.intelligence} (
-							{Math.floor(
-								(monster.ability_scores.intelligence - 10) / 2
-							)}
-							)
-						</p>
+						<AbilityScore
+							monster={monster}
+							ability={'intelligence'}
+						/>
 					</div>
 					<div>
 						<p className="stat-title m-0">WIS</p>
-						<p className="stat-num m-0">
-							{monster.ability_scores.wisdom} (
-							{Math.floor(
-								(monster.ability_scores.wisdom - 10) / 2
-							)}
-							)
-						</p>
+						<AbilityScore monster={monster} ability={'wisdom'} />
 					</div>
 					<div>
 						<p className="stat-title m-0">CHA</p>
-						<p className="stat-num m-0">
-							{monster.ability_scores.charisma} (
-							{Math.floor(
-								(monster.ability_scores.charisma - 10) / 2
-							)}
-							)
-						</p>
+						<AbilityScore monster={monster} ability={'charisma'} />
 					</div>
 				</div>
 
