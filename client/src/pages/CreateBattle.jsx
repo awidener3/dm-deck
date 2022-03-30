@@ -8,20 +8,14 @@ const CreateBattle = () => {
 	console.log(selectedHeroes);
 
 	const handleSelect = (character_name) => {
-		heroes.forEach((hero) => {
+		for (let i = 0; i < heroes.length; i++) {
 			if (
-				hero.character_name === character_name &&
-				!selectedHeroes.includes(hero)
+				heroes[i].character_name === character_name &&
+				!selectedHeroes.includes(heroes[i])
 			) {
-				setSelectedHeroes([...selectedHeroes, hero]);
-			} else {
-				setSelectedHeroes(
-					[...selectedHeroes].filter(
-						(hero) => hero.character_name !== character_name
-					)
-				);
+				setSelectedHeroes([...selectedHeroes, heroes[i]]);
 			}
-		});
+		}
 	};
 
 	return (
