@@ -38,6 +38,72 @@ const Monster = ({ monster, cardStyle }) => {
 		);
 	};
 
+	// Returns a <div> with the title of the stat and a description
+	const Stat = ({ title, property, connector = ', ' }) => {
+		return (
+			<div className="d-flex flex-wrap">
+				<p className="stat-text my-0">
+					<span className="stat-title">{title}</span>{' '}
+					{monster[property].join(connector)}
+				</p>
+			</div>
+		);
+	};
+
+	const Trait = ({ title, description }) => {
+		return (
+			<div className="dmd-card-row py-1">
+				<p className="ability-text m-0">
+					<span className="ability-title">{title}.</span>{' '}
+					{description}
+				</p>
+			</div>
+		);
+	};
+
+	// Handles all stats within a monsters object
+	const renderStats = (monster) => {
+		return (
+			<>
+				{monster.skills ? (
+					<Stat title={'Skills'} property={'skills'} />
+				) : null}
+				{monster.damage_resistances ? (
+					<Stat
+						title={'Damage Resistances'}
+						property={'damage_resistances'}
+						connector={'; '}
+					/>
+				) : null}
+				{monster.damage_immunities ? (
+					<Stat
+						title={'Damage Immunities'}
+						property={'damage_immunities'}
+					/>
+				) : null}
+				{monster.condition_immunities ? (
+					<Stat
+						title={'Condition Immunities'}
+						property={'condition_immunities'}
+					/>
+				) : null}
+				{monster.senses ? (
+					<Stat title={'Senses'} property={'senses'} />
+				) : null}
+				{monster.languages ? (
+					<Stat title={'Languages'} property={'languages'} />
+				) : null}
+				{monster.proficiency_bones > 0 ? (
+					<p className="stat-text m-0">
+						<span className="stat-title">Proficiency Bonus</span> +
+						{monster.proficiency_bonus}
+					</p>
+				) : null}
+			</>
+		);
+	};
+
+	// Renders all ability scores
 	const renderAbilityScores = (monster) => {
 		let abilityScores = [];
 		let shortName = [
@@ -133,64 +199,24 @@ const Monster = ({ monster, cardStyle }) => {
 					{renderAbilityScores(monster)}
 				</div>
 
-				{/* EXTRA STATS */}
+				{/* STATS */}
 				<div className="dmd-card-row d-flex flex-column py-2 border-bottom">
-					{/* Skills */}
-					{monster.skills ? (
-						<div className="d-flex flex-wrap">
-							<span className="stat-title">Skills </span>{' '}
-							{monster.skills.map((skill) => (
-								<p className="stat-text my-0 ms-1" key={skill}>
-									{' '}
-									{skill}
-								</p>
-							))}
-						</div>
-					) : null}
-					{/* Damage Resistances */}
-					{monster.damage_resistances ? (
-						<div className="d-flex flex-wrap">
-							<p className="stat-text my-0">
-								<span className="stat-title">
-									Damage Resistances{' '}
-								</span>{' '}
-								{monster.damage_resistances.join(', ')}
-							</p>
-						</div>
-					) : null}
-					{/* Damage Immunities */}
-					{/* Condition Immunities */}
-					{/* Senses */}
-					<p className="stat-text m-0">
-						<span className="stat-title">Senses</span>{' '}
-						{monster.senses[0]}, {monster.senses[1]}
-					</p>
-					{/* Languages */}
-					<p className="stat-text m-0">
-						<span className="stat-title">Languages</span>{' '}
-						{monster.languages[0]}, {monster.languages[1]}
-					</p>
-					{/* Proficiency */}
-					<p className="stat-text m-0">
-						<span className="stat-title">Proficiency Bonus</span> +
-						{monster.proficiency_bonus}
-					</p>
+					{renderStats(monster)}
 				</div>
 
 				{/* SPECIAL TRAITS */}
-				{monster.special_traits ? (
-					<div className="dmd-card-row py-2 border-bottom">
-						<p className="ability-text m-0">
-							<span className="ability-title">
-								{monster.special_traits[0].title}.
-							</span>{' '}
-							{monster.special_traits[0].description}
-						</p>
-					</div>
-				) : null}
+				{monster.special_traits
+					? monster.special_traits.map(({ title, description }) => (
+							<Trait
+								key={title}
+								title={title}
+								description={description}
+							/>
+					  ))
+					: null}
 
 				{/* ACTIONS */}
-				<div className="dmd-card-row py-2">
+				<div className="dmd-card-row py-2 border-top">
 					<h2 className="actions-header">Actions</h2>
 
 					{monster.actions.map((action) => (

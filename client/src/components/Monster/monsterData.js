@@ -305,7 +305,7 @@ const monsters = [
 			{
 				title: "Devil's Sight",
 				description:
-					"Magical darkness doesn't impeded the imp's darkvision.",
+					"Magical darkness doesn't impede the imp's darkvision.",
 			},
 			{
 				title: 'Magic Resistance',
