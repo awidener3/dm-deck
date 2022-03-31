@@ -10,7 +10,7 @@
 	border-radius: 0.5rem;
 	position: relative;
 	.circle-container {
-		pointer-events: none;
+		cursor: default;
 		position: absolute;
 		right: 0;
 		top: 0;

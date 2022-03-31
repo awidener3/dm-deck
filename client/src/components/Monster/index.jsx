@@ -70,13 +70,22 @@ const Monster = ({ monster, cardStyle }) => {
 			<div className="dmd-card m-3">
 				{/* TOP RIGHT CIRCLES */}
 				<div className="circle-container d-flex p-2">
-					<div className="stat-circle cr-circle">
+					<div
+						className="stat-circle cr-circle"
+						title={`Challenge Rating: ${monster.challenge_rating}`}
+					>
 						{monster.challenge_rating}
 					</div>
-					<div className="stat-circle race-circle">
+					<div
+						className="stat-circle race-circle"
+						title={monster.race}
+					>
 						{monster.race_short}
 					</div>
-					<div className="stat-circle alignment-circle">
+					<div
+						className="stat-circle alignment-circle"
+						title={monster.alignment}
+					>
 						{monster.alignment_short}
 					</div>
 				</div>
@@ -122,44 +131,13 @@ const Monster = ({ monster, cardStyle }) => {
 				{/* ABILITY SCORES */}
 				<div className="dmd-card-row d-flex justify-content-between py-2 text-center border-bottom">
 					{renderAbilityScores(monster)}
-
-					{/* <div>
-						<p className="stat-title m-0">STR</p>
-						<AbilityScore monster={monster} ability={'strength'} />
-					</div>
-					<div>
-						<p className="stat-title m-0">DEX</p>
-						<AbilityScore monster={monster} ability={'dexterity'} />
-					</div>
-					<div>
-						<p className="stat-title m-0">CON</p>
-						<AbilityScore
-							monster={monster}
-							ability={'constitution'}
-						/>
-					</div>
-					<div>
-						<p className="stat-title m-0">INT</p>
-						<AbilityScore
-							monster={monster}
-							ability={'intelligence'}
-						/>
-					</div>
-					<div>
-						<p className="stat-title m-0">WIS</p>
-						<AbilityScore monster={monster} ability={'wisdom'} />
-					</div>
-					<div>
-						<p className="stat-title m-0">CHA</p>
-						<AbilityScore monster={monster} ability={'charisma'} />
-					</div> */}
 				</div>
 
 				{/* EXTRA STATS */}
 				<div className="dmd-card-row d-flex flex-column py-2 border-bottom">
 					{/* Skills */}
 					{monster.skills ? (
-						<div className="d-flex">
+						<div className="d-flex flex-wrap">
 							<span className="stat-title">Skills </span>{' '}
 							{monster.skills.map((skill) => (
 								<p className="stat-text my-0 ms-1" key={skill}>
@@ -169,6 +147,19 @@ const Monster = ({ monster, cardStyle }) => {
 							))}
 						</div>
 					) : null}
+					{/* Damage Resistances */}
+					{monster.damage_resistances ? (
+						<div className="d-flex flex-wrap">
+							<p className="stat-text my-0">
+								<span className="stat-title">
+									Damage Resistances{' '}
+								</span>{' '}
+								{monster.damage_resistances.join(', ')}
+							</p>
+						</div>
+					) : null}
+					{/* Damage Immunities */}
+					{/* Condition Immunities */}
 					{/* Senses */}
 					<p className="stat-text m-0">
 						<span className="stat-title">Senses</span>{' '}
