@@ -13,10 +13,12 @@ import {
 } from 'react-icons/gi';
 
 const Monster = ({ monster, cardStyle }) => {
+	// Temporary roll-to-hit functionality in console
 	const rollToHit = (modifier) => {
 		console.log(Math.floor(Math.random() * 20) + 1 + modifier);
 	};
 
+	// Temporary damage functionality in console
 	const rollDamage = ({ damage_die, damage_die_num, damage_modifier }) => {
 		console.log(
 			Math.floor(Math.random() * damage_die) * damage_die_num +
@@ -50,6 +52,7 @@ const Monster = ({ monster, cardStyle }) => {
 		);
 	};
 
+	// Returns a <div> with any abilities a monster may have
 	const Trait = ({ title, description }) => {
 		return (
 			<div className="dmd-card-row py-1">
@@ -222,7 +225,7 @@ const Monster = ({ monster, cardStyle }) => {
 					{monster.actions.map((action) => (
 						<div
 							key={action.weapon}
-							className="d-flex justify-content-between align-items-center mb-1"
+							className="d-flex justify-content-between align-items-center mb-2"
 						>
 							<p className="action-title m-0">
 								{action.action_type === 'melee' ? (
@@ -235,27 +238,44 @@ const Monster = ({ monster, cardStyle }) => {
 								{action.weapon}
 							</p>
 							<div>
-								<button
-									id="toHitBtn"
-									className="action-btn btn btn-outline-secondary btn-sm ms-1"
-									onClick={() =>
-										rollToHit(action.hit_modifier)
-									}
-								>
-									<GiPointySword /> +{action.hit_modifier}
-								</button>
-								<button
-									id="getDamageBtn"
-									className="action-btn btn btn-outline-secondary btn-sm ms-1"
-									onClick={() => rollDamage(action)}
-								>
-									<GiMineExplosion />{' '}
-									{action.damage_dice_text}
-								</button>
+								{action.action_type === 'melee' ||
+								action.action_type === 'ranged' ? (
+									<>
+										<button
+											id="toHitBtn"
+											className="action-btn btn btn-outline-secondary btn-sm ms-1"
+											onClick={() =>
+												rollToHit(action.hit_modifier)
+											}
+										>
+											<GiPointySword /> +
+											{action.hit_modifier}
+										</button>
+										<button
+											id="getDamageBtn"
+											className="action-btn btn btn-outline-secondary btn-sm ms-1"
+											onClick={() => rollDamage(action)}
+										>
+											<GiMineExplosion />{' '}
+											{action.damage_dice_text}
+										</button>
+									</>
+								) : (
+									<button
+										id="addEffectBtn"
+										className="action-btn btn btn-outline-secondary btn-sm ms-1"
+										onClick={() =>
+											rollToHit(action.hit_modifier)
+										}
+									>
+										<GiTwirlCenter /> Add Effect
+									</button>
+								)}
 							</div>
 						</div>
 					))}
 				</div>
+
 				{/* INITIATIVE */}
 				<div className="initiative-div d-flex justify-content-center align-items-center mb-2">
 					{monster.initiative}

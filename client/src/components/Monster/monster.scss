@@ -1,12 +1,18 @@
+// .dmd-card::-webkit-scrollbar {
+//   display: none;
+// }
+
 .dmd-card {
 	// Card styling
 	padding: 20px;
-	border: 1px solid #000000;
-	outline: 1px solid #aaaaaa;
+	border: 1px solid #7b0b0b;
+	outline: 1px solid #aaa;
 	outline-offset: -5px;
 	background-color: #ffffff;
 	width: 20rem;
 	min-height: 30rem;
+  // max-height: 32rem;
+  // overflow: scroll;
 	border-radius: 0.5rem;
 	position: relative;
 	.circle-container {
