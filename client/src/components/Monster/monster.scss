@@ -11,10 +11,13 @@
 	background-color: #ffffff;
 	width: 20rem;
 	min-height: 30rem;
-  // max-height: 32rem;
-  // overflow: scroll;
+	// max-height: 32rem;
+	// overflow: scroll;
 	border-radius: 0.5rem;
 	position: relative;
+  hr {
+    margin: 0.5rem 0;
+  }
 	.circle-container {
 		cursor: default;
 		position: absolute;
@@ -107,6 +110,25 @@
 		.ranged-icon {
 			transform: rotate(-90deg);
 		}
+	}
+	.dmd-card-traits,
+	.dmd-card-stats {
+		overflow: auto;
+	}
+  .dmd-card-traits {
+    max-height: 5rem;
+  }
+  .dmd-card-stats {
+    max-height: 3.5rem;
+  }
+	.dmd-card-traits::-webkit-scrollbar,
+	.dmd-card-stats::-webkit-scrollbar {
+		width: 5px;
+	}
+	.dmd-card-traits::-webkit-scrollbar-thumb,
+	.dmd-card-stats::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: #bdbdbd;
 	}
 	.initiative-div {
 		pointer-events: none;

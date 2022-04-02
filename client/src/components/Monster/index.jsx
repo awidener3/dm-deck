@@ -158,12 +158,10 @@ const Monster = ({ monster, cardStyle }) => {
 						{monster.alignment_short}
 					</div>
 				</div>
-
 				{/* HEADER */}
 				<div className="dmd-card-header">
 					<h1 className="name">{monster.name}</h1>
 				</div>
-
 				{/* BASE STATS */}
 				<div className="dmd-card-row d-flex justify-content-between align-items-center pb-2 border-bottom">
 					<div className="d-flex align-items-center">
@@ -196,28 +194,29 @@ const Monster = ({ monster, cardStyle }) => {
 						</p>
 					</div>
 				</div>
-
 				{/* ABILITY SCORES */}
 				<div className="dmd-card-row d-flex justify-content-between py-2 text-center border-bottom">
 					{renderAbilityScores(monster)}
 				</div>
-
 				{/* STATS */}
-				<div className="dmd-card-row d-flex flex-column py-2 border-bottom">
+				<div className="dmd-card-row dmd-card-stats my-1">
 					{renderStats(monster)}
 				</div>
-
+				<hr />
 				{/* SPECIAL TRAITS */}
-				{monster.special_traits
-					? monster.special_traits.map(({ title, description }) => (
-							<Trait
-								key={title}
-								title={title}
-								description={description}
-							/>
-					  ))
-					: null}
-
+				<div className="dmd-card-traits my-1">
+					{monster.special_traits
+						? monster.special_traits.map(
+								({ title, description }) => (
+									<Trait
+										key={title}
+										title={title}
+										description={description}
+									/>
+								)
+						  )
+						: null}
+				</div>
 				{/* ACTIONS */}
 				<div className="dmd-card-row py-2 border-top">
 					<h2 className="actions-header">Actions</h2>
@@ -275,7 +274,6 @@ const Monster = ({ monster, cardStyle }) => {
 						</div>
 					))}
 				</div>
-
 				{/* INITIATIVE */}
 				<div className="initiative-div d-flex justify-content-center align-items-center mb-2">
 					{monster.initiative}
