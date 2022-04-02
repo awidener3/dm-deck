@@ -3,7 +3,6 @@ import { Modal, Button } from 'react-bootstrap';
 
 import Monster from '../components/Monster';
 import Hero from '../components/Hero';
-import ToHitModal from '../components/ToHitModal';
 
 // Dummy data
 import monsters from '../components/Monster/monsterData';
@@ -14,6 +13,7 @@ import {
 	FaChevronRight,
 	FaChevronCircleLeft,
 	FaChevronCircleRight,
+	FaDiceD20,
 } from 'react-icons/fa';
 
 import '../App.scss';
@@ -34,12 +34,9 @@ const Battle = () => {
 	// Modal
 	const [rollModifier, setRollModifier] = useState(0);
 	const [d20, setD20] = useState(0);
-	const [toHitRoll, setToHitRoll] = useState(0);
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
-	const handleShow = () => {
-		setShow(true);
-	};
+	const handleShow = () => setShow(true);
 
 	// Add initiative on load
 	useEffect(() => {
@@ -199,11 +196,14 @@ const Battle = () => {
 			</div>
 
 			{/* Modal */}
-			{/* <ToHitModal show={show} onHide={handleClose} /> */}
 			<Modal size="sm" show={show} onHide={handleClose} centered>
-				<Modal.Header closeButton></Modal.Header>
+				<Modal.Header closeButton>
+					<FaDiceD20 size="2rem" />
+				</Modal.Header>
 				<div className="d-flex flex-column justify-content-center text-center">
-					<Modal.Title>{d20 + rollModifier}</Modal.Title>
+					<Modal.Title className="display-5">
+						{d20 + rollModifier}
+					</Modal.Title>
 					<Modal.Body>
 						{d20} + {rollModifier}
 					</Modal.Body>

@@ -1,5 +1,8 @@
 import React from 'react';
+import useSound from 'use-sound';
 import './monster.scss';
+
+import diceSfx from '../../assets/audio/dice-roll.mp3';
 
 // Icons
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
@@ -13,6 +16,8 @@ import {
 } from 'react-icons/gi';
 
 const Monster = ({ monster, cardStyle, handleRollToHit }) => {
+	const [playSfx, { stop }] = useSound(diceSfx);
+
 	// Temporary damage functionality in console
 	const rollDamage = ({ damage_die, damage_die_num, damage_modifier }) => {
 		console.log(
@@ -239,6 +244,7 @@ const Monster = ({ monster, cardStyle, handleRollToHit }) => {
 											id="toHitBtn"
 											className="action-btn btn btn-outline-secondary btn-sm ms-1"
 											onClick={() => {
+												playSfx();
 												handleRollToHit(
 													action.hit_modifier
 												);
