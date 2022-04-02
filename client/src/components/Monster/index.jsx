@@ -12,12 +12,7 @@ import {
 	GiTwirlCenter,
 } from 'react-icons/gi';
 
-const Monster = ({ monster, cardStyle }) => {
-	// Temporary roll-to-hit functionality in console
-	const rollToHit = (modifier) => {
-		console.log(Math.floor(Math.random() * 20) + 1 + modifier);
-	};
-
+const Monster = ({ monster, cardStyle, handleRollToHit }) => {
 	// Temporary damage functionality in console
 	const rollDamage = ({ damage_die, damage_die_num, damage_modifier }) => {
 		console.log(
@@ -243,9 +238,11 @@ const Monster = ({ monster, cardStyle }) => {
 										<button
 											id="toHitBtn"
 											className="action-btn btn btn-outline-secondary btn-sm ms-1"
-											onClick={() =>
-												rollToHit(action.hit_modifier)
-											}
+											onClick={() => {
+												handleRollToHit(
+													action.hit_modifier
+												);
+											}}
 										>
 											<GiPointySword /> +
 											{action.hit_modifier}
@@ -264,7 +261,7 @@ const Monster = ({ monster, cardStyle }) => {
 										id="addEffectBtn"
 										className="action-btn btn btn-outline-secondary btn-sm ms-1"
 										onClick={() =>
-											rollToHit(action.hit_modifier)
+											handleRollToHit(action.hit_modifier)
 										}
 									>
 										<GiTwirlCenter /> Add Effect

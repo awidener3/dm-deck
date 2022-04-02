@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
 import Monster from '../components/Monster';
 import Hero from '../components/Hero';
+import ToHitModal from '../components/ToHitModal';
 
 // Dummy data
 import monsters from '../components/Monster/monsterData';
@@ -17,18 +19,34 @@ import {
 import '../App.scss';
 
 const Battle = () => {
+	// Bring in monster and hero data
 	const [monsterData, setMonsterData] = useState(monsters);
 	const [heroData, setHeroData] = useState(heroes);
+
+	// Put heroes and monsters into one array to be sorted and assigned initiative
+	const sortedData = [].concat(monsterData).concat(heroData);
+
+	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
 	const [round, setRound] = useState(1);
 	const [turn, setTurn] = useState(1);
 
-	const sortedData = [].concat(monsterData).concat(heroData);
+	// Modal
+	const [rollModifier, setRollModifier] = useState(0);
+	const [d20, setD20] = useState(0);
+	const [toHitRoll, setToHitRoll] = useState(0);
+	const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => {
+		setShow(true);
+	};
 
+	// Add initiative on load
 	useEffect(() => {
 		addInitiative();
 	}, []);
 
+	// Handles sliding animation (left)
 	const slideLeft = () => {
 		// Previous turn
 		if (index - 1 >= 0) {
@@ -44,6 +62,7 @@ const Battle = () => {
 		}
 	};
 
+	// Handles sliding animation (right)
 	const slideRight = () => {
 		// Next turn
 		if (index + 1 <= sortedData.length - 1) {
@@ -59,6 +78,7 @@ const Battle = () => {
 		}
 	};
 
+	// Helper function that rolls initiatve for each character/monster in array
 	const getInitiative = (obj) => {
 		if (obj.type === 'monster') {
 			return (
@@ -70,6 +90,7 @@ const Battle = () => {
 		}
 	};
 
+	// Adds initiative to character/monster
 	const addInitiative = () => {
 		const monsters = monsterData.map((monster) => ({
 			...monster,
@@ -84,6 +105,17 @@ const Battle = () => {
 		setHeroData(heroes);
 	};
 
+	const rollD20 = () => {
+		return Math.floor(Math.random() * 20) + 1;
+	};
+
+	const handleRollToHit = (modifier) => {
+		setRollModifier(modifier);
+		setD20(rollD20());
+		handleShow();
+	};
+
+	// Renders cards with initiative sorting and sliding animation classes
 	const renderCards = () => {
 		return sortedData
 			.sort((a, b) => (a.initiative < b.initiative ? 1 : -1))
@@ -101,6 +133,7 @@ const Battle = () => {
 							key={creature.name}
 							monster={creature}
 							cardStyle={position}
+							handleRollToHit={handleRollToHit}
 						/>
 					);
 				} else if (creature.type === 'hero') {
@@ -128,7 +161,7 @@ const Battle = () => {
 			</div>
 
 			<div className="d-flex align-items-center">
-				{/* DYNAMIC RENDER OF LEFT CHEVRON */}
+				{/* Render left Chevron */}
 				{round === 1 && turn === 1 ? null : turn === 1 ? (
 					<FaChevronCircleLeft
 						onClick={slideLeft}
@@ -141,7 +174,7 @@ const Battle = () => {
 					/>
 				)}
 
-				{/* BATTLE CONTENT */}
+				{/* Cards */}
 				<div className="card-container container d-flex justify-content-center">
 					<div className="background-block"></div>
 					{/* //! TESTING */}
@@ -151,7 +184,7 @@ const Battle = () => {
 					{monsterData[0].initiative ? renderCards() : null}
 				</div>
 
-				{/* DYNAMIC RENDER OF RIGHT CHEVRON */}
+				{/* Render right Chevron */}
 				{turn === sortedData.length ? (
 					<FaChevronCircleRight
 						onClick={slideRight}
@@ -164,6 +197,18 @@ const Battle = () => {
 					/>
 				)}
 			</div>
+
+			{/* Modal */}
+			{/* <ToHitModal show={show} onHide={handleClose} /> */}
+			<Modal size="sm" show={show} onHide={handleClose} centered>
+				<Modal.Header closeButton></Modal.Header>
+				<div className="d-flex flex-column justify-content-center text-center">
+					<Modal.Title>{d20 + rollModifier}</Modal.Title>
+					<Modal.Body>
+						{d20} + {rollModifier}
+					</Modal.Body>
+				</div>
+			</Modal>
 		</div>
 	);
 };
