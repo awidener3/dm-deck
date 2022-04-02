@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
+import { rollDie } from '../utils/diceRolls';
+
 import Monster from '../components/Monster';
 import Hero from '../components/Hero';
 
@@ -102,13 +104,9 @@ const Battle = () => {
 		setHeroData(heroes);
 	};
 
-	const rollD20 = () => {
-		return Math.floor(Math.random() * 20) + 1;
-	};
-
 	const handleRollToHit = (modifier) => {
 		setRollModifier(modifier);
-		setD20(rollD20());
+		setD20(rollDie(20));
 		handleShow();
 	};
 
