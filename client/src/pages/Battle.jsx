@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 import { rollDie } from '../utils/diceRolls';
 
@@ -18,6 +18,8 @@ import {
 	FaDiceD20,
 } from 'react-icons/fa';
 
+import { GiBookCover } from 'react-icons/gi';
+
 import '../App.scss';
 
 const Battle = () => {
@@ -33,12 +35,18 @@ const Battle = () => {
 	const [round, setRound] = useState(1);
 	const [turn, setTurn] = useState(1);
 
+	const [info, setInfo] = useState({});
+
 	// Modal
 	const [rollModifier, setRollModifier] = useState(0);
 	const [d20, setD20] = useState(0);
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const [showRollModal, setShowRollModal] = useState(false);
+	const handleCloseRollModal = () => setShowRollModal(false);
+	const handleShowRollModal = () => setShowRollModal(true);
+
+	const [showInfoModal, setShowInfoModal] = useState(false);
+	const handleCloseInfoModal = () => setShowInfoModal(false);
+	const handleShowInfoModal = () => setShowInfoModal(true);
 
 	// Add initiative on load
 	useEffect(() => {
@@ -107,7 +115,12 @@ const Battle = () => {
 	const handleRollToHit = (modifier) => {
 		setRollModifier(modifier);
 		setD20(rollDie(20));
-		handleShow();
+		handleShowRollModal();
+	};
+
+	const handleShowInfo = (action) => {
+		setInfo(action);
+		handleShowInfoModal();
 	};
 
 	// Renders cards with initiative sorting and sliding animation classes
@@ -129,6 +142,7 @@ const Battle = () => {
 							monster={creature}
 							cardStyle={position}
 							handleRollToHit={handleRollToHit}
+							handleShowInfo={handleShowInfo}
 						/>
 					);
 				} else if (creature.type === 'hero') {
@@ -193,8 +207,13 @@ const Battle = () => {
 				)}
 			</div>
 
-			{/* Modal */}
-			<Modal size="sm" show={show} onHide={handleClose} centered>
+			{/* Roll Modal */}
+			<Modal
+				size="sm"
+				show={showRollModal}
+				onHide={handleCloseRollModal}
+				centered
+			>
 				<Modal.Header closeButton>
 					<FaDiceD20 size="2rem" />
 				</Modal.Header>
@@ -204,6 +223,26 @@ const Battle = () => {
 					</Modal.Title>
 					<Modal.Body>
 						{d20} + {rollModifier}
+					</Modal.Body>
+				</div>
+			</Modal>
+
+			{/* Info Modal */}
+			<Modal
+				size="sm"
+				show={showInfoModal}
+				onHide={handleCloseInfoModal}
+				centered
+			>
+				<Modal.Header closeButton>
+					<GiBookCover size="2rem" />
+				</Modal.Header>
+				<div className="d-flex flex-column justify-content-center">
+					<Modal.Title className="display-5 text-center">
+						{info.weapon}
+					</Modal.Title>
+					<Modal.Body>
+						<p>{info.action_text}</p>
 					</Modal.Body>
 				</div>
 			</Modal>

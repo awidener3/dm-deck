@@ -1,8 +1,3 @@
-// ? Used for hiding scrollbar on overflow:scroll
-// .dmd-card::-webkit-scrollbar {
-//   display: none;
-// }
-
 .dmd-card {
 	padding: 20px;
 	border: 1px solid #7b0b0b;
@@ -11,8 +6,6 @@
 	background-color: #ffffff;
 	width: 20rem;
 	min-height: 30rem;
-	// max-height: 32rem;
-	// overflow: scroll;
 	border-radius: 0.5rem;
 	position: relative;
   hr {

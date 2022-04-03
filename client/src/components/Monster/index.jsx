@@ -6,6 +6,7 @@ import diceSfx from '../../assets/audio/dice-roll.mp3';
 
 // Icons
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import {
 	GiMineExplosion,
@@ -15,7 +16,7 @@ import {
 	GiTwirlCenter,
 } from 'react-icons/gi';
 
-const Monster = ({ monster, cardStyle, handleRollToHit }) => {
+const Monster = ({ monster, cardStyle, handleRollToHit, handleShowInfo }) => {
 	const [playSfx, { stop }] = useSound(diceSfx);
 
 	// Temporary damage functionality in console
@@ -234,7 +235,12 @@ const Monster = ({ monster, cardStyle, handleRollToHit }) => {
 								) : (
 									<GiTwirlCenter />
 								)}{' '}
-								{action.weapon}
+								{action.weapon}{' '}
+								<AiOutlineInfoCircle
+									onClick={() => {
+										handleShowInfo(action);
+									}}
+								/>
 							</p>
 							<div>
 								{action.action_type === 'melee' ||
@@ -264,13 +270,11 @@ const Monster = ({ monster, cardStyle, handleRollToHit }) => {
 									</>
 								) : (
 									<button
-										id="addEffectBtn"
+										id="addStatusBtn"
 										className="action-btn btn btn-outline-secondary btn-sm ms-1"
-										onClick={() =>
-											handleRollToHit(action.hit_modifier)
-										}
+										onClick={() => console.log(action)}
 									>
-										<GiTwirlCenter /> Add Effect
+										<GiTwirlCenter /> Add Status
 									</button>
 								)}
 							</div>

@@ -41,6 +41,8 @@ const monsters = [
 			{
 				weapon: 'Scimitar',
 				action_type: 'melee',
+				action_text:
+					'Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage.',
 				hit_modifier: 4,
 				reach: 5,
 				range: null,
@@ -55,6 +57,8 @@ const monsters = [
 			{
 				weapon: 'Shortbow',
 				action_type: 'ranged',
+				action_text:
+					'Ranged Weapon Attack: +4 to hit, range 80/320 ft., one target. Hit: 5 (1d6 + 2) piercing damage.',
 				hit_modifier: 4,
 				reach: null,
 				range: '80/320 ft.',
@@ -110,6 +114,8 @@ const monsters = [
 			{
 				weapon: 'Longsword',
 				action_type: 'melee',
+				action_text:
+					'Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 5 (1d8 + 1) slashing damage, or 6 (1d10 + 1) slashing damage if used with two hands.',
 				hit_modifier: 3,
 				reach: 5,
 				range: null,
@@ -124,6 +130,8 @@ const monsters = [
 			{
 				weapon: 'Longbow',
 				action_type: 'ranged',
+				action_text:
+					'Ranged Weapon Attack: +3 to hit, range 150/600 ft., one target. Hit: 5 (1d8 + 1) piercing damage.',
 				hit_modifier: 3,
 				reach: null,
 				range: '150/600 ft.',
@@ -173,6 +181,8 @@ const monsters = [
 			{
 				weapon: 'Greatclub',
 				action_type: 'melee',
+				action_text:
+					'Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) bludgeoning damage.',
 				hit_modifier: 6,
 				reach: 5,
 				range: null,
@@ -186,7 +196,9 @@ const monsters = [
 			},
 			{
 				weapon: 'Javelin',
-				action_type: 'melee/ranged',
+				action_type: 'melee',
+				action_text:
+					'Melee or Ranged Weapon Attack: +6 to hit, reach 5 ft. or range 30/120 ft., one target. Hit: 11 (2d6 + 4) piercing damage.',
 				hit_modifier: 6,
 				reach: 5,
 				range: '30/120 ft.',
@@ -246,6 +258,8 @@ const monsters = [
 			{
 				weapon: 'Bite',
 				action_type: 'melee',
+				action_text:
+					'Melee Weapon Attack: +0 to hit, reach 5 ft., one creature. Hit: 1 piercing damage.',
 				hit_modifier: 0,
 				reach: 5,
 				range: null,
@@ -317,6 +331,8 @@ const monsters = [
 			{
 				weapon: 'Sting',
 				action_type: 'melee',
+				action_text:
+					'Melee Weapon Attack: +5 to hit, reach 5 ft., one creature. Hit: 5 (1d4 + 3) piercing damage, and the target must make a DC 11 Constitution saving throw, taking 10 (3d6) poison damage on a failed save, or half as much damage on a successful one.',
 				hit_modifier: 5,
 				reach: 5,
 				range: null,
@@ -342,7 +358,7 @@ const monsters = [
 			{
 				weapon: 'Invisibility',
 				action_type: 'effect',
-				effect_text:
+				action_text:
 					'The imp magically turns invisible until it attacks or until its concentration ends (as if concentrating on a spell). Any equipment the imp wears or carries is invisible with it.',
 				concention: true,
 				status: 'invisible',
