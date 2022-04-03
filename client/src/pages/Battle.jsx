@@ -160,11 +160,10 @@ const Battle = () => {
 	};
 
 	return (
-		<div className="battle-container p-4 d-flex flex-column justify-content-center align-items-center container">
-			<h1>Example Battle</h1>
+		<div className="battle-container p-3 d-flex flex-column justify-content-center align-items-center container">
 			<div className="battle-stats d-flex">
-				<h4 className="battle-stat m-2">Round: {round}</h4>
-				<h4 className="battle-stat m-2">
+				<h4 className="battle-stat mx-2">Round: {round}</h4>
+				<h4 className="battle-stat mx-2">
 					Turn: {turn}/{sortedData.length}
 				</h4>
 			</div>
