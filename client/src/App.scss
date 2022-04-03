@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap");
 
 // Asul 400 or 700 weight available
 h1,
@@ -7,72 +7,77 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Asul', sans-serif;
+    font-family: "Asul", sans-serif;
 }
 
 // Mukta 200-700 available
 p,
 li,
 a {
-	font-family: 'Mukta Vaani', sans-serif;
+    font-family: "Mukta Vaani", sans-serif;
 }
 
 body {
-	background-color: #e6e6e6;
+    background-color: #e6e6e6;
 }
 
 .card-container {
-	position: relative;
+    position: relative;
 
-	width: 65rem;
-	height: 32rem;
+    width: 65rem;
+    height: 32rem;
 }
 
 .wrapper {
-	position: absolute;
+    position: absolute;
 }
 
 .prevCard {
-	left: 0%;
-	opacity: 0;
+    left: 0%;
+    opacity: 0;
 }
 
 .activeCard {
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 99;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
 }
 
 .nextCard {
-	left: 100%;
-	transform: translateX(calc(-100% - 2rem));
-	opacity: 0;
+    left: 100%;
+    transform: translateX(calc(-100% - 2rem));
+    opacity: 0;
 }
 
 article {
-	position: absolute;
-	transition: all 1s;
+    position: absolute;
+    transition: all 1s;
 }
 
 .background-block {
-	position: absolute;
-	width: 90%;
-	height: 100%;
-	z-index: 0;
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    z-index: 0;
 }
 
 .battle-container {
-	position: relative;
-	.battle-chevron {
-		font-size: 2rem;
-		position: absolute;
-	}
-	.left-chevron {
-		left: 0;
-		z-index: 100;
-	}
-	.right-chevron {
-		right: 0;
-		z-index: 100;
-	}
+    position: relative;
+    .battle-chevron {
+        font-size: 2rem;
+        position: absolute;
+    }
+    .left-chevron {
+        left: 0;
+        z-index: 100;
+    }
+    .right-chevron {
+        right: 0;
+        z-index: 100;
+    }
+}
+
+.info-modal-action {
+    font-style: italic;
+    font-weight: 700;
 }
