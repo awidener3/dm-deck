@@ -358,6 +358,7 @@ const monsters = [
 			{
 				weapon: 'Invisibility',
 				action_type: 'effect',
+				action_target: 'self',
 				action_text:
 					'The imp magically turns invisible until it attacks or until its concentration ends (as if concentrating on a spell). Any equipment the imp wears or carries is invisible with it.',
 				concention: true,
