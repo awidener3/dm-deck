@@ -39,7 +39,7 @@ const Battle = () => {
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
 	const [rollModifier, setRollModifier] = useState(0);
-	const [d20, setD20] = useState(0);
+	const [die, setDie] = useState(0);
 
 	const handleCloseRollModal = () => setShowRollModal(false);
 	const handleShowRollModal = () => setShowRollModal(true);
@@ -51,9 +51,9 @@ const Battle = () => {
 		addInitiative(monsterData, heroData, setMonsterData, setHeroData);
 	}, []);
 
-	const handleRollToHit = (modifier) => {
+	const handleRollDice = (die, dieNum, modifier) => {
 		setRollModifier(modifier);
-		setD20(rollDie(20));
+		setDie(rollDie(die) * dieNum);
 		handleShowRollModal();
 	};
 
@@ -80,7 +80,7 @@ const Battle = () => {
 							key={creature.name}
 							monster={creature}
 							cardStyle={position}
-							handleRollToHit={handleRollToHit}
+							handleRollDice={handleRollDice}
 							handleShowInfo={handleShowInfo}
 						/>
 					);
@@ -184,7 +184,7 @@ const Battle = () => {
 			<RollModal
 				showRollModal={showRollModal}
 				handleCloseRollModal={handleCloseRollModal}
-				d20={d20}
+				die={die}
 				rollModifier={rollModifier}
 			/>
 

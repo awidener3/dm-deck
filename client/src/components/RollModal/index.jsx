@@ -1,14 +1,17 @@
 import { Modal } from 'react-bootstrap';
 import { FaDiceD20 } from 'react-icons/fa';
+import './rollModal.scss';
 
 const RollModal = ({
 	showRollModal,
 	handleCloseRollModal,
-	d20,
+	die,
 	rollModifier,
 }) => {
 	return (
 		<Modal
+			dialogClassName="roll-modal"
+			className="d-flex justify-content-center"
 			size="sm"
 			show={showRollModal}
 			onHide={handleCloseRollModal}
@@ -18,11 +21,11 @@ const RollModal = ({
 				<FaDiceD20 size="2rem" />
 			</Modal.Header>
 			<div className="d-flex flex-column justify-content-center text-center">
-				<Modal.Title className="display-5">
-					{d20 + rollModifier}
+				<Modal.Title className="display-3">
+					{die + rollModifier}
 				</Modal.Title>
 				<Modal.Body>
-					{d20} + {rollModifier}
+					{die} + {rollModifier}
 				</Modal.Body>
 			</div>
 		</Modal>

@@ -8,7 +8,7 @@ import BaseStats from './BaseStats';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import AbilityScores from './AbilityScores';
 
-const Monster = ({ monster, cardStyle, handleRollToHit, handleShowInfo }) => {
+const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
@@ -36,7 +36,7 @@ const Monster = ({ monster, cardStyle, handleRollToHit, handleShowInfo }) => {
 					</h2>
 					<Actions
 						monster={monster}
-						handleRollToHit={handleRollToHit}
+						handleRollDice={handleRollDice}
 					/>
 				</div>
 

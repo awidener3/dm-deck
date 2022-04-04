@@ -268,7 +268,7 @@ const monsters = [
 				damage_dice_text: 1,
 				damage_die: 1,
 				damage_die_num: 1,
-				damage_modifier: 1,
+				damage_modifier: 0,
 				damage_type: 'piercing',
 			},
 		],

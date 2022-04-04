@@ -9,15 +9,7 @@ import {
 import useSound from 'use-sound';
 import diceSfx from '../../../assets/audio/dice-roll.mp3';
 
-// Temporary damage functionality in console
-const rollDamage = ({ damage_die, damage_die_num, damage_modifier }) => {
-	console.log(
-		Math.floor(Math.random() * damage_die) * damage_die_num +
-			damage_modifier
-	);
-};
-
-const Actions = ({ monster, handleRollToHit }) => {
+const Actions = ({ monster, handleRollDice }) => {
 	const [playSfx] = useSound(diceSfx);
 	return monster.actions.map((action) => (
 		<div
@@ -43,7 +35,7 @@ const Actions = ({ monster, handleRollToHit }) => {
 							className="action-btn btn btn-outline-secondary btn-sm ms-1"
 							onClick={() => {
 								playSfx();
-								handleRollToHit(action.hit_modifier);
+								handleRollDice(20, 1, action.hit_modifier);
 							}}
 						>
 							<GiPointySword /> +{action.hit_modifier}
@@ -51,7 +43,15 @@ const Actions = ({ monster, handleRollToHit }) => {
 						<button
 							id="getDamageBtn"
 							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-							onClick={() => rollDamage(action)}
+							onClick={() => {
+								playSfx();
+								handleRollDice(
+									action.damage_die,
+									action.damage_die_num,
+									action.damage_modifier
+								);
+								// rollDamage(action);
+							}}
 						>
 							<GiMineExplosion /> {action.damage_dice_text}
 						</button>
