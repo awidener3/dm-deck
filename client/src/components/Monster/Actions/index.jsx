@@ -12,7 +12,17 @@ import diceSfx from '../../../assets/audio/dice-roll.mp3';
 const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 	const [playSfx] = useSound(diceSfx);
 
-	const handleConditions = (action, conditions) => {
+	const handleToHit = (action) => {
+		if (conditions.includes('invisible')) {
+			setConditions(
+				conditions.filter((condition) => condition !== 'invisible')
+			);
+		}
+		playSfx();
+		handleRollDice(20, 1, action.hit_modifier);
+	};
+
+	const handleConditions = (action) => {
 		// check if the target is self + isn't currently active
 		if (
 			action.action_target === 'self' &&
@@ -46,10 +56,7 @@ const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 						<button
 							id="toHitBtn"
 							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-							onClick={() => {
-								playSfx();
-								handleRollDice(20, 1, action.hit_modifier);
-							}}
+							onClick={() => handleToHit(action)}
 						>
 							<GiPointySword /> +{action.hit_modifier}
 						</button>
@@ -73,7 +80,7 @@ const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 					<button
 						id="addStatusBtn"
 						className="action-btn btn btn-outline-secondary btn-sm ms-1"
-						onClick={() => handleConditions(action, conditions)}
+						onClick={() => handleConditions(action)}
 					>
 						<GiTwirlCenter /> Add Status
 					</button>
