@@ -205,6 +205,7 @@ const Battle = () => {
 				showMonstersModal={showMonstersModal}
 				handleCloseMonstersModal={handleCloseMonstersModal}
 				monsters={monsterData}
+				setMonsterData={setMonsterData}
 			/>
 		</div>
 	);

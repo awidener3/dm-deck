@@ -1,7 +1,7 @@
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
 import { FaArrowCircleRight } from 'react-icons/fa';
 
-const BaseStats = ({ monster, hitpoints }) => {
+const BaseStats = ({ monster }) => {
 	return (
 		<div className="dmd-card-row d-flex justify-content-between align-items-center pb-2 border-bottom">
 			<div className="d-flex align-items-center">
@@ -9,7 +9,7 @@ const BaseStats = ({ monster, hitpoints }) => {
 				<p className="stat-title m-0">
 					HP{' '}
 					<span>
-						{hitpoints} ({monster.hitpoint_dice})
+						{monster.hitpoints} ({monster.hitpoint_dice})
 					</span>
 				</p>
 			</div>

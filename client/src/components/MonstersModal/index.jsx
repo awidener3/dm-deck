@@ -9,6 +9,7 @@ const MonstersModal = ({
 	showMonstersModal,
 	handleCloseMonstersModal,
 	monsters,
+	setMonsterData,
 }) => {
 	const [selectedMonster, setSelectedMonster] = useState('');
 
@@ -35,7 +36,9 @@ const MonstersModal = ({
 			) : (
 				<SelectedMonster
 					monster={selectedMonster}
+					monsterArray={monsters}
 					setSelectedMonster={setSelectedMonster}
+					setMonsterData={setMonsterData}
 				/>
 			)}
 		</Modal>

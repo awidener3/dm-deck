@@ -1,12 +1,36 @@
 import { Modal } from 'react-bootstrap';
 
-const SelectedMonster = ({ monster, setSelectedMonster }) => {
+const SelectedMonster = ({
+	monster,
+	monsterArray,
+	setSelectedMonster,
+	setMonsterData,
+}) => {
+	const handleChangeHitpoints = (e) => {
+		const updatedArray = monsterArray.slice();
+		updatedArray.forEach((item) => {
+			if (item.name === monster.name) {
+				item.hitpoints = e.target.value;
+			}
+		});
+		setMonsterData([...updatedArray]);
+	};
+
 	return (
 		<div>
 			<Modal.Title className="text-center">{monster.name}</Modal.Title>
-			<Modal.Body>
+			<Modal.Body className="w-50 m-auto">
 				<div className="monster-btns d-flex flex-column">
-					{monster.name}
+					<p>Armor Class: {monster.armor_class}</p>
+					<label htmlFor="hitpoints">Hitpoints:</label>
+					<input
+						type="number"
+						name="hitpoints"
+						id="hitpoints"
+						min={'0'}
+						value={monster.hitpoints}
+						onChange={handleChangeHitpoints}
+					/>
 				</div>
 
 				<div className="d-flex justify-content-center">
