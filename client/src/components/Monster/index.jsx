@@ -13,6 +13,7 @@ import AbilityScores from './AbilityScores';
 const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 	const [conditions, setConditions] = useState([]);
 	const [isConcentrating, setIsConcentrating] = useState(false);
+	const [hitpoints, setHitpoints] = useState(monster.hitpoints);
 
 	return (
 		<article className={`wrapper ${cardStyle}`}>
@@ -30,7 +31,7 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 					</h1>
 				</div>
 
-				<BaseStats monster={monster} />
+				<BaseStats monster={monster} hitpoints={hitpoints} />
 				<AbilityScores monster={monster} />
 				<Stats monster={monster} />
 				<Traits monster={monster} />

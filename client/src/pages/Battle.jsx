@@ -62,6 +62,11 @@ const Battle = () => {
 		handleShowInfoModal();
 	};
 
+	const handleHeroAttack = () => {
+		console.log('attack da monster!');
+		console.log(monsterData);
+	};
+
 	// Renders cards with initiative sorting and sliding animation classes
 	const renderCards = () => {
 		return sortedData
@@ -90,6 +95,7 @@ const Battle = () => {
 							key={creature.player_name}
 							hero={creature}
 							cardStyle={position}
+							handleHeroAttack={handleHeroAttack}
 						/>
 					);
 				}
