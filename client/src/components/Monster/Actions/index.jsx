@@ -11,6 +11,19 @@ import diceSfx from '../../../assets/audio/dice-roll.mp3';
 
 const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 	const [playSfx] = useSound(diceSfx);
+
+	const handleConditions = (action, conditions) => {
+		// check if the target is self + isn't currently active
+		if (
+			action.action_target === 'self' &&
+			!conditions.includes(action.condition)
+		) {
+			// update conditions with action.condition
+			setConditions([...conditions, action.condition]);
+		}
+		// otherwise, select a creature to apply the effect to
+	};
+
 	return monster.actions.map((action) => (
 		<div
 			key={action.weapon}
@@ -60,21 +73,7 @@ const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 					<button
 						id="addStatusBtn"
 						className="action-btn btn btn-outline-secondary btn-sm ms-1"
-						onClick={() => {
-							if (
-								action.action_target === 'self' &&
-								!conditions.includes(action.condition)
-							) {
-								// set this monsters current status as action.condition
-								setConditions([
-									...conditions,
-									action.condition,
-								]);
-
-								console.log('conditions with push', conditions);
-							}
-							console.log(action);
-						}}
+						onClick={() => handleConditions(action, conditions)}
 					>
 						<GiTwirlCenter /> Add Status
 					</button>
