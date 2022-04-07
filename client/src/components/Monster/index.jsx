@@ -26,7 +26,10 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 					<h1 className="name">
 						{monster.name}{' '}
 						{isConcentrating === true ? (
-							<GiConcentrationOrb />
+							<GiConcentrationOrb
+								size={'1.5rem'}
+								title="concentrating"
+							/>
 						) : null}
 					</h1>
 				</div>

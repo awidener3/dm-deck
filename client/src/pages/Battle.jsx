@@ -40,6 +40,7 @@ const Battle = () => {
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
 	const [showMonstersModal, setShowMonstersModal] = useState(false);
+
 	const [rollModifier, setRollModifier] = useState(0);
 	const [die, setDie] = useState(0);
 
@@ -65,8 +66,6 @@ const Battle = () => {
 
 	const handleHeroAttack = () => {
 		setShowMonstersModal(true);
-		console.log('attack da monster!');
-		console.log(monsterData);
 	};
 
 	// Renders cards with initiative sorting and sliding animation classes
@@ -205,6 +204,7 @@ const Battle = () => {
 			<MonstersModal
 				showMonstersModal={showMonstersModal}
 				handleCloseMonstersModal={handleCloseMonstersModal}
+				monsters={monsterData}
 			/>
 		</div>
 	);

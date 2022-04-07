@@ -1,14 +1,23 @@
+import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { GiGoblinHead } from 'react-icons/gi';
+
+import MonsterSelect from './MonsterSelect';
+import SelectedMonster from './SelectedMonster';
 
 const MonstersModal = ({
 	showMonstersModal,
 	handleCloseMonstersModal,
-	monsterData,
+	monsters,
 }) => {
+	const [selectedMonster, setSelectedMonster] = useState('');
+
+	const handleViewMonster = (monster) => {
+		setSelectedMonster(monster);
+	};
+
 	return (
 		<Modal
-			className="d-flex justify-content-center"
 			show={showMonstersModal}
 			onHide={handleCloseMonstersModal}
 			centered
@@ -16,10 +25,19 @@ const MonstersModal = ({
 			<Modal.Header closeButton>
 				<GiGoblinHead size="2rem" />
 			</Modal.Header>
-			<div className="d-flex flex-column justify-content-center text-center">
-				<Modal.Title className="display-3">Monsters</Modal.Title>
-				<Modal.Body>Monster data goes here...</Modal.Body>
-			</div>
+
+			{/* Conditional rendering for monster */}
+			{selectedMonster === '' ? (
+				<MonsterSelect
+					monsters={monsters}
+					handleViewMonster={handleViewMonster}
+				/>
+			) : (
+				<SelectedMonster
+					monster={selectedMonster}
+					setSelectedMonster={setSelectedMonster}
+				/>
+			)}
 		</Modal>
 	);
 };
