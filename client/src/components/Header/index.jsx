@@ -9,7 +9,7 @@ const Header = () => {
 		<div>
 			<nav className="navbar navbar-expand bg-dark text-light">
 				<div className="container">
-					<h1 className="navbar-brand">🐲 DM Deck</h1>
+					<h1 className="navbar-brand">DM Deck</h1>
 					<ul className="navbar-nav">
 						<Link to="/dm-deck/" className="nav-link m-2">
 							Home

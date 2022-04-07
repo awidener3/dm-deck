@@ -20,6 +20,8 @@ import {
 	FaChevronCircleRight,
 } from 'react-icons/fa';
 
+import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
+
 import '../App.scss';
 
 const Battle = () => {
@@ -186,6 +188,28 @@ const Battle = () => {
 						className="battle-chevron right-chevron"
 					/>
 				)}
+			</div>
+
+			<div className="monster-data mt-5 vw-100 d-flex justify-content-around flex-wrap">
+				{/* Quick view of monster AC and HP */}
+				{monsterData.map((monster) => (
+					<div
+						className="monster-data-card text-center border-end border-start px-1"
+						key={monster.name}
+					>
+						<h5 className="m-0">{monster.name}</h5>
+						<div className="d-flex justify-content-center">
+							<p className="mb-0 me-1">
+								<RiShieldFill className="ac-icon" />{' '}
+								{monster.armor_class}
+							</p>
+							<p className="mb-0 ms-1">
+								<RiHeartFill className="hp-icon" />{' '}
+								{monster.hitpoints}
+							</p>
+						</div>
+					</div>
+				))}
 			</div>
 
 			<RollModal

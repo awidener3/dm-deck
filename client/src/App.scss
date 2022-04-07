@@ -81,3 +81,29 @@ article {
     font-style: italic;
     font-weight: 700;
 }
+
+.monster-data {
+  background-color: #fff;
+  border-top: 1px solid #ababab;
+  border-bottom: 1px solid #ababab;
+  .monster-data-card {
+    min-width: 4rem;
+    h5 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.7rem;
+      .hp-icon {
+        color: #cf1414;
+        height: 12px;
+        width: 12px;
+      }
+      .ac-icon {
+        color: #29901f;
+        height: 10px;
+        width: 10px;
+      }
+    }
+    
+  }
+}

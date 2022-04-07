@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
 const SelectedMonster = ({
@@ -5,7 +6,9 @@ const SelectedMonster = ({
 	monsterArray,
 	setSelectedMonster,
 	setMonsterData,
+	handleCloseMonstersModal,
 }) => {
+	const [startingHitpoints] = useState(monster.hitpoints);
 	const handleChangeHitpoints = (e) => {
 		const updatedArray = monsterArray.slice();
 		updatedArray.forEach((item) => {
@@ -22,12 +25,13 @@ const SelectedMonster = ({
 			<Modal.Body className="w-50 m-auto">
 				<div className="monster-btns d-flex flex-column">
 					<p>Armor Class: {monster.armor_class}</p>
-					<label htmlFor="hitpoints">Hitpoints:</label>
+					<p>Hitpoints: {startingHitpoints}</p>
+					<label htmlFor="hitpoints">Add Damage:</label>
 					<input
 						type="number"
 						name="hitpoints"
 						id="hitpoints"
-						min={'0'}
+						min="0"
 						value={monster.hitpoints}
 						onChange={handleChangeHitpoints}
 					/>
@@ -43,7 +47,13 @@ const SelectedMonster = ({
 					</button>
 
 					{/* Apply damage */}
-					<button className="btn btn-outline-secondary m-1">
+					<button
+						className="btn btn-outline-secondary m-1"
+						onClick={() => {
+							setSelectedMonster('');
+							handleCloseMonstersModal();
+						}}
+					>
 						Apply
 					</button>
 				</div>

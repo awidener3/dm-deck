@@ -39,6 +39,7 @@ const MonstersModal = ({
 					monsterArray={monsters}
 					setSelectedMonster={setSelectedMonster}
 					setMonsterData={setMonsterData}
+					handleCloseMonstersModal={handleCloseMonstersModal}
 				/>
 			)}
 		</Modal>
