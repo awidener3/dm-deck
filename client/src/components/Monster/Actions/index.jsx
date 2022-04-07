@@ -9,7 +9,7 @@ import {
 import useSound from 'use-sound';
 import diceSfx from '../../../assets/audio/dice-roll.mp3';
 
-const Actions = ({ monster, handleRollDice }) => {
+const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 	const [playSfx] = useSound(diceSfx);
 	return monster.actions.map((action) => (
 		<div
@@ -60,7 +60,21 @@ const Actions = ({ monster, handleRollDice }) => {
 					<button
 						id="addStatusBtn"
 						className="action-btn btn btn-outline-secondary btn-sm ms-1"
-						onClick={() => console.log(action)}
+						onClick={() => {
+							if (
+								action.action_target === 'self' &&
+								!conditions.includes(action.condition)
+							) {
+								// set this monsters current status as action.condition
+								setConditions([
+									...conditions,
+									action.condition,
+								]);
+
+								console.log('conditions with push', conditions);
+							}
+							console.log(action);
+						}}
 					>
 						<GiTwirlCenter /> Add Status
 					</button>

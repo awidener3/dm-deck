@@ -1,6 +1,17 @@
-const Conditions = () => {
+const Conditions = ({ conditions }) => {
+	if (conditions.includes('invisible')) {
+	}
 	return (
 		<div className="condition-container d-flex flex-wrap">
+			{conditions.includes('invisible') ? (
+				<div
+					className="condition invis"
+					title="An invisible creature is impossible to see without the aid of magic or a Special sense. For the Purpose of Hiding, the creature is heavily obscured. The creature's Location can be detected by any noise it makes or any tracks it leaves."
+				>
+					Invisible
+				</div>
+			) : null}
+			{/* 
 			<div
 				className="condition unconcious"
 				title="An unconcious creature is incapacitated, can't move or speak, and is unaware of its surroundings. The creature drops whatever it's holding and falls prone. The creature automatically fails Strength and Dexterity Saving Throws. Attack rolls against the creature have advantage. Any Attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
@@ -87,6 +98,7 @@ const Conditions = () => {
 			>
 				Stunned
 			</div>
+       */}
 		</div>
 	);
 };

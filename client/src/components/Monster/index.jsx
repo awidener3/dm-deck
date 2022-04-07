@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './monster.scss';
 import Conditions from './Conditions';
 import Circles from './Circles';
@@ -10,10 +10,12 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import AbilityScores from './AbilityScores';
 
 const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
+	const [conditions, setConditions] = useState([]);
+
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
-				{/* <Conditions /> */}
+				<Conditions conditions={conditions} />
 				<Circles monster={monster} />
 
 				{/* HEADER */}
@@ -39,6 +41,8 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 					<Actions
 						monster={monster}
 						handleRollDice={handleRollDice}
+						conditions={conditions}
+						setConditions={setConditions}
 					/>
 				</div>
 

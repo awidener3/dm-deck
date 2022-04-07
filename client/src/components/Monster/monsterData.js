@@ -71,6 +71,7 @@ const monsters = [
 				damage_type: 'piercing',
 			},
 		],
+		conditions: [],
 	},
 	{
 		type: 'monster',
@@ -144,6 +145,7 @@ const monsters = [
 				damage_type: 'piercing',
 			},
 		],
+		conditions: [],
 	},
 	{
 		type: 'monster',
@@ -211,6 +213,7 @@ const monsters = [
 				damage_type: 'piercing',
 			},
 		],
+		conditions: [],
 	},
 	{
 		type: 'monster',
@@ -272,6 +275,7 @@ const monsters = [
 				damage_type: 'piercing',
 			},
 		],
+		conditions: [],
 	},
 	{
 		type: 'monster',
@@ -362,9 +366,10 @@ const monsters = [
 				action_text:
 					'The imp magically turns invisible until it attacks or until its concentration ends (as if concentrating on a spell). Any equipment the imp wears or carries is invisible with it.',
 				concention: true,
-				status: 'invisible',
+				condition: 'invisible',
 			},
 		],
+		conditions: [],
 	},
 ];
 
