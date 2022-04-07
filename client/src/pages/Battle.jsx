@@ -5,6 +5,7 @@ import Monster from '../components/Monster';
 import Hero from '../components/Hero';
 import InfoModal from '../components/InfoModal';
 import RollModal from '../components/RollModal';
+import MonstersModal from '../components/MonstersModal';
 import { addInitiative } from '../utils/diceRolls';
 import { slideLeft, slideRight } from '../utils/slideAnimations';
 
@@ -38,13 +39,13 @@ const Battle = () => {
 	// Modal
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
+	const [showMonstersModal, setShowMonstersModal] = useState(false);
 	const [rollModifier, setRollModifier] = useState(0);
 	const [die, setDie] = useState(0);
 
 	const handleCloseRollModal = () => setShowRollModal(false);
-	const handleShowRollModal = () => setShowRollModal(true);
 	const handleCloseInfoModal = () => setShowInfoModal(false);
-	const handleShowInfoModal = () => setShowInfoModal(true);
+	const handleCloseMonstersModal = () => setShowMonstersModal(false);
 
 	// Add initiative on load
 	useEffect(() => {
@@ -54,15 +55,16 @@ const Battle = () => {
 	const handleRollDice = (die, dieNum, modifier) => {
 		setRollModifier(modifier);
 		setDie(rollDie(die) * dieNum);
-		handleShowRollModal();
+		setShowRollModal(true);
 	};
 
 	const handleShowInfo = (monster) => {
 		setInfo(monster);
-		handleShowInfoModal();
+		setShowInfoModal(true);
 	};
 
 	const handleHeroAttack = () => {
+		setShowMonstersModal(true);
 		console.log('attack da monster!');
 		console.log(monsterData);
 	};
@@ -198,6 +200,11 @@ const Battle = () => {
 				info={info}
 				showInfoModal={showInfoModal}
 				handleCloseInfoModal={handleCloseInfoModal}
+			/>
+
+			<MonstersModal
+				showMonstersModal={showMonstersModal}
+				handleCloseMonstersModal={handleCloseMonstersModal}
 			/>
 		</div>
 	);
