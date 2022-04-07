@@ -9,7 +9,14 @@ import {
 import useSound from 'use-sound';
 import diceSfx from '../../../assets/audio/dice-roll.mp3';
 
-const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
+const Actions = ({
+	monster,
+	handleRollDice,
+	conditions,
+	setConditions,
+	isConcentrating,
+	setIsConcentrating,
+}) => {
 	const [playSfx] = useSound(diceSfx);
 
 	const handleToHit = (action) => {
@@ -17,6 +24,7 @@ const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 			setConditions(
 				conditions.filter((condition) => condition !== 'invisible')
 			);
+			setIsConcentrating(false);
 		}
 		playSfx();
 		handleRollDice(20, 1, action.hit_modifier);
@@ -30,6 +38,7 @@ const Actions = ({ monster, handleRollDice, conditions, setConditions }) => {
 		) {
 			// update conditions with action.condition
 			setConditions([...conditions, action.condition]);
+			setIsConcentrating(action.concentration);
 		}
 		// otherwise, select a creature to apply the effect to
 	};

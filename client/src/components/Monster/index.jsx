@@ -7,10 +7,12 @@ import Traits from './Traits';
 import Actions from './Actions';
 import BaseStats from './BaseStats';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { GiConcentrationOrb } from 'react-icons/gi';
 import AbilityScores from './AbilityScores';
 
 const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 	const [conditions, setConditions] = useState([]);
+	const [isConcentrating, setIsConcentrating] = useState(false);
 
 	return (
 		<article className={`wrapper ${cardStyle}`}>
@@ -20,7 +22,12 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 
 				{/* HEADER */}
 				<div className="dmd-card-header mt-3">
-					<h1 className="name">{monster.name}</h1>
+					<h1 className="name">
+						{monster.name}{' '}
+						{isConcentrating === true ? (
+							<GiConcentrationOrb />
+						) : null}
+					</h1>
 				</div>
 
 				<BaseStats monster={monster} />
@@ -43,6 +50,8 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 						handleRollDice={handleRollDice}
 						conditions={conditions}
 						setConditions={setConditions}
+						isConcentrating={isConcentrating}
+						setIsConcentrating={setIsConcentrating}
 					/>
 				</div>
 
