@@ -84,7 +84,6 @@ article {
 
 .monster-data {
   background-color: #fff;
-  border-top: 1px solid #ababab;
   border-bottom: 1px solid #ababab;
   .monster-data-card {
     min-width: 4rem;
@@ -94,12 +93,12 @@ article {
     p {
       font-size: 0.7rem;
       .hp-icon {
-        color: #cf1414;
+        color: #5b1f1f;
         height: 12px;
         width: 12px;
       }
       .ac-icon {
-        color: #29901f;
+        color: #123a0e;
         height: 10px;
         width: 10px;
       }

@@ -10,6 +10,7 @@ const MonstersModal = ({
 	handleCloseMonstersModal,
 	monsters,
 	setMonsterData,
+	heroActionType,
 }) => {
 	const [selectedMonster, setSelectedMonster] = useState('');
 
@@ -33,7 +34,7 @@ const MonstersModal = ({
 					monsters={monsters}
 					handleViewMonster={handleViewMonster}
 				/>
-			) : (
+			) : heroActionType === 'attack' ? (
 				<SelectedMonster
 					monster={selectedMonster}
 					monsterArray={monsters}
@@ -41,7 +42,7 @@ const MonstersModal = ({
 					setMonsterData={setMonsterData}
 					handleCloseMonstersModal={handleCloseMonstersModal}
 				/>
-			)}
+			) : null}
 		</Modal>
 	);
 };

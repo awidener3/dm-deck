@@ -42,6 +42,7 @@ const Battle = () => {
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
 	const [showMonstersModal, setShowMonstersModal] = useState(false);
+	const [heroActionType, setHeroActionType] = useState('');
 
 	const [rollModifier, setRollModifier] = useState(0);
 	const [die, setDie] = useState(0);
@@ -67,6 +68,7 @@ const Battle = () => {
 	};
 
 	const handleHeroAttack = () => {
+		setHeroActionType('attack');
 		setShowMonstersModal(true);
 	};
 
@@ -108,8 +110,29 @@ const Battle = () => {
 	};
 
 	return (
-		<div className="battle-container p-3 d-flex flex-column justify-content-center align-items-center container">
-			<div className="battle-stats d-flex">
+		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
+			<div className="monster-data vw-100 d-flex justify-content-around flex-wrap">
+				{/* Quick view of monster AC and HP */}
+				{monsterData.map((monster) => (
+					<div
+						className="monster-data-card text-center"
+						key={monster.name}
+					>
+						<h5 className="m-0">{monster.name}</h5>
+						<div className="d-flex justify-content-center">
+							<p className="mb-0 me-1">
+								<RiHeartFill className="hp-icon" />{' '}
+								{monster.hitpoints}
+							</p>
+							<p className="mb-0 ms-1">
+								<RiShieldFill className="ac-icon" />{' '}
+								{monster.armor_class}
+							</p>
+						</div>
+					</div>
+				))}
+			</div>
+			<div className="battle-stats mt-2 d-flex">
 				<h4 className="battle-stat mx-2">Round: {round}</h4>
 				<h4 className="battle-stat mx-2">
 					Turn: {turn}/{sortedData.length}
@@ -190,28 +213,6 @@ const Battle = () => {
 				)}
 			</div>
 
-			<div className="monster-data mt-5 vw-100 d-flex justify-content-around flex-wrap">
-				{/* Quick view of monster AC and HP */}
-				{monsterData.map((monster) => (
-					<div
-						className="monster-data-card text-center border-end border-start px-1"
-						key={monster.name}
-					>
-						<h5 className="m-0">{monster.name}</h5>
-						<div className="d-flex justify-content-center">
-							<p className="mb-0 me-1">
-								<RiShieldFill className="ac-icon" />{' '}
-								{monster.armor_class}
-							</p>
-							<p className="mb-0 ms-1">
-								<RiHeartFill className="hp-icon" />{' '}
-								{monster.hitpoints}
-							</p>
-						</div>
-					</div>
-				))}
-			</div>
-
 			<RollModal
 				showRollModal={showRollModal}
 				handleCloseRollModal={handleCloseRollModal}
@@ -230,6 +231,7 @@ const Battle = () => {
 				handleCloseMonstersModal={handleCloseMonstersModal}
 				monsters={monsterData}
 				setMonsterData={setMonsterData}
+				heroActionType={heroActionType}
 			/>
 		</div>
 	);
