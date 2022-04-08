@@ -72,6 +72,11 @@ const Battle = () => {
 		setShowMonstersModal(true);
 	};
 
+	const handleHeroSpell = () => {
+		setHeroActionType('spell');
+		setShowMonstersModal(true);
+	};
+
 	// Renders cards with initiative sorting and sliding animation classes
 	const renderCards = () => {
 		return sortedData
@@ -101,6 +106,7 @@ const Battle = () => {
 							hero={creature}
 							cardStyle={position}
 							handleHeroAttack={handleHeroAttack}
+							handleHeroSpell={handleHeroSpell}
 						/>
 					);
 				}

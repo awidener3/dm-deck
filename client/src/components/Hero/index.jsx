@@ -26,7 +26,7 @@ const HealthIcon = ({ hp }) => {
 	);
 };
 
-const Hero = ({ hero, cardStyle, handleHeroAttack }) => {
+const Hero = ({ hero, cardStyle, handleHeroAttack, handleHeroSpell }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="hero-card m-3 d-flex flex-column justify-content-center align-items-center">
@@ -44,15 +44,12 @@ const Hero = ({ hero, cardStyle, handleHeroAttack }) => {
 
 				{/* ACTIONS + ABILITIES */}
 				<div className="pt-2 d-flex flex-column">
-					<h3>Actions:</h3>
+					<h3 className="text-center">Actions:</h3>
 					<button
 						className="btn btn-outline-secondary mb-2"
 						onClick={handleHeroAttack}
 					>
-						<GiPointySword /> Attack
-					</button>
-					<button className="btn btn-outline-secondary mb-2">
-						<GiSpellBook /> Cast Spell
+						<GiPointySword /> Attack/Cast Spell
 					</button>
 					<button className="btn btn-outline-secondary mb-2">
 						<GiBarbedCoil /> Add Effect
