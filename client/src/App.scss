@@ -86,7 +86,10 @@ article {
   background-color: #fff;
   border-bottom: 1px solid #ababab;
   .monster-data-card {
+    cursor: pointer;
+    padding: 0 10px;
     min-width: 4rem;
+    transition: background-color 0.2s;
     h5 {
       font-size: 1.2rem;
     }
@@ -102,7 +105,12 @@ article {
         height: 10px;
         width: 10px;
       }
-    }
-    
+    } 
+  }
+  .monster-data-card:hover {
+    background-color: #efefef;
+  }
+  .current {
+    background-color: #d8ebd7;
   }
 }

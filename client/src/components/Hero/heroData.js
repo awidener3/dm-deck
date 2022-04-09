@@ -7,7 +7,7 @@ const heroes = [
 		race: 'Human',
 		class: 'Fighter',
 		armor_class: 13,
-		hit_points: 56,
+		hitpoints: 56,
 	},
 	{
 		type: 'hero',
@@ -17,7 +17,7 @@ const heroes = [
 		race: 'Elf',
 		class: 'Druid',
 		armor_class: 10,
-		hit_points: 60,
+		hitpoints: 60,
 	},
 	{
 		type: 'hero',
@@ -27,7 +27,7 @@ const heroes = [
 		race: 'Half-Orc',
 		class: 'Barbarian',
 		armor_class: 14,
-		hit_points: 80,
+		hitpoints: 80,
 	},
 ];
 

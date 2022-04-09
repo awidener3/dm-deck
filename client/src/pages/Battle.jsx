@@ -30,7 +30,10 @@ const Battle = () => {
 	const [heroData, setHeroData] = useState(heroes);
 
 	// Put heroes and monsters into one array to be sorted and assigned initiative
-	const sortedData = [].concat(monsterData).concat(heroData);
+	const sortedData = []
+		.concat(monsterData)
+		.concat(heroData)
+		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -74,51 +77,59 @@ const Battle = () => {
 
 	// Renders cards with initiative sorting and sliding animation classes
 	const renderCards = () => {
-		return sortedData
-			.sort((a, b) => (a.initiative < b.initiative ? 1 : -1))
-			.map((creature, n) => {
-				let position =
-					n > index
-						? 'nextCard'
-						: n === index
-						? 'activeCard'
-						: 'prevCard';
+		return sortedData.map((creature, n) => {
+			let position =
+				n > index
+					? 'nextCard'
+					: n === index
+					? 'activeCard'
+					: 'prevCard';
 
-				if (creature.type === 'monster') {
-					return (
-						<Monster
-							key={creature.name}
-							monster={creature}
-							cardStyle={position}
-							handleRollDice={handleRollDice}
-							handleShowInfo={handleShowInfo}
-						/>
-					);
-				} else if (creature.type === 'hero') {
-					return (
-						<Hero
-							key={creature.player_name}
-							hero={creature}
-							cardStyle={position}
-							handleHeroAttack={handleHeroAttack}
-						/>
-					);
-				}
+			if (creature.type === 'monster') {
+				return (
+					<Monster
+						key={creature.name}
+						monster={creature}
+						cardStyle={position}
+						handleRollDice={handleRollDice}
+						handleShowInfo={handleShowInfo}
+					/>
+				);
+			} else if (creature.type === 'hero') {
+				return (
+					<Hero
+						key={creature.player_name}
+						hero={creature}
+						cardStyle={position}
+						handleHeroAttack={handleHeroAttack}
+					/>
+				);
+			}
 
-				return null;
-			});
+			return null;
+		});
 	};
 
 	return (
 		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
 			<div className="monster-data vw-100 d-flex justify-content-around flex-wrap">
 				{/* Quick view of monster AC and HP */}
-				{monsterData.map((monster) => (
+				{sortedData.map((monster, index) => (
 					<div
-						className="monster-data-card text-center"
-						key={monster.name}
+						className={
+							turn === index + 1
+								? `monster-data-card text-center current`
+								: `monster-data-card text-center`
+						}
+						key={index}
+						onClick={() => {
+							setIndex(index);
+							setTurn(index + 1);
+						}}
 					>
-						<h5 className="m-0">{monster.name}</h5>
+						<h5 className="m-0">
+							{monster.name || monster.character_name}
+						</h5>
 						<div className="d-flex justify-content-center">
 							<p className="mb-0 me-1">
 								<RiHeartFill className="hp-icon" />{' '}
