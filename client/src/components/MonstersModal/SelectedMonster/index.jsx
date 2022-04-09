@@ -3,6 +3,8 @@ import { Modal } from 'react-bootstrap';
 
 import { rollDie } from '../../../utils/diceRolls';
 
+import AbilityOption from './AbilityOption';
+
 const SelectedMonster = ({
 	monster,
 	monsterArray,
@@ -35,6 +37,30 @@ const SelectedMonster = ({
 		setSavingThrowResult(result);
 	};
 
+	// STR DEX CON INT WIS CHA
+	const renderOptions = () => {
+		const abilityArray = [
+			['STR', 'strength'],
+			['DEX', 'dexterity'],
+			['CON', 'constitution'],
+			['INT', 'intelligence'],
+			['WIS', 'wisdom'],
+			['CHA', 'charisma'],
+		];
+
+		return (
+			<>
+				{abilityArray.map((ability, index) => (
+					<AbilityOption
+						monster={monster}
+						short={abilityArray[index][0]}
+						long={abilityArray[index][1]}
+					/>
+				))}
+			</>
+		);
+	};
+
 	const getModifier = (ability) => {
 		return Math.floor((monster.ability_scores[`${ability}`] - 10) / 2);
 	};
@@ -62,48 +88,7 @@ const SelectedMonster = ({
 								<option defaultValue={true}>
 									Choose an Ability
 								</option>
-								<option value={'strength'}>
-									STR (
-									{getModifier('strength') > 0
-										? `+${getModifier('strength')}`
-										: getModifier('strength')}
-									)
-								</option>
-								<option value={'dexterity'}>
-									DEX (
-									{getModifier('dexterity') > 0
-										? `+${getModifier('dexterity')}`
-										: getModifier('dexterity')}
-									)
-								</option>
-								<option value={'constitution'}>
-									CON (
-									{getModifier('constitution') > 0
-										? `+${getModifier('constitution')}`
-										: getModifier('constitution')}
-									)
-								</option>
-								<option value={'intelligence'}>
-									INT (
-									{getModifier('intelligence') > 0
-										? `+${getModifier('intelligence')}`
-										: getModifier('intelligence')}
-									)
-								</option>
-								<option value={'wisdom'}>
-									WIS (
-									{getModifier('wisdom') > 0
-										? `+${getModifier('wisdom')}`
-										: getModifier('wisdom')}
-									)
-								</option>
-								<option value={'charisma'}>
-									CHA (
-									{getModifier('charisma') > 0
-										? `+${getModifier('charisma')}`
-										: getModifier('charisma')}
-									)
-								</option>
+								{renderOptions()}
 							</select>
 							<button
 								className="btn btn-outline-secondary"
