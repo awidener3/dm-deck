@@ -21,7 +21,11 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
-				<Conditions conditions={condition} />
+				<Conditions
+					monster={monster}
+					conditions={condition}
+					setCondition={setCondition}
+				/>
 				<Circles monster={monster} />
 
 				{/* HEADER */}
