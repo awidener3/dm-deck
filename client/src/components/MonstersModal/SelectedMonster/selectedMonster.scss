@@ -9,3 +9,68 @@
     }
   }
 }
+
+.condition-container {
+  display: flex;
+  justify-content: center;
+  .condition {
+    padding: 0 4px;
+    margin: 1px 2px;
+    font-weight: 500;
+    border-radius: 10px;
+    font-size: 0.6rem;
+  }
+  .invis {
+    background-color: #aaa;
+  }
+  .poison {
+    background-color: #6acf61;
+  }
+  .hex {
+    background-color: #e865db;
+  }
+  .blind {
+    color: #cbcbcb;
+    background-color: #171717;
+  }
+  .charm {
+    background-color: #ffc0cb;
+  }
+  .deaf {
+    color: #f6f6f6;
+    font-weight: 400;
+    background-color: #808080;
+  }
+  .fright {
+    background-color: rgb(222, 222, 23);
+  }
+  .grapple {
+    color: #ffffff;
+    background-color: #a52a2a;
+  }
+  .incapacitate {
+    color: #fff;
+    background-color: #e86b28;
+  }
+  .paralyze {
+    background-color: yellow;
+  }
+  .petrify {
+    color: #e2e2e2;
+    background-color: #2f4f4f;
+  }
+  .prone {
+    color: #fff;
+    background-color: #7b0b0b;
+  }
+  .restrain {
+    background-color: #aae6a5;
+  }
+  .stun {
+    background-color: #11e6e6;
+  }
+  .unconscious {
+    color: #fff;
+    background-color: #000;
+  }
+}

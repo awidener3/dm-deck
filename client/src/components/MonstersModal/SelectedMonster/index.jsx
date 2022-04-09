@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { rollDie } from '../../../utils/diceRolls';
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
 import AbilityOption from './AbilityOption';
+import Conditions from '../../Monster/Conditions';
 import './selectedMonster.scss';
 
 const SelectedMonster = ({
@@ -15,41 +16,23 @@ const SelectedMonster = ({
 	const [startingHitpoints] = useState(monster.hitpoints);
 	const [modifier, setModifier] = useState(0);
 	const [condition, setCondition] = useState('');
+	const [monsterConditions, setMonsterConditions] = useState(
+		monster.conditions
+	);
 	const [savingThrowResult, setSavingThrowResult] = useState(0);
 
+	useEffect(() => {
+		setCondition(monster.conditions);
+	}, [monster.conditions]);
+
+	// Saving Throw
 	const changeModifier = (e) => {
 		let updatedModifier = getModifier(e.target.value);
 		setModifier(updatedModifier);
 	};
 
-	const changeCondition = (e) => {
-		setCondition(e.target.value);
-	};
-
-	const handleChangeHitpoints = (e) => {
-		const updatedArray = monsterArray.slice();
-		updatedArray.forEach((item) => {
-			if (item.name === monster.name) {
-				item.hitpoints = e.target.value;
-			}
-		});
-		setMonsterData([...updatedArray]);
-	};
-
-	const handleAddCondition = (e) => {
-		const updatedArray = monsterArray.slice();
-		updatedArray.forEach((item) => {
-			if (item.name === monster.name) {
-				item.conditions.push(condition);
-			}
-		});
-		setMonsterData([...updatedArray]);
-	};
-
-	const handleRollSavingThrow = () => {
-		const d20 = rollDie(20);
-		const result = d20 + Number(modifier);
-		setSavingThrowResult(result);
+	const getModifier = (ability) => {
+		return Math.floor((monster.ability_scores[`${ability}`] - 10) / 2);
 	};
 
 	const renderOptions = () => {
@@ -76,8 +59,36 @@ const SelectedMonster = ({
 		);
 	};
 
-	const getModifier = (ability) => {
-		return Math.floor((monster.ability_scores[`${ability}`] - 10) / 2);
+	const handleRollSavingThrow = () => {
+		const d20 = rollDie(20);
+		const result = d20 + Number(modifier);
+		setSavingThrowResult(result);
+	};
+
+	// Conditions
+	const changeCondition = (e) => {
+		setCondition(e.target.value);
+	};
+
+	const handleAddCondition = (e) => {
+		const updatedArray = monsterArray.slice();
+		updatedArray.forEach((item) => {
+			if (item.name === monster.name) {
+				item.conditions.push(condition);
+			}
+		});
+		setMonsterData([...updatedArray]);
+	};
+
+	// Hitpoints
+	const handleChangeHitpoints = (e) => {
+		const updatedArray = monsterArray.slice();
+		updatedArray.forEach((item) => {
+			if (item.name === monster.name) {
+				item.hitpoints = e.target.value;
+			}
+		});
+		setMonsterData([...updatedArray]);
 	};
 
 	return (
@@ -85,7 +96,12 @@ const SelectedMonster = ({
 			<Modal.Title className="text-center">
 				<h1 className="m-0">{monster.name}</h1>
 			</Modal.Title>
-			<Modal.Body className="w-75 m-auto">
+			<Modal.Body className="w-75 m-auto pt-0">
+				<Conditions
+					monster={monster}
+					conditions={monsterConditions}
+					setCondition={setMonsterConditions}
+				/>
 				<div>
 					<div
 						id="monster-stats"
@@ -142,12 +158,12 @@ const SelectedMonster = ({
 								id="conditions"
 								onChange={changeCondition}
 							>
-								<option defaultValue="" disabled>
+								<option defaultValue="">
 									Select a Condition
 								</option>
 								<option value="blind">Blinded</option>
 								<option value="charmed">Charmed</option>
-								<option value="deaf">Defeaned</option>
+								<option value="deafened">Defeaned</option>
 								<option value="frightened">Frightened</option>
 								<option value="grappled">Grappled</option>
 								<option value="incapacitated">

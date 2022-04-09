@@ -30,7 +30,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Deaf */}
-			{conditions.includes('deaf') ? (
+			{conditions.includes('deafened') ? (
 				<div
 					className="condition deaf"
 					onClick={() => handleRemoveCondition('deaf')}
