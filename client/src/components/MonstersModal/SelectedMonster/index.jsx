@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-
 import { rollDie } from '../../../utils/diceRolls';
-
+import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
 import AbilityOption from './AbilityOption';
+import './selectedMonster.scss';
 
 const SelectedMonster = ({
 	monster,
@@ -14,11 +14,16 @@ const SelectedMonster = ({
 }) => {
 	const [startingHitpoints] = useState(monster.hitpoints);
 	const [modifier, setModifier] = useState(0);
+	const [condition, setCondition] = useState('');
 	const [savingThrowResult, setSavingThrowResult] = useState(0);
 
 	const changeModifier = (e) => {
 		let updatedModifier = getModifier(e.target.value);
 		setModifier(updatedModifier);
+	};
+
+	const changeCondition = (e) => {
+		setCondition(e.target.value);
 	};
 
 	const handleChangeHitpoints = (e) => {
@@ -31,13 +36,22 @@ const SelectedMonster = ({
 		setMonsterData([...updatedArray]);
 	};
 
+	const handleAddCondition = (e) => {
+		const updatedArray = monsterArray.slice();
+		updatedArray.forEach((item) => {
+			if (item.name === monster.name) {
+				item.conditions.push(condition);
+			}
+		});
+		setMonsterData([...updatedArray]);
+	};
+
 	const handleRollSavingThrow = () => {
 		const d20 = rollDie(20);
 		const result = d20 + Number(modifier);
 		setSavingThrowResult(result);
 	};
 
-	// STR DEX CON INT WIS CHA
 	const renderOptions = () => {
 		const abilityArray = [
 			['STR', 'strength'],
@@ -52,6 +66,7 @@ const SelectedMonster = ({
 			<>
 				{abilityArray.map((ability, index) => (
 					<AbilityOption
+						key={abilityArray[index][1]}
 						monster={monster}
 						short={abilityArray[index][0]}
 						long={abilityArray[index][1]}
@@ -72,11 +87,27 @@ const SelectedMonster = ({
 			</Modal.Title>
 			<Modal.Body className="w-75 m-auto">
 				<div>
-					<div className="d-flex justify-content-around">
-						<p>Armor Class: {monster.armor_class}</p>
-						<p>Hitpoints: {startingHitpoints}</p>
+					<div
+						id="monster-stats"
+						className="d-flex justify-content-center"
+					>
+						<p
+							className="mx-2"
+							title={`Armor Class: ${monster.armor_class}`}
+						>
+							<RiShieldFill className="ac-icon" size={'2rem'} />{' '}
+							{monster.armor_class}
+						</p>
+						<p
+							className="mx-2"
+							title={`Hitpoints: ${startingHitpoints}`}
+						>
+							<RiHeartFill className="hp-icon" size={'2rem'} />{' '}
+							{startingHitpoints}
+						</p>
 					</div>
 					<div className="d-flex flex-column">
+						{/* SAVING THROWS */}
 						<h5>Roll Saving Throw</h5>
 						<div className="input-group mb-2">
 							<select
@@ -101,6 +132,46 @@ const SelectedMonster = ({
 								{savingThrowResult}
 							</span>
 						</div>
+
+						{/* CONDITIONS */}
+						<h5>Add Condition(s)</h5>
+						<div className="input-group mb-2">
+							<select
+								className="form-select"
+								name="conditions"
+								id="conditions"
+								onChange={changeCondition}
+							>
+								<option defaultValue="" disabled>
+									Select a Condition
+								</option>
+								<option value="blind">Blinded</option>
+								<option value="charmed">Charmed</option>
+								<option value="deaf">Defeaned</option>
+								<option value="frightened">Frightened</option>
+								<option value="grappled">Grappled</option>
+								<option value="incapacitated">
+									Incapacitated
+								</option>
+								<option value="invisible">Invisible</option>
+								<option value="paralyzed">Paralyzed</option>
+								<option value="petrified">Petrified</option>
+								<option value="poisoned">Poisoned</option>
+								<option value="prone">Prone</option>
+								<option value="restrained">Restrained</option>
+								<option value="stunned">Stunned</option>
+								<option value="unconcious">Unconscious</option>
+							</select>
+							<button
+								className="btn btn-outline-secondary"
+								type="button"
+								onClick={handleAddCondition}
+							>
+								Add
+							</button>
+						</div>
+
+						{/* HP */}
 						<h5>Change {monster.name}'s HP</h5>
 						<div className="input-group-lg">
 							<input

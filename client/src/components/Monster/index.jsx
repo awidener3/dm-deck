@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './monster.scss';
 import Conditions from './Conditions';
 import Circles from './Circles';
@@ -11,13 +11,17 @@ import { GiConcentrationOrb } from 'react-icons/gi';
 import AbilityScores from './AbilityScores';
 
 const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
-	const [conditions, setConditions] = useState([]);
+	const [condition, setCondition] = useState(monster.conditions);
 	const [isConcentrating, setIsConcentrating] = useState(false);
+
+	useEffect(() => {
+		setCondition(monster.conditions);
+	}, [monster.conditions]);
 
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
-				<Conditions conditions={conditions} />
+				<Conditions conditions={condition} />
 				<Circles monster={monster} />
 
 				{/* HEADER */}
@@ -51,8 +55,8 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 					<Actions
 						monster={monster}
 						handleRollDice={handleRollDice}
-						conditions={conditions}
-						setConditions={setConditions}
+						conditions={condition}
+						setConditions={setCondition}
 						isConcentrating={isConcentrating}
 						setIsConcentrating={setIsConcentrating}
 					/>

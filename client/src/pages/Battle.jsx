@@ -42,7 +42,6 @@ const Battle = () => {
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
 	const [showMonstersModal, setShowMonstersModal] = useState(false);
-	const [heroActionType, setHeroActionType] = useState('');
 
 	const [rollModifier, setRollModifier] = useState(0);
 	const [die, setDie] = useState(0);
@@ -56,6 +55,8 @@ const Battle = () => {
 		addInitiative(monsterData, heroData, setMonsterData, setHeroData);
 	}, []);
 
+	const showData = () => console.log(monsterData);
+
 	const handleRollDice = (die, dieNum, modifier) => {
 		setRollModifier(modifier);
 		setDie(rollDie(die) * dieNum);
@@ -68,12 +69,6 @@ const Battle = () => {
 	};
 
 	const handleHeroAttack = () => {
-		setHeroActionType('attack');
-		setShowMonstersModal(true);
-	};
-
-	const handleHeroSpell = () => {
-		setHeroActionType('spell');
 		setShowMonstersModal(true);
 	};
 
@@ -106,7 +101,6 @@ const Battle = () => {
 							hero={creature}
 							cardStyle={position}
 							handleHeroAttack={handleHeroAttack}
-							handleHeroSpell={handleHeroSpell}
 						/>
 					);
 				}
@@ -237,8 +231,11 @@ const Battle = () => {
 				handleCloseMonstersModal={handleCloseMonstersModal}
 				monsters={monsterData}
 				setMonsterData={setMonsterData}
-				heroActionType={heroActionType}
 			/>
+
+			<button className="btn btn-primary" onClick={showData}>
+				Array
+			</button>
 		</div>
 	);
 };

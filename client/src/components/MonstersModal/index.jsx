@@ -10,13 +10,10 @@ const MonstersModal = ({
 	handleCloseMonstersModal,
 	monsters,
 	setMonsterData,
-	heroActionType,
 }) => {
 	const [selectedMonster, setSelectedMonster] = useState('');
 
-	const handleViewMonster = (monster) => {
-		setSelectedMonster(monster);
-	};
+	const handleViewMonster = (monster) => setSelectedMonster(monster);
 
 	return (
 		<Modal
@@ -28,13 +25,13 @@ const MonstersModal = ({
 				<GiGoblinHead size="2rem" />
 			</Modal.Header>
 
-			{/* Conditional rendering for monster */}
+			{/* Conditional rendering for pages */}
 			{selectedMonster === '' ? (
 				<MonsterSelect
 					monsters={monsters}
 					handleViewMonster={handleViewMonster}
 				/>
-			) : heroActionType === 'attack' ? (
+			) : (
 				<SelectedMonster
 					monster={selectedMonster}
 					monsterArray={monsters}
@@ -42,7 +39,7 @@ const MonstersModal = ({
 					setMonsterData={setMonsterData}
 					handleCloseMonstersModal={handleCloseMonstersModal}
 				/>
-			) : null}
+			)}
 		</Modal>
 	);
 };
