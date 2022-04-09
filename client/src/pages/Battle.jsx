@@ -28,24 +28,17 @@ const Battle = () => {
 	// Bring in monster and hero data
 	const [monsterData, setMonsterData] = useState(monsters);
 	const [heroData, setHeroData] = useState(heroes);
-
-	// Put heroes and monsters into one array to be sorted and assigned initiative
-	const sortedData = []
-		.concat(monsterData)
-		.concat(heroData)
-		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
-
+	// const [sortedData, setSortedData] = useState([]);
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
 	const [round, setRound] = useState(1);
 	const [turn, setTurn] = useState(1);
 	const [info, setInfo] = useState({});
-
 	// Modal
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
 	const [showMonstersModal, setShowMonstersModal] = useState(false);
-
+	// Dice rolls
 	const [rollModifier, setRollModifier] = useState(0);
 	const [die, setDie] = useState(0);
 
@@ -53,10 +46,27 @@ const Battle = () => {
 	const handleCloseInfoModal = () => setShowInfoModal(false);
 	const handleCloseMonstersModal = () => setShowMonstersModal(false);
 
+	const sortedData = []
+		.concat(monsterData)
+		.concat(heroData)
+		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
+
 	// Add initiative on load
 	useEffect(() => {
 		addInitiative(monsterData, heroData, setMonsterData, setHeroData);
 	}, []);
+
+	// Logic for adding a number after duplicate monsters
+	// const checkForMultiple = (monsterData, setMonsterData) => {
+	// 	let updatedArr = monsterData.map((monster, index) =>
+	// 		monsterData.findIndex(
+	// 			(current) => current.name === monster.name
+	// 		) === index
+	// 			? monster
+	// 			: { ...monster, name: `${monster.name} ${index + 1}` }
+	// 	);
+	// 	setMonsterData(updatedArr);
+	// };
 
 	const showData = () => console.log(monsterData);
 
@@ -77,37 +87,38 @@ const Battle = () => {
 
 	// Renders cards with initiative sorting and sliding animation classes
 	const renderCards = () => {
-		return sortedData.map((creature, n) => {
-			let position =
-				n > index
-					? 'nextCard'
-					: n === index
-					? 'activeCard'
-					: 'prevCard';
+		if (sortedData !== null) {
+			return sortedData.map((creature, n) => {
+				let position =
+					n > index
+						? 'nextCard'
+						: n === index
+						? 'activeCard'
+						: 'prevCard';
 
-			if (creature.type === 'monster') {
-				return (
-					<Monster
-						key={creature.name}
-						monster={creature}
-						cardStyle={position}
-						handleRollDice={handleRollDice}
-						handleShowInfo={handleShowInfo}
-					/>
-				);
-			} else if (creature.type === 'hero') {
-				return (
-					<Hero
-						key={creature.player_name}
-						hero={creature}
-						cardStyle={position}
-						handleHeroAttack={handleHeroAttack}
-					/>
-				);
-			}
-
-			return null;
-		});
+				if (creature.type === 'monster') {
+					return (
+						<Monster
+							key={creature.name}
+							monster={creature}
+							cardStyle={position}
+							handleRollDice={handleRollDice}
+							handleShowInfo={handleShowInfo}
+						/>
+					);
+				} else if (creature.type === 'hero') {
+					return (
+						<Hero
+							key={creature.player_name}
+							hero={creature}
+							cardStyle={position}
+							handleHeroAttack={handleHeroAttack}
+						/>
+					);
+				}
+			});
+		}
+		return null;
 	};
 
 	return (
@@ -187,7 +198,9 @@ const Battle = () => {
 				{/* Cards */}
 				<div className="card-container container d-flex justify-content-center">
 					<div className="background-block"></div>
-					{monsterData[0].initiative ? renderCards() : null}
+					{sortedData || sortedData[0].initiative
+						? renderCards()
+						: null}
 				</div>
 
 				{/* Render right Chevron */}
