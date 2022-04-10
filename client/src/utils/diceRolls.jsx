@@ -31,6 +31,7 @@ export const addInitiative = (
 	setMonsterData,
 	setHeroData
 ) => {
+	console.log('current monsterData', monsterData);
 	const monsters = monsterData.map((monster) => ({
 		...monster,
 		initiative: getInitiative(monster),

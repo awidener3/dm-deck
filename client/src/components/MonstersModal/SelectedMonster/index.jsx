@@ -109,17 +109,17 @@ const SelectedMonster = ({
 					>
 						<p
 							className="mx-2"
-							title={`Armor Class: ${monster.armor_class}`}
-						>
-							<RiShieldFill className="ac-icon" size={'2rem'} />{' '}
-							{monster.armor_class}
-						</p>
-						<p
-							className="mx-2"
 							title={`Hitpoints: ${startingHitpoints}`}
 						>
 							<RiHeartFill className="hp-icon" size={'2rem'} />{' '}
 							{startingHitpoints}
+						</p>
+						<p
+							className="mx-2"
+							title={`Armor Class: ${monster.armor_class}`}
+						>
+							<RiShieldFill className="ac-icon" size={'2rem'} />{' '}
+							{monster.armor_class}
 						</p>
 					</div>
 					<div className="d-flex flex-column">

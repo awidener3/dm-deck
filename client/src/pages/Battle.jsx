@@ -28,7 +28,6 @@ const Battle = () => {
 	// Bring in monster and hero data
 	const [monsterData, setMonsterData] = useState(monsters);
 	const [heroData, setHeroData] = useState(heroes);
-	// const [sortedData, setSortedData] = useState([]);
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
 	const [round, setRound] = useState(1);
@@ -46,27 +45,26 @@ const Battle = () => {
 	const handleCloseInfoModal = () => setShowInfoModal(false);
 	const handleCloseMonstersModal = () => setShowMonstersModal(false);
 
-	const sortedData = []
-		.concat(monsterData)
-		.concat(heroData)
-		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
-
 	// Add initiative on load
 	useEffect(() => {
 		addInitiative(monsterData, heroData, setMonsterData, setHeroData);
 	}, []);
 
 	// Logic for adding a number after duplicate monsters
-	// const checkForMultiple = (monsterData, setMonsterData) => {
-	// 	let updatedArr = monsterData.map((monster, index) =>
-	// 		monsterData.findIndex(
-	// 			(current) => current.name === monster.name
-	// 		) === index
-	// 			? monster
-	// 			: { ...monster, name: `${monster.name} ${index + 1}` }
-	// 	);
-	// 	setMonsterData(updatedArr);
-	// };
+	const checkForMultiple = (monsters, setMonsterData) => {
+		let updatedArr = monsters.map((monster, index) =>
+			monsters.findIndex((current) => current.name === monster.name) ===
+			index
+				? monster
+				: { ...monster, name: `${monster.name} ${index + 1}` }
+		);
+		setMonsterData(updatedArr);
+	};
+
+	const sortedData = []
+		.concat(monsterData)
+		.concat(heroData)
+		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
 	const showData = () => console.log(monsterData);
 
@@ -257,9 +255,9 @@ const Battle = () => {
 				setMonsterData={setMonsterData}
 			/>
 
-			<button className="btn btn-primary" onClick={showData}>
+			{/* <button className="btn btn-primary" onClick={showData}>
 				Array
-			</button>
+			</button> */}
 		</div>
 	);
 };
