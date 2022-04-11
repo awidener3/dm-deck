@@ -26,14 +26,16 @@ import '../App.scss';
 
 const Battle = () => {
 	// Bring in monster and hero data
-	// const [monsterData, setMonsterData] = useState(monsters);
 	const [monsterData, setMonsterData] = useState(() =>
-		monsters.map((monster, index) =>
-			monsters.findIndex((current) => current.name === monster.name) ===
-			index
-				? monster
-				: { ...monster, name: `${monster.name} ${index + 1}` }
-		)
+		monsters
+			.sort((a, b) => (a.name > b.name ? 1 : -1))
+			.map((monster, index) =>
+				monsters.findIndex(
+					(current) => current.name === monster.name
+				) === index
+					? monster
+					: { ...monster, name: `${monster.name} ${index}` }
+			)
 	);
 	const [heroData, setHeroData] = useState(heroes);
 	// Variables to control battle statistics
@@ -64,7 +66,7 @@ const Battle = () => {
 		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
 	// ? Used for viewing current array
-	const showData = () => console.log(sortedData);
+	const showData = () => console.log(monsterData);
 
 	const handleRollDice = (die, dieNum, modifier) => {
 		setRollModifier(modifier);
