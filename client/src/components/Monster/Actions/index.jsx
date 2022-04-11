@@ -14,8 +14,6 @@ const Actions = ({
 	handleRollDice,
 	sortedData,
 	setSortedData,
-	// conditions,
-	// setConditions,
 	// isConcentrating,
 	// setIsConcentrating,
 }) => {
@@ -89,7 +87,6 @@ const Actions = ({
 									action.damage_die_num,
 									action.damage_modifier
 								);
-								// rollDamage(action);
 							}}
 						>
 							<GiMineExplosion /> {action.damage_dice_text}
