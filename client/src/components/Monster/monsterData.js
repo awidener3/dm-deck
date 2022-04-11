@@ -442,7 +442,6 @@ const monsters = [
 		speed: {
 			walking: 20,
 			flying: 40,
-			swimming: null,
 		},
 		ability_scores: {
 			strength: 6,
@@ -452,6 +451,8 @@ const monsters = [
 			wisdom: 12,
 			charisma: 14,
 		},
+		saving_throw_bonus:
+			'(From Magic Resistance) The imp has advantage on saving throws against spells and other magical effects.',
 		skills: ['Deception +4', 'Insight +3', 'Persuasion +4', 'Stealth +5'],
 		damage_resistances: [
 			'cold',

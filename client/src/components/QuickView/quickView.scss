@@ -37,10 +37,12 @@
 
 .condition-markers {
   height: 12px;
+  display: flex;
   .condition-marker {
     visibility: visible !important; 
     width: 10px;
     height: 10px;
+    margin: 0px 2px;
     border-radius: 100%;
   }
   .invisible {
@@ -52,7 +54,7 @@
   .hexed {
     background-color: #e865db;
   }
-  .blinded {
+  .blind {
     color: #cbcbcb;
     background-color: #171717;
   }

@@ -25,6 +25,7 @@ import QuickView from '../components/QuickView';
 
 const Battle = () => {
 	// Bring in monster and hero data
+
 	const [monsterData, setMonsterData] = useState(() =>
 		monsters
 			.sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -223,17 +224,9 @@ const Battle = () => {
 				handleCloseInfoModal={handleCloseInfoModal}
 			/>
 
-			{/* <MonstersModal
-				showMonstersModal={showMonstersModal}
-				handleCloseMonstersModal={handleCloseMonstersModal}
-				monsters={monsterData}
-				setMonsterData={setMonsterData}
-			/> */}
 			<MonstersModal
 				showMonstersModal={showMonstersModal}
 				handleCloseMonstersModal={handleCloseMonstersModal}
-				// monsters={monsters}
-				// setMonsterData={setMonsterData}
 				sortedData={sortedData}
 				setSortedData={setSortedData}
 			/>

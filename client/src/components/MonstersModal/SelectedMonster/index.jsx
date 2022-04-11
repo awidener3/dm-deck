@@ -9,8 +9,6 @@ import './selectedMonster.scss';
 const SelectedMonster = ({
 	monster,
 	setSelectedMonster,
-	// monsterArray,
-	// setMonsterData,
 	sortedData,
 	setSortedData,
 	handleCloseMonstersModal,
@@ -18,14 +16,8 @@ const SelectedMonster = ({
 	const [startingHitpoints] = useState(monster.hitpoints);
 	const [modifier, setModifier] = useState(0);
 	const [condition, setCondition] = useState('');
-	const [monsterConditions, setMonsterConditions] = useState(
-		monster.conditions
-	);
-	const [savingThrowResult, setSavingThrowResult] = useState(0);
 
-	useEffect(() => {
-		setCondition(monster.conditions);
-	}, [monster.conditions]);
+	const [savingThrowResult, setSavingThrowResult] = useState(0);
 
 	// Saving Throw
 	const changeModifier = (e) => {
@@ -73,27 +65,23 @@ const SelectedMonster = ({
 	};
 
 	const handleAddCondition = (e) => {
-		// const updatedArray = monsterArray.slice();
 		const updatedArray = sortedData.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
 				item.conditions.push(condition);
 			}
 		});
-		// setMonsterData([...updatedArray]);
 		setSortedData([...updatedArray]);
 	};
 
 	// Hitpoints
 	const handleChangeHitpoints = (e) => {
-		// const updatedArray = monsterArray.slice();
 		const updatedArray = sortedData.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
 				item.hitpoints = e.target.value;
 			}
 		});
-		// setMonsterData([...updatedArray]);
 		setSortedData([...updatedArray]);
 	};
 
@@ -105,8 +93,8 @@ const SelectedMonster = ({
 			<Modal.Body className="w-75 m-auto pt-0">
 				<Conditions
 					monster={monster}
-					conditions={monsterConditions}
-					setCondition={setMonsterConditions}
+					sortedData={sortedData}
+					setSortedData={setSortedData}
 				/>
 				<div>
 					<div
@@ -131,6 +119,11 @@ const SelectedMonster = ({
 					<div className="d-flex flex-column">
 						{/* SAVING THROWS */}
 						<h5>Roll Saving Throw</h5>
+						{monster.saving_throw_bonus ? (
+							<p className="saving-throw-bonus">
+								{monster.saving_throw_bonus}
+							</p>
+						) : null}
 						<div className="input-group mb-2">
 							<select
 								className="form-select"

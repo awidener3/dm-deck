@@ -1,8 +1,6 @@
 import { Modal } from 'react-bootstrap';
 
 const MonsterSelect = ({ monsters, handleViewMonster }) => {
-	let inBattle = monsters;
-	console.log(inBattle);
 	return (
 		<div>
 			<Modal.Title className="text-center">Select a Monster</Modal.Title>

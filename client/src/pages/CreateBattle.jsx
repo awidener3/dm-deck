@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import heroes from '../components/Hero/heroData';
 import monsters from '../components/Monster/monsterData';
 
+import useFetchMonsters from '../hooks/useFetchMonsters';
+
 const CreateBattle = () => {
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
+	const { monsterData, setMonsterData } = useFetchMonsters();
 	const [selectedMonsters, setSelectedMonsters] = useState([]);
 	const [difficultyRating, setDifficultyRating] = useState('Easy');
 
@@ -18,14 +21,14 @@ const CreateBattle = () => {
 		});
 	};
 
-	const handleMonsterSelect = (name) => {
-		console.log(name);
-		monsters.forEach((monster) => {
-			if (monster.name === name && !selectedMonsters.includes(monster))
-				setSelectedMonsters([...selectedMonsters, monster]);
-		});
-		console.log(selectedMonsters);
-	};
+	// const handleMonsterSelect = (name) => {
+	// 	console.log(name);
+	// 	monsters.forEach((monster) => {
+	// 		if (monster.name === name && !selectedMonsters.includes(monster))
+	// 			setSelectedMonsters([...selectedMonsters, monster]);
+	// 	});
+	// 	console.log(selectedMonsters);
+	// };
 
 	return (
 		<div className="container py-4">
@@ -58,21 +61,23 @@ const CreateBattle = () => {
 			</button>
 
 			<h2 className="mt-5">Select Your Monsters</h2>
-			<ul className="list-group pt-4">
-				{monsters.map((monster) => (
-					<li
-						key={monster.name}
-						className="list-group-item d-flex align-items-center justify-content-between"
-						onClick={() => handleMonsterSelect(monster.name)}
-					>
-						<h3 className="m-0">{monster.name} </h3>
+			<input
+				type="text"
+				placeholder="Search for a monster"
+				value={monsterData.slug}
+				onChange={(e) =>
+					setMonsterData({ ...monsterData, slug: e.target.value })
+				}
+			/>
 
-						<div>
-							<p className="m-0">CR {monster.challenge_rating}</p>
-						</div>
-					</li>
-				))}
-			</ul>
+			{monsterData.results.results &&
+			monsterData.results.results.length > 0 ? (
+				<ul>
+					{monsterData.results.results.map((item) => (
+						<li key={item.name}>{item.name}</li>
+					))}
+				</ul>
+			) : null}
 
 			<button className="btn btn-primary mt-3 disabled">
 				Add Custom Monster
