@@ -12,34 +12,52 @@ import diceSfx from '../../../assets/audio/dice-roll.mp3';
 const Actions = ({
 	monster,
 	handleRollDice,
-	conditions,
-	setConditions,
-	isConcentrating,
-	setIsConcentrating,
+	sortedData,
+	setSortedData,
+	// conditions,
+	// setConditions,
+	// isConcentrating,
+	// setIsConcentrating,
 }) => {
 	const [playSfx] = useSound(diceSfx);
 
 	const handleToHit = (action) => {
-		if (conditions.includes('invisible')) {
-			setConditions(
-				conditions.filter((condition) => condition !== 'invisible')
-			);
-			setIsConcentrating(false);
-		}
+		// if (conditions.includes('invisible')) {
+		// 	setConditions(
+		// 		conditions.filter((condition) => condition !== 'invisible')
+		// 	);
+		// 	setIsConcentrating(false);
+		// }
 		playSfx();
 		handleRollDice(20, 1, action.hit_modifier);
 	};
 
-	const handleConditions = (action) => {
+	const handleConditions = ({ action_target, condition }) => {
 		// check if the target is self + isn't currently active
 		if (
-			action.action_target === 'self' &&
-			!conditions.includes(action.condition)
+			action_target === 'self' &&
+			!monster.conditions.includes(condition)
 		) {
-			// update conditions with action.condition
-			setConditions([...conditions, action.condition]);
-			setIsConcentrating(action.concentration);
+			let updatedArray = sortedData.map((creature) => {
+				if (creature.name === monster.name) {
+					return {
+						...monster,
+						conditions: [...monster.conditions, condition],
+					};
+				}
+				return creature;
+			});
+
+			setSortedData([...updatedArray]);
 		}
+		// if (
+		// 	action.action_target === 'self' &&
+		// 	!conditions.includes(action.condition)
+		// ) {
+		// 	// update conditions with action.condition
+		// 	setConditions([...conditions, action.condition]);
+		// 	setIsConcentrating(action.concentration);
+		// }
 		// otherwise, select a creature to apply the effect to
 	};
 

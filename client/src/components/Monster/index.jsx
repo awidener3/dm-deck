@@ -10,34 +10,41 @@ import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { GiConcentrationOrb } from 'react-icons/gi';
 import AbilityScores from './AbilityScores';
 
-const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
-	const [condition, setCondition] = useState(monster.conditions);
-	const [isConcentrating, setIsConcentrating] = useState(false);
+const Monster = ({
+	monster,
+	cardStyle,
+	handleRollDice,
+	handleShowInfo,
+	sortedData,
+	setSortedData,
+}) => {
+	// const [condition, setCondition] = useState(monster.conditions);
+	// const [isConcentrating, setIsConcentrating] = useState(false);
 
-	useEffect(() => {
-		setCondition(monster.conditions);
-	}, [monster.conditions]);
+	// useEffect(() => {
+	// 	setCondition(monster.conditions);
+	// }, [monster.conditions]);
 
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
-				<Conditions
+				{/* <Conditions
 					monster={monster}
-					conditions={condition}
-					setCondition={setCondition}
-				/>
+					// conditions={condition}
+					// setCondition={setCondition}
+				/> */}
 				<Circles monster={monster} />
 
 				{/* HEADER */}
 				<div className="dmd-card-header mt-3">
 					<h1 className="name">
 						{monster.name}{' '}
-						{isConcentrating === true ? (
+						{/* {isConcentrating === true ? (
 							<GiConcentrationOrb
 								size={'1.5rem'}
 								title="concentrating"
 							/>
-						) : null}
+						) : null} */}
 					</h1>
 				</div>
 
@@ -59,10 +66,12 @@ const Monster = ({ monster, cardStyle, handleRollDice, handleShowInfo }) => {
 					<Actions
 						monster={monster}
 						handleRollDice={handleRollDice}
-						conditions={condition}
-						setConditions={setCondition}
-						isConcentrating={isConcentrating}
-						setIsConcentrating={setIsConcentrating}
+						sortedData={sortedData}
+						setSortedData={setSortedData}
+						// conditions={condition}
+						// setConditions={setCondition}
+						// isConcentrating={isConcentrating}
+						// setIsConcentrating={setIsConcentrating}
 					/>
 				</div>
 

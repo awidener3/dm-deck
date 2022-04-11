@@ -108,6 +108,8 @@ const Battle = () => {
 							cardStyle={position}
 							handleRollDice={handleRollDice}
 							handleShowInfo={handleShowInfo}
+							sortedData={sortedData}
+							setSortedData={setSortedData}
 						/>
 					);
 				} else if (creature.type === 'hero') {
