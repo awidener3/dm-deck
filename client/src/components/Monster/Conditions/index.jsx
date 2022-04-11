@@ -1,16 +1,24 @@
-const Conditions = ({ monster, conditions, setCondition }) => {
-	const handleRemoveCondition = (con) => {
+const Conditions = ({ monster, sortedData, setSortedData }) => {
+	const handleRemoveCondition = (conditionName) => {
 		let newConditions = monster.conditions.filter(
-			(condition) => condition !== con
+			(condition) => condition !== conditionName
 		);
-		monster.conditions = [...newConditions];
-		setCondition([...newConditions]);
+		let updatedArray = sortedData.map((creature) => {
+			if (creature.name === monster.name) {
+				return {
+					...monster,
+					conditions: [...newConditions],
+				};
+			}
+			return creature;
+		});
+		setSortedData([...updatedArray]);
 	};
 
 	return (
 		<div className="condition-container d-flex flex-wrap">
 			{/* Invisible */}
-			{conditions.includes('invisible') ? (
+			{monster.conditions.includes('invisible') ? (
 				<div
 					className="condition invis"
 					onClick={() => handleRemoveCondition('invisible')}
@@ -20,7 +28,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Blind */}
-			{conditions.includes('blind') ? (
+			{monster.conditions.includes('blind') ? (
 				<div
 					className="condition blind"
 					onClick={() => handleRemoveCondition('blind')}
@@ -30,7 +38,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Deaf */}
-			{conditions.includes('deafened') ? (
+			{monster.conditions.includes('deafened') ? (
 				<div
 					className="condition deaf"
 					onClick={() => handleRemoveCondition('deaf')}
@@ -40,7 +48,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Petrified */}
-			{conditions.includes('petrified') ? (
+			{monster.conditions.includes('petrified') ? (
 				<div
 					className="condition petrify"
 					onClick={() => handleRemoveCondition('petrified')}
@@ -50,7 +58,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Poisoned */}
-			{conditions.includes('poisoned') ? (
+			{monster.conditions.includes('poisoned') ? (
 				<div
 					className="condition poison"
 					onClick={() => handleRemoveCondition('poisoned')}
@@ -60,7 +68,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Unconcious */}
-			{conditions.includes('unconscious') ? (
+			{monster.conditions.includes('unconscious') ? (
 				<div
 					className="condition unconscious"
 					onClick={() => handleRemoveCondition('unconscious')}
@@ -70,7 +78,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Restrained */}
-			{conditions.includes('restrained') ? (
+			{monster.conditions.includes('restrained') ? (
 				<div
 					className="condition restrain"
 					onClick={() => handleRemoveCondition('restrained')}
@@ -80,7 +88,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Charmed */}
-			{conditions.includes('charmed') ? (
+			{monster.conditions.includes('charmed') ? (
 				<div
 					className="condition charm"
 					onClick={() => handleRemoveCondition('charmed')}
@@ -90,7 +98,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Frightened */}
-			{conditions.includes('frightened') ? (
+			{monster.conditions.includes('frightened') ? (
 				<div
 					className="condition fright"
 					onClick={() => handleRemoveCondition('frightened')}
@@ -100,7 +108,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Paralyzed */}
-			{conditions.includes('paralyzed') ? (
+			{monster.conditions.includes('paralyzed') ? (
 				<div
 					className="condition paralyze"
 					onClick={() => handleRemoveCondition('paralyzed')}
@@ -110,7 +118,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Prone */}
-			{conditions.includes('prone') ? (
+			{monster.conditions.includes('prone') ? (
 				<div
 					className="condition prone"
 					onClick={() => handleRemoveCondition('prone')}
@@ -120,7 +128,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Grappled */}
-			{conditions.includes('grappled') ? (
+			{monster.conditions.includes('grappled') ? (
 				<div
 					className="condition grapple"
 					onClick={() => handleRemoveCondition('grappled')}
@@ -130,7 +138,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Incapacitated */}
-			{conditions.includes('incapacitated') ? (
+			{monster.conditions.includes('incapacitated') ? (
 				<div
 					className="condition incapacitate"
 					onClick={() => handleRemoveCondition('incapacitated')}
@@ -140,7 +148,7 @@ const Conditions = ({ monster, conditions, setCondition }) => {
 				</div>
 			) : null}
 			{/* Stunned */}
-			{conditions.includes('stunned') ? (
+			{monster.conditions.includes('stunned') ? (
 				<div
 					className="condition stun"
 					onClick={() => handleRemoveCondition('stunned')}

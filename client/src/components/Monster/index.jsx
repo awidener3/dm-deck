@@ -18,21 +18,14 @@ const Monster = ({
 	sortedData,
 	setSortedData,
 }) => {
-	// const [condition, setCondition] = useState(monster.conditions);
-	// const [isConcentrating, setIsConcentrating] = useState(false);
-
-	// useEffect(() => {
-	// 	setCondition(monster.conditions);
-	// }, [monster.conditions]);
-
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
-				{/* <Conditions
+				<Conditions
 					monster={monster}
-					// conditions={condition}
-					// setCondition={setCondition}
-				/> */}
+					sortedData={sortedData}
+					setSortedData={setSortedData}
+				/>
 				<Circles monster={monster} />
 
 				{/* HEADER */}
@@ -68,10 +61,6 @@ const Monster = ({
 						handleRollDice={handleRollDice}
 						sortedData={sortedData}
 						setSortedData={setSortedData}
-						// conditions={condition}
-						// setConditions={setCondition}
-						// isConcentrating={isConcentrating}
-						// setIsConcentrating={setIsConcentrating}
 					/>
 				</div>
 

@@ -50,14 +50,6 @@ const Actions = ({
 
 			setSortedData([...updatedArray]);
 		}
-		// if (
-		// 	action.action_target === 'self' &&
-		// 	!conditions.includes(action.condition)
-		// ) {
-		// 	// update conditions with action.condition
-		// 	setConditions([...conditions, action.condition]);
-		// 	setIsConcentrating(action.concentration);
-		// }
 		// otherwise, select a creature to apply the effect to
 	};
 
