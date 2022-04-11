@@ -1,8 +1,28 @@
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
+import './quickView.scss';
 
 const QuickView = ({ sortedData, turn, setTurn, setIndex }) => {
+	const getConditions = (creature) => {
+		if (
+			creature.conditions !== undefined &&
+			creature.conditions.length > 0
+		) {
+			return (
+				<>
+					{creature.conditions.map((condition) => (
+						<div
+							key={condition}
+							className={`condition-marker ${condition}`}
+						></div>
+					))}
+				</>
+			);
+		}
+		return null;
+	};
+
 	return (
-		<>
+		<div className="monster-data vw-100 d-flex justify-content-around flex-wrap">
 			{sortedData.map((creature, index) => (
 				<div
 					className={
@@ -29,9 +49,12 @@ const QuickView = ({ sortedData, turn, setTurn, setIndex }) => {
 							{creature.armor_class}
 						</p>
 					</div>
+					<div className="condition-markers">
+						{getConditions(creature)}
+					</div>
 				</div>
 			))}
-		</>
+		</div>
 	);
 };
 

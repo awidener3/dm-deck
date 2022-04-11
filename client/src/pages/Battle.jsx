@@ -20,8 +20,6 @@ import {
 	FaChevronCircleRight,
 } from 'react-icons/fa';
 
-import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
-
 import '../App.scss';
 import QuickView from '../components/QuickView';
 
@@ -39,9 +37,8 @@ const Battle = () => {
 			)
 	);
 	const [heroData, setHeroData] = useState(heroes);
-	const [sortedData, setSortedData] = useState(
-		() => [].concat(monsterData).concat(heroData)
-		// .sort((a, b) => (a.initiative < b.initiative ? 1 : -1))
+	const [sortedData, setSortedData] = useState(() =>
+		[].concat(monsterData).concat(heroData)
 	);
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -62,15 +59,8 @@ const Battle = () => {
 
 	// Add initiative on load
 	useEffect(() => {
-		// addInitiative(monsterData, heroData, setMonsterData, setHeroData);
-		// ? New addInitiative with sortedData only
 		addInitiative(sortedData, setSortedData);
 	}, []);
-
-	// const sortedData = []
-	// 	.concat(monsterData)
-	// 	.concat(heroData)
-	// 	.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
 	// ? TESTING: Used for viewing current array
 	const showData = () => console.log(sortedData);
@@ -130,15 +120,13 @@ const Battle = () => {
 
 	return (
 		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
-			<div className="monster-data vw-100 d-flex justify-content-around flex-wrap">
-				{/* Quick view of monster AC and HP */}
-				<QuickView
-					sortedData={sortedData}
-					turn={turn}
-					setTurn={setTurn}
-					setIndex={setIndex}
-				/>
-			</div>
+			{/* Quick view of monster AC and HP */}
+			<QuickView
+				sortedData={sortedData}
+				turn={turn}
+				setTurn={setTurn}
+				setIndex={setIndex}
+			/>
 			<div className="battle-stats mt-2 d-flex">
 				<h4 className="battle-stat mx-2">Round: {round}</h4>
 				<h4 className="battle-stat mx-2">

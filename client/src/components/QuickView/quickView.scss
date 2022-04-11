@@ -1,0 +1,99 @@
+.monster-data {
+  background-color: #fff;
+  border-bottom: 1px solid #ababab;
+  .monster-data-card {
+    cursor: pointer;
+    padding: 0 10px;
+    min-width: 4rem;
+    transition: background-color 0.2s;
+    h5 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 1rem;
+      .hp-icon {
+        color: #5b1f1f;
+        height: 12px;
+        width: 12px;
+      }
+      .ac-icon {
+        color: #123a0e;
+        height: 10px;
+        width: 10px;
+      }
+    } 
+  }
+  .monster-data-card:hover {
+    background-color: #efefef;
+  }
+  .current {
+    background-color: #d8ebd7;
+  }
+  .current:hover {
+    background-color: #8dbb8b;
+
+  }
+}
+
+.condition-markers {
+  height: 12px;
+  .condition-marker {
+    visibility: visible !important; 
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+  }
+  .invisible {
+    background-color: #aaa;
+  }
+  .poisoned {
+    background-color: #6acf61;
+  }
+  .hexed {
+    background-color: #e865db;
+  }
+  .blinded {
+    color: #cbcbcb;
+    background-color: #171717;
+  }
+  .charmed {
+    background-color: #ffc0cb;
+  }
+  .deafened {
+    color: #f6f6f6;
+    font-weight: 400;
+    background-color: #808080;
+  }
+  .frightened {
+    background-color: rgb(222, 222, 23);
+  }
+  .grappled {
+    color: #ffffff;
+    background-color: #a52a2a;
+  }
+  .incapacitated {
+    color: #fff;
+    background-color: #e86b28;
+  }
+  .paralyzed {
+    background-color: yellow;
+  }
+  .petrified {
+    color: #e2e2e2;
+    background-color: #2f4f4f;
+  }
+  .prone {
+    color: #fff;
+    background-color: #7b0b0b;
+  }
+  .restrained {
+    background-color: #aae6a5;
+  }
+  .stunned {
+    background-color: #11e6e6;
+  }
+  .unconscious {
+    color: #fff;
+    background-color: #000;
+  }
+}
