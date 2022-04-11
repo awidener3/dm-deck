@@ -38,6 +38,10 @@ const Battle = () => {
 			)
 	);
 	const [heroData, setHeroData] = useState(heroes);
+	const [sortedData, setSortedData] = useState(
+		() => [].concat(monsterData).concat(heroData)
+		// .sort((a, b) => (a.initiative < b.initiative ? 1 : -1))
+	);
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
 	const [round, setRound] = useState(1);
@@ -57,16 +61,18 @@ const Battle = () => {
 
 	// Add initiative on load
 	useEffect(() => {
-		addInitiative(monsterData, heroData, setMonsterData, setHeroData);
+		// addInitiative(monsterData, heroData, setMonsterData, setHeroData);
+		// ? New addInitiative with sortedData only
+		addInitiative(sortedData, setSortedData);
 	}, []);
 
-	const sortedData = []
-		.concat(monsterData)
-		.concat(heroData)
-		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
+	// const sortedData = []
+	// 	.concat(monsterData)
+	// 	.concat(heroData)
+	// 	.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
-	// ? Used for viewing current array
-	const showData = () => console.log(monsterData);
+	// ? TESTING: Used for viewing current array
+	const showData = () => console.log(sortedData);
 
 	const handleRollDice = (die, dieNum, modifier) => {
 		setRollModifier(modifier);
@@ -123,7 +129,7 @@ const Battle = () => {
 		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
 			<div className="monster-data vw-100 d-flex justify-content-around flex-wrap">
 				{/* Quick view of monster AC and HP */}
-				{sortedData.map((monster, index) => (
+				{sortedData.map((creature, index) => (
 					<div
 						className={
 							turn === index + 1
@@ -137,16 +143,16 @@ const Battle = () => {
 						}}
 					>
 						<h5 className="m-0">
-							{monster.name || monster.character_name}
+							{creature.name || creature.character_name}
 						</h5>
 						<div className="d-flex justify-content-center">
 							<p className="mb-0 me-1">
 								<RiHeartFill className="hp-icon" />{' '}
-								{monster.hitpoints}
+								{creature.hitpoints}
 							</p>
 							<p className="mb-0 ms-1">
 								<RiShieldFill className="ac-icon" />{' '}
-								{monster.armor_class}
+								{creature.armor_class}
 							</p>
 						</div>
 					</div>
@@ -248,11 +254,19 @@ const Battle = () => {
 				handleCloseInfoModal={handleCloseInfoModal}
 			/>
 
-			<MonstersModal
+			{/* <MonstersModal
 				showMonstersModal={showMonstersModal}
 				handleCloseMonstersModal={handleCloseMonstersModal}
 				monsters={monsterData}
 				setMonsterData={setMonsterData}
+			/> */}
+			<MonstersModal
+				showMonstersModal={showMonstersModal}
+				handleCloseMonstersModal={handleCloseMonstersModal}
+				// monsters={monsters}
+				// setMonsterData={setMonsterData}
+				sortedData={sortedData}
+				setSortedData={setSortedData}
 			/>
 
 			<button className="btn btn-primary" onClick={showData}>

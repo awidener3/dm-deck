@@ -8,9 +8,11 @@ import './selectedMonster.scss';
 
 const SelectedMonster = ({
 	monster,
-	monsterArray,
 	setSelectedMonster,
-	setMonsterData,
+	// monsterArray,
+	// setMonsterData,
+	sortedData,
+	setSortedData,
 	handleCloseMonstersModal,
 }) => {
 	const [startingHitpoints] = useState(monster.hitpoints);
@@ -71,24 +73,28 @@ const SelectedMonster = ({
 	};
 
 	const handleAddCondition = (e) => {
-		const updatedArray = monsterArray.slice();
+		// const updatedArray = monsterArray.slice();
+		const updatedArray = sortedData.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
 				item.conditions.push(condition);
 			}
 		});
-		setMonsterData([...updatedArray]);
+		// setMonsterData([...updatedArray]);
+		setSortedData([...updatedArray]);
 	};
 
 	// Hitpoints
 	const handleChangeHitpoints = (e) => {
-		const updatedArray = monsterArray.slice();
+		// const updatedArray = monsterArray.slice();
+		const updatedArray = sortedData.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
 				item.hitpoints = e.target.value;
 			}
 		});
-		setMonsterData([...updatedArray]);
+		// setMonsterData([...updatedArray]);
+		setSortedData([...updatedArray]);
 	};
 
 	return (
