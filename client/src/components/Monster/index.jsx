@@ -26,7 +26,7 @@ const Monster = ({
 					sortedData={sortedData}
 					setSortedData={setSortedData}
 				/> */}
-				{/* <Circles monster={monster} /> */}
+				<Circles monster={monster} />
 
 				{/* HEADER */}
 				<div className="dmd-card-header mt-3">
@@ -44,10 +44,12 @@ const Monster = ({
 				<BaseStats monster={monster} />
 				<AbilityScores monster={monster} />
 				<Stats monster={monster} />
-				<Traits monster={monster} />
+				{monster.special_abilities !== '' ? (
+					<Traits monster={monster} />
+				) : null}
 
 				{/* ACTIONS */}
-				<div className="dmd-card-row py-2 border-top">
+				<div className="dmd-card-row py-2">
 					<h2 className="actions-header">
 						Actions{' '}
 						<AiOutlineInfoCircle

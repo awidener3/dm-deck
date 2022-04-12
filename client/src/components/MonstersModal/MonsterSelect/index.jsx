@@ -8,7 +8,7 @@ const MonsterSelect = ({ monsters, handleViewMonster }) => {
 				<div className="monster-btns d-flex flex-column">
 					{monsters.map((monster) => {
 						let currentMonster = monster;
-						if (currentMonster.type === 'monster') {
+						if (currentMonster.type !== 'hero') {
 							return (
 								<button
 									className="btn btn-outline-secondary mb-2 w-75 m-auto"

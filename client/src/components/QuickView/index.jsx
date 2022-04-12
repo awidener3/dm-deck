@@ -42,7 +42,7 @@ const QuickView = ({ sortedData, turn, setTurn, setIndex }) => {
 					<div className="d-flex justify-content-center">
 						<p className="mb-0 me-1">
 							<RiHeartFill className="hp-icon" />{' '}
-							{creature.hitpoints}
+							{creature.hit_points}
 						</p>
 						<p className="mb-0 ms-1">
 							<RiShieldFill className="ac-icon" />{' '}

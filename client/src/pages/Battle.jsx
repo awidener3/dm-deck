@@ -44,7 +44,7 @@ const Battle = () => {
 					(current) => current.name === monster.name
 				) === index
 					? monster
-					: { ...monster, name: `${monster.name} ${index}` }
+					: { ...monster, name: `${monster.name} ${index + 1}` }
 			);
 
 		return currentBattle;

@@ -13,7 +13,7 @@ const SelectedMonster = ({
 	setSortedData,
 	handleCloseMonstersModal,
 }) => {
-	const [startingHitpoints] = useState(monster.hitpoints);
+	const [startingHitpoints] = useState(monster.hit_points);
 	const [modifier, setModifier] = useState(0);
 	const [condition, setCondition] = useState('');
 
@@ -26,7 +26,7 @@ const SelectedMonster = ({
 	};
 
 	const getModifier = (ability) => {
-		return Math.floor((monster.ability_scores[`${ability}`] - 10) / 2);
+		return Math.floor((monster[`${ability}`] - 10) / 2);
 	};
 
 	const renderOptions = () => {
@@ -79,7 +79,7 @@ const SelectedMonster = ({
 		const updatedArray = sortedData.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
-				item.hitpoints = e.target.value;
+				item.hit_points = e.target.value;
 			}
 		});
 		setSortedData([...updatedArray]);
@@ -91,11 +91,11 @@ const SelectedMonster = ({
 				<h1 className="m-0">{monster.name}</h1>
 			</Modal.Title>
 			<Modal.Body className="w-75 m-auto pt-0">
-				<Conditions
+				{/* <Conditions
 					monster={monster}
 					sortedData={sortedData}
 					setSortedData={setSortedData}
-				/>
+				/> */}
 				<div>
 					<div
 						id="monster-stats"
@@ -195,7 +195,7 @@ const SelectedMonster = ({
 								name="hitpoints"
 								id="hitpoints"
 								min="0"
-								value={monster.hitpoints}
+								value={monster.hit_points}
 								onChange={handleChangeHitpoints}
 							/>
 						</div>

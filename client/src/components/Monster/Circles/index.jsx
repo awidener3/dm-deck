@@ -1,9 +1,12 @@
 const Circles = ({ monster }) => {
 	const formatAlignment = (alignment) => {
-		let arr = alignment.split(' ');
-		let str = arr[0][0].toUpperCase() + arr[1][0].toUpperCase();
-
-		return str;
+		if (alignment === 'unaligned') {
+			return 'U';
+		} else {
+			let arr = alignment.split(' ');
+			let str = arr[0][0].toUpperCase() + arr[1][0].toUpperCase();
+			return str;
+		}
 	};
 	return (
 		<div className="circle-container d-flex p-2">

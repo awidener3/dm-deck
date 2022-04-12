@@ -33,7 +33,7 @@ const Hero = ({ hero, cardStyle, handleHeroAttack, handleAddEffect }) => {
 				{/* AC + HP Icons */}
 				<div className="hero-stats d-flex justify-content-between w-100">
 					<ArmorClassIcon ac={hero.armor_class} />
-					<HealthIcon hp={hero.hitpoints} />
+					<HealthIcon hp={hero.hit_points} />
 				</div>
 
 				{/* PC INFO */}

@@ -8,8 +8,6 @@ import SelectedMonster from './SelectedMonster';
 const MonstersModal = ({
 	showMonstersModal,
 	handleCloseMonstersModal,
-	// monsters
-	//setMonsterData
 	sortedData,
 	setSortedData,
 }) => {
@@ -37,8 +35,6 @@ const MonstersModal = ({
 				<SelectedMonster
 					monster={selectedMonster}
 					setSelectedMonster={setSelectedMonster}
-					// monsterArray={monsterData}
-					// setMonsterData={setMonsterData}
 					sortedData={sortedData}
 					setSortedData={setSortedData}
 					handleCloseMonstersModal={handleCloseMonstersModal}
