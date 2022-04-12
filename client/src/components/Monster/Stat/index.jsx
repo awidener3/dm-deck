@@ -2,7 +2,7 @@
 const renderStats = (monster) => {
 	return (
 		<>
-			{monster.skills ? (
+			{Object.keys(monster.skills).length !== 0 ? (
 				<Stat monster={monster} title={'Skills'} property={'skills'} />
 			) : null}
 			{monster.damage_resistances ? (
@@ -48,13 +48,11 @@ const renderStats = (monster) => {
 };
 
 const formatSkills = (monster) => {
-	let skills = monster.skills;
 	let str = '';
-	for (const skill in skills) {
-		str += `${skill} +${skills[skill]}`;
+	for (const skill in monster.skills) {
+		str += `${skill} +${monster.skills[skill]}, `;
 	}
-
-	return str;
+	return str.slice(0, -2);
 };
 
 // Returns a <div> with the title of the stat and a description
@@ -66,8 +64,6 @@ const Stat = ({ monster, title, property, connector = ', ' }) => {
 				{property === 'skills'
 					? formatSkills(monster)
 					: monster[`${property}`]}
-				{/* // ? old */}
-				{/* {monster[property].join(connector)} */}
 			</p>
 		</div>
 	);

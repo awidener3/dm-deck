@@ -31,9 +31,17 @@ const Actions = ({
 	};
 
 	const handleAddDamage = (action) => {
-		const dice = action.damage_dice.split('d');
-		let damage_dice = Number(dice[1]);
-		let damage_die_num = Number(dice[0]);
+		let damage_dice = 0;
+		let damage_die_num = 0;
+
+		if (action.damage_dice) {
+			const dice = action.damage_dice.split('d');
+			damage_dice = Number(dice[1]);
+			damage_die_num = Number(dice[0]);
+		} else {
+			damage_dice = 0;
+			damage_die_num = 0;
+		}
 		let damage_modifier = action.damage_bonus;
 		handleRollDice(damage_dice, damage_die_num, damage_modifier);
 	};
@@ -81,9 +89,11 @@ const Actions = ({
 						<button
 							id="toHitBtn"
 							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-							onClick={() => handleToHit(action.attack_bonus)}
+							onClick={() =>
+								handleToHit(action.attack_bonus || 0)
+							}
 						>
-							<GiPointySword /> +{action.attack_bonus}
+							<GiPointySword /> +{action.attack_bonus || 0}
 						</button>
 						<button
 							id="getDamageBtn"
@@ -94,7 +104,9 @@ const Actions = ({
 							}}
 						>
 							<GiMineExplosion />{' '}
-							{`${action.damage_dice} +${action.damage_bonus}`}
+							{`${action.damage_dice || ''} +${
+								action.damage_bonus
+							}`}
 						</button>
 					</>
 				) : (

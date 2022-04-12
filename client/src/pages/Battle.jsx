@@ -37,7 +37,6 @@ const Battle = () => {
 			(battle) => battle.name === params.battleId
 		);
 
-		// TODO: fix issue with numbering
 		currentBattle.monsters = currentBattle.monsters
 			.sort((a, b) => (a.name > b.name ? 1 : -1))
 			.map((monster, index) =>
