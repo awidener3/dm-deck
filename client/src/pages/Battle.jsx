@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import { rollDie } from '../utils/diceRolls';
 
@@ -28,6 +28,31 @@ import QuickView from '../components/QuickView';
 const Battle = () => {
 	let params = useParams();
 	// Bring in monster and hero data
+	console.log(params);
+
+	const [battleData, setBattleData] = useState(() => {
+		const savedBattles = JSON.parse(
+			localStorage.getItem('dm-deck-battles')
+		);
+		let currentBattle = savedBattles.find(
+			(battle) => battle.name === params.battleId
+		);
+
+		console.log('monsters', currentBattle.monsters);
+		// TODO: fix issue with numbering
+		currentBattle.monsters = currentBattle.monsters
+			.sort((a, b) => (a.name > b.name ? 1 : -1))
+			.map((monster, index) =>
+				monsters.findIndex(
+					(current) => current.name === monster.name
+				) === index
+					? monster
+					: { ...monster, name: `${monster.name} ${index + 1}` }
+			);
+
+		return currentBattle;
+	});
+	console.log('battle data', battleData);
 
 	const [monsterData, setMonsterData] = useState(() =>
 		monsters
@@ -40,6 +65,18 @@ const Battle = () => {
 					: { ...monster, name: `${monster.name} ${index}` }
 			)
 	);
+	// ? old
+	// const [monsterData, setMonsterData] = useState(() =>
+	// 	monsters
+	// 		.sort((a, b) => (a.name > b.name ? 1 : -1))
+	// 		.map((monster, index) =>
+	// 			monsters.findIndex(
+	// 				(current) => current.name === monster.name
+	// 			) === index
+	// 				? monster
+	// 				: { ...monster, name: `${monster.name} ${index}` }
+	// 		)
+	// );
 	const [heroData, setHeroData] = useState(heroes);
 	const [sortedData, setSortedData] = useState(() =>
 		[].concat(monsterData).concat(heroData)
