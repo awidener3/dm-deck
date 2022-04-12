@@ -15,7 +15,6 @@ const useFetchMonsters = () => {
 						const res = await open5e.get(
 							`/monsters/?search=${monsterData.slug}`
 						);
-						console.log(res);
 						setMonsterData({ ...monsterData, results: res.data });
 					} catch (err) {
 						console.error(err);

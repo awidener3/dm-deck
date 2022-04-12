@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import heroes from '../components/Hero/heroData';
 import monsters from '../components/Monster/monsterData';
@@ -27,6 +28,11 @@ const CreateBattle = () => {
 	const handleMonsterSelect = (data) => {
 		let updatedArray = [...selectedMonsters, data];
 		setSelectedMonsters(updatedArray);
+	};
+
+	const showSelections = () => {
+		console.log('heroes:', selectedHeroes);
+		console.log('monsters', selectedMonsters);
 	};
 
 	return (
@@ -128,6 +134,15 @@ const CreateBattle = () => {
 						))}
 					</div>
 				</article>
+			</div>
+			<div className="container d-flex justify-content-center">
+				<Link
+					to="/dm-deck/battle"
+					className="btn btn-primary mt-3"
+					onClick={showSelections}
+				>
+					GO!
+				</Link>
 			</div>
 		</div>
 	);

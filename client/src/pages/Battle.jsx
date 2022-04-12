@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import { rollDie } from '../utils/diceRolls';
 
 import Monster from '../components/Monster';
@@ -24,6 +26,7 @@ import '../App.scss';
 import QuickView from '../components/QuickView';
 
 const Battle = () => {
+	let params = useParams();
 	// Bring in monster and hero data
 
 	const [monsterData, setMonsterData] = useState(() =>
