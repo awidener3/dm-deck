@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Accordion, ListGroup, Form } from 'react-bootstrap';
+
+import { getXp } from '../../utils/basicRuleCalculations';
+
+import './battleSelect.scss';
 
 const BattleSelect = () => {
 	const [battles, setBattles] = useState([]);
@@ -11,65 +16,117 @@ const BattleSelect = () => {
 		}
 	}, []);
 
-	console.log('battles', battles);
-
 	return (
 		<div>
-			<h1 className="text-center">Select a saved Battle</h1>
-			<div className="container-fluid d-flex flex-wrap">
+			<h1 className="text-center">Select a Saved Battle</h1>
+			<hr />
+			<div className="container d-flex flex-wrap justify-content-center">
 				{battles.length > 0 ? (
 					battles.map((battle) => {
 						return (
-							<div key={battle.name} className="w-50 p-2">
-								<div className="card p-3">
+							<div key={battle.name} className="p-2">
+								<div className="card custom-card">
 									<h2 className="text-center">
 										{battle.name}
 									</h2>
-									<div className="d-flex justify-content-around">
-										<div>
-											<h3>Heroes</h3>
-											<ul className="list-unstyled">
-												{battle.heroes.map((hero) => {
-													return (
-														<li
-															key={
-																hero.character_name
-															}
-														>
-															{
-																hero.character_name
-															}
-														</li>
-													);
-												})}
-											</ul>
-										</div>
-										<div>
-											<h3>Monsters</h3>
-											<ul className="list-unstyled">
-												{battle.monsters.map(
-													(monster) => {
-														return (
-															<li
-																key={
-																	monster.name
-																}
-															>
-																{monster.name}
-															</li>
-														);
-													}
-												)}
-											</ul>
-										</div>
-									</div>
 
-									<Link
-										className="btn btn-success"
-										to={`/battles/${battle.name}`}
-									>
-										Battle!
-									</Link>
+									<hr />
+									<div className="card-body">
+										<Form>
+											<Form.Check
+												type="switch"
+												label="Auto-roll Initiative"
+												defaultChecked={true}
+											/>
+										</Form>
+										<Accordion
+											className="mb-2"
+											defaultActiveKey={['0']}
+											alwaysOpen
+										>
+											<Accordion.Item eventKey="1">
+												<Accordion.Header>
+													<h3 className="accordion-title">
+														Heroes (
+														{battle.heroes.length})
+													</h3>
+												</Accordion.Header>
+												<Accordion.Body>
+													<ListGroup variant="flush">
+														{battle.heroes.map(
+															(hero, i) => (
+																<ListGroup.Item
+																	key={i}
+																>
+																	{
+																		hero.character_name
+																	}{' '}
+																	-{' '}
+																	<span className="accordion-subtext">
+																		{
+																			hero.class
+																		}{' '}
+																		(
+																		{
+																			hero.level
+																		}
+																		)
+																	</span>
+																</ListGroup.Item>
+															)
+														)}
+													</ListGroup>
+												</Accordion.Body>
+											</Accordion.Item>
+											<Accordion.Item eventKey="2">
+												<Accordion.Header>
+													<h3 className="accordion-title">
+														Monsters (
+														{battle.monsters.length}
+														)
+													</h3>
+												</Accordion.Header>
+												<Accordion.Body>
+													<ListGroup variant="flush">
+														{battle.monsters.map(
+															(monster, i) => (
+																<ListGroup.Item
+																	key={i}
+																>
+																	{
+																		monster.name
+																	}{' '}
+																	<span className="accordion-subtext">
+																		CR{' '}
+																		{
+																			monster.challenge_rating
+																		}{' '}
+																		(
+																		{getXp(
+																			monster
+																		)}
+																		xp )
+																	</span>
+																</ListGroup.Item>
+															)
+														)}
+													</ListGroup>
+												</Accordion.Body>
+											</Accordion.Item>
+										</Accordion>
+									</div>
+									<div className="button-container mt-auto d-flex justify-content-center">
+										<Link
+											className="btn btn-outline-primary me-2"
+											to={`/battles/${battle.name}`}
+										>
+											Battle!
+										</Link>
+
+										<button className="btn btn-outline-danger ms-2">
+											Delete
+										</button>
+									</div>
 								</div>
 							</div>
 						);
