@@ -47,13 +47,27 @@ const renderStats = (monster) => {
 	);
 };
 
+const formatSkills = (monster) => {
+	let skills = monster.skills;
+	let str = '';
+	for (const skill in skills) {
+		str += `${skill} +${skills[skill]}`;
+	}
+
+	return str;
+};
+
 // Returns a <div> with the title of the stat and a description
 const Stat = ({ monster, title, property, connector = ', ' }) => {
 	return (
 		<div className="d-flex flex-wrap">
 			<p className="stat-text my-0">
 				<span className="stat-title">{title}</span>{' '}
-				{monster[property].join(connector)}
+				{property === 'skills'
+					? formatSkills(monster)
+					: monster[`${property}`]}
+				{/* // ? old */}
+				{/* {monster[property].join(connector)} */}
 			</p>
 		</div>
 	);

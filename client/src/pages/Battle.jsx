@@ -41,33 +41,15 @@ const Battle = () => {
 		currentBattle.monsters = currentBattle.monsters
 			.sort((a, b) => (a.name > b.name ? 1 : -1))
 			.map((monster, index) =>
-				monsters.findIndex(
-					(current) => current.name === monster.name
-				) === index
-					? monster
-					: { ...monster, name: `${monster.name} ${index + 1}` }
-			);
-
-		return currentBattle;
-	});
-
-	const [monsterData, setMonsterData] = useState(() =>
-		monsters
-			.sort((a, b) => (a.name > b.name ? 1 : -1))
-			.map((monster, index) =>
-				monsters.findIndex(
+				currentBattle.monsters.findIndex(
 					(current) => current.name === monster.name
 				) === index
 					? monster
 					: { ...monster, name: `${monster.name} ${index}` }
-			)
-	);
-	const [heroData, setHeroData] = useState(heroes);
+			);
 
-	// ? old
-	// const [sortedData, setSortedData] = useState(() =>
-	// 	[].concat(monsterData).concat(heroData)
-	// );
+		return currentBattle;
+	});
 	const [sortedData, setSortedData] = useState(() =>
 		[].concat(battleData.monsters).concat(battleData.heroes)
 	);

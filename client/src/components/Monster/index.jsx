@@ -26,7 +26,7 @@ const Monster = ({
 					sortedData={sortedData}
 					setSortedData={setSortedData}
 				/> */}
-				<Circles monster={monster} />
+				{/* <Circles monster={monster} /> */}
 
 				{/* HEADER */}
 				<div className="dmd-card-header mt-3">
@@ -43,7 +43,7 @@ const Monster = ({
 
 				<BaseStats monster={monster} />
 				<AbilityScores monster={monster} />
-				{/* <Stats monster={monster} /> */}
+				<Stats monster={monster} />
 				<Traits monster={monster} />
 
 				{/* ACTIONS */}
