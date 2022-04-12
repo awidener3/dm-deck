@@ -41,7 +41,7 @@ const Conditions = ({ monster, sortedData, setSortedData }) => {
 			{monster.conditions.includes('deafened') ? (
 				<div
 					className="condition deaf"
-					onClick={() => handleRemoveCondition('deaf')}
+					onClick={() => handleRemoveCondition('deafened')}
 					title="A deafened creature can't hear and automatically fails any ability check that requires hearing."
 				>
 					Deafened
@@ -156,7 +156,7 @@ const Conditions = ({ monster, sortedData, setSortedData }) => {
 				>
 					Stunned
 				</div>
-			) : null}
+			) : null}{' '}
 		</div>
 	);
 };

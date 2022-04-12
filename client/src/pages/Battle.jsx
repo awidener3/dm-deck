@@ -43,8 +43,12 @@ const Battle = () => {
 				currentBattle.monsters.findIndex(
 					(current) => current.name === monster.name
 				) === index
-					? monster
-					: { ...monster, name: `${monster.name} ${index + 1}` }
+					? { ...monster, conditions: [] }
+					: {
+							...monster,
+							name: `${monster.name} ${index + 1}`,
+							conditions: [],
+					  }
 			);
 
 		return currentBattle;

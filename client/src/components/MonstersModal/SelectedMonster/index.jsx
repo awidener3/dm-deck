@@ -91,11 +91,11 @@ const SelectedMonster = ({
 				<h1 className="m-0">{monster.name}</h1>
 			</Modal.Title>
 			<Modal.Body className="w-75 m-auto pt-0">
-				{/* <Conditions
+				<Conditions
 					monster={monster}
 					sortedData={sortedData}
 					setSortedData={setSortedData}
-				/> */}
+				/>
 				<div>
 					<div
 						id="monster-stats"
