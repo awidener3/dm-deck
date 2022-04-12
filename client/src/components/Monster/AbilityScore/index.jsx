@@ -9,17 +9,14 @@ const renderAbilityScores = (monster) => {
 		['wisdom', 'WIS'],
 		['charisma', 'CHA'],
 	];
-	for (let ability in monster.ability_scores) {
-		let shortIndex = shortName.findIndex(
-			(stat) => stat.indexOf(ability) !== -1
-		);
 
+	for (let i = 0; i < shortName.length; i++) {
 		abilityScores.push(
 			<AbilityScore
-				key={ability}
+				key={shortName[i][0]}
 				monster={monster}
-				ability={ability}
-				short={shortName[shortIndex][1]}
+				ability={shortName[i][0]}
+				short={shortName[i][1]}
 			/>
 		);
 	}
@@ -28,7 +25,7 @@ const renderAbilityScores = (monster) => {
 
 // Returns a <p> tag with ability score and calculated modifier
 const AbilityScore = ({ monster, ability, short }) => {
-	let score = monster.ability_scores[`${ability}`];
+	let score = monster[`${ability}`];
 	let modifier = Math.floor((score - 10) / 2);
 	return (
 		<div>
