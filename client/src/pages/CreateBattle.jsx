@@ -6,9 +6,12 @@ import monsters from '../components/Monster/monsterData';
 import useFetchMonsters from '../hooks/useFetchMonsters';
 
 const CreateBattle = () => {
+	// The selections that will be used in a battle
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
-	const { monsterData, setMonsterData } = useFetchMonsters();
 	const [selectedMonsters, setSelectedMonsters] = useState([]);
+	// The data from the open5e API call
+	const { monsterData, setMonsterData } = useFetchMonsters();
+
 	const [difficultyRating, setDifficultyRating] = useState('Easy');
 
 	const handleHeroSelect = (character_name) => {
@@ -21,14 +24,10 @@ const CreateBattle = () => {
 		});
 	};
 
-	// const handleMonsterSelect = (name) => {
-	// 	console.log(name);
-	// 	monsters.forEach((monster) => {
-	// 		if (monster.name === name && !selectedMonsters.includes(monster))
-	// 			setSelectedMonsters([...selectedMonsters, monster]);
-	// 	});
-	// 	console.log(selectedMonsters);
-	// };
+	const handleMonsterSelect = (data) => {
+		let updatedArray = [...selectedMonsters, data];
+		setSelectedMonsters(updatedArray);
+	};
 
 	return (
 		<div className="container py-4">
@@ -60,10 +59,12 @@ const CreateBattle = () => {
 				Add New Hero
 			</button>
 
+			{/* MONSTER SEARCH */}
 			<h2 className="mt-5">Select Your Monsters</h2>
 			<input
 				type="text"
 				placeholder="Search for a monster"
+				className="form-control"
 				value={monsterData.slug}
 				onChange={(e) =>
 					setMonsterData({ ...monsterData, slug: e.target.value })
@@ -72,11 +73,24 @@ const CreateBattle = () => {
 
 			{monsterData.results.results &&
 			monsterData.results.results.length > 0 ? (
-				<ul>
-					{monsterData.results.results.map((item) => (
-						<li key={item.name}>{item.name}</li>
+				<div className="mt-2 container">
+					{monsterData.results.results.map((monster) => (
+						<div
+							key={monster.name}
+							className="d-flex align-items-center my-1"
+						>
+							<button
+								className="btn btn-success btn-sm"
+								onClick={() => handleMonsterSelect(monster)}
+							>
+								+
+							</button>
+							<p className="mb-0 ms-2" key={monster.name}>
+								{monster.name}
+							</p>
+						</div>
 					))}
-				</ul>
+				</div>
 			) : null}
 
 			<button className="btn btn-primary mt-3 disabled">
@@ -84,6 +98,7 @@ const CreateBattle = () => {
 			</button>
 
 			<hr />
+			{/* RESULTS AND SUMMARY */}
 
 			<div className="card text-center m-auto p-4 w-50">
 				<p className="lead m-0">Difficulty Rating</p>
@@ -107,11 +122,11 @@ const CreateBattle = () => {
 					<h2 className="text-center">Monster Roster</h2>
 					<hr />
 
-					<ul>
-						{selectedMonsters.map((monster) => (
-							<li key={monster.name}>{monster.name}</li>
+					<div>
+						{selectedMonsters.map((monster, index) => (
+							<div key={index}>{monster.name}</div>
 						))}
-					</ul>
+					</div>
 				</article>
 			</div>
 		</div>
