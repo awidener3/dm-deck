@@ -9,7 +9,7 @@ const BaseStats = ({ monster }) => {
 				<p className="stat-title m-0">
 					HP{' '}
 					<span>
-						{monster.hitpoints} ({monster.hitpoint_dice})
+						{monster.hit_points} ({monster.hit_dice})
 					</span>
 				</p>
 			</div>
@@ -22,14 +22,14 @@ const BaseStats = ({ monster }) => {
 			<div className="d-flex align-items-center">
 				<FaArrowCircleRight className="dmd-card-icon speed-icon me-1" />
 				<p
-					title={`Walking: ${monster.speed.walking} ft., Flying: ${
-						monster.speed.flying
-					}, Swimming: ${
-						monster.speed.swimming || monster.speed.walking / 2
+					title={`Walking: ${monster.speed.walk} ft., Flying: ${
+						monster.speed.fly || 0
+					} ft., Swimming: ${
+						monster.speed.swim || monster.speed.walk / 2
 					} ft.`}
 					className="stat-title m-0"
 				>
-					SPD <span>{monster.speed.walking} ft.</span>
+					SPD <span>{monster.speed.walk} ft.</span>
 				</p>
 			</div>
 		</div>

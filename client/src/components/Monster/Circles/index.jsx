@@ -1,4 +1,10 @@
 const Circles = ({ monster }) => {
+	const formatAlignment = (alignment) => {
+		let arr = alignment.split(' ');
+		let str = arr[0][0].toUpperCase() + arr[1][0].toUpperCase();
+
+		return str;
+	};
 	return (
 		<div className="circle-container d-flex p-2">
 			<div
@@ -7,14 +13,14 @@ const Circles = ({ monster }) => {
 			>
 				{monster.challenge_rating}
 			</div>
-			<div className="stat-circle race-circle" title={monster.race}>
-				{monster.race_short}
+			<div className="stat-circle race-circle" title={monster.type}>
+				{`${monster.type[0].toUpperCase()}${monster.type[1]}`}
 			</div>
 			<div
 				className="stat-circle alignment-circle"
 				title={monster.alignment}
 			>
-				{monster.alignment_short}
+				{formatAlignment(monster.alignment)}
 			</div>
 		</div>
 	);
