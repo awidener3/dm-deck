@@ -21,11 +21,11 @@ const Monster = ({
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="dmd-card m-3">
-				<Conditions
+				{/* <Conditions
 					monster={monster}
 					sortedData={sortedData}
 					setSortedData={setSortedData}
-				/>
+				/> */}
 				<Circles monster={monster} />
 
 				{/* HEADER */}
@@ -43,7 +43,7 @@ const Monster = ({
 
 				<BaseStats monster={monster} />
 				<AbilityScores monster={monster} />
-				<Stats monster={monster} />
+				{/* <Stats monster={monster} /> */}
 				<Traits monster={monster} />
 
 				{/* ACTIONS */}

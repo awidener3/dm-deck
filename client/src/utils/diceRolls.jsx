@@ -25,26 +25,6 @@ export const rollDie = (num) => {
 	return Math.floor(Math.random() * num) + 1;
 };
 
-// export const addInitiative = (
-// 	monsterData,
-// 	heroData,
-// 	setMonsterData,
-// 	setHeroData
-// ) => {
-// 	const monsters = monsterData.map((monster) => ({
-// 		...monster,
-// 		initiative: getInitiative(monster),
-// 	}));
-// 	setMonsterData(monsters);
-
-// 	const heroes = heroData.map((hero) => ({
-// 		...hero,
-// 		initiative: getInitiative(hero),
-// 	}));
-// 	setHeroData(heroes);
-// };
-
-// ? New addInitiative with sortedData only
 export const addInitiative = (sortedData, setSortedData) => {
 	const arrayWithInitiative = sortedData
 		.map((creature) => ({

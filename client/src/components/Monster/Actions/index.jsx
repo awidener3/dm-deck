@@ -19,7 +19,7 @@ const Actions = ({
 }) => {
 	const [playSfx] = useSound(diceSfx);
 
-	const handleToHit = (action) => {
+	const handleToHit = (attack_bonus) => {
 		// if (conditions.includes('invisible')) {
 		// 	setConditions(
 		// 		conditions.filter((condition) => condition !== 'invisible')
@@ -27,7 +27,15 @@ const Actions = ({
 		// 	setIsConcentrating(false);
 		// }
 		playSfx();
-		handleRollDice(20, 1, action.hit_modifier);
+		handleRollDice(20, 1, attack_bonus);
+	};
+
+	const handleAddDamage = (action) => {
+		const dice = action.damage_dice.split('d');
+		let damage_dice = Number(dice[1]);
+		let damage_die_num = Number(dice[0]);
+		let damage_modifier = action.damage_bonus;
+		handleRollDice(damage_dice, damage_die_num, damage_modifier);
 	};
 
 	const handleConditions = ({ action_target, condition }) => {
@@ -53,43 +61,40 @@ const Actions = ({
 
 	return monster.actions.map((action) => (
 		<div
-			key={action.weapon}
+			key={action.name}
 			className="d-flex justify-content-between align-items-center mb-2"
 		>
 			<p className="action-title m-0">
-				{action.action_type === 'melee' ? (
+				{action.desc.startsWith('Melee') ? (
 					<GiBattleAxe />
-				) : action.action_type === 'ranged' ? (
+				) : action.desc.startsWith('Ranged') ? (
 					<GiPocketBow className="ranged-icon me-1" />
 				) : (
 					<GiTwirlCenter />
 				)}{' '}
-				{action.weapon}
+				{action.name}
 			</p>
 			<div>
-				{action.action_type === 'melee' ||
-				action.action_type === 'ranged' ? (
+				{action.desc.startsWith('Melee') ||
+				action.desc.startsWith('Ranged') ? (
 					<>
 						<button
 							id="toHitBtn"
 							className="action-btn btn btn-outline-secondary btn-sm ms-1"
-							onClick={() => handleToHit(action)}
+							onClick={() => handleToHit(action.attack_bonus)}
 						>
-							<GiPointySword /> +{action.hit_modifier}
+							<GiPointySword /> +{action.attack_bonus}
 						</button>
 						<button
 							id="getDamageBtn"
 							className="action-btn btn btn-outline-secondary btn-sm ms-1"
 							onClick={() => {
 								playSfx();
-								handleRollDice(
-									action.damage_die,
-									action.damage_die_num,
-									action.damage_modifier
-								);
+								handleAddDamage(action);
 							}}
 						>
-							<GiMineExplosion /> {action.damage_dice_text}
+							<GiMineExplosion />{' '}
+							{`${action.damage_dice} +${action.damage_bonus}`}
 						</button>
 					</>
 				) : (

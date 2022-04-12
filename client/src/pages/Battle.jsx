@@ -27,9 +27,8 @@ import QuickView from '../components/QuickView';
 
 const Battle = () => {
 	let params = useParams();
-	// Bring in monster and hero data
-	console.log(params);
 
+	// Bring in monster and hero data
 	const [battleData, setBattleData] = useState(() => {
 		const savedBattles = JSON.parse(
 			localStorage.getItem('dm-deck-battles')
@@ -38,7 +37,6 @@ const Battle = () => {
 			(battle) => battle.name === params.battleId
 		);
 
-		console.log('monsters', currentBattle.monsters);
 		// TODO: fix issue with numbering
 		currentBattle.monsters = currentBattle.monsters
 			.sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -52,7 +50,6 @@ const Battle = () => {
 
 		return currentBattle;
 	});
-	console.log('battle data', battleData);
 
 	const [monsterData, setMonsterData] = useState(() =>
 		monsters
@@ -65,21 +62,14 @@ const Battle = () => {
 					: { ...monster, name: `${monster.name} ${index}` }
 			)
 	);
-	// ? old
-	// const [monsterData, setMonsterData] = useState(() =>
-	// 	monsters
-	// 		.sort((a, b) => (a.name > b.name ? 1 : -1))
-	// 		.map((monster, index) =>
-	// 			monsters.findIndex(
-	// 				(current) => current.name === monster.name
-	// 			) === index
-	// 				? monster
-	// 				: { ...monster, name: `${monster.name} ${index}` }
-	// 		)
-	// );
 	const [heroData, setHeroData] = useState(heroes);
+
+	// ? old
+	// const [sortedData, setSortedData] = useState(() =>
+	// 	[].concat(monsterData).concat(heroData)
+	// );
 	const [sortedData, setSortedData] = useState(() =>
-		[].concat(monsterData).concat(heroData)
+		[].concat(battleData.monsters).concat(battleData.heroes)
 	);
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -132,7 +122,7 @@ const Battle = () => {
 						? 'activeCard'
 						: 'prevCard';
 
-				if (creature.type === 'monster') {
+				if (creature.type !== 'hero') {
 					return (
 						<Monster
 							key={creature.name}

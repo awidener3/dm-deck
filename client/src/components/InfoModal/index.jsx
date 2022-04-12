@@ -16,11 +16,11 @@ const InfoModal = ({ info, showInfoModal, handleCloseInfoModal }) => {
 				<Modal.Body>
 					{info.actions
 						? info.actions.map((action) => (
-								<p key={action.weapon}>
+								<p key={action.name}>
 									<span className="info-modal-action">
-										{action.weapon}
+										{action.name}
 									</span>
-									. {action.action_text}
+									. {action.desc}
 								</p>
 						  ))
 						: null}
