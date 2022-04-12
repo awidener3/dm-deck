@@ -8,6 +8,7 @@ import useFetchMonsters from '../hooks/useFetchMonsters';
 
 const CreateBattle = () => {
 	// The selections that will be used in a battle
+	const [battleName, setBattleName] = useState('');
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
 	const [selectedMonsters, setSelectedMonsters] = useState([]);
 	// The data from the open5e API call
@@ -30,14 +31,37 @@ const CreateBattle = () => {
 		setSelectedMonsters(updatedArray);
 	};
 
-	const showSelections = () => {
-		console.log('heroes:', selectedHeroes);
-		console.log('monsters', selectedMonsters);
+	const handleSave = () => {
+		let existingBattles = JSON.parse(
+			localStorage.getItem('dm-deck-battles')
+		);
+
+		if (existingBattles === null) existingBattles = [];
+
+		let battleData = {
+			name: battleName,
+			heroes: selectedHeroes,
+			monsters: selectedMonsters,
+		};
+
+		let updatedArray = [battleData, ...existingBattles];
+
+		localStorage.setItem('dm-deck-battles', JSON.stringify(updatedArray));
+
+		console.log('battleData:', battleData);
+		console.log('updated Array', updatedArray);
 	};
 
 	return (
 		<div className="container py-4">
 			<h1 className="text-center">Create New Battle</h1>
+
+			<h2>Battle Name</h2>
+			<input
+				type="text"
+				className="form-control"
+				onChange={(e) => setBattleName(e.target.value)}
+			/>
 
 			<h2 className="mt-5">Select Your Heroes</h2>
 			<ul className="list-group">
@@ -106,6 +130,8 @@ const CreateBattle = () => {
 			<hr />
 			{/* RESULTS AND SUMMARY */}
 
+			<h2 className="text-center">{battleName || 'New Battle'}</h2>
+
 			<div className="card text-center m-auto p-4 w-50">
 				<p className="lead m-0">Difficulty Rating</p>
 				{difficultyRating}
@@ -137,11 +163,11 @@ const CreateBattle = () => {
 			</div>
 			<div className="container d-flex justify-content-center">
 				<Link
-					to="/dm-deck/battle"
+					to="/battles"
 					className="btn btn-primary mt-3"
-					onClick={showSelections}
+					onClick={handleSave}
 				>
-					GO!
+					Save
 				</Link>
 			</div>
 		</div>
