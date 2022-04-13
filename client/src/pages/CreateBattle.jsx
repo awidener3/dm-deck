@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import heroes from '../components/Hero/heroData';
-import monsters from '../components/Monster/monsterData';
-
 import useFetchMonsters from '../hooks/useFetchMonsters';
 
 const CreateBattle = () => {

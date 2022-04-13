@@ -1,20 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import './header.scss';
+
 const Header = () => {
+	console.log(window);
+	const [pathname, setPathname] = useState(window.location.pathname);
 	return (
 		<div>
-			<nav className="navbar navbar-expand bg-dark text-light">
+			<nav className="navbar navbar-expand custom-navbar">
 				<div className="container">
-					<h1 className="navbar-brand">DM Deck</h1>
+					<h1 className="navbar-brand logo-text">
+						DM <span className="logo-subtext">Deck</span>
+					</h1>
 					<ul className="navbar-nav">
-						<Link to="/home" className="nav-link m-2">
+						<Link
+							to="/home"
+							onClick={() => setPathname('/home')}
+							className={
+								pathname === '/home'
+									? 'nav-link custom-nav-link m-2 active'
+									: 'nav-link custom-nav-link m-2'
+							}
+						>
 							Home
 						</Link>
-						<Link to="/battles" className="nav-link m-2">
+						<Link
+							to="/battles"
+							onClick={() => setPathname('/battles')}
+							className={
+								pathname === '/battles'
+									? 'nav-link custom-nav-link m-2 active'
+									: 'nav-link custom-nav-link m-2'
+							}
+						>
 							Battle
 						</Link>
-						<Link to="/create-battle" className="nav-link m-2">
+						<Link
+							to="/create-battle"
+							onClick={() => setPathname('/create-battle')}
+							className={
+								pathname === '/create-battle'
+									? 'nav-link custom-nav-link m-2 active'
+									: 'nav-link custom-nav-link m-2'
+							}
+						>
 							Create
 						</Link>
 					</ul>

@@ -1,5 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap");
 
+@font-face {
+  font-family: 'Draconis';
+  src: local('Draconis'), url(./assets/fonts/Draconis/Draconis.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-weight: 900;
+  src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBold.ttf);
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-style: italic;
+  src: local('Draconis'), url(./assets/fonts/Draconis/DraconisItalic.ttf);
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-weight: 900;
+  font-style: italic;
+  src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBoldItalic.ttf);
+}
+
 // Asul 400 or 700 weight available
 h1,
 h2,
