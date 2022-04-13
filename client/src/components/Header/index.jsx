@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 import './header.scss';
 
 const Header = () => {
-	console.log(window);
 	const [pathname, setPathname] = useState(window.location.pathname);
 	return (
 		<div>
 			<nav className="navbar navbar-expand custom-navbar">
-				<div className="container">
-					<h1 className="navbar-brand logo-text">
-						DM <span className="logo-subtext">Deck</span>
-					</h1>
+				<div className="container-fluid">
+					<Link to="/home">
+						<h1 className="navbar-brand logo-text">
+							DM <span className="logo-subtext">Deck</span>
+						</h1>
+					</Link>
 					<ul className="navbar-nav">
 						<Link
 							to="/home"

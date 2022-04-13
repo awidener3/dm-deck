@@ -105,3 +105,16 @@ article {
     font-style: italic;
     font-weight: 700;
 }
+
+.creature-row {
+  background-color: #ffffff;
+  .row-title {
+    font-size: 1.3rem;
+    font-family: "Mukta Vaani", sans-serif;
+  }
+  .row-subtitle {
+    line-height: 1;
+    color: #747474;
+    font-weight: 400;
+  }
+}

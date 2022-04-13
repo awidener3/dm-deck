@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Form, Container, Row, Col } from 'react-bootstrap';
+import { getXp } from '../utils/basicRuleCalculations';
+
+import '../App.scss';
 
 import heroes from '../components/Hero/heroData';
 import useFetchMonsters from '../hooks/useFetchMonsters';
@@ -45,43 +49,76 @@ const CreateBattle = () => {
 		let updatedArray = [battleData, ...existingBattles];
 
 		localStorage.setItem('dm-deck-battles', JSON.stringify(updatedArray));
-
-		console.log('battleData:', battleData);
-		console.log('updated Array', updatedArray);
 	};
 
 	return (
 		<div className="container py-4">
 			<h1 className="text-center">Create New Battle</h1>
 
-			<h2>Battle Name</h2>
-			<input
-				type="text"
-				className="form-control"
-				onChange={(e) => setBattleName(e.target.value)}
-			/>
+			<Form>
+				<Form.Group>
+					<Form.Label>Battle Name</Form.Label>
+					<Form.Control
+						type="text"
+						className="form-control"
+						placeholder="Name your battle"
+						onChange={(e) => setBattleName(e.target.value)}
+					/>
+				</Form.Group>
+			</Form>
 
 			<h2 className="mt-5">Select Your Heroes</h2>
-			<ul className="list-group">
+			<Container>
+				<Row>
+					<Col md={8} xs={5}>
+						{' '}
+						Hero
+					</Col>
+					<Col md={2} xs={4}>
+						Race/Class
+					</Col>
+					<Col md={1} xs={1} className="text-center">
+						Level
+					</Col>
+					<Col md={1} xs="auto"></Col>
+				</Row>
 				{heroes.map((hero) => (
-					<li
+					<Row
 						key={hero.character_name}
-						className="list-group-item d-flex align-items-center justify-content-between"
-						onClick={() => handleHeroSelect(hero.character_name)}
+						className="creature-row mb-1 py-2 d-flex align-items-center"
 					>
-						<h3 className="m-0">
-							{hero.character_name}{' '}
-							<span>({hero.player_name})</span>
-						</h3>
-
-						<div>
-							<p className="m-0">
-								{hero.race} {hero.class} - Level {hero.level}
+						<Col md={8} xs={5} className="border-end">
+							<div>
+								<h3 className="m-0 row-title">
+									{hero.character_name}{' '}
+								</h3>
+								<p className="m-0 row-subtitle">
+									{hero.player_name}
+								</p>
+							</div>
+						</Col>
+						<Col md={2} xs={4} className="border-end">
+							<p className="m-0 me-2">
+								{hero.race} {hero.class}
 							</p>
-						</div>
-					</li>
+						</Col>
+						<Col md={1} xs={1}>
+							<p className="m-0 text-center">{hero.level}</p>
+						</Col>
+						<Col md={1} xs="auto">
+							<button
+								type="button"
+								className="btn btn-outline-secondary btn-sm m-0"
+								onClick={() =>
+									handleHeroSelect(hero.character_name)
+								}
+							>
+								ADD
+							</button>
+						</Col>
+					</Row>
 				))}
-			</ul>
+			</Container>
 
 			<button className="btn btn-primary mt-3 disabled">
 				Add New Hero
@@ -98,27 +135,60 @@ const CreateBattle = () => {
 					setMonsterData({ ...monsterData, slug: e.target.value })
 				}
 			/>
-
 			{monsterData.results.results &&
 			monsterData.results.results.length > 0 ? (
-				<div className="mt-2 container">
+				<Container className="mt-2">
+					<Row>
+						<Col md={9} xs={8}>
+							{' '}
+							Monster
+						</Col>
+						<Col md={1} xs={1} className="text-center">
+							CR
+						</Col>
+						<Col md={1} xs={1} className="text-center">
+							XP
+						</Col>
+						<Col md={1} xs={1}></Col>
+					</Row>
+
 					{monsterData.results.results.map((monster) => (
-						<div
-							key={monster.name}
-							className="d-flex align-items-center my-1"
+						<Row
+							key={monster.slug}
+							className="creature-row mb-1 py-2 d-flex align-items-center"
 						>
-							<button
-								className="btn btn-success btn-sm"
-								onClick={() => handleMonsterSelect(monster)}
-							>
-								+
-							</button>
-							<p className="mb-0 ms-2" key={monster.name}>
-								{monster.name}
-							</p>
-						</div>
+							<Col md={9} xs={8} className="border-end">
+								<div>
+									<h3 className="m-0 row-title">
+										{monster.name}{' '}
+									</h3>
+									<p className="m-0 row-subtitle">
+										{monster.size} {monster.type}
+									</p>
+								</div>
+							</Col>
+							<Col md={1} xs={1} className="border-end">
+								<p className="m-0 text-center">
+									{monster.challenge_rating}
+								</p>
+							</Col>
+							<Col md={1} xs={1}>
+								<p className="m-0 text-center">
+									{getXp(monster)}
+								</p>
+							</Col>
+							<Col md={1} xs="auto">
+								<button
+									type="button"
+									className="btn btn-outline-secondary btn-sm m-0"
+									onClick={() => handleMonsterSelect(monster)}
+								>
+									ADD
+								</button>
+							</Col>
+						</Row>
 					))}
-				</div>
+				</Container>
 			) : null}
 
 			<button className="btn btn-primary mt-3 disabled">
@@ -139,13 +209,13 @@ const CreateBattle = () => {
 				<article className="card mt-4 me-2 p-3 w-100">
 					<h2 className="text-center">Hero Roster</h2>
 					<hr />
-					<ul>
+					<div>
 						{selectedHeroes.map((hero) => (
-							<li key={hero.character_name}>
+							<div key={hero.character_name}>
 								{hero.character_name}
-							</li>
+							</div>
 						))}
-					</ul>
+					</div>
 				</article>
 
 				<article className="card mt-4 ms-2 p-3 w-100">

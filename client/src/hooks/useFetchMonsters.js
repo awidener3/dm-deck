@@ -13,7 +13,7 @@ const useFetchMonsters = () => {
 				const fetch = async () => {
 					try {
 						const res = await open5e.get(
-							`/monsters/?search=${monsterData.slug}`
+							`/monsters/?limit=10&search=${monsterData.slug}`
 						);
 						setMonsterData({ ...monsterData, results: res.data });
 					} catch (err) {
@@ -21,8 +21,10 @@ const useFetchMonsters = () => {
 					}
 				};
 				fetch();
-			}, 1000);
+			}, 500);
 			return () => clearTimeout(timeoutId);
+		} else {
+			setMonsterData({ slug: '', results: [] });
 		}
 	}, [monsterData.slug]);
 
