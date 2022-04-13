@@ -1,0 +1,53 @@
+.summary-card {
+  width: 450px;
+  min-height: 30rem;
+  background-color: #fff;
+  border: 1px solid #d4d4d4;
+  outline: 1px solid #c5c5c5;
+	outline-offset: -5px;
+  border-radius: 0.5rem;
+  padding: 20px;
+  .summary-card-title {
+    margin: 0;
+    text-align: center;
+  }
+  .summary-stats {
+    .summary-stat {
+      font-weight: 700;
+      color: #6b6b6b;
+      margin: 0;
+      .total-xp {
+        color: black;
+      }
+      .challenge-rating-display {
+        font-weight: 700;  
+        padding: 0 5px;
+      }
+      .easy {
+        color: #0ea559;
+      }
+      .medium {
+        color: #f5a623;
+      }
+      .hard {
+        color: #e45a1d;
+      }
+      .deadly {
+        color: #d54f4f;
+      }
+    }
+  }
+  .roster-container {
+    .roster-card {
+      .roster-creature-name {
+        font-family: "Mukta Vaani", sans-serif;
+        font-size: 1rem;
+        font-weight: 300;
+      }
+      .roster-title {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+    }
+  }
+}

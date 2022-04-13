@@ -1,7 +1,7 @@
 {
 	"name": "dm-deck",
 	"version": "0.1.0",
-	"homepage": "https://awidener3.github.io/dm-deck/",
+	"homepage": "https://awidener3.github.io/home/",
 	"proxy": "http://localhost:3001",
 	"private": true,
 	"dependencies": {

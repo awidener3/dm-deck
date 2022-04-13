@@ -112,14 +112,22 @@ export const getChallengeRating = (battle) => {
 	const partyThresholds = calculatePartyXpThreshold(battle.heroes);
 	const totalMonsterXp = calculateMonsterXp(battle.monsters);
 
-	if (totalMonsterXp < partyThresholds.medium) {
+	if (totalMonsterXp === 0) {
+		return (
+			<span className="challenge-rating-display trivial">Trivial</span>
+		);
+	} else if (totalMonsterXp < partyThresholds.medium) {
 		return <span className="challenge-rating-display easy">Easy</span>;
 	} else if (totalMonsterXp < partyThresholds.hard) {
 		return <span className="challenge-rating-display medium">Medium</span>;
 	} else if (totalMonsterXp < partyThresholds.deadly) {
 		return <span className="challenge-rating-display hard">Hard</span>;
-	} else {
+	} else if (totalMonsterXp >= partyThresholds.deadly) {
 		return <span className="challenge-rating-display deadly">Deadly</span>;
+	} else {
+		return (
+			<span className="challenge-rating-display trivial">Trivial</span>
+		);
 	}
 };
 
