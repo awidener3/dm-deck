@@ -55,29 +55,30 @@ const CreateBattle = () => {
 		<div className="container py-4">
 			<h1 className="text-center">Create New Battle</h1>
 
-			<Form>
+			<Form className="battle-form">
 				<Form.Group>
-					<Form.Label>Battle Name</Form.Label>
 					<Form.Control
 						type="text"
-						className="form-control"
+						className="form-control battle-name-input"
 						placeholder="Name your battle"
-						onChange={(e) => setBattleName(e.target.value)}
+						maxLength={20}
+						onChange={(e) => setBattleName(e.target.value.trim())}
 					/>
+					<Form.Text>20 characters max.</Form.Text>
 				</Form.Group>
 			</Form>
 
-			<h2 className="mt-5">Select Your Heroes</h2>
-			<Container>
+			<h2 className="mt-3">Select Heroes</h2>
+			<Container className="creature-grid">
 				<Row>
-					<Col md={8} xs={5}>
+					<Col md={8} xs={5} className="grid-header">
 						{' '}
 						Hero
 					</Col>
-					<Col md={2} xs={4}>
+					<Col md={2} xs={4} className="grid-header">
 						Race/Class
 					</Col>
-					<Col md={1} xs={1} className="text-center">
+					<Col md={1} xs={1} className="text-center grid-header">
 						Level
 					</Col>
 					<Col md={1} xs="auto"></Col>
@@ -125,7 +126,7 @@ const CreateBattle = () => {
 			</button>
 
 			{/* MONSTER SEARCH */}
-			<h2 className="mt-5">Select Your Monsters</h2>
+			<h2 className="mt-4">Select Monsters</h2>
 			<input
 				type="text"
 				placeholder="Search for a monster"
@@ -137,16 +138,16 @@ const CreateBattle = () => {
 			/>
 			{monsterData.results.results &&
 			monsterData.results.results.length > 0 ? (
-				<Container className="mt-2">
+				<Container className="mt-2 creature-grid">
 					<Row>
-						<Col md={9} xs={8}>
+						<Col md={9} xs={8} className="grid-header">
 							{' '}
 							Monster
 						</Col>
-						<Col md={1} xs={1} className="text-center">
+						<Col md={1} xs={1} className="text-center grid-header">
 							CR
 						</Col>
-						<Col md={1} xs={1} className="text-center">
+						<Col md={1} xs={1} className="text-center grid-header">
 							XP
 						</Col>
 						<Col md={1} xs={1}></Col>

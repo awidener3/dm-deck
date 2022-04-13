@@ -106,15 +106,31 @@ article {
     font-weight: 700;
 }
 
-.creature-row {
-  background-color: #ffffff;
-  .row-title {
-    font-size: 1.3rem;
+.battle-form {
+  .battle-name-input {
+    border: none;
+    border-radius: 0;
     font-family: "Mukta Vaani", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    line-height: 0;
   }
-  .row-subtitle {
-    line-height: 1;
-    color: #747474;
-    font-weight: 400;
+}
+
+.creature-grid {
+  .grid-header {
+    font-weight: 500;
+  }
+  .creature-row {
+    background-color: #ffffff;
+    .row-title {
+      font-size: 1.3rem;
+      font-family: "Mukta Vaani", sans-serif;
+    }
+    .row-subtitle {
+      line-height: 1;
+      color: #747474;
+      font-weight: 400;
+    }
   }
 }
