@@ -39,7 +39,7 @@ const CreateBattleSummary = ({
 	};
 
 	return (
-		<div className="summary-card mx-auto mt-2">
+		<div className="summary-card mx-auto mt-2 d-flex flex-column">
 			{/* Title */}
 			<h2 className="summary-card-title">{battleName || 'New Battle'}</h2>
 			{/* Stats */}
@@ -55,9 +55,9 @@ const CreateBattleSummary = ({
 				</p>
 			</div>
 
-			<div className="roster-container d-flex justify-content-around mt-2">
+			<div className="roster-container mt-2">
 				{/* Heroes */}
-				<article className="card roster-card me-2 p-3 w-100">
+				<article className="card roster-card p-3 w-100">
 					<h2 className="roster-title">Heroes</h2>
 					<div>
 						{selectedHeroes.map((hero) => (
@@ -71,20 +71,27 @@ const CreateBattleSummary = ({
 					</div>
 				</article>
 				{/* Monsters */}
-				<article className="card roster-card ms-2 p-3 w-100">
+				<article className="card roster-card mt-3 p-3 w-100">
 					<h2 className="roster-title">Monsters</h2>
 					<div>
-						{selectedMonsters.map((monster, index) => (
-							<p key={index} className="roster-creature-name m-0">
-								{monster.name}
-							</p>
-						))}
+						{selectedMonsters.length > 0 ? (
+							selectedMonsters.map((monster, index) => (
+								<p
+									key={index}
+									className="roster-creature-name m-0"
+								>
+									{monster.name}
+								</p>
+							))
+						) : (
+							<p>Nothing yet...</p>
+						)}
 					</div>
 				</article>
 			</div>
 			<Link
 				to="/battles"
-				className="btn btn-primary mt-auto"
+				className="btn btn-outline-success mt-auto"
 				onClick={handleSave}
 			>
 				Save

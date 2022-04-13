@@ -120,17 +120,27 @@ const CreateBattleForm = ({
 			monsterData.results.results.length > 0 ? (
 				<Container className="mt-2 creature-grid">
 					<Row>
-						<Col md={9} xs={8} className="grid-header">
+						<Col lg={8} md={9} xs={8} className="grid-header">
 							{' '}
 							Monster
 						</Col>
-						<Col md={1} xs={1} className="text-center grid-header">
+						<Col
+							lg={1}
+							md="auto"
+							xs={1}
+							className="text-center grid-header"
+						>
 							CR
 						</Col>
-						<Col md={1} xs={1} className="text-center grid-header">
+						<Col
+							lg={1}
+							md="auto"
+							xs={1}
+							className="text-center grid-header"
+						>
 							XP
 						</Col>
-						<Col md={1} xs={1}></Col>
+						<Col xs="auto"></Col>
 					</Row>
 
 					{monsterData.results.results.map((monster) => (
@@ -138,7 +148,7 @@ const CreateBattleForm = ({
 							key={monster.slug}
 							className="creature-row mb-1 py-2 d-flex align-items-center"
 						>
-							<Col md={9} xs={8} className="border-end">
+							<Col lg={8} md={9} xs={8} className="border-end">
 								<div>
 									<h3 className="m-0 row-title">
 										{monster.name}{' '}
@@ -148,17 +158,17 @@ const CreateBattleForm = ({
 									</p>
 								</div>
 							</Col>
-							<Col md={1} xs={1} className="border-end">
+							<Col lg={1} md="auto" xs={1} className="border-end">
 								<p className="m-0 text-center">
 									{monster.challenge_rating}
 								</p>
 							</Col>
-							<Col md={1} xs={1}>
+							<Col lg={1} md="auto" xs={1}>
 								<p className="m-0 text-center">
 									{getXp(monster)}
 								</p>
 							</Col>
-							<Col md={1} xs="auto">
+							<Col xs="auto" className="ms-auto pe-2">
 								<button
 									type="button"
 									className="btn btn-outline-secondary btn-sm m-0"
