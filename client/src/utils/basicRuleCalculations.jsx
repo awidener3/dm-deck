@@ -1,4 +1,4 @@
-export const xpThreshold = (hero) => {
+export const calculateXpThreshold = (hero) => {
 	let threshold = [];
 
 	switch (hero.level) {
@@ -64,6 +64,65 @@ export const xpThreshold = (hero) => {
 			break;
 		default:
 			threshold = ['error!'];
+	}
+
+	return threshold;
+};
+
+export const calculatePartyXpThreshold = (heroes) => {
+	let easy = 0;
+	let medium = 0;
+	let hard = 0;
+	let deadly = 0;
+
+	for (let i = 0; i < heroes.length; i++) {
+		let heroThreshold = calculateXpThreshold(heroes[i]);
+		easy += heroThreshold[0];
+		medium += heroThreshold[1];
+		hard += heroThreshold[2];
+		deadly += heroThreshold[3];
+	}
+
+	return { easy, medium, hard, deadly };
+};
+
+export const calculateMonsterXp = (monsters) => {
+	let total = 0;
+
+	for (let i = 0; i < monsters.length; i++) {
+		total += getXp(monsters[i]);
+	}
+
+	if (monsters.length === 2) {
+		total *= 1.5;
+	} else if (monsters.length <= 6 && monsters.length >= 3) {
+		total *= 2;
+	} else if (monsters.length <= 10 && monsters.length >= 7) {
+		total *= 2.5;
+	} else if (monsters.length <= 14 && monsters.length >= 11) {
+		total *= 3;
+	} else if (monsters.length >= 15) {
+		total *= 4;
+	}
+
+	return total;
+};
+
+export const getChallengeRating = (battle) => {
+	const partyThresholds = calculatePartyXpThreshold(battle.heroes);
+	const totalMonsterXp = calculateMonsterXp(battle.monsters);
+
+	console.log(partyThresholds);
+	console.log(totalMonsterXp);
+
+	if (totalMonsterXp < partyThresholds.medium) {
+		return 'Easy';
+	} else if (totalMonsterXp < partyThresholds.hard) {
+		return 'Medium';
+	} else if (totalMonsterXp < partyThresholds.deadly) {
+		return 'Hard';
+	} else {
+		return 'Deadly';
 	}
 };
 

@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Accordion, ListGroup, Form } from 'react-bootstrap';
 
-import { getXp } from '../../utils/basicRuleCalculations';
+import {
+	getXp,
+	calculatePartyXpThreshold,
+	calculateMonsterXp,
+	getChallengeRating,
+} from '../../utils/basicRuleCalculations';
 
 import './battleSelect.scss';
 
@@ -32,6 +37,7 @@ const BattleSelect = () => {
 
 									<hr />
 									<div className="card-body">
+										{getChallengeRating(battle)}
 										<Form>
 											<Form.Check
 												type="switch"
