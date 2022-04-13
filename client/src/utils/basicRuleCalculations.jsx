@@ -116,13 +116,13 @@ export const getChallengeRating = (battle) => {
 	console.log(totalMonsterXp);
 
 	if (totalMonsterXp < partyThresholds.medium) {
-		return 'Easy';
+		return <span className="challenge-rating-display easy">Easy</span>;
 	} else if (totalMonsterXp < partyThresholds.hard) {
-		return 'Medium';
+		return <span className="challenge-rating-display medium">Medium</span>;
 	} else if (totalMonsterXp < partyThresholds.deadly) {
-		return 'Hard';
+		return <span className="challenge-rating-display hard">Hard</span>;
 	} else {
-		return 'Deadly';
+		return <span className="challenge-rating-display deadly">Deadly</span>;
 	}
 };
 

@@ -37,7 +37,21 @@ const BattleSelect = () => {
 
 									<hr />
 									<div className="card-body">
-										{getChallengeRating(battle)}
+										{/* Challenge Rating */}
+										<p className="summary-stat">
+											DIFFICULTY:{' '}
+											{getChallengeRating(battle)}
+										</p>
+										<p className="summary-stat">
+											TOTAL XP:{' '}
+											<span className="total-xp">
+												{calculateMonsterXp(
+													battle.monsters
+												)}
+											</span>
+										</p>
+
+										{/* Initiative Roll */}
 										<Form>
 											<Form.Check
 												type="switch"
@@ -45,6 +59,7 @@ const BattleSelect = () => {
 												defaultChecked={true}
 											/>
 										</Form>
+										{/* Heroes & Monsters */}
 										<Accordion
 											className="mb-2"
 											defaultActiveKey={['0']}
@@ -62,12 +77,12 @@ const BattleSelect = () => {
 														{battle.heroes.map(
 															(hero, i) => (
 																<ListGroup.Item
+																	className="d-flex justify-content-between"
 																	key={i}
 																>
 																	{
 																		hero.character_name
 																	}{' '}
-																	-{' '}
 																	<span className="accordion-subtext">
 																		{
 																			hero.class
@@ -97,6 +112,7 @@ const BattleSelect = () => {
 														{battle.monsters.map(
 															(monster, i) => (
 																<ListGroup.Item
+																	className="d-flex justify-content-between"
 																	key={i}
 																>
 																	{
@@ -111,7 +127,7 @@ const BattleSelect = () => {
 																		{getXp(
 																			monster
 																		)}
-																		xp )
+																		xp)
 																	</span>
 																</ListGroup.Item>
 															)
@@ -121,6 +137,8 @@ const BattleSelect = () => {
 											</Accordion.Item>
 										</Accordion>
 									</div>
+
+									{/* Buttons */}
 									<div className="button-container mt-auto d-flex justify-content-center">
 										<Link
 											className="btn btn-outline-primary me-2"
