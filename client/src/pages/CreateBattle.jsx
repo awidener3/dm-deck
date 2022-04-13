@@ -127,15 +127,22 @@ const CreateBattle = () => {
 
 			{/* MONSTER SEARCH */}
 			<h2 className="mt-4">Select Monsters</h2>
-			<input
-				type="text"
-				placeholder="Search for a monster"
-				className="form-control"
-				value={monsterData.slug}
-				onChange={(e) =>
-					setMonsterData({ ...monsterData, slug: e.target.value })
-				}
-			/>
+			<Form.Group>
+				<Form.Control
+					type="text"
+					placeholder="Search for a monster"
+					className="form-control monster-search-input"
+					value={monsterData.slug}
+					onChange={(e) =>
+						setMonsterData({ ...monsterData, slug: e.target.value })
+					}
+				/>
+				<Form.Text>
+					Only shows 10 results. If your search does not return your
+					monster, try being specific (i.e. Adult Green Dragon)
+				</Form.Text>
+			</Form.Group>
+
 			{monsterData.results.results &&
 			monsterData.results.results.length > 0 ? (
 				<Container className="mt-2 creature-grid">
@@ -197,6 +204,7 @@ const CreateBattle = () => {
 			</button>
 
 			<hr />
+
 			{/* RESULTS AND SUMMARY */}
 
 			<h2 className="text-center">{battleName || 'New Battle'}</h2>
@@ -212,7 +220,10 @@ const CreateBattle = () => {
 					<hr />
 					<div>
 						{selectedHeroes.map((hero) => (
-							<div key={hero.character_name}>
+							<div
+								key={hero.character_name}
+								className="roster-creature-name"
+							>
 								{hero.character_name}
 							</div>
 						))}
@@ -225,7 +236,9 @@ const CreateBattle = () => {
 
 					<div>
 						{selectedMonsters.map((monster, index) => (
-							<div key={index}>{monster.name}</div>
+							<div key={index} className="roster-creature-name">
+								{monster.name}
+							</div>
 						))}
 					</div>
 				</article>
