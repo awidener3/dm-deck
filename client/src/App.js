@@ -9,6 +9,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<Header />
+			<p>v0.0.1</p>
 
 			<Outlet />
 		</div>
