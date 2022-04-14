@@ -25,6 +25,7 @@ const BattleSelect = () => {
 		);
 
 		setBattles(updatedArray);
+		localStorage.setItem('dm-deck-battles', JSON.stringify(updatedArray));
 	};
 
 	return (
