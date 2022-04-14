@@ -1,6 +1,6 @@
 .summary-card {
   width: 24rem;
-  height: 35rem;
+  min-height: 35rem;
   background-color: #fff;
   border: 1px solid #d4d4d4;
   outline: 1px solid #c5c5c5;
@@ -49,6 +49,23 @@
       .roster-title {
         font-size: 1.3rem;
         text-align: center;
+      }
+      .roster-subtext {
+        font-style: italic;
+        font-weight: 300;
+        color: #858585;
+        .close-btn {
+          padding: 0 0 0 auto;
+          color: #707070;
+          font-size: 0.9rem;
+          border: none;
+          background: none;
+          transition: color 0.2s;
+        }
+        .close-btn:hover {
+          color: #5e0c0c;
+          background: none;
+        }
       }
     }
   }

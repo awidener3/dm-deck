@@ -3,7 +3,7 @@ import { getXp } from '../../../utils/basicRuleCalculations';
 
 const SummaryAccordion = ({ battle }) => {
 	return (
-		<Accordion className="mb-2" defaultActiveKey={['0']} alwaysOpen>
+		<Accordion className="mb-2" defaultActiveKey={['0']}>
 			<Accordion.Item eventKey="1">
 				<Accordion.Header>
 					<h3 className="accordion-title">

@@ -1,32 +1,18 @@
 import { Form, Container, Row, Col } from 'react-bootstrap';
 import useFetchMonsters from '../../hooks/useFetchMonsters';
-import heroes from '../Hero/heroData';
 import { getXp } from '../../utils/basicRuleCalculations';
+
+import './createBattleForm.scss';
 
 const CreateBattleForm = ({
 	setBattleName,
-	selectedHeroes,
-	setSelectedHeroes,
-	selectedMonsters,
-	setSelectedMonsters,
+	heroes,
+	currentHeroes,
+	handleSelectHero,
+	handleSelectMonster,
 }) => {
 	// The data from the open5e API call
 	const { monsterData, setMonsterData } = useFetchMonsters();
-
-	const handleHeroSelect = (character_name) => {
-		heroes.forEach((hero) => {
-			if (
-				hero.character_name === character_name &&
-				!selectedHeroes.includes(hero)
-			)
-				setSelectedHeroes([...selectedHeroes, hero]);
-		});
-	};
-
-	const handleMonsterSelect = (data) => {
-		let updatedArray = [...selectedMonsters, data];
-		setSelectedMonsters(updatedArray);
-	};
 
 	return (
 		<div className="m-4">
@@ -61,7 +47,11 @@ const CreateBattleForm = ({
 				{heroes.map((hero) => (
 					<Row
 						key={hero.character_name}
-						className="creature-row mb-1 py-2 d-flex align-items-center"
+						className={
+							currentHeroes.includes(hero)
+								? 'creature-row mb-1 py-2 d-flex align-items-center selected'
+								: 'creature-row mb-1 py-2 d-flex align-items-center'
+						}
 					>
 						<Col xl={6} lg={6} md={7} xs={5} className="border-end">
 							<h3 className="m-0 row-title">
@@ -80,15 +70,17 @@ const CreateBattleForm = ({
 							<p className="m-0 text-center">{hero.level}</p>
 						</Col>
 						<Col xs="auto" className="ms-auto">
-							<button
-								type="button"
-								className="btn btn-outline-secondary btn-sm m-0"
-								onClick={() =>
-									handleHeroSelect(hero.character_name)
-								}
-							>
-								ADD
-							</button>
+							{!currentHeroes.includes(hero) ? (
+								<button
+									type="button"
+									className="btn btn-outline-secondary btn-sm m-0"
+									onClick={() =>
+										handleSelectHero(hero.character_name)
+									}
+								>
+									ADD
+								</button>
+							) : null}
 						</Col>
 					</Row>
 				))}
@@ -172,7 +164,7 @@ const CreateBattleForm = ({
 								<button
 									type="button"
 									className="btn btn-outline-secondary btn-sm m-0"
-									onClick={() => handleMonsterSelect(monster)}
+									onClick={() => handleSelectMonster(monster)}
 								>
 									ADD
 								</button>
