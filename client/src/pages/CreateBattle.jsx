@@ -44,7 +44,7 @@ const CreateBattle = () => {
 	};
 
 	return (
-		<div className="container py-4">
+		<div className="container-sm container-fluid py-4">
 			<h1 className="text-center">Create New Battle</h1>
 
 			<div className="d-flex flex-lg-row flex-md-column flex-column">

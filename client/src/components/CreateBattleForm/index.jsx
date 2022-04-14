@@ -16,7 +16,7 @@ const CreateBattleForm = ({
 	const { monsterData, setMonsterData } = useFetchMonsters();
 
 	return (
-		<div className="m-4">
+		<div className="m-md-4">
 			<Form className="battle-form">
 				<Form.Group>
 					<Form.Control
@@ -37,7 +37,7 @@ const CreateBattleForm = ({
 						{' '}
 						Hero
 					</Col>
-					<Col md={3} xs={4} className="grid-header">
+					<Col md={3} s={4} xs={3} className="grid-header">
 						Race/Class
 					</Col>
 					<Col md="auto" xs={1} className="grid-header">
@@ -55,20 +55,18 @@ const CreateBattleForm = ({
 						}
 					>
 						<Col xl={6} lg={6} md={7} xs={5} className="border-end">
-							<h3 className="m-0 row-title">
+							<h3 className="row-title">
 								{hero.character_name}{' '}
 							</h3>
-							<p className="m-0 row-subtitle">
-								{hero.player_name}
-							</p>
+							<p className="row-subtitle">{hero.player_name}</p>
 						</Col>
-						<Col md={3} xs={4} className="border-end">
-							<p className="m-0">
+						<Col md={3} s={4} xs={3} className="border-end">
+							<p className="row-text">
 								{hero.race} {hero.class}
 							</p>
 						</Col>
 						<Col lg={1} md="auto" xs={1}>
-							<p className="m-0 text-center">{hero.level}</p>
+							<p className="text-center row-text">{hero.level}</p>
 						</Col>
 						<Col xs="auto" className="ms-auto">
 							{!currentHeroes.includes(hero) ? (
@@ -121,14 +119,21 @@ const CreateBattleForm = ({
 			monsterData.results.results.length > 0 ? (
 				<Container className="mt-2 creature-grid">
 					<Row>
-						<Col lg={8} md={9} xs={8} className="grid-header">
+						<Col
+							lg={8}
+							md={9}
+							sm={8}
+							xs={6}
+							className="grid-header"
+						>
 							{' '}
 							Monster
 						</Col>
 						<Col
 							lg={1}
 							md="auto"
-							xs={1}
+							sm={1}
+							xs={2}
 							className="text-center grid-header"
 						>
 							CR
@@ -149,23 +154,35 @@ const CreateBattleForm = ({
 							key={monster.slug}
 							className="creature-row mb-1 py-2 d-flex align-items-center"
 						>
-							<Col lg={8} md={9} xs={8} className="border-end">
+							<Col
+								lg={8}
+								md={9}
+								sm={8}
+								xs={6}
+								className="border-end"
+							>
 								<div>
-									<h3 className="m-0 row-title">
+									<h3 className="row-title">
 										{monster.name}{' '}
 									</h3>
-									<p className="m-0 row-subtitle">
+									<p className="row-subtitle">
 										{monster.size} {monster.type}
 									</p>
 								</div>
 							</Col>
-							<Col lg={1} md="auto" xs={1} className="border-end">
-								<p className="m-0 text-center">
+							<Col
+								lg={1}
+								md="auto"
+								sm={1}
+								xs={2}
+								className="border-end"
+							>
+								<p className="text-center row-text">
 									{monster.challenge_rating}
 								</p>
 							</Col>
 							<Col lg={1} md="auto" xs={1}>
-								<p className="m-0 text-center">
+								<p className="text-center row-text">
 									{getXp(monster)}
 								</p>
 							</Col>

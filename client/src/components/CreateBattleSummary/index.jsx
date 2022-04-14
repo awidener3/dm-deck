@@ -79,7 +79,7 @@ const CreateBattleSummary = ({
 							{selectedHeroes.length > 0 ? (
 								selectedHeroes.map((hero, index) => (
 									<ListGroup.Item
-										className="d-flex justify-content-between"
+										className="d-flex justify-content-between roster-name"
 										key={hero.character_name}
 									>
 										{hero.character_name}{' '}
@@ -108,7 +108,7 @@ const CreateBattleSummary = ({
 							{selectedMonsters.length > 0 ? (
 								selectedMonsters.map((monster, index) => (
 									<ListGroup.Item
-										className="d-flex justify-content-between px-2"
+										className="d-flex justify-content-between px-2 roster-name"
 										key={index}
 									>
 										{monster.name}{' '}

@@ -7,6 +7,7 @@ const Header = () => {
 	const [pathname, setPathname] = useState(window.location.pathname);
 	return (
 		<div>
+			<p className="m-0 version-text">v0.0.2</p>
 			<nav className="navbar navbar-expand custom-navbar">
 				<div className="container-fluid">
 					<Link to="/home">

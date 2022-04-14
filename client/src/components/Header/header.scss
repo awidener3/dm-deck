@@ -1,3 +1,12 @@
+.version-text {
+  position: absolute;
+  color: rgb(145, 145, 145);
+  top: 55px;
+  left: 10px;
+  font-size: 0.7rem;
+  z-index: 100;
+}
+
 .custom-navbar {
   background-color: #090809;
   .custom-nav-link {
