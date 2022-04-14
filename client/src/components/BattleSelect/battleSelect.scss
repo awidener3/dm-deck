@@ -41,3 +41,36 @@
     }
   }
 }
+
+.create-btn-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2;
+  .create-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 2.5rem;
+    border-radius: 100%;
+    background: rgb(76, 166, 226);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    transition: transform 0.2s ease-in-out;
+    @media screen and (min-width: 1200px) {
+      width: 65px;
+      height: 65px;
+    }
+  }
+  .create-btn:hover {
+    transform: scale(1.1);
+  }
+}
+
+@media (min-width: 1400px) {
+  .create-btn {
+    width: 100px;
+    height: 100px;
+  }
+}

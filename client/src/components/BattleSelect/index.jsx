@@ -29,9 +29,13 @@ const BattleSelect = () => {
 	};
 
 	return (
-		<div>
+		<div className="py-4">
 			<h1 className="text-center">Select a Saved Battle</h1>
-			<hr />
+			<div className="d-flex justify-content-center create-btn-container">
+				<Link to={'/create-battle'} className="create-btn">
+					&#43;
+				</Link>
+			</div>
 			<div className="container d-flex flex-wrap justify-content-center">
 				{battles.length > 0 ? (
 					battles.map((battle) => {
@@ -51,7 +55,7 @@ const BattleSelect = () => {
 										<Form>
 											<Form.Check
 												type="switch"
-												label="Auto-roll Initiative"
+												label="Auto-roll Initiative (not implemented)"
 												defaultChecked={true}
 											/>
 										</Form>
@@ -82,7 +86,9 @@ const BattleSelect = () => {
 						);
 					})
 				) : (
-					<h2 className="mx-auto">No battles yet!</h2>
+					<div>
+						<h2 className="mx-auto">No battles yet!</h2>
+					</div>
 				)}
 			</div>
 		</div>
