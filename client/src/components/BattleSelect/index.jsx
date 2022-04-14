@@ -17,6 +17,16 @@ const BattleSelect = () => {
 		}
 	}, []);
 
+	const handleDeleteBattle = (selectedBattle) => {
+		let updatedArray = battles.slice();
+
+		updatedArray = updatedArray.filter(
+			(battle) => battle !== selectedBattle
+		);
+
+		setBattles(updatedArray);
+	};
+
 	return (
 		<div>
 			<h1 className="text-center">Select a Saved Battle</h1>
@@ -57,7 +67,12 @@ const BattleSelect = () => {
 											Battle!
 										</Link>
 
-										<button className="btn btn-outline-danger ms-2">
+										<button
+											className="btn btn-outline-danger ms-2"
+											onClick={() =>
+												handleDeleteBattle(battle)
+											}
+										>
 											Delete
 										</button>
 									</div>

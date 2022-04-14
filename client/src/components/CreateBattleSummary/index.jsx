@@ -31,7 +31,7 @@ const CreateBattleSummary = ({
 		);
 		if (existingBattles === null) existingBattles = [];
 		let battleData = {
-			name: battleName,
+			name: battleName || 'New Battle',
 			heroes: selectedHeroes,
 			monsters: selectedMonsters,
 		};
