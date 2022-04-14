@@ -95,7 +95,7 @@ const CreateBattleForm = ({
 			</Container>
 
 			<button className="btn btn-primary mt-3 disabled">
-				Add New Hero
+				Add New Hero (Not ready yet)
 			</button>
 
 			{/* MONSTER SEARCH */}
@@ -183,7 +183,7 @@ const CreateBattleForm = ({
 			) : null}
 
 			<button className="btn btn-primary mt-3 disabled">
-				Add Custom Monster
+				Add Custom Monster (Not ready yet)
 			</button>
 		</div>
 	);

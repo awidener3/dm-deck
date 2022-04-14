@@ -1,6 +1,6 @@
 .summary-card {
-  width: 450px;
-  max-height: 40rem;
+  width: 24rem;
+  height: 35rem;
   background-color: #fff;
   border: 1px solid #d4d4d4;
   outline: 1px solid #c5c5c5;
@@ -39,6 +39,8 @@
   }
   .roster-container {
     .roster-card {
+      height: 11rem;
+      overflow-y: auto;
       .roster-creature-name {
         font-family: "Mukta Vaani", sans-serif;
         font-size: 1rem;
@@ -51,3 +53,11 @@
     }
   }
 }
+
+.roster-card::-webkit-scrollbar {
+		width: 5px;
+	}
+	.roster-card::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: #bdbdbd;
+	}
