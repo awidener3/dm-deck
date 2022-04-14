@@ -88,7 +88,7 @@ const CreateBattleSummary = ({
 											<button
 												className="close-btn ms-1"
 												onClick={() =>
-													handleRemoveHero(index)
+													handleRemoveHero(hero)
 												}
 											>
 												&#10006;
@@ -119,7 +119,7 @@ const CreateBattleSummary = ({
 											<button
 												className="close-btn ms-1"
 												onClick={() =>
-													handleRemoveMonster(index)
+													handleRemoveMonster(monster)
 												}
 											>
 												&#10006;

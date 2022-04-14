@@ -12,15 +12,17 @@ const CreateBattle = () => {
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
 	const [selectedMonsters, setSelectedMonsters] = useState([]);
 
-	const handleRemoveMonster = (index) => {
+	const handleRemoveMonster = (monster) => {
 		const updatedArray = selectedMonsters.slice();
+		let index = updatedArray.findIndex((item) => item === monster);
 		updatedArray.splice(index, 1);
 
 		setSelectedMonsters(updatedArray);
 	};
 
-	const handleRemoveHero = (index) => {
+	const handleRemoveHero = (hero) => {
 		const updatedArray = selectedHeroes.slice();
+		let index = updatedArray.findIndex((item) => item === hero);
 		updatedArray.splice(index, 1);
 
 		setSelectedHeroes(updatedArray);
@@ -52,6 +54,7 @@ const CreateBattle = () => {
 					currentHeroes={selectedHeroes}
 					handleSelectMonster={handleSelectMonster}
 					handleSelectHero={handleSelectHero}
+					handleRemoveHero={handleRemoveHero}
 				/>
 				<CreateBattleSummary
 					battleName={battleName}

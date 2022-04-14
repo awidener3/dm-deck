@@ -10,6 +10,7 @@ const CreateBattleForm = ({
 	currentHeroes,
 	handleSelectHero,
 	handleSelectMonster,
+	handleRemoveHero,
 }) => {
 	// The data from the open5e API call
 	const { monsterData, setMonsterData } = useFetchMonsters();
@@ -44,7 +45,7 @@ const CreateBattleForm = ({
 					</Col>
 					<Col md={1} xs="auto"></Col>
 				</Row>
-				{heroes.map((hero) => (
+				{heroes.map((hero, index) => (
 					<Row
 						key={hero.character_name}
 						className={
@@ -80,7 +81,15 @@ const CreateBattleForm = ({
 								>
 									ADD
 								</button>
-							) : null}
+							) : (
+								<button
+									type="button"
+									className="btn btn-outline-danger btn-sm m-0"
+									onClick={() => handleRemoveHero(hero)}
+								>
+									DEL
+								</button>
+							)}
 						</Col>
 					</Row>
 				))}
