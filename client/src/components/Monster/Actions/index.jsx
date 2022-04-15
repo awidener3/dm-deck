@@ -7,6 +7,8 @@ import MeleeRangeButtons from './MeleeRangeButtons';
 const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 	const [playSfx] = useSound(diceSfx);
 
+	// acid, bludgeoning, cold, fire, force, lightning, necrotic, piercing, poison, psychic, radiant, slashing, thunder
+
 	const processActions = (actions) => {
 		console.log(monster.name);
 		actions.map((action) => {
@@ -14,13 +16,26 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 				desc: action.desc,
 				attack_bonus: action.attack_bonus,
 			};
-			// name
+			// name + extra description
 			if (action.name.match(/\(([^\)]*)\)/)) {
 				let nameExtra = action.name.match(/\(([^\)]*)\)/);
 				newAction.name = action.name.replace(nameExtra[0], '').trim();
 				newAction.nameSubtext = nameExtra[0];
 			} else {
 				newAction.name = action.name;
+			}
+
+			// attack type
+			if (action.desc.includes('Melee or Ranged Weapon Attack')) {
+				newAction.attack_type = 'Melee or Ranged';
+			} else if (action.desc.includes('Melee Weapon Attack')) {
+				newAction.attack_type = 'Melee';
+			} else if (action.desc.includes('Ranged Weapon Attack')) {
+				let strArr = action.desc.split(' ');
+				newAction.range = strArr[strArr.indexOf('range') + 1];
+				newAction.attack_type = 'Ranged';
+			} else {
+				console.log('idk!');
 			}
 
 			// damage + bonus damage
@@ -44,9 +59,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 				};
 			}
 
-			console.log('original', action);
-			console.log('updated', newAction);
-			console.log('-----------------');
+			console.log(action.name, 'original', action, 'updated', newAction);
 		});
 	};
 
