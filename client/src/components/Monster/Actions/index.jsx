@@ -48,21 +48,25 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 					newAction.damage = {
 						damageNum: Number(damageDice[1]),
 						damageSides: Number(damageDice[0]),
+						damageBonus: action.damage_bonus,
+						damageText: dice[0],
 					};
 					newAction.bonus_damage = {
 						bonusNum: Number(bonusDice[1]),
 						bonusSides: Number(bonusDice[0]),
+						bonusText: dice[1],
 					};
 				} else if (action.damage_dice) {
 					const damageDice = action.damage_dice.split('d');
 					newAction.damage = {
 						damageNum: Number(damageDice[1]),
 						damageSides: Number(damageDice[0]),
+						damageText: action.damage_dice,
 					};
 				}
 			}
 
-			// console.log(action.name, 'original', action, 'updated', newAction);
+			console.log(action.name, 'original', action, 'updated', newAction);
 			newActions.push(newAction);
 		});
 		return newActions;
@@ -133,9 +137,9 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 			className="d-flex justify-content-between align-items-center mb-2"
 		>
 			<p className="action-title m-0">
-				{action.desc.startsWith('Melee') ? (
+				{action.attack_type === 'Melee' ? (
 					<GiBattleAxe />
-				) : action.desc.startsWith('Ranged') ? (
+				) : action.attack_type === 'Ranged' ? (
 					<GiPocketBow className="ranged-icon me-1" />
 				) : (
 					<GiTwirlCenter />
@@ -143,8 +147,8 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 				{action.name}
 			</p>
 			<div>
-				{action.desc.startsWith('Melee') ||
-				action.desc.startsWith('Ranged') ||
+				{action.attack_type === 'Melee' ||
+				action.attack_type === 'Ranged' ||
 				action.damage_dice ? (
 					<MeleeRangeButtons
 						action={action}

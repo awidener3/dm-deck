@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { GiMineExplosion, GiPointySword } from 'react-icons/gi';
 
 const MeleeRangeButtons = ({ action, handleToHit, handleDealDamage }) => {
+	console.log(action);
 	return (
 		<>
 			<button
@@ -15,7 +15,9 @@ const MeleeRangeButtons = ({ action, handleToHit, handleDealDamage }) => {
 				onClick={() => handleDealDamage(action)}
 			>
 				<GiMineExplosion />{' '}
-				{`${action.damage_dice || ''} +${action.damage_bonus || 0}`}
+				{`${action.damage.damageText || ''} +${
+					action.damage.damageBonus || 0
+				}`}
 			</button>
 		</>
 	);
