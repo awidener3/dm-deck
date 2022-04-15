@@ -3,6 +3,7 @@ import { GiPocketBow, GiBattleAxe, GiTwirlCenter } from 'react-icons/gi';
 import useSound from 'use-sound';
 import diceSfx from '../../../assets/audio/dice-roll.mp3';
 import MeleeRangeButtons from './MeleeRangeButtons';
+import './actions.scss';
 
 const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 	const [playSfx] = useSound(diceSfx);
@@ -88,8 +89,6 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 		// [# of dice, # of sides] 2d6
 		let damageDiceSides = 0;
 		let damageDiceNum = 0;
-		let bonusDiceSides = 0;
-		let bonusDiceNum = 0;
 
 		if (action.damage_dice.includes('+')) {
 			let dice = action.damage_dice.split('+');
@@ -136,16 +135,23 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 			key={action.name}
 			className="d-flex justify-content-between align-items-center mb-2"
 		>
-			<p className="action-title m-0">
-				{action.attack_type === 'Melee' ? (
-					<GiBattleAxe />
-				) : action.attack_type === 'Ranged' ? (
-					<GiPocketBow className="ranged-icon me-1" />
-				) : (
-					<GiTwirlCenter />
-				)}{' '}
-				{action.name}
-			</p>
+			<div className="d-flex align-items-center m-0">
+				<div className="d-flex alignt-items-center me-1">
+					{action.attack_type === 'Melee' ? (
+						<GiBattleAxe />
+					) : action.attack_type === 'Ranged' ? (
+						<GiPocketBow className="ranged-icon me-1" />
+					) : (
+						<GiTwirlCenter />
+					)}{' '}
+				</div>
+				<div>
+					<h4 className="action-title">{action.name}</h4>
+					{action.nameSubtext ? (
+						<p className="action-subtext">{action.nameSubtext}</p>
+					) : null}
+				</div>
+			</div>
 			<div>
 				{action.attack_type === 'Melee' ||
 				action.attack_type === 'Ranged' ||
