@@ -10,7 +10,8 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 	// acid, bludgeoning, cold, fire, force, lightning, necrotic, piercing, poison, psychic, radiant, slashing, thunder
 
 	const processActions = (actions) => {
-		console.log(monster.name);
+		let newActions = [];
+
 		actions.map((action) => {
 			let newAction = {
 				desc: action.desc,
@@ -35,32 +36,36 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 				newAction.range = strArr[strArr.indexOf('range') + 1];
 				newAction.attack_type = 'Ranged';
 			} else {
-				console.log('idk!');
+				console.log('other');
 			}
 
 			// damage + bonus damage
-			if (action.damage_dice.includes('+')) {
-				let dice = action.damage_dice.split('+');
-				const damageDice = dice[0].split('d');
-				const bonusDice = dice[1].split('d');
-				newAction.damage = {
-					damageNum: Number(damageDice[1]),
-					damageSides: Number(damageDice[0]),
-				};
-				newAction.bonus_damage = {
-					bonusNum: Number(bonusDice[1]),
-					bonusSides: Number(bonusDice[0]),
-				};
-			} else if (action.damage_dice) {
-				const damageDice = action.damage_dice.split('d');
-				newAction.damage = {
-					damageNum: Number(damageDice[1]),
-					damageSides: Number(damageDice[0]),
-				};
+			if (action.damage_dice) {
+				if (action.damage_dice.includes('+')) {
+					let dice = action.damage_dice.split('+');
+					const damageDice = dice[0].split('d');
+					const bonusDice = dice[1].split('d');
+					newAction.damage = {
+						damageNum: Number(damageDice[1]),
+						damageSides: Number(damageDice[0]),
+					};
+					newAction.bonus_damage = {
+						bonusNum: Number(bonusDice[1]),
+						bonusSides: Number(bonusDice[0]),
+					};
+				} else if (action.damage_dice) {
+					const damageDice = action.damage_dice.split('d');
+					newAction.damage = {
+						damageNum: Number(damageDice[1]),
+						damageSides: Number(damageDice[0]),
+					};
+				}
 			}
 
-			console.log(action.name, 'original', action, 'updated', newAction);
+			// console.log(action.name, 'original', action, 'updated', newAction);
+			newActions.push(newAction);
 		});
+		return newActions;
 	};
 
 	const [actions, setActions] = useState(() =>
@@ -122,7 +127,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 		// otherwise, select a creature to apply the effect to
 	};
 
-	return monster.actions.map((action) => (
+	return actions.map((action) => (
 		<div
 			key={action.name}
 			className="d-flex justify-content-between align-items-center mb-2"
