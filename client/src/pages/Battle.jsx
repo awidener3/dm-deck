@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { rollDie } from '../utils/diceRolls';
 
@@ -10,10 +10,6 @@ import RollModal from '../components/RollModal';
 import MonstersModal from '../components/MonstersModal';
 import { addInitiative } from '../utils/diceRolls';
 import { slideLeft, slideRight } from '../utils/slideAnimations';
-
-// Dummy data
-import monsters from '../components/Monster/monsterData';
-import heroes from '../components/Hero/heroData';
 
 import {
 	FaChevronLeft,
@@ -81,9 +77,13 @@ const Battle = () => {
 	// ? TESTING: Used for viewing current array
 	const showData = () => console.log(sortedData);
 
-	const handleRollDice = (die, dieNum, modifier) => {
-		setRollModifier(modifier);
-		setDie(rollDie(die) * dieNum);
+	const handleRollDice = (sides, num, bonus) => {
+		let diceRoll = 0;
+		for (let i = 0; i < num; i++) {
+			diceRoll += rollDie(sides);
+		}
+		setRollModifier(bonus);
+		setDie(diceRoll);
 		setShowRollModal(true);
 	};
 

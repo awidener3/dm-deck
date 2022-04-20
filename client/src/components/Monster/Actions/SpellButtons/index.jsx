@@ -1,14 +1,13 @@
 import { GiMineExplosion, GiPointySword } from 'react-icons/gi';
+import './spellButton.scss';
 
-const MeleeRangeButtons = ({ action, handleToHit, handleDealDamage }) => {
+const SpellButtons = ({ action, handleDealDamage }) => {
 	return (
-		<>
-			<button
-				className="action-btn btn btn-outline-secondary btn-sm ms-1"
-				onClick={() => handleToHit(action.attack_bonus || 0)}
-			>
-				<GiPointySword /> +{action.attack_bonus || 0}
-			</button>
+		<div className="d-flex">
+			{action.saving_throw ? (
+				<p className="saving-throw-text">{action.saving_throw}</p>
+			) : null}
+
 			<button
 				className="action-btn btn btn-outline-secondary btn-sm ms-1"
 				onClick={() => handleDealDamage(action)}
@@ -18,8 +17,7 @@ const MeleeRangeButtons = ({ action, handleToHit, handleDealDamage }) => {
 					action.damage.damage_dice_bonus || 0
 				}`}
 			</button>
-		</>
+		</div>
 	);
 };
-
-export default MeleeRangeButtons;
+export default SpellButtons;

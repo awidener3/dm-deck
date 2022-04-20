@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
-import { GiPocketBow, GiBattleAxe, GiTwirlCenter } from 'react-icons/gi';
+import {
+	GiPocketBow,
+	GiBattleAxe,
+	GiTwirlCenter,
+	GiThrownSpear,
+} from 'react-icons/gi';
 import useSound from 'use-sound';
 import diceSfx from '../../../assets/audio/dice-roll.mp3';
 import MeleeRangeButtons from './MeleeRangeButtons';
+import SpellButtons from './SpellButtons';
 import './actions.scss';
 
 const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
+	// Dice roll sound effect
 	const [playSfx] = useSound(diceSfx);
 
 	// acid, bludgeoning, cold, fire, force, lightning, necrotic, piercing, poison, psychic, radiant, slashing, thunder
+
+	/* 
+  Processes actions from Open5e API call and pulls out important information such as attack type (melee or ranged), damage dice and bonus dice, etc. 
+  */
 
 	const processActions = (actions) => {
 		let newActions = [];
@@ -18,56 +29,73 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 				desc: action.desc,
 				attack_bonus: action.attack_bonus,
 			};
-			// name + extra description
+
+			// Pull out name and extra information such as recharge
 			if (action.name.match(/\(([^\)]*)\)/)) {
-				let nameExtra = action.name.match(/\(([^\)]*)\)/);
-				newAction.name = action.name.replace(nameExtra[0], '').trim();
-				newAction.nameSubtext = nameExtra[0];
+				let extraInfo = action.name.match(/\(([^\)]*)\)/);
+				newAction.name = action.name.replace(extraInfo[0], '').trim();
+				newAction.name_subtext = extraInfo[0];
 			} else {
 				newAction.name = action.name;
 			}
 
-			// attack type
+			// Find the action type (i.e. ranged, melee, effect)
 			if (action.desc.includes('Melee or Ranged Weapon Attack')) {
+				let strArr = action.desc.split(' ');
+				newAction.attack_reach = strArr[strArr.indexOf('reach') + 1];
+				newAction.attack_range = strArr[strArr.indexOf('range') + 1];
 				newAction.attack_type = 'Melee or Ranged';
 			} else if (action.desc.includes('Melee Weapon Attack')) {
+				let strArr = action.desc.split(' ');
+				newAction.attack_reach = strArr[strArr.indexOf('reach') + 1];
 				newAction.attack_type = 'Melee';
 			} else if (action.desc.includes('Ranged Weapon Attack')) {
 				let strArr = action.desc.split(' ');
-				newAction.range = strArr[strArr.indexOf('range') + 1];
+				newAction.attack_range = strArr[strArr.indexOf('range') + 1];
 				newAction.attack_type = 'Ranged';
+			} else if (action.damage_dice) {
+				newAction.attack_type = 'Spell';
+				let strArr = action.desc.split(' ');
+				if (strArr.includes('DC'))
+					newAction.saving_throw = `DC ${
+						strArr[strArr.indexOf('DC') + 1]
+					} ${strArr[strArr.indexOf('DC') + 2]
+						.slice(0, 3)
+						.toUpperCase()}`;
 			} else {
 				console.log('other');
 			}
 
-			// damage + bonus damage
+			// Find damage dice and separate bonus dice if exists
 			if (action.damage_dice) {
 				if (action.damage_dice.includes('+')) {
 					let dice = action.damage_dice.split('+');
 					const damageDice = dice[0].split('d');
 					const bonusDice = dice[1].split('d');
 					newAction.damage = {
-						damageNum: Number(damageDice[1]),
-						damageSides: Number(damageDice[0]),
-						damageBonus: action.damage_bonus,
-						damageText: dice[0],
+						damage_dice_num: Number(damageDice[0]),
+						damage_dice_sides: Number(damageDice[1]),
+						damage_dice_bonus: action.damage_bonus,
+						damage_dice_text: dice[0],
 					};
 					newAction.bonus_damage = {
-						bonusNum: Number(bonusDice[1]),
-						bonusSides: Number(bonusDice[0]),
-						bonusText: dice[1],
+						bonus_dice_num: Number(bonusDice[0]),
+						bonus_dice_sides: Number(bonusDice[1]),
+						bonus_dice_text: dice[1],
 					};
 				} else if (action.damage_dice) {
 					const damageDice = action.damage_dice.split('d');
 					newAction.damage = {
-						damageNum: Number(damageDice[1]),
-						damageSides: Number(damageDice[0]),
-						damageText: action.damage_dice,
+						damage_dice_num: Number(damageDice[0]),
+						damage_dice_sides: Number(damageDice[1]),
+						damage_dice_bonus: action.damage_bonus,
+						damage_dice_text: action.damage_dice,
 					};
 				}
 			}
 
 			console.log(action.name, 'original', action, 'updated', newAction);
+			// Add to actions array to be set as action state for the current monster
 			newActions.push(newAction);
 		});
 		return newActions;
@@ -77,37 +105,20 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 		processActions(monster.actions)
 	);
 
-	// d20 + attack bonus
+	// Roll a d20 and add monsters attack bonus, if any
 	const handleToHit = (attack_bonus) => {
 		playSfx();
 		handleRollDice(20, 1, attack_bonus);
 	};
 
 	// damage dice * dice num + damage bonus
-	const handleDealDamage = (action) => {
+	const handleDealDamage = ({ damage }) => {
 		playSfx();
-		// [# of dice, # of sides] 2d6
-		let damageDiceSides = 0;
-		let damageDiceNum = 0;
-
-		if (action.damage_dice.includes('+')) {
-			let dice = action.damage_dice.split('+');
-			const damageDice = dice[0].split('d');
-			const bonusDice = dice[1].split('d');
-			damageDiceSides = Number(damageDice[1]);
-			damageDiceNum = Number(damageDice[0]);
-
-			console.log(dice, damageDice, bonusDice);
-		} else if (action.damage_dice) {
-			const damageDice = action.damage_dice.split('d');
-			damageDiceSides = Number(damageDice[1]);
-			damageDiceNum = Number(damageDice[0]);
-		} else {
-			damageDiceSides = 0;
-			damageDiceNum = 0;
-		}
-		let damage_modifier = action.damage_bonus || 0;
-		handleRollDice(damageDiceSides, damageDiceNum, damage_modifier);
+		handleRollDice(
+			damage.damage_dice_sides,
+			damage.damage_dice_num,
+			damage.damage_dice_bonus
+		);
 	};
 
 	const handleConditions = ({ action_target, condition }) => {
@@ -141,24 +152,30 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 						<GiBattleAxe />
 					) : action.attack_type === 'Ranged' ? (
 						<GiPocketBow className="ranged-icon me-1" />
+					) : action.attack_type === 'Melee or Ranged' ? (
+						<GiThrownSpear />
 					) : (
 						<GiTwirlCenter />
 					)}{' '}
 				</div>
 				<div>
 					<h4 className="action-title">{action.name}</h4>
-					{action.nameSubtext ? (
-						<p className="action-subtext">{action.nameSubtext}</p>
+					{action.name_subtext ? (
+						<p className="action-subtext">{action.name_subtext}</p>
 					) : null}
 				</div>
 			</div>
 			<div>
 				{action.attack_type === 'Melee' ||
-				action.attack_type === 'Ranged' ||
-				action.damage_dice ? (
+				action.attack_type === 'Ranged' ? (
 					<MeleeRangeButtons
 						action={action}
 						handleToHit={handleToHit}
+						handleDealDamage={handleDealDamage}
+					/>
+				) : action.damage ? (
+					<SpellButtons
+						action={action}
 						handleDealDamage={handleDealDamage}
 					/>
 				) : (
