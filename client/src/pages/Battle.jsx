@@ -1,256 +1,248 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import { rollDie } from '../utils/diceRolls';
+import { rollDie } from "../utils/diceRolls";
 
-import Monster from '../components/Monster';
-import Hero from '../components/Hero';
-import InfoModal from '../components/InfoModal';
-import RollModal from '../components/RollModal';
-import MonstersModal from '../components/MonstersModal';
-import { addInitiative } from '../utils/diceRolls';
-import { slideLeft, slideRight } from '../utils/slideAnimations';
+import Monster from "../components/Monster";
+import Hero from "../components/Hero";
+import InfoModal from "../components/InfoModal";
+import RollModal from "../components/RollModal";
+import MonstersModal from "../components/MonstersModal";
+import { addInitiative } from "../utils/diceRolls";
+import { slideLeft, slideRight } from "../utils/slideAnimations";
 
 import {
-	FaChevronLeft,
-	FaChevronRight,
-	FaChevronCircleLeft,
-	FaChevronCircleRight,
-} from 'react-icons/fa';
+  FaChevronLeft,
+  FaChevronRight,
+  FaChevronCircleLeft,
+  FaChevronCircleRight,
+} from "react-icons/fa";
 
-import '../App.scss';
-import QuickView from '../components/QuickView';
+import "../App.scss";
+import QuickView from "../components/QuickView";
 
 const Battle = () => {
-	let params = useParams();
+  let params = useParams();
 
-	// Bring in monster and hero data
-	const [battleData, setBattleData] = useState(() => {
-		const savedBattles = JSON.parse(
-			localStorage.getItem('dm-deck-battles')
-		);
-		let currentBattle = savedBattles.find(
-			(battle) => battle.name === params.battleId
-		);
+  // Bring in monster and hero data
+  const [battleData, setBattleData] = useState(() => {
+    const savedBattles = JSON.parse(localStorage.getItem("dm-deck-battles"));
+    let currentBattle = savedBattles.find(
+      (battle) => battle.name === params.battleId
+    );
 
-		currentBattle.monsters = currentBattle.monsters
-			.sort((a, b) => (a.name > b.name ? 1 : -1))
-			.map((monster, index) =>
-				currentBattle.monsters.findIndex(
-					(current) => current.name === monster.name
-				) === index
-					? { ...monster, conditions: [] }
-					: {
-							...monster,
-							name: `${monster.name} ${index + 1}`,
-							conditions: [],
-					  }
-			);
+    currentBattle.monsters = currentBattle.monsters
+      .sort((a, b) => (a.name > b.name ? 1 : -1))
+      .map((monster, index) =>
+        currentBattle.monsters.findIndex(
+          (current) => current.name === monster.name
+        ) === index
+          ? { ...monster, conditions: [] }
+          : {
+              ...monster,
+              name: `${monster.name} ${index + 1}`,
+              conditions: [],
+            }
+      );
 
-		return currentBattle;
-	});
-	const [sortedData, setSortedData] = useState(() =>
-		[].concat(battleData.monsters).concat(battleData.heroes)
-	);
-	// Variables to control battle statistics
-	const [index, setIndex] = useState(0);
-	const [round, setRound] = useState(1);
-	const [turn, setTurn] = useState(1);
-	const [info, setInfo] = useState({});
-	// Modal
-	const [showRollModal, setShowRollModal] = useState(false);
-	const [showInfoModal, setShowInfoModal] = useState(false);
-	const [showMonstersModal, setShowMonstersModal] = useState(false);
-	// Dice rolls
-	const [rollModifier, setRollModifier] = useState(0);
-	const [die, setDie] = useState(0);
+    return currentBattle;
+  });
+  const [sortedData, setSortedData] = useState(() =>
+    [].concat(battleData.monsters).concat(battleData.heroes)
+  );
+  // Variables to control battle statistics
+  const [index, setIndex] = useState(0);
+  const [round, setRound] = useState(1);
+  const [turn, setTurn] = useState(1);
+  const [info, setInfo] = useState({});
+  // Modal
+  const [showRollModal, setShowRollModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showMonstersModal, setShowMonstersModal] = useState(false);
+  // Dice rolls
+  const [rollModifier, setRollModifier] = useState(0);
+  const [die, setDie] = useState(0);
 
-	const handleCloseRollModal = () => setShowRollModal(false);
-	const handleCloseInfoModal = () => setShowInfoModal(false);
-	const handleCloseMonstersModal = () => setShowMonstersModal(false);
+  const handleCloseRollModal = () => setShowRollModal(false);
+  const handleCloseInfoModal = () => setShowInfoModal(false);
+  const handleCloseMonstersModal = () => setShowMonstersModal(false);
 
-	// Add initiative on load
-	useEffect(() => {
-		addInitiative(sortedData, setSortedData);
-	}, []);
+  // Add initiative on load
+  useEffect(() => {
+    addInitiative(sortedData, setSortedData);
+  }, []);
 
-	// ? TESTING: Used for viewing current array
-	const showData = () => console.log(sortedData);
+  // ? TESTING: Used for viewing current array
+  const showData = () => console.log(sortedData);
 
-	const handleRollDice = (sides, num, bonus) => {
-		let diceRoll = 0;
-		for (let i = 0; i < num; i++) {
-			diceRoll += rollDie(sides);
-		}
-		setRollModifier(bonus);
-		setDie(diceRoll);
-		setShowRollModal(true);
-	};
+  const handleRollDice = (sides, num, bonus = 0) => {
+    let diceRoll = 0;
+    for (let i = 0; i < num; i++) {
+      diceRoll += rollDie(sides);
+    }
+    setRollModifier(bonus);
+    setDie(diceRoll);
+    setShowRollModal(true);
+  };
 
-	const handleShowInfo = (monster) => {
-		setInfo(monster);
-		setShowInfoModal(true);
-	};
+  const handleShowInfo = (monster) => {
+    setInfo(monster);
+    setShowInfoModal(true);
+  };
 
-	const handleHeroAttack = () => {
-		setShowMonstersModal(true);
-	};
+  const handleHeroAttack = () => {
+    setShowMonstersModal(true);
+  };
 
-	// Renders cards with initiative sorting and sliding animation classes
-	const renderCards = () => {
-		if (sortedData !== null) {
-			return sortedData.map((creature, n) => {
-				let position =
-					n > index
-						? 'nextCard'
-						: n === index
-						? 'activeCard'
-						: 'prevCard';
+  // Renders cards with initiative sorting and sliding animation classes
+  const renderCards = () => {
+    if (sortedData !== null) {
+      return sortedData.map((creature, n) => {
+        let position =
+          n > index ? "nextCard" : n === index ? "activeCard" : "prevCard";
 
-				if (creature.type !== 'hero') {
-					return (
-						<Monster
-							key={creature.name}
-							monster={creature}
-							cardStyle={position}
-							handleRollDice={handleRollDice}
-							handleShowInfo={handleShowInfo}
-							sortedData={sortedData}
-							setSortedData={setSortedData}
-						/>
-					);
-				} else if (creature.type === 'hero') {
-					return (
-						<Hero
-							key={creature.player_name}
-							hero={creature}
-							cardStyle={position}
-							handleHeroAttack={handleHeroAttack}
-						/>
-					);
-				}
-			});
-		}
-		return null;
-	};
+        if (creature.type !== "hero") {
+          return (
+            <Monster
+              key={creature.name}
+              monster={creature}
+              cardStyle={position}
+              handleRollDice={handleRollDice}
+              handleShowInfo={handleShowInfo}
+              sortedData={sortedData}
+              setSortedData={setSortedData}
+            />
+          );
+        } else if (creature.type === "hero") {
+          return (
+            <Hero
+              key={creature.player_name}
+              hero={creature}
+              cardStyle={position}
+              handleHeroAttack={handleHeroAttack}
+            />
+          );
+        }
+      });
+    }
+    return null;
+  };
 
-	return (
-		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
-			{/* Quick view of monster AC and HP */}
-			<QuickView
-				sortedData={sortedData}
-				turn={turn}
-				setTurn={setTurn}
-				setIndex={setIndex}
-			/>
-			<div className="battle-stats mt-2 d-flex">
-				<h4 className="battle-stat mx-2">Round: {round}</h4>
-				<h4 className="battle-stat mx-2">
-					Turn: {turn}/{sortedData.length}
-				</h4>
-			</div>
+  return (
+    <div className="battle-container d-flex flex-column justify-content-center align-items-center container">
+      {/* Quick view of monster AC and HP */}
+      <QuickView
+        sortedData={sortedData}
+        turn={turn}
+        setTurn={setTurn}
+        setIndex={setIndex}
+      />
+      <div className="battle-stats mt-2 d-flex">
+        <h4 className="battle-stat mx-2">Round: {round}</h4>
+        <h4 className="battle-stat mx-2">
+          Turn: {turn}/{sortedData.length}
+        </h4>
+      </div>
 
-			<div className="d-flex align-items-center">
-				{/* Render left Chevron */}
-				{round === 1 && turn === 1 ? null : turn === 1 ? (
-					<FaChevronCircleLeft
-						onClick={() =>
-							slideLeft(
-								index,
-								turn,
-								round,
-								sortedData,
-								setRound,
-								setTurn,
-								setIndex
-							)
-						}
-						className="battle-chevron left-chevron"
-					/>
-				) : (
-					<FaChevronLeft
-						onClick={() =>
-							slideLeft(
-								index,
-								turn,
-								round,
-								sortedData,
-								setRound,
-								setTurn,
-								setIndex
-							)
-						}
-						className="battle-chevron left-chevron"
-					/>
-				)}
+      <div className="d-flex align-items-center">
+        {/* Render left Chevron */}
+        {round === 1 && turn === 1 ? null : turn === 1 ? (
+          <FaChevronCircleLeft
+            onClick={() =>
+              slideLeft(
+                index,
+                turn,
+                round,
+                sortedData,
+                setRound,
+                setTurn,
+                setIndex
+              )
+            }
+            className="battle-chevron left-chevron"
+          />
+        ) : (
+          <FaChevronLeft
+            onClick={() =>
+              slideLeft(
+                index,
+                turn,
+                round,
+                sortedData,
+                setRound,
+                setTurn,
+                setIndex
+              )
+            }
+            className="battle-chevron left-chevron"
+          />
+        )}
 
-				{/* Cards */}
-				<div className="card-container container d-flex justify-content-center">
-					<div className="background-block"></div>
-					{sortedData || sortedData[0].initiative
-						? renderCards()
-						: null}
-				</div>
+        {/* Cards */}
+        <div className="card-container container d-flex justify-content-center">
+          <div className="background-block"></div>
+          {sortedData || sortedData[0].initiative ? renderCards() : null}
+        </div>
 
-				{/* Render right Chevron */}
-				{turn === sortedData.length ? (
-					<FaChevronCircleRight
-						onClick={() =>
-							slideRight(
-								index,
-								turn,
-								round,
-								sortedData,
-								setRound,
-								setTurn,
-								setIndex
-							)
-						}
-						className="battle-chevron right-chevron"
-					/>
-				) : (
-					<FaChevronRight
-						onClick={() =>
-							slideRight(
-								index,
-								turn,
-								round,
-								sortedData,
-								setRound,
-								setTurn,
-								setIndex
-							)
-						}
-						className="battle-chevron right-chevron"
-					/>
-				)}
-			</div>
+        {/* Render right Chevron */}
+        {turn === sortedData.length ? (
+          <FaChevronCircleRight
+            onClick={() =>
+              slideRight(
+                index,
+                turn,
+                round,
+                sortedData,
+                setRound,
+                setTurn,
+                setIndex
+              )
+            }
+            className="battle-chevron right-chevron"
+          />
+        ) : (
+          <FaChevronRight
+            onClick={() =>
+              slideRight(
+                index,
+                turn,
+                round,
+                sortedData,
+                setRound,
+                setTurn,
+                setIndex
+              )
+            }
+            className="battle-chevron right-chevron"
+          />
+        )}
+      </div>
 
-			<RollModal
-				showRollModal={showRollModal}
-				handleCloseRollModal={handleCloseRollModal}
-				die={die}
-				rollModifier={rollModifier}
-			/>
+      <RollModal
+        showRollModal={showRollModal}
+        handleCloseRollModal={handleCloseRollModal}
+        die={die}
+        rollModifier={rollModifier}
+      />
 
-			<InfoModal
-				info={info}
-				showInfoModal={showInfoModal}
-				handleCloseInfoModal={handleCloseInfoModal}
-			/>
+      <InfoModal
+        info={info}
+        showInfoModal={showInfoModal}
+        handleCloseInfoModal={handleCloseInfoModal}
+      />
 
-			<MonstersModal
-				showMonstersModal={showMonstersModal}
-				handleCloseMonstersModal={handleCloseMonstersModal}
-				sortedData={sortedData}
-				setSortedData={setSortedData}
-			/>
+      <MonstersModal
+        showMonstersModal={showMonstersModal}
+        handleCloseMonstersModal={handleCloseMonstersModal}
+        sortedData={sortedData}
+        setSortedData={setSortedData}
+      />
 
-			<button className="btn btn-primary" onClick={showData}>
-				Array
-			</button>
-		</div>
-	);
+      <button className="btn btn-primary" onClick={showData}>
+        Array
+      </button>
+    </div>
+  );
 };
 
 export default Battle;
