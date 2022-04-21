@@ -15,11 +15,10 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
   // Dice roll sound effect
   const [playSfx] = useSound(diceSfx);
 
-  /* 
-  Processes actions from Open5e API call and pulls out important information such as attack type (melee or ranged), damage dice and bonus dice, etc. 
-  Damage types might include: acid, bludgeoning, cold, fire, force, lightning, necrotic, piercing, poison, psychic, radiant, slashing, thunder
-  */
-
+  /**
+   * @function processActions processes API JSON to fit what is needed for application
+   * @param {Object[]} actions - Array of action objects belonging to the monster
+   * **/
   const processActions = (actions) => {
     let newActions = [];
 
@@ -29,7 +28,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
         attack_bonus: action.attack_bonus,
       };
 
-      // Pull out name and extra information such as recharge
+      // Process name
       if (action.name.match(/\(([^\)]*)\)/)) {
         let extraInfo = action.name.match(/\(([^\)]*)\)/);
         newAction.name = action.name.replace(extraInfo[0], "").trim();
@@ -38,7 +37,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
         newAction.name = action.name;
       }
 
-      // Find the action type (i.e. ranged, melee, effect)
+      // Process action type
       if (action.desc.includes("Melee or Ranged Weapon Attack")) {
         let strArr = action.desc.split(" ");
         newAction.attack_reach = strArr[strArr.indexOf("reach") + 1];
@@ -63,7 +62,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
         console.log("other");
       }
 
-      // Find damage dice and separate bonus dice if exists
+      // Process damage and bonus damage dice
       if (action.damage_dice) {
         if (action.damage_dice.includes("+")) {
           let dice = action.damage_dice.split("+");
@@ -172,7 +171,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
             className="action-btn btn btn-outline-secondary btn-sm ms-1"
             onClick={() => handleConditions(action)}
           >
-            <GiTwirlCenter /> Add Status
+            <GiTwirlCenter /> View Action
           </button>
         )}
       </div>

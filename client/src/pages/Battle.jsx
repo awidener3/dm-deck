@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import { rollDie } from "../utils/diceRolls";
-
 import Monster from "../components/Monster";
 import Hero from "../components/Hero";
 import InfoModal from "../components/InfoModal";
 import RollModal from "../components/RollModal";
 import MonstersModal from "../components/MonstersModal";
+import QuickView from "../components/QuickView";
 import { addInitiative } from "../utils/diceRolls";
 import { slideLeft, slideRight } from "../utils/slideAnimations";
-
 import {
   FaChevronLeft,
   FaChevronRight,
   FaChevronCircleLeft,
   FaChevronCircleRight,
 } from "react-icons/fa";
-
 import "../App.scss";
-import QuickView from "../components/QuickView";
 
 const Battle = () => {
   let params = useParams();
 
-  // Bring in monster and hero data
+  // Array of monsters + heroes created from CreateBattle.js
   const [battleData, setBattleData] = useState(() => {
     const savedBattles = JSON.parse(localStorage.getItem("dm-deck-battles"));
     let currentBattle = savedBattles.find(
       (battle) => battle.name === params.battleId
     );
-
     currentBattle.monsters = currentBattle.monsters
       .sort((a, b) => (a.name > b.name ? 1 : -1))
       .map((monster, index) =>
@@ -44,28 +39,30 @@ const Battle = () => {
               conditions: [],
             }
       );
-
     return currentBattle;
   });
+
   const [sortedData, setSortedData] = useState(() =>
     [].concat(battleData.monsters).concat(battleData.heroes)
   );
+
   // Variables to control battle statistics
   const [index, setIndex] = useState(0);
   const [round, setRound] = useState(1);
   const [turn, setTurn] = useState(1);
   const [info, setInfo] = useState({});
+
   // Modal
   const [showRollModal, setShowRollModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [showMonstersModal, setShowMonstersModal] = useState(false);
-  // Dice rolls
-  const [rollModifier, setRollModifier] = useState(0);
-  const [die, setDie] = useState(0);
-
   const handleCloseRollModal = () => setShowRollModal(false);
   const handleCloseInfoModal = () => setShowInfoModal(false);
   const handleCloseMonstersModal = () => setShowMonstersModal(false);
+
+  // Dice rolls
+  const [rollModifier, setRollModifier] = useState(0);
+  const [die, setDie] = useState(0);
 
   // Add initiative on load
   useEffect(() => {
@@ -75,6 +72,13 @@ const Battle = () => {
   // ? TESTING: Used for viewing current array
   const showData = () => console.log(sortedData);
 
+  /**
+   * Dice roll for damage and d20 to-hit rolls
+   * @function handleRollDice
+   * @param {Number} sides - number of sided die (d6<-, d12<-, etc.)
+   * @param {Number} num - number of dice being rolled (->2d6, ->1d4, etc.)
+   * @param {Number} bonus - damage modifier added after dice rolls (1d4 + 2<-)
+   * **/
   const handleRollDice = (sides, num, bonus = 0) => {
     let diceRoll = 0;
     for (let i = 0; i < num; i++) {
@@ -90,12 +94,16 @@ const Battle = () => {
     setShowInfoModal(true);
   };
 
-  const handleHeroAttack = () => {
-    setShowMonstersModal(true);
-  };
+  const handleHeroAttack = () => setShowMonstersModal(true);
 
-  // Renders cards with initiative sorting and sliding animation classes
-  const renderCards = () => {
+  /**
+   * Renders cards with initiative sorting and sliding animation classes.
+   * @function renderCards Renders card based on monster type found in sortedData array
+   * @param {Object[]} sortedData - Combined monster and hero array with added initiative
+   * @returns {JSX} Card component correlating to creature.type
+   * **/
+
+  const renderCards = (sortedData) => {
     if (sortedData !== null) {
       return sortedData.map((creature, n) => {
         let position =
@@ -181,7 +189,9 @@ const Battle = () => {
         {/* Cards */}
         <div className="card-container container d-flex justify-content-center">
           <div className="background-block"></div>
-          {sortedData || sortedData[0].initiative ? renderCards() : null}
+          {sortedData || sortedData[0].initiative
+            ? renderCards(sortedData)
+            : null}
         </div>
 
         {/* Render right Chevron */}
