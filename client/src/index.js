@@ -17,7 +17,7 @@ ReactDOM.render(
 	<BrowserRouter>
 		<Routes>
 			<Route path="/" element={<App />}>
-				<Route path="/" element={<Home />} />
+				<Route path="dm-deck" element={<Home />} />
 				<Route path="battles" element={<Battles />}>
 					{/* Index route for showing battles */}
 					<Route index element={<BattleSelect />} />

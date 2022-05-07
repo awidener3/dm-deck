@@ -10,17 +10,17 @@ const Header = () => {
 			<p className="m-0 version-text">v0.0.2</p>
 			<nav className="navbar navbar-expand custom-navbar">
 				<div className="container-fluid">
-					<Link to="/" onClick={() => setPathname('/')}>
+					<Link to="/dm-deck" onClick={() => setPathname('/')}>
 						<h1 className="navbar-brand logo-text">
 							DM<span className="logo-subtext">Deck</span>
 						</h1>
 					</Link>
 					<ul className="navbar-nav">
 						<Link
-							to="/"
+							to="/dm-deck"
 							onClick={() => setPathname('/')}
 							className={
-								pathname === '/'
+								pathname === '/dm-deck'
 									? 'nav-link custom-nav-link m-2 active'
 									: 'nav-link custom-nav-link m-2'
 							}
