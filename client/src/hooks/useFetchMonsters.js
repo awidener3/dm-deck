@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import open5e from '../api/open5e';
 
+// API call to Open5e, used in 'src/components/CreateBattleForm
 const useFetchMonsters = () => {
 	const [monsterData, setMonsterData] = useState({
 		slug: '',
