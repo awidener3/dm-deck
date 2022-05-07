@@ -151,8 +151,8 @@
     Array of links to open5e's spell list. I have created a separate spell list found at 'docs/spell_list.json'
   */
   "spell_list": [],
-  "img_main": null,
-  "document__slug": "tob",
-  "document__title": "Tome of Beasts OGL",
-  "document__license_url": "http://open5e.com/legal"
+  "img_main": null,                                   // img url, if available
+  "document__slug": "tob",                            // slug of origin of monster
+  "document__title": "Tome of Beasts OGL",            // human readable origin of monster
+  "document__license_url": "http://open5e.com/legal"  // legal info
 }
