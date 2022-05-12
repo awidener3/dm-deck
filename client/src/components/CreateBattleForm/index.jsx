@@ -17,6 +17,7 @@ const CreateBattleForm = ({
 
 	return (
 		<div className="m-md-4">
+			{/* battle name */}
 			<Form className="battle-form">
 				<Form.Group>
 					<Form.Control
@@ -30,6 +31,7 @@ const CreateBattleForm = ({
 				</Form.Group>
 			</Form>
 
+			{/* hero table */}
 			<h2 className="mt-3">Select Heroes</h2>
 			<Container className="creature-grid">
 				<Row>
@@ -93,11 +95,11 @@ const CreateBattleForm = ({
 				))}
 			</Container>
 
-			<button className="btn btn-primary mt-3 disabled">
-				Add New Hero (Not ready yet)
-			</button>
+			<a href="/create-character" className="btn btn-primary mt-3">
+				Add New Hero (WIP)
+			</a>
 
-			{/* MONSTER SEARCH */}
+			{/* monsters */}
 			<h2 className="mt-4">Select Monsters</h2>
 			<Form.Group>
 				<Form.Control
@@ -200,9 +202,9 @@ const CreateBattleForm = ({
 				</Container>
 			) : null}
 
-			<button className="btn btn-primary mt-3 disabled">
-				Add Custom Monster (Not ready yet)
-			</button>
+			<a href="/create-monster" className="btn btn-primary mt-3">
+				Add Custom Monster (WIP)
+			</a>
 		</div>
 	);
 };
