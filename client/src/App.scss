@@ -1,28 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap');
 
 @font-face {
-  font-family: "Draconis";
-  src: local("Draconis"),
-    url(./assets/fonts/Draconis/Draconis.ttf) format("truetype");
+	font-family: 'Draconis';
+	src: local('Draconis'),
+		url(./assets/fonts/Draconis/Draconis.ttf) format('truetype');
 }
 
 @font-face {
-  font-family: "Draconis";
-  font-weight: 900;
-  src: local("Draconis"), url(./assets/fonts/Draconis/DraconisBold.ttf);
+	font-family: 'Draconis';
+	font-weight: 900;
+	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBold.ttf);
 }
 
 @font-face {
-  font-family: "Draconis";
-  font-style: italic;
-  src: local("Draconis"), url(./assets/fonts/Draconis/DraconisItalic.ttf);
+	font-family: 'Draconis';
+	font-style: italic;
+	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisItalic.ttf);
 }
 
 @font-face {
-  font-family: "Draconis";
-  font-weight: 900;
-  font-style: italic;
-  src: local("Draconis"), url(./assets/fonts/Draconis/DraconisBoldItalic.ttf);
+	font-family: 'Draconis';
+	font-weight: 900;
+	font-style: italic;
+	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBoldItalic.ttf);
 }
 
 $xs: 0;
@@ -39,99 +39,116 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Asul", sans-serif;
+	font-family: 'Asul', sans-serif;
 }
 
 // Mukta 200-700 available
 p,
 li,
 a {
-  font-family: "Mukta Vaani", sans-serif;
+	font-family: 'Mukta Vaani', sans-serif;
 }
 
 body {
-  background-color: #e6e6e6;
+	background-color: #e6e6e6;
 }
 
 .splash-screen {
-  background-color: black;
-  height: 300px;
-  width: 100%;
-  .splash-logo-text {
-    font-family: "Draconis", "Asul", sans-serif;
-    font-size: 7rem;
-    margin: 0;
-    padding: 0;
-    color: #c00913;
-    .splash-logo-subtext {
-      color: #ffffff;
-    }
-  }
-  @media screen and (max-width: $sm) {
-    height: 200px;
-    .splash-logo-text {
-      font-size: 4rem;
-    }
-  }
+	background-color: black;
+	height: 300px;
+	width: 100%;
+	.splash-logo-text {
+		font-family: 'Draconis', 'Asul', sans-serif;
+		font-size: 7rem;
+		margin: 0;
+		padding: 0;
+		color: #c00913;
+		.splash-logo-subtext {
+			color: #ffffff;
+		}
+	}
+	@media screen and (max-width: $sm) {
+		height: 200px;
+		.splash-logo-text {
+			font-size: 4rem;
+		}
+	}
 }
 
 .card-container {
-  position: relative;
+	position: relative;
 
-  width: 65rem;
-  height: 32rem;
+	width: 65rem;
+	height: 32rem;
 }
 
 .wrapper {
-  position: absolute;
+	position: absolute;
 }
 
 .prevCard {
-  left: 0%;
-  opacity: 0;
+	left: 0%;
+	opacity: 0;
 }
 
 .activeCard {
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 99;
 }
 
 .nextCard {
-  left: 100%;
-  transform: translateX(calc(-100% - 2rem));
-  opacity: 0;
+	left: 100%;
+	transform: translateX(calc(-100% - 2rem));
+	opacity: 0;
 }
 
 article {
-  position: absolute;
-  transition: all 1s;
+	position: absolute;
+	transition: all 1s;
 }
 
 .background-block {
-  position: absolute;
-  width: 90%;
-  height: 100%;
-  z-index: 0;
+	position: absolute;
+	width: 90%;
+	height: 100%;
+	z-index: 0;
 }
 
 .battle-container {
-  position: relative;
-  .battle-chevron {
-    font-size: 2rem;
-    position: absolute;
-  }
-  .left-chevron {
-    left: 0;
-    z-index: 100;
-  }
-  .right-chevron {
-    right: 0;
-    z-index: 100;
-  }
+	position: relative;
+	.battle-chevron {
+		font-size: 2rem;
+		position: absolute;
+	}
+	.left-chevron {
+		left: 0;
+		z-index: 100;
+	}
+	.right-chevron {
+		right: 0;
+		z-index: 100;
+	}
 }
 
 .info-modal-action {
-  font-style: italic;
-  font-weight: 700;
+	font-style: italic;
+	font-weight: 700;
+}
+
+// Forms
+
+.form-name-input {
+	border: none;
+	border-radius: 0;
+	font-family: 'Mukta Vaani', sans-serif;
+	font-size: 2.2rem;
+	font-weight: 500;
+	line-height: 0;
+	@media screen and (max-width: $lg) {
+		font-size: 1.7rem;
+	}
+	@media screen and (max-width: $sm) {
+		font-size: 1.5rem;
+	}
 }
