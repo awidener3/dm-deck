@@ -1,0 +1,202 @@
+[
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Barbarian",
+		"subclasses": [
+			"Path of the Berserker",
+			"Path of the Totem Warrior",
+			"Path of the Battlerager",
+			"Path of the Ancestral Guardian",
+			"Path of the Storm Herald",
+			"Path of the Zealot",
+			"Path of the Beast",
+			"Path of Wild Magic"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Bard",
+		"subclasses": [
+			"College of Lore",
+			"College of Valor",
+			"College of Glamour",
+			"College of Swords",
+			"College of Whispers",
+			"College of Eloquence",
+			"College of Creation"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Cleric",
+		"subclasses": [
+			"Knowledge Domain",
+			"Life Domain",
+			"Light Domain",
+			"Nature Domain",
+			"Tempest Domain",
+			"Trickery Domain",
+			"War Domain",
+			"Death Domain",
+			"Arcana Domain",
+			"Solidarity Domain",
+			"Strength Domain",
+			"Ambition Domain",
+			"Zeal Domain",
+			"Forge Domain",
+			"Grave Domain",
+			"Order Domain",
+			"Peace Domain",
+			"Twilight Domain"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Druid",
+		"subclasses": [
+			"Circle of the Land",
+			"Circle of the Moon",
+			"Circle of Dreams",
+			"Circle of the Shepherd",
+			"Circle of Spores",
+			"Circle of Stars",
+			"Circle of Wildfire"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Fighter",
+		"subclasses": [
+			"Champion",
+			"Battle Master",
+			"Eldritch Knight",
+			"Purple Dragon Knight (Banneret)",
+			"Arcane Archer",
+			"Cavalier",
+			"Samurai",
+			"Echo Knight",
+			"Psi Warrior",
+			"Rune Knight"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Monk",
+		"subclasses": [
+			"Way of the Open Hand",
+			"Way of the Shadow",
+			"Way of the Four Elements",
+			"Way of the Long Death",
+			"Way of the Sun Soul",
+			"Way of the Drunken Master",
+			"Way of the Kensei",
+			"Way of Mercy",
+			"Way of the Astral Self"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Paladin",
+		"subclasses": [
+			"Oath of Devotion",
+			"Oath of the Ancients",
+			"Oath of Vengeance",
+			"Oathbreaker",
+			"Oath of the Crown",
+			"Oath of Conquest",
+			"Oath of Redemption",
+			"Oath of Glory",
+			"Oath of the Watchers"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Ranger",
+		"subclasses": [
+			"Hunter",
+			"Beast Master",
+			"Gloom Stalker",
+			"Horizon Walker",
+			"Monster Slayer",
+			"Fey Wanderer",
+			"Swarmkeeper"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Rogue",
+		"subclasses": [
+			"Thief",
+			"Assassin",
+			"Arcane Trickster",
+			"Mastermind",
+			"Swashbuckler",
+			"Inquisitive",
+			"Scout",
+			"Phantom",
+			"Soulknife"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Sorcerer",
+		"subclasses": [
+			"Draconic Bloodline",
+			"Wild Magic",
+			"Storm Sorcery",
+			"Pyromancer",
+			"Divine Soul",
+			"Shadow Magic",
+			"Aberrant Mind",
+			"Clockwork Soul"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Warlock",
+		"subclasses": [
+			"The Archfey",
+			"The Fiend",
+			"The Great Old One",
+			"The Undying",
+			"The Celestial",
+			"The Hexblade",
+			"The Fathomless",
+			"The Genie"
+		]
+	},
+	{
+		"source": "Player's Handbook/Basic Rules",
+		"class": "Wizard",
+		"subclasses": [
+			"School of Abjuration",
+			"School of Conjuration",
+			"School of Divination",
+			"School of Enchantment",
+			"School of Evocation",
+			"School of Illusion",
+			"School of Necromancy",
+			"School of Transmutation",
+			"Bladesinging",
+			"War Magic",
+			"Chronurgy Magic",
+			"Graviturgy Magic",
+			"Order of Scribes"
+		]
+	},
+	{
+		"source": "Tasha's Cauldron of Everything",
+		"class": "Artificer",
+		"subclasses": ["Alchemist", "Artillerist", "Battle Smith", "Armorer"]
+	},
+	{
+		"source": "Critical Role",
+		"class": "Blood Hunter",
+		"subclasses": [
+			"Order of the Ghostslayer",
+			"Order of the Lycan",
+			"Order of the Mutant",
+			"Order of the Profane Soul"
+		]
+	}
+]
