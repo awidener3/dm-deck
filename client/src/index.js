@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.scss';
 import App from './App';
@@ -11,6 +11,8 @@ import CreateBattle from './pages/CreateBattle';
 import CreateCharacter from './pages/CreateCharacter';
 import CreateMonster from './pages/CreateMonster';
 import Legal from './pages/Legal';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import reportWebVitals from './reportWebVitals';
 import BattleSelect from './components/BattleSelect';
 
@@ -20,22 +22,32 @@ ReactDOM.render(
 		<Routes>
 			<Route path="/" element={<App />}>
 				<Route path="" element={<Home />} />
+
 				<Route path="battles" element={<Battles />}>
 					{/* Index route for showing battles */}
 					<Route index element={<BattleSelect />} />
 					{/* Unique ID for saved battles */}
 					<Route path=":battleId" element={<Battle />} />
 				</Route>
+
 				<Route path="create-battle" element={<CreateBattle />} />
+
 				<Route
 					path="create-character"
 					element={<CreateCharacter />}
 				></Route>
+
 				<Route
 					path="create-monster"
 					element={<CreateMonster />}
 				></Route>
+
 				<Route path="legal" element={<Legal />} />
+
+				<Route path="login" element={<Login />} />
+
+				<Route path="signup" element={<Signup />} />
+
 				<Route
 					path="*"
 					element={
