@@ -34,7 +34,7 @@ const LoginForm = () => {
 	};
 
 	return (
-		<Form onSubmit={handleFormSubmit} autoComplete="off">
+		<Form onSubmit={handleFormSubmit}>
 			<Form.Group>
 				<Form.Label>Email Address</Form.Label>
 				<Form.Control

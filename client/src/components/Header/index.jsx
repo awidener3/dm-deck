@@ -50,6 +50,21 @@ const Header = () => {
 						>
 							Create
 						</Link>
+
+						{Auth.loggedIn() ? (
+							<Link
+								to="/me"
+								onClick={() => setPathname('/profile')}
+								className={
+									pathname === '/profile'
+										? 'nav-link custom-nav-link m-2 active'
+										: 'nav-link custom-nav-link m-2'
+								}
+							>
+								Profile
+							</Link>
+						) : null}
+
 						{Auth.loggedIn() ? (
 							<Link
 								to="/login"

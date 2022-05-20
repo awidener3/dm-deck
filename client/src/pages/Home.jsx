@@ -20,24 +20,35 @@ const Home = () => {
 
 				<QuickLinks />
 
-				<h2>Current Features</h2>
+				<h2>Changelog</h2>
+				<br />
+				<h3>v0.0.3</h3>
 				<ul>
 					<li>
-						Search Open5e API for monsters available in the 5th
+						🧙‍♂️ Logging in! Added user login features, login, update,
+						and delete capabilities. This will lead to user-specific
+						custom characters and monsters, and a place to store all
+						user-created encounters/decks
+					</li>
+				</ul>
+				<h3>v0.0.2</h3>
+				<ul>
+					<li>
+						🔍 Search Open5e API for monsters available in the 5th
 						Edition SRD.
 					</li>
 					<li>
-						Create custom battles with fetched monsters, which also
-						calculates difficulty and earned XP.
+						🧮 Create custom battles with fetched monsters, which
+						also calculates difficulty and earned XP.
 					</li>
-					<li>Save custom battles to localStorage.</li>
+					<li>💾 Save custom battles to localStorage.</li>
 					<li>
-						Running battle renders easy-to-read cards that displays
-						necessary information for DM's to run a battle.
+						🃏 Running battle renders easy-to-read cards that
+						displays necessary information for DM's to run a battle.
 					</li>
 					<li>
-						Automatically roll "to hit" and "damage" dice based on
-						the monster.
+						🎲 Automatically roll "to hit" and "damage" dice based
+						on the monster.
 					</li>
 				</ul>
 

@@ -1,14 +1,27 @@
 import React from 'react';
-import Header from './components/Header';
-// Added for router
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
 	ApolloClient,
 	InMemoryCache,
 	ApolloProvider,
 	createHttpLink,
 } from '@apollo/client';
+
+import Header from './components/Header';
+import Home from './pages/Home';
+import Battles from './pages/Battles';
+import Battle from './pages/Battle';
+import BattleSelect from './components/BattleSelect';
+import CreateBattle from './pages/CreateBattle';
+import CreateCharacter from './pages/CreateCharacter';
+import CreateMonster from './pages/CreateMonster';
+import Legal from './pages/Legal';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Profile from './pages/Profile';
+
 import './App.scss';
 
 const httpLink = createHttpLink({
@@ -26,6 +39,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
+	// Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
 	link: authLink.concat(httpLink),
 	cache: new InMemoryCache(),
 });
@@ -33,11 +47,65 @@ const client = new ApolloClient({
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
-			<div className="App">
-				<Header />
+			<Router>
+				<div className="App">
+					<Header />
+					<div>
+						<Routes>
+							<Route path="/" element={<Home />} />
 
-				<Outlet />
-			</div>
+							<Route path="/battles" element={<Battles />}>
+								{/* Index route for showing battles */}
+								<Route index element={<BattleSelect />} />
+								{/* Unique ID for saved battles */}
+								<Route
+									path="/battles/:battleId"
+									element={<Battle />}
+								/>
+							</Route>
+
+							<Route
+								path="/create-battle"
+								element={<CreateBattle />}
+							/>
+
+							<Route
+								path="/create-character"
+								element={<CreateCharacter />}
+							></Route>
+
+							<Route
+								path="/create-monster"
+								element={<CreateMonster />}
+							></Route>
+
+							<Route path="/legal" element={<Legal />} />
+
+							<Route path="/login" element={<Login />} />
+
+							<Route path="/me" element={<Profile />} />
+
+							<Route
+								path="/profile/:username"
+								element={<Profile />}
+							/>
+
+							<Route path="/signup" element={<Signup />} />
+
+							<Route
+								path="/*"
+								element={
+									<main>
+										<p>There's nothing here!</p>
+									</main>
+								}
+							/>
+						</Routes>
+					</div>
+
+					<Outlet />
+				</div>
+			</Router>
 		</ApolloProvider>
 	);
 };

@@ -37,7 +37,7 @@ const Signup = () => {
 	};
 
 	return (
-		<Form onSubmit={handleFormSubmit} autoComplete="off">
+		<Form onSubmit={handleFormSubmit}>
 			<Form.Group>
 				<Form.Label>Username</Form.Label>
 				<Form.Control
