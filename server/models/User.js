@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const { characterSchema } = require("./Character");
 
 const userSchema = new Schema(
   {
@@ -24,6 +25,7 @@ const userSchema = new Schema(
         "Password must contain at least one letter and one number",
       ],
     },
+    characters: [characterSchema],
   },
   {
     // for use with virtuals
