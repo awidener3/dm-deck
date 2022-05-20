@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 import './header.scss';
 
 const Header = () => {
-	const [pathname, setPathname] = useState(window.location.pathname);
+	const [pathname, setPathname] = useState(window.location.pathname || '');
 	return (
 		<div>
 			<p className="m-0 version-text">v0.0.2</p>
@@ -49,7 +50,31 @@ const Header = () => {
 						>
 							Create
 						</Link>
-						<Link
+						{Auth.loggedIn() ? (
+							<Link
+								to="/login"
+								onClick={() => {
+									Auth.logout();
+									setPathname('/login');
+								}}
+								className={'nav-link custom-nav-link m-2'}
+							>
+								Logout
+							</Link>
+						) : (
+							<Link
+								to="/login"
+								onClick={() => setPathname('/login')}
+								className={
+									pathname === '/login'
+										? 'nav-link custom-nav-link m-2 active'
+										: 'nav-link custom-nav-link m-2'
+								}
+							>
+								Login
+							</Link>
+						)}
+						{/* <Link
 							to="/login"
 							onClick={() => setPathname('/login')}
 							className={
@@ -59,7 +84,7 @@ const Header = () => {
 							}
 						>
 							Login
-						</Link>
+						</Link> */}
 						<Link
 							to="/legal"
 							onClick={() => setPathname('/legal')}
