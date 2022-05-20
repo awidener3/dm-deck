@@ -55,9 +55,7 @@ const App = () => {
 							<Route path="/" element={<Home />} />
 
 							<Route path="/battles" element={<Battles />}>
-								{/* Index route for showing battles */}
 								<Route index element={<BattleSelect />} />
-								{/* Unique ID for saved battles */}
 								<Route
 									path="/battles/:battleId"
 									element={<Battle />}

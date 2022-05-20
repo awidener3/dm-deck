@@ -89,17 +89,6 @@ const Header = () => {
 								Login
 							</Link>
 						)}
-						{/* <Link
-							to="/login"
-							onClick={() => setPathname('/login')}
-							className={
-								pathname === '/login'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
-						>
-							Login
-						</Link> */}
 						<Link
 							to="/legal"
 							onClick={() => setPathname('/legal')}

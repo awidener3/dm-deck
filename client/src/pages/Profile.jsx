@@ -11,11 +11,12 @@ const Profile = () => {
 		{ variables: { username: userParam } }
 	);
 
-	console.log(useQuery(QUERY_ME));
-
 	const user = data?.me || data?.user || [];
-
-	console.log(Auth.getProfile().data);
+	console.log(user);
+	// navigate to personal profile page if username is yours
+	// if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+	// 	return <h1>Hi</h1>;
+	// }
 
 	if (loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
@@ -24,6 +25,11 @@ const Profile = () => {
 	return (
 		<div className="p-4 d-flex flex-column justify-content-center align-items-center container">
 			<h1>Welcome back, {user.username}</h1>
+
+			<p>
+				The kobolds are still working here, but don't worry! You'll be
+				seeing updates as soon as they are ready!
+			</p>
 		</div>
 	);
 };
