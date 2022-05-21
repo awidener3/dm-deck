@@ -8,6 +8,7 @@ const typeDefs = gql`
 		email: String
 		password: String
 		characters: [Character]
+		monsters: [Monster]
 	}
 
 	type Auth {
@@ -89,7 +90,7 @@ const typeDefs = gql`
 		wisdom_save: Int
 		charisma_save: Int
 		perception: Int
-		skills: [Skills]
+		skills: Skills
 		damage_vulnerabilities: String
 		damage_resistances: String
 		damage_immunities: String
@@ -113,7 +114,6 @@ const typeDefs = gql`
 		users: [User]
 		user(username: String!): User
 		me: User
-		monsters: [Monster]
 	}
 
 	# Mutations
@@ -198,7 +198,7 @@ const typeDefs = gql`
 			wisdom_save: Int
 			charisma_save: Int
 			perception: Int
-			skills: [SkillsInput]
+			skills: SkillsInput
 			damage_vulnerabilities: String
 			damage_resistances: String
 			damage_immunities: String
