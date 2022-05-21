@@ -20,7 +20,7 @@ const Monster = ({
 }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
-			<div className="dmd-card m-3">
+			<div className="monster-card m-3">
 				<Conditions
 					monster={monster}
 					sortedData={sortedData}
@@ -29,7 +29,7 @@ const Monster = ({
 				<Circles monster={monster} />
 
 				{/* HEADER */}
-				<div className="dmd-card-header mt-3">
+				<div className="monster-card-header mt-3">
 					<h1 className="name">
 						{monster.name}{' '}
 						{/* {isConcentrating === true ? (

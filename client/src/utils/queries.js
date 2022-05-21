@@ -28,6 +28,17 @@ export const QUERY_ME = gql`
 			_id
 			username
 			email
+			characters {
+				_id
+				type
+				character_name
+				player_name
+				race
+				level
+				class
+				armor_class
+				hit_points
+			}
 		}
 	}
 `;

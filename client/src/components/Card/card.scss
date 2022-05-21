@@ -5,8 +5,8 @@
 	outline: 1px solid #aaaaaa;
 	outline-offset: -5px;
 	background-color: #ffffff;
-	width: 20rem;
-	min-height: 30rem;
+	width: 15rem;
+	min-height: 22rem;
 	border-radius: 0.5rem;
 	position: relative;
 	.circle-container {
@@ -102,17 +102,8 @@
 			transform: rotate(-90deg);
 		}
 	}
-	.initiative-div {
-		pointer-events: none;
+	.character-buttons {
 		position: absolute;
 		bottom: 0;
-		left: 50%;
-		transform: translate(-50%, 0);
-		border: 2px solid #aaaaaa;
-		width: 35px;
-		height: 35px;
-		border-radius: 100%;
-		font-family: 'Asul', sans-serif;
-		font-weight: 700;
 	}
 }

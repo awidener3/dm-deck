@@ -80,7 +80,7 @@ const CreateBattleSummary = ({
 								selectedHeroes.map((hero, index) => (
 									<ListGroup.Item
 										className="d-flex justify-content-between roster-name"
-										key={hero.character_name}
+										key={hero._id}
 									>
 										{hero.character_name}{' '}
 										<span className="roster-subtext">

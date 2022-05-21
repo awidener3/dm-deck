@@ -22,7 +22,7 @@ const Home = () => {
 
 				<h2>Changelog</h2>
 				<br />
-				<h3>v0.0.3</h3>
+				<h3>v0.1.3</h3>
 				<ul>
 					<li>
 						🧙‍♂️ Logging in! Added user login features, login, update,
@@ -30,8 +30,13 @@ const Home = () => {
 						custom characters and monsters, and a place to store all
 						user-created encounters/decks
 					</li>
+					<li>
+						🤺 Custom Characters! Create a card for each member in
+						your campaign to be used in future battles and
+						encounters.
+					</li>
 				</ul>
-				<h3>v0.0.2</h3>
+				<h3>v0.1.2</h3>
 				<ul>
 					<li>
 						🔍 Search Open5e API for monsters available in the 5th

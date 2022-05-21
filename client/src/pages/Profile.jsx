@@ -1,6 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import Card from '../components/Card';
 
 import Auth from '../utils/auth';
 
@@ -30,6 +31,17 @@ const Profile = () => {
 				The kobolds are still working here, but don't worry! You'll be
 				seeing updates as soon as they are ready!
 			</p>
+
+			<h2>Your Characters</h2>
+			<div className="d-flex flex-wrap">
+				{user.characters.map((character) => (
+					<Card
+						key={character._id}
+						creature={character}
+						cardStyle={character.type}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };

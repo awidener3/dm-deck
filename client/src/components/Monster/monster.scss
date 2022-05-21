@@ -1,4 +1,4 @@
-.dmd-card {
+.monster-card {
 	padding: 20px;
 	border: 1px solid #7b0b0b;
 	outline: 1px solid #aaa;
@@ -8,76 +8,76 @@
 	min-height: 30rem;
 	border-radius: 0.5rem;
 	position: relative;
-  hr {
-    margin: 0.5rem 0;
-  }
-  .condition-container {
-    position: absolute;
-    max-width: 200px;
-    top: 0;
-    left: 0;
-    margin: 8px 0 0 8px;
-    .condition {
-      padding: 0 4px;
-      margin: 1px 2px;
-      font-weight: 500;
-      border-radius: 10px;
-      font-size: 0.6rem;
-    }
-    .invis {
-      background-color: #aaa;
-    }
-    .poison {
-      background-color: #6acf61;
-    }
-    .hex {
-      background-color: #e865db;
-    }
-    .blind {
-      color: #cbcbcb;
-      background-color: #171717;
-    }
-    .charm {
-      background-color: #ffc0cb;
-    }
-    .deaf {
-      color: #f6f6f6;
-      font-weight: 400;
-      background-color: #808080;
-    }
-    .fright {
-      background-color: rgb(222, 222, 23);
-    }
-    .grapple {
-      color: #ffffff;
-      background-color: #a52a2a;
-    }
-    .incapacitate {
-      color: #fff;
-      background-color: #e86b28;
-    }
-    .paralyze {
-      background-color: yellow;
-    }
-    .petrify {
-      color: #e2e2e2;
-      background-color: #2f4f4f;
-    }
-    .prone {
-      color: #fff;
-      background-color: #7b0b0b;
-    }
-    .restrain {
-      background-color: #aae6a5;
-    }
-    .stun {
-      background-color: #11e6e6;
-    }
-    .unconscious {
-      color: #fff;
-      background-color: #000;
-    }
-  }
+	hr {
+		margin: 0.5rem 0;
+	}
+	.condition-container {
+		position: absolute;
+		max-width: 200px;
+		top: 0;
+		left: 0;
+		margin: 8px 0 0 8px;
+		.condition {
+			padding: 0 4px;
+			margin: 1px 2px;
+			font-weight: 500;
+			border-radius: 10px;
+			font-size: 0.6rem;
+		}
+		.invis {
+			background-color: #aaa;
+		}
+		.poison {
+			background-color: #6acf61;
+		}
+		.hex {
+			background-color: #e865db;
+		}
+		.blind {
+			color: #cbcbcb;
+			background-color: #171717;
+		}
+		.charm {
+			background-color: #ffc0cb;
+		}
+		.deaf {
+			color: #f6f6f6;
+			font-weight: 400;
+			background-color: #808080;
+		}
+		.fright {
+			background-color: rgb(222, 222, 23);
+		}
+		.grapple {
+			color: #ffffff;
+			background-color: #a52a2a;
+		}
+		.incapacitate {
+			color: #fff;
+			background-color: #e86b28;
+		}
+		.paralyze {
+			background-color: yellow;
+		}
+		.petrify {
+			color: #e2e2e2;
+			background-color: #2f4f4f;
+		}
+		.prone {
+			color: #fff;
+			background-color: #7b0b0b;
+		}
+		.restrain {
+			background-color: #aae6a5;
+		}
+		.stun {
+			background-color: #11e6e6;
+		}
+		.unconscious {
+			color: #fff;
+			background-color: #000;
+		}
+	}
 	.circle-container {
 		cursor: default;
 		position: absolute;
@@ -104,7 +104,7 @@
 			background-color: #e6a7a5;
 		}
 	}
-	.dmd-card-header {
+	.monster-card-header {
 		.name {
 			font-size: 2rem;
 			font-weight: 700;
@@ -163,16 +163,16 @@
 			font-size: 0.9rem;
 			font-weight: 700;
 			font-style: italic;
-      margin: 0;
+			margin: 0;
 		}
-    .action-subtext {
-      font-size: 0.7rem;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.2;
-      color: #808080;
-      margin: 0;
-    }
+		.action-subtext {
+			font-size: 0.7rem;
+			font-weight: 300;
+			font-style: italic;
+			line-height: 1.2;
+			color: #808080;
+			margin: 0;
+		}
 		.action-btn {
 			font-size: 0.8rem;
 		}
@@ -184,12 +184,12 @@
 	.dmd-card-stats {
 		overflow: auto;
 	}
-  .dmd-card-traits {
-    max-height: 5rem;
-  }
-  .dmd-card-stats {
-    max-height: 3.5rem;
-  }
+	.dmd-card-traits {
+		max-height: 5rem;
+	}
+	.dmd-card-stats {
+		max-height: 3.5rem;
+	}
 	.dmd-card-traits::-webkit-scrollbar,
 	.dmd-card-stats::-webkit-scrollbar {
 		width: 5px;

@@ -4,7 +4,7 @@ import './hero.scss';
 // Icons
 import { BsShieldFill } from 'react-icons/bs';
 import { BsHeartFill } from 'react-icons/bs';
-import { GiPointySword, GiSpellBook, GiBarbedCoil } from 'react-icons/gi';
+import { GiPointySword } from 'react-icons/gi';
 
 // Render AC icon with ac stat inside
 const ArmorClassIcon = ({ ac }) => {

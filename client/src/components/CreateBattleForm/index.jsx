@@ -49,7 +49,7 @@ const CreateBattleForm = ({
 				</Row>
 				{heroes.map((hero, index) => (
 					<Row
-						key={hero.character_name}
+						key={hero._id}
 						className={
 							currentHeroes.includes(hero)
 								? 'creature-row mb-1 py-2 d-flex align-items-center selected'
@@ -75,9 +75,7 @@ const CreateBattleForm = ({
 								<button
 									type="button"
 									className="btn btn-outline-secondary btn-sm m-0"
-									onClick={() =>
-										handleSelectHero(hero.character_name)
-									}
+									onClick={() => handleSelectHero(hero._id)}
 								>
 									ADD
 								</button>
@@ -96,7 +94,7 @@ const CreateBattleForm = ({
 			</Container>
 
 			<a href="/create-character" className="btn btn-primary mt-3">
-				Add New Hero (WIP)
+				Add New Hero
 			</a>
 
 			{/* monsters */}
