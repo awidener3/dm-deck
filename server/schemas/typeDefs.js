@@ -9,6 +9,7 @@ const typeDefs = gql`
 		password: String
 		characters: [Character]
 		monsters: [Monster]
+		battles: [Battle]
 	}
 
 	type Auth {
@@ -61,6 +62,12 @@ const typeDefs = gql`
 		desc: String
 		attack_bonus: Int
 		damage_dice: String
+		damage_bonus: Int
+	}
+
+	type SpecialAbilities {
+		name: String
+		desc: String
 	}
 
 	type Monster {
@@ -102,11 +109,19 @@ const typeDefs = gql`
 		reactions: String
 		legendary_desc: String
 		legendary_actions: String
-		special_abilities: String
+		special_abilities: [SpecialAbilities]
+		spell_list: [String]
 		img_main: String
 		document__slug: String
 		document__title: String
 		document__license_url: String
+	}
+
+	type Battle {
+		_id: ID
+		name: String
+		heroes: [Character]
+		monsters: [Monster]
 	}
 
 	# Queries
@@ -116,7 +131,7 @@ const typeDefs = gql`
 		me: User
 	}
 
-	# Mutations
+	# Inputs
 	input SpeedInput {
 		walk: Int
 		swim: Int
@@ -150,8 +165,74 @@ const typeDefs = gql`
 		desc: String
 		attack_bonus: Int
 		damage_dice: String
+		damage_bonus: Int
 	}
 
+	input SpecialAbilitiesInput {
+		name: String
+		desc: String
+	}
+
+	input HeroesInput {
+		_id: ID
+		type: String
+		character_name: String!
+		player_name: String
+		level: Int
+		race: String
+		class: String
+		armor_class: Int
+		hit_points: Int
+	}
+
+	input MonstersInput {
+		_id: ID
+		slug: String
+		name: String
+		size: String
+		type: String
+		subtype: String
+		group: String
+		alignment: String
+		armor_class: Int
+		armor_desc: String
+		hit_points: Int
+		hit_dice: String
+		speed: SpeedInput
+		strength: Int
+		dexterity: Int
+		constitution: Int
+		intelligence: Int
+		wisdom: Int
+		charisma: Int
+		strength_save: Int
+		dexterity_save: Int
+		constitution_save: Int
+		intelligence_save: Int
+		wisdom_save: Int
+		charisma_save: Int
+		perception: Int
+		skills: SkillsInput
+		damage_vulnerabilities: String
+		damage_resistances: String
+		damage_immunities: String
+		condition_immunities: String
+		senses: String
+		languages: String
+		challenge_rating: String
+		actions: [ActionsInput]
+		reactions: String
+		legendary_desc: String
+		legendary_actions: String
+		special_abilities: [SpecialAbilitiesInput]
+		spell_list: [String]
+		img_main: String
+		document__slug: String
+		document__title: String
+		document__license_url: String
+	}
+
+	# Mutations
 	type Mutation {
 		addUser(username: String!, email: String!, password: String!): Auth
 
@@ -210,12 +291,20 @@ const typeDefs = gql`
 			reactions: String
 			legendary_desc: String
 			legendary_actions: String
-			special_abilities: String
+			special_abilities: [SpecialAbilitiesInput]
+			spell_list: [String]
 			img_main: String
 			document__slug: String
 			document__title: String
 			document__license_url: String
 		): Monster
+
+		addBattle(
+			_id: ID
+			name: String
+			heroes: [HeroesInput]
+			monsters: [MonstersInput]
+		): Battle
 	}
 `;
 

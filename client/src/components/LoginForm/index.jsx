@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
@@ -58,7 +59,7 @@ const LoginForm = () => {
 					required
 				/>
 			</Form.Group>
-			<a href="/signup">No account? Signup!</a>
+			<Link to={'/signup'}>No account? Signup!</Link>
 			<br />
 			<Button className="mt-2" variant="primary" type="submit">
 				Login

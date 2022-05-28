@@ -1,11 +1,16 @@
 const { Schema, model } = require('mongoose');
 
 const actionSchema = new Schema({
-	name: { type: String, required: true },
-	desc: { type: String, required: true },
+	name: String,
+	desc: String,
 	attack_bonus: Number,
 	damage_dice: String,
 	damage_bonus: Number,
+});
+
+const specialAbilitiesSchema = new Schema({
+	name: String,
+	desc: String,
 });
 
 const monsterSchema = new Schema(
@@ -40,7 +45,6 @@ const monsterSchema = new Schema(
 		wisdom_save: Number,
 		charisma_save: Number,
 		perception: Number,
-		// TODO: This also isn't right, I don't think
 		skills: {
 			acrobatics: Number,
 			animal_handling: Number,
@@ -68,14 +72,12 @@ const monsterSchema = new Schema(
 		senses: String,
 		languages: String,
 		challenge_rating: String,
-		// TODO: This probably isn't right
 		actions: [actionSchema],
 		reactions: String,
 		legendary_desc: String,
 		legendary_actions: String,
-		special_abilities: String,
-		// TODO: No way it's this easy...
-		spell_list: Array,
+		special_abilities: [specialAbilitiesSchema],
+		spell_list: [String],
 		img_main: String,
 		document__slug: String,
 		document__title: String,

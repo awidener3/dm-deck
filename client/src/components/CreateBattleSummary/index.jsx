@@ -15,6 +15,7 @@ const CreateBattleSummary = ({
 	selectedMonsters,
 	handleRemoveMonster,
 	handleRemoveHero,
+	handleSave,
 }) => {
 	const handleGetChallengeRating = () => {
 		let battle = {
@@ -23,20 +24,6 @@ const CreateBattleSummary = ({
 		};
 
 		return getChallengeRating(battle);
-	};
-
-	const handleSave = () => {
-		let existingBattles = JSON.parse(
-			localStorage.getItem('dm-deck-battles')
-		);
-		if (existingBattles === null) existingBattles = [];
-		let battleData = {
-			name: battleName || 'New Battle',
-			heroes: selectedHeroes,
-			monsters: selectedMonsters,
-		};
-		let updatedArray = [battleData, ...existingBattles];
-		localStorage.setItem('dm-deck-battles', JSON.stringify(updatedArray));
 	};
 
 	return (

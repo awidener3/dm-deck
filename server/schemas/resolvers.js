@@ -2,6 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { Character } = require('../models/Character');
 const { Monster } = require('../models/Monster');
+const { Battle } = require('../models/Battle');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -66,6 +67,7 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
+
 		addCharacter: async (parent, args, context) => {
 			if (context.user) {
 				const character = await Character.create(args);
@@ -78,6 +80,7 @@ const resolvers = {
 
 			throw new AuthenticationError('Not logged in');
 		},
+
 		addMonster: async (parent, args, context) => {
 			if (context.user) {
 				const monster = await Monster.create(args);
@@ -86,6 +89,19 @@ const resolvers = {
 				});
 
 				return monster;
+			}
+
+			throw new AuthenticationError('Not logged in');
+		},
+
+		addBattle: async (parent, args, context) => {
+			if (context.user) {
+				const battle = await Battle.create(args);
+				await User.findByIdAndUpdate(context.user._id, {
+					$push: { battles: battle },
+				});
+
+				return battle;
 			}
 
 			throw new AuthenticationError('Not logged in');

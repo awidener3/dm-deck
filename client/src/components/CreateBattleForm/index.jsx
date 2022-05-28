@@ -1,6 +1,7 @@
 import { Form, Container, Row, Col } from 'react-bootstrap';
 import useFetchMonsters from '../../hooks/useFetchMonsters';
 import { getXp } from '../../utils/basicRuleCalculations';
+import { Link } from 'react-router-dom';
 
 import './createBattleForm.scss';
 
@@ -93,9 +94,9 @@ const CreateBattleForm = ({
 				))}
 			</Container>
 
-			<a href="/create-character" className="btn btn-primary mt-3">
+			<Link to={'/create-character'} className="btn btn-primary mt-3">
 				Add New Hero
-			</a>
+			</Link>
 
 			{/* monsters */}
 			<h2 className="mt-4">Select Monsters</h2>
@@ -200,9 +201,9 @@ const CreateBattleForm = ({
 				</Container>
 			) : null}
 
-			<a href="/create-monster" className="btn btn-primary mt-3">
+			<Link to={'/create-monster'} className="btn btn-primary mt-3">
 				Add Custom Monster (WIP)
-			</a>
+			</Link>
 		</div>
 	);
 };
