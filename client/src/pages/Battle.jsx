@@ -15,34 +15,43 @@ import {
 	FaChevronCircleLeft,
 	FaChevronCircleRight,
 } from 'react-icons/fa';
+import { QUERY_ME } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 import '../App.scss';
 
 const Battle = () => {
 	let params = useParams();
+	const { loading, error, data } = useQuery(QUERY_ME);
+	const user = data?.me || data?.user || [];
 
 	// Array of monsters + heroes created from CreateBattle.js
 	const [battleData, setBattleData] = useState(() => {
-		const savedBattles = JSON.parse(
-			localStorage.getItem('dm-deck-battles')
-		);
-		let currentBattle = savedBattles.find(
-			(battle) => battle.name === params.battleId
-		);
-		currentBattle.monsters = currentBattle.monsters
-			.sort((a, b) => (a.name > b.name ? 1 : -1))
-			.map((monster, index) =>
-				currentBattle.monsters.findIndex(
-					(current) => current.name === monster.name
-				) === index
-					? { ...monster, conditions: [] }
-					: {
-							...monster,
-							name: `${monster.name} ${index + 1}`,
-							conditions: [],
-					  }
-			);
-		return currentBattle;
-	});
+		if (user.battles) {
+			// Copy read-only
+			const currentBattle = {
+				...user.battles.find(
+					(battle) => battle._id === params.battleId
+				),
+			};
+
+			// Process monsters
+			currentBattle.monsters = currentBattle.monsters
+				.sort((a, b) => (a.name > b.name ? 1 : -1))
+				.map((monster, index) =>
+					currentBattle.monsters.findIndex(
+						(current) => current.name === monster.name
+					) === index
+						? { ...monster, conditions: [] }
+						: {
+								...monster,
+								name: `${monster.name} ${index + 1}`,
+								conditions: [],
+						  }
+				);
+			return currentBattle;
+			// return [].concat(currentBattle.monsters).concat(currentBattle.heroes)
+		}
+	}, [user]);
 
 	const [sortedData, setSortedData] = useState(() =>
 		[].concat(battleData.monsters).concat(battleData.heroes)
@@ -71,16 +80,6 @@ const Battle = () => {
 		addInitiative(sortedData, setSortedData);
 	}, []);
 
-	// ? TESTING: Used for viewing current array
-	const showData = () => console.log(sortedData);
-
-	/**
-	 * Dice roll for damage and d20 to-hit rolls
-	 * @function handleRollDice
-	 * @param {Number} sides - number of sided die (d6<-, d12<-, etc.)
-	 * @param {Number} num - number of dice being rolled (->2d6, ->1d4, etc.)
-	 * @param {Number} bonus - damage modifier added after dice rolls (1d4 + 2<-)
-	 * **/
 	const handleRollDice = (sides, num, bonus = 0) => {
 		let diceRoll = 0;
 		for (let i = 0; i < num; i++) {
@@ -98,12 +97,9 @@ const Battle = () => {
 
 	const handleHeroAttack = () => setShowMonstersModal(true);
 
-	/**
-	 * Renders cards with initiative sorting and sliding animation classes.
-	 * @function renderCards Renders card based on monster type found in sortedData array
-	 * @param {Object[]} sortedData - Combined monster and hero array with added initiative
-	 * @returns {JSX} Card component correlating to creature.type
-	 * **/
+	if (loading) return <div>Loading...</div>;
+	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
+	if (error) return <div>ERROR!</div>;
 
 	const renderCards = (sortedData) => {
 		if (sortedData !== null) {

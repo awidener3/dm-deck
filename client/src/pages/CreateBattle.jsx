@@ -20,20 +20,7 @@ const CreateBattle = () => {
 		useMutation(ADD_BATTLE);
 
 	const handleSave = async () => {
-		// Localstorage Save
-		// let existingBattles = JSON.parse(
-		// 	localStorage.getItem('dm-deck-battles')
-		// );
-		// if (existingBattles === null) existingBattles = [];
-		// let battleData = {
-		// 	name: battleName || 'New Battle',
-		// 	heroes: selectedHeroes,
-		// 	monsters: selectedMonsters,
-		// };
-		// let updatedArray = [battleData, ...existingBattles];
-		// localStorage.setItem('dm-deck-battles', JSON.stringify(updatedArray));
-
-		// Database Save
+		// Save to database
 		try {
 			const mutationResponse = await addBattle({
 				variables: {
@@ -42,14 +29,17 @@ const CreateBattle = () => {
 					monsters: selectedMonsters,
 				},
 			});
-			console.log('✅ Battle successfully added');
+			console.log('✅ Battle successfully added!');
 			console.log('🚀', mutationResponse);
 		} catch (error) {
-			console.log('🚀', {
-				name: battleName,
-				heroes: selectedHeroes,
-				monsters: selectedMonsters,
-			});
+			console.log(
+				'💥 Battle was not created, double check input vs. what is expected by Apollo:',
+				{
+					name: battleName,
+					heroes: selectedHeroes,
+					monsters: selectedMonsters,
+				}
+			);
 			console.error(mutationError);
 		}
 	};

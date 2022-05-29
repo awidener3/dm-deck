@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
+import { QUERY_ME } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
 import Summary from './Summary';
 import SummaryAccordion from './SummaryAccordion';
@@ -9,13 +11,14 @@ import './battleSelect.scss';
 
 const BattleSelect = () => {
 	const [battles, setBattles] = useState([]);
+	const { loading, error, data } = useQuery(QUERY_ME);
+	const user = data?.me || data?.user || [];
 
 	useEffect(() => {
-		const battles = JSON.parse(localStorage.getItem('dm-deck-battles'));
-		if (battles) {
-			setBattles(battles);
+		if (user) {
+			setBattles(user.battles);
 		}
-	}, []);
+	}, [user]);
 
 	const handleDeleteBattle = (selectedBattle) => {
 		let updatedArray = battles.slice();
@@ -28,6 +31,10 @@ const BattleSelect = () => {
 		localStorage.setItem('dm-deck-battles', JSON.stringify(updatedArray));
 	};
 
+	if (loading) return <div>Loading...</div>;
+	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
+	if (error) return <div>ERROR!</div>;
+
 	return (
 		<div className="py-4">
 			<h1 className="text-center">Select a Saved Battle</h1>
@@ -37,10 +44,10 @@ const BattleSelect = () => {
 				</Link>
 			</div>
 			<div className="container d-flex flex-wrap justify-content-center">
-				{battles.length > 0 ? (
+				{battles ? (
 					battles.map((battle) => {
 						return (
-							<div key={battle.name} className="p-2">
+							<div key={battle._id} className="p-2">
 								<div className="card custom-card">
 									<h2 className="text-center">
 										{battle.name}
@@ -67,7 +74,7 @@ const BattleSelect = () => {
 									<div className="button-container mt-auto d-flex justify-content-center">
 										<Link
 											className="btn btn-outline-primary me-2"
-											to={`/battles/${battle.name}`}
+											to={`/battles/${battle._id}`}
 										>
 											Battle!
 										</Link>
