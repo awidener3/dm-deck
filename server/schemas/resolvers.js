@@ -1,81 +1,118 @@
-const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
-const { Character } = require("../models/Character");
-const { signToken } = require("../utils/auth");
+const { AuthenticationError } = require('apollo-server-express');
+const { User } = require('../models');
+const { Character } = require('../models/Character');
+const { Monster } = require('../models/Monster');
+const { Battle } = require('../models/Battle');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
-  Query: {
-    // Get all users
-    users: async () => {
-      return User.find({});
-    },
+	Query: {
+		// Get all users
+		users: async () => {
+			return User.find({});
+		},
 
-    // Get single user
-    user: async (parent, { userId }) => {
-      const user = User.findOne({ _id: userId });
-      return user;
-    },
+		// Get single user
+		user: async (parent, { userId }) => {
+			const user = User.findOne({ _id: userId });
+			return user;
+		},
 
-    // Get logged in user
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-  },
+		// Get logged in user
+		me: async (parent, args, context) => {
+			if (context.user) {
+				return User.findOne({ _id: context.user._id });
+			}
+			throw new AuthenticationError('You need to be logged in!');
+		},
 
-  Mutation: {
-    // Add new user
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-      return { token, user };
-    },
-    // update user
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
-          new: true,
-        });
-      }
+		// Get battle by its ID
+		battle: async (parent, args) => {
+			const battle = Battle.findOne({ _id: args.battleId });
+			return battle;
+		},
+	},
 
-      throw new AuthenticationError("Not logged in");
-    },
-    // Remove user
-    removeUser: async (parent, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
-    },
-    // Login
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+	Mutation: {
+		// Add new user
+		addUser: async (parent, args) => {
+			const user = await User.create(args);
+			const token = signToken(user);
+			return { token, user };
+		},
+		// update user
+		updateUser: async (parent, args, context) => {
+			if (context.user) {
+				return await User.findByIdAndUpdate(context.user._id, args, {
+					new: true,
+				});
+			}
 
-      if (!user) {
-        throw new AuthenticationError("No user with this email found!");
-      }
+			throw new AuthenticationError('Not logged in');
+		},
+		// Remove user
+		removeUser: async (parent, { userId }) => {
+			return User.findOneAndDelete({ _id: userId });
+		},
+		// Login
+		login: async (parent, { email, password }) => {
+			const user = await User.findOne({ email });
 
-      const correctPw = await user.isCorrectPassword(password);
+			if (!user) {
+				throw new AuthenticationError('No user with this email found!');
+			}
 
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect password!");
-      }
+			// method on user model to compare passwords
+			const correctPw = await user.isCorrectPassword(password);
 
-      const token = signToken(user);
-      return { token, user };
-    },
-    addCharacter: async (parent, args, context) => {
-      if (context.user) {
-        const character = await Character.create(args);
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { characters: character },
-        });
+			if (!correctPw) {
+				throw new AuthenticationError('Incorrect password!');
+			}
 
-        return character;
-      }
+			// sends token to be signed by jsonwebtoken package
+			const token = signToken(user);
+			return { token, user };
+		},
 
-      throw new AuthenticationError("Not logged in");
-    },
-  },
+		addCharacter: async (parent, args, context) => {
+			if (context.user) {
+				const character = await Character.create(args);
+				await User.findByIdAndUpdate(context.user._id, {
+					$push: { characters: character },
+				});
+
+				return character;
+			}
+
+			throw new AuthenticationError('Not logged in');
+		},
+
+		addMonster: async (parent, args, context) => {
+			if (context.user) {
+				const monster = await Monster.create(args);
+				await User.findByIdAndUpdate(context.user._id, {
+					$push: { monsters: monster },
+				});
+
+				return monster;
+			}
+
+			throw new AuthenticationError('Not logged in');
+		},
+
+		addBattle: async (parent, args, context) => {
+			if (context.user) {
+				const battle = await Battle.create(args);
+				await User.findByIdAndUpdate(context.user._id, {
+					$push: { battles: battle },
+				});
+
+				return battle;
+			}
+
+			throw new AuthenticationError('Not logged in');
+		},
+	},
 };
 
 module.exports = resolvers;

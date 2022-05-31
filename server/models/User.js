@@ -28,7 +28,7 @@ const userSchema = new Schema(
 			],
 		},
 		characters: [characterSchema],
-		custom_monsters: [monsterSchema],
+		monsters: [monsterSchema],
 		battles: [battleSchema],
 	},
 	{

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { ADD_BATTLE } from '../utils/mutations';
 import '../App.scss';
 
 import CreateBattleSummary from '../components/CreateBattleSummary';
 import CreateBattleForm from '../components/CreateBattleForm';
-
-import heroes from '../components/Hero/heroData';
 
 const CreateBattle = () => {
 	// The selections that will be used in a battle
@@ -16,6 +15,34 @@ const CreateBattle = () => {
 
 	const { loading, error, data } = useQuery(QUERY_ME);
 	const user = data?.me || data?.user || [];
+
+	const [addBattle, { mutationData, mutationError }] =
+		useMutation(ADD_BATTLE);
+
+	const handleSave = async () => {
+		// Save to database
+		try {
+			const mutationResponse = await addBattle({
+				variables: {
+					name: battleName || 'New Battle',
+					heroes: selectedHeroes,
+					monsters: selectedMonsters,
+				},
+			});
+			console.log('✅ Battle successfully added!');
+			console.log('🚀', mutationResponse);
+		} catch (error) {
+			console.log(
+				'💥 Battle was not created, double check input vs. what is expected by Apollo:',
+				{
+					name: battleName,
+					heroes: selectedHeroes,
+					monsters: selectedMonsters,
+				}
+			);
+			console.error(mutationError);
+		}
+	};
 
 	const handleRemoveMonster = (monster) => {
 		const updatedArray = selectedMonsters.slice();
@@ -45,9 +72,10 @@ const CreateBattle = () => {
 		});
 	};
 
-	if (loading) return <div>Loading...</div>;
-	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (error) return <div>ERROR!</div>;
+	// User validation
+	if (loading) return <div>Loading...</div>; // TODO: Make a super cool loading screen for this...?
+	if (!user?.username) return <h4>You need to be logged in to see this.</h4>; // TODO: Make a "please login" component for this
+	if (error) return <div>ERROR!</div>; // TODO: Make an "error" component for this
 
 	return (
 		<div className="container-sm container-fluid py-4">
@@ -68,6 +96,7 @@ const CreateBattle = () => {
 					selectedMonsters={selectedMonsters}
 					handleRemoveMonster={handleRemoveMonster}
 					handleRemoveHero={handleRemoveHero}
+					handleSave={handleSave}
 				/>
 			</div>
 		</div>

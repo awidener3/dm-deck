@@ -1,5 +1,18 @@
 const { Schema, model } = require('mongoose');
 
+const actionSchema = new Schema({
+	name: String,
+	desc: String,
+	attack_bonus: Number,
+	damage_dice: String,
+	damage_bonus: Number,
+});
+
+const specialAbilitiesSchema = new Schema({
+	name: String,
+	desc: String,
+});
+
 const monsterSchema = new Schema(
 	{
 		slug: String,
@@ -13,7 +26,6 @@ const monsterSchema = new Schema(
 		armor_desc: String,
 		hit_points: Number,
 		hit_dice: String,
-		// TODO: This isn't right...I think...
 		speed: {
 			walk: Number,
 			swim: Number,
@@ -33,8 +45,26 @@ const monsterSchema = new Schema(
 		wisdom_save: Number,
 		charisma_save: Number,
 		perception: Number,
-		// TODO: This also isn't right, I don't think
-		skills: Object,
+		skills: {
+			acrobatics: Number,
+			animal_handling: Number,
+			arcana: Number,
+			athletics: Number,
+			deception: Number,
+			history: Number,
+			insight: Number,
+			intimidation: Number,
+			investigation: Number,
+			medicine: Number,
+			nature: Number,
+			perception: Number,
+			performance: Number,
+			persuasion: Number,
+			religion: Number,
+			sleight_of_hand: Number,
+			stealth: Number,
+			survival: Number,
+		},
 		damage_vulnerabilities: String,
 		damage_resistances: String,
 		damage_immunities: String,
@@ -42,18 +72,16 @@ const monsterSchema = new Schema(
 		senses: String,
 		languages: String,
 		challenge_rating: String,
-		// TODO: This probably isn't right
-		actions: Array,
+		actions: [actionSchema],
 		reactions: String,
 		legendary_desc: String,
 		legendary_actions: String,
-		special_abilities: String,
-		// TODO: No way it's this easy...
-		spell_list: Array,
+		special_abilities: [specialAbilitiesSchema],
+		spell_list: [String],
 		img_main: String,
 		document__slug: String,
 		document__title: String,
-		docuemnt__license_url: String,
+		document__license_url: String,
 	},
 	{
 		toJSON: {
