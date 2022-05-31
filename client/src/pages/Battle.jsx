@@ -7,7 +7,7 @@ import InfoModal from '../components/InfoModal';
 import RollModal from '../components/RollModal';
 import MonstersModal from '../components/MonstersModal';
 import QuickView from '../components/QuickView';
-import { addInitiative } from '../utils/diceRolls';
+import { getInitiative } from '../utils/diceRolls';
 import { slideLeft, slideRight } from '../utils/slideAnimations';
 import {
 	FaChevronLeft,
@@ -19,43 +19,52 @@ import { QUERY_ME } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import '../App.scss';
 
+// * COMPONENT
+
 const Battle = () => {
 	let params = useParams();
 	const { loading, error, data } = useQuery(QUERY_ME);
 	const user = data?.me || data?.user || [];
 
-	// Array of monsters + heroes created from CreateBattle.js
-	const [battleData, setBattleData] = useState(() => {
-		if (user.battles) {
-			// Copy read-only
-			const currentBattle = {
-				...user.battles.find(
-					(battle) => battle._id === params.battleId
-				),
+	const [sortedData, setSortedData] = useState([]);
+
+	// Set sortedData from sorted and modified query
+	useEffect(() => {
+		if (data) {
+			const current = {
+				...user.battles.find(({ _id }) => _id === params.battleId),
 			};
 
-			// Process monsters
-			currentBattle.monsters = currentBattle.monsters
+			// Sort alphabetically and check for doubles
+			current.monsters = current.monsters
 				.sort((a, b) => (a.name > b.name ? 1 : -1))
 				.map((monster, index) =>
-					currentBattle.monsters.findIndex(
+					current.monsters.findIndex(
 						(current) => current.name === monster.name
 					) === index
 						? { ...monster, conditions: [] }
 						: {
 								...monster,
-								name: `${monster.name} ${index + 1}`,
 								conditions: [],
+								name: `${monster.name} ${index + 1}`,
 						  }
 				);
-			return currentBattle;
-			// return [].concat(currentBattle.monsters).concat(currentBattle.heroes)
-		}
-	}, [user]);
 
-	const [sortedData, setSortedData] = useState(() =>
-		[].concat(battleData.monsters).concat(battleData.heroes)
-	);
+			// Put monsters and heroes into an array
+			let battle = [].concat(current.monsters).concat(current.heroes);
+
+			// Add initiative
+			battle = battle
+				.map((creature) => ({
+					...creature,
+					initiative: getInitiative(creature),
+				}))
+				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
+
+			setSortedData(battle);
+		}
+	}, [data, params.battleId, user]);
+	// }, [data]);
 
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -74,11 +83,6 @@ const Battle = () => {
 	// Dice rolls
 	const [rollModifier, setRollModifier] = useState(0);
 	const [die, setDie] = useState(0);
-
-	// Add initiative on load
-	useEffect(() => {
-		addInitiative(sortedData, setSortedData);
-	}, []);
 
 	const handleRollDice = (sides, num, bonus = 0) => {
 		let diceRoll = 0;
@@ -99,7 +103,10 @@ const Battle = () => {
 
 	if (loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (error) return <div>ERROR!</div>;
+	if (error) {
+		console.log(error);
+		return <div>ERROR!</div>;
+	}
 
 	const renderCards = (sortedData) => {
 		if (sortedData !== null) {

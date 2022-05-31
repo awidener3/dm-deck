@@ -36,7 +36,7 @@ export const addInitiative = (sortedData, setSortedData) => {
 	setSortedData(arrayWithInitiative);
 };
 
-const getInitiative = (obj) => {
+export const getInitiative = (obj) => {
 	if (obj.type === 'monster') {
 		return (
 			Math.floor(Math.random() * 20 + 1) +

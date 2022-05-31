@@ -25,6 +25,12 @@ const resolvers = {
 			}
 			throw new AuthenticationError('You need to be logged in!');
 		},
+
+		// Get battle by its ID
+		battle: async (parent, args) => {
+			const battle = Battle.findOne({ _id: args.battleId });
+			return battle;
+		},
 	},
 
 	Mutation: {
