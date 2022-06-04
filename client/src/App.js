@@ -12,15 +12,15 @@ import {
 import Header from './components/Header';
 import Home from './pages/Home';
 import Battles from './pages/Battles';
-import Battle from './pages/Battle';
-import BattleSelect from './components/BattleSelect';
+import Battle from './pages/Battles/Battle';
+import BattleSelect from './pages/Battles/BattleSelect';
 import CreateBattle from './pages/CreateBattle';
 import CreateCharacter from './pages/CreateCharacter';
 import CreateMonster from './pages/CreateMonster';
 import Legal from './pages/Legal';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile/Profile';
 
 import './App.scss';
 
@@ -52,56 +52,45 @@ const App = () => {
 			<Router>
 				<div className="App">
 					<Header />
-					<div>
-						<Routes>
-							<Route path="/" element={<Home />} />
 
-							<Route path="/battles" element={<Battles />}>
-								<Route index element={<BattleSelect />} />
-								<Route
-									path="/battles/:battleId"
-									element={<Battle />}
-								/>
-							</Route>
-
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/battles" element={<Battles />}>
+							<Route index element={<BattleSelect />} />
 							<Route
-								path="/create-battle"
-								element={<CreateBattle />}
+								path="/battles/:battleId"
+								element={<Battle />}
 							/>
-
-							<Route
-								path="/create-character"
-								element={<CreateCharacter />}
-							/>
-
-							<Route
-								path="/create-monster"
-								element={<CreateMonster />}
-							/>
-
-							<Route path="/legal" element={<Legal />} />
-
-							<Route path="/login" element={<Login />} />
-
-							<Route path="/me" element={<Profile />} />
-
-							<Route
-								path="/profile/:username"
-								element={<Profile />}
-							/>
-
-							<Route path="/signup" element={<Signup />} />
-
-							<Route
-								path="/*"
-								element={
-									<main>
-										<p>There's nothing here!</p>
-									</main>
-								}
-							/>
-						</Routes>
-					</div>
+						</Route>
+						<Route
+							path="/create-battle"
+							element={<CreateBattle />}
+						/>
+						<Route
+							path="/create-character"
+							element={<CreateCharacter />}
+						/>
+						<Route
+							path="/create-monster"
+							element={<CreateMonster />}
+						/>
+						<Route path="/legal" element={<Legal />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/me" element={<Profile />} />
+						<Route
+							path="/profile/:username"
+							element={<Profile />}
+						/>
+						<Route path="/signup" element={<Signup />} />
+						<Route
+							path="/*"
+							element={
+								<main>
+									<p>There's nothing here!</p>
+								</main>
+							}
+						/>
+					</Routes>
 
 					<Outlet />
 				</div>

@@ -112,6 +112,16 @@ const resolvers = {
 
 			throw new AuthenticationError('Not logged in');
 		},
+		// Remove user
+		deleteBattle: async (parent, { battleId }, context) => {
+			if (context.user) {
+				return User.findOneAndUpdate(
+					{ _id: battleId },
+					{ $pull: { battles: battleId } },
+					{ new: true }
+				);
+			}
+		},
 	},
 };
 

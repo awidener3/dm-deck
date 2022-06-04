@@ -175,3 +175,12 @@ export const ADD_BATTLE = gql`
 		}
 	}
 `;
+
+export const DELETE_BATTLE = gql`
+	mutation deleteBattle($battleId: ID!) {
+		deleteBattle(battleId: $battleId) {
+			_id
+			name
+		}
+	}
+`;

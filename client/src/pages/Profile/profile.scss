@@ -1,0 +1,69 @@
+// Hero Card
+.hero {
+	// Styling
+	padding: 20px;
+	border: 1px solid #0a6817;
+	outline-offset: -5px;
+	outline: 1px solid #aaaaaa;
+	background-color: #ffffff;
+
+	// Sizing
+	width: 10rem;
+	min-height: 15rem;
+	border-radius: 0.5rem;
+
+	// Positioning
+	position: relative;
+	.hero-name {
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
+	.player-name {
+		font-style: italic;
+		font-size: 1rem;
+	}
+	.icon-container {
+		position: relative;
+		.hp-icon {
+			font-size: 2rem;
+			color: #cf1414;
+		}
+		.ac-icon {
+			font-size: 2rem;
+			color: #29901f;
+		}
+		// Number inside icon
+		.icon-value {
+			position: absolute;
+			font-size: 1rem;
+			font-weight: 500;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 2;
+			color: white;
+		}
+	}
+}
+
+// Monster Card
+.monster {
+	// Styling
+	padding: 20px;
+	border: 1px solid #7b0b0b;
+	outline-offset: -5px;
+	outline: 1px solid #aaaaaa;
+	background-color: #ffffff;
+
+	// Sizing
+	width: 10rem;
+	min-height: 15rem;
+	border-radius: 0.5rem;
+
+	// Positioning
+	position: relative;
+	.monster-name {
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
+}

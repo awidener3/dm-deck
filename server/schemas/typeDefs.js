@@ -306,6 +306,8 @@ const typeDefs = gql`
 			heroes: [HeroesInput]
 			monsters: [MonstersInput]
 		): Battle
+
+		deleteBattle(battleId: ID!): Battle
 	}
 `;
 

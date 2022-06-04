@@ -1,0 +1,48 @@
+@import 'src/App.scss';
+
+.splash-screen {
+	background-color: black;
+	height: 300px;
+	width: 100%;
+	.splash-logo-text {
+		font-family: 'Draconis', 'Asul', sans-serif;
+		font-size: 7rem;
+		margin: 0;
+		padding: 0;
+		color: #c00913;
+		.splash-logo-subtext {
+			color: #ffffff;
+		}
+	}
+	@media screen and (max-width: $sm) {
+		height: 200px;
+		.splash-logo-text {
+			font-size: 4rem;
+		}
+	}
+}
+
+.quicklink-div {
+	background-color: white;
+	width: 200px;
+	height: 100px;
+	margin: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	transition: transform 0.1s ease-in;
+	h3 {
+		font-size: 1.3rem;
+	}
+}
+
+a {
+	font-family: 'Asul', sans-serif;
+	text-decoration: none;
+	color: black;
+}
+
+.quicklink-div:hover {
+	transform: scale(1.05);
+}
