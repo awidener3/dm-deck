@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import races from '../assets/json/player_races.json';
-import classes from '../assets/json/player_classes.json';
+import races from 'assets/json/player_races.json';
+import classes from 'assets/json/player_classes.json';
 import { useMutation } from '@apollo/client';
-import { ADD_CHARACTER } from '../utils/mutations';
+import { ADD_CHARACTER } from 'utils/mutations';
 
-import '../assets/styles/createCharacter.scss';
+import 'assets/styles/createCharacter.scss';
 
 const CreateCharacter = () => {
 	const [values, setValues] = useState({

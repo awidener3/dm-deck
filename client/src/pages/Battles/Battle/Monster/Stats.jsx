@@ -1,5 +1,3 @@
-// import { renderStats } from '../Stat';
-
 // Handles all stats within a monsters object
 const renderStats = (monster) => {
 	return (

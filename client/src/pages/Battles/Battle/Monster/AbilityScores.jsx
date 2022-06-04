@@ -1,5 +1,3 @@
-// import { renderAbilityScores } from '../AbilityScore';
-
 // Renders all ability scores
 const renderAbilityScores = (monster) => {
 	let abilityScores = [];

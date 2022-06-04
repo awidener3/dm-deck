@@ -36,8 +36,6 @@ const Battle = () => {
 				...user.battles.find(({ _id }) => _id === params.battleId),
 			};
 
-			console.log('Current: ', current);
-
 			// Sort alphabetically and check for doubles
 			current.monsters = [...current.monsters]
 				.sort((a, b) => (a.name > b.name ? 1 : -1))

@@ -9,16 +9,11 @@ import useSound from 'use-sound';
 import diceSfx from 'assets/audio/dice-roll.mp3';
 import MeleeRangeButtons from './MeleeRangeButtons';
 import SpellButtons from './SpellButtons';
-import './actions.scss';
 
 const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 	// Dice roll sound effect
 	const [playSfx] = useSound(diceSfx);
 
-	/**
-	 * @function processActions processes API JSON to fit what is needed for application
-	 * @param {Object[]} actions - Array of action objects belonging to the monster
-	 * **/
 	const processActions = (actions) => {
 		let newActions = [];
 
@@ -92,7 +87,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 				}
 			}
 
-			console.log(action.name, 'original', action, 'updated', newAction);
+			// console.log(action.name, 'original', action, 'updated', newAction);
 			// Add to actions array to be set as action state for the current monster
 			newActions.push(newAction);
 		});

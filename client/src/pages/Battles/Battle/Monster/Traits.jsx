@@ -1,5 +1,3 @@
-// import Trait from '../Trait';
-
 const Trait = ({ title, description }) => {
 	return (
 		<div className="dmd-card-row py-1">
