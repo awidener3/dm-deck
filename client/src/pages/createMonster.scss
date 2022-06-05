@@ -1,0 +1,10 @@
+@import 'src/App.scss';
+
+.create-monster-card {
+	margin: 20px auto;
+	border: $card-border;
+	border-radius: $border-radius;
+	outline: $card-outline;
+	outline-offset: $card-outline-offset;
+	background-color: white;
+}

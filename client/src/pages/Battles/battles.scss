@@ -1,13 +1,58 @@
-.custom-card {
-	width: 24rem;
-	min-height: 35rem;
+.battle-deck {
+	cursor: pointer;
+	width: 18rem;
+	min-height: 26rem;
 	border: 1px solid #d4d4d4;
 	outline: 1px solid #c5c5c5;
 	outline-offset: -5px;
 	border-radius: 0.5rem;
 	padding: 20px;
+	background-color: #6b6b6b;
+	position: relative;
+	.battle-deck-title {
+		color: white;
+		font-size: 3rem;
+	}
+	.nested-deck,
+	.double-nested-deck {
+		position: absolute;
+		width: 18rem;
+		min-height: 26rem;
+		border: 1px solid #d4d4d4;
+		border-radius: 0.5rem;
+		background-color: #6b6b6b;
+	}
+	.nested-deck {
+		top: 3px;
+		left: 3px;
+		z-index: -1;
+	}
+	.double-nested-deck {
+		top: 6px;
+		left: 6px;
+		z-index: -2;
+	}
+}
+
+.battle-card {
+	width: 18rem;
+	min-height: 26rem;
+	border: 1px solid #d4d4d4;
+	outline: 1px solid #c5c5c5;
+	outline-offset: -5px;
+	border-radius: 0.5rem;
+	.battle-card-title {
+		font-size: 1.5rem;
+		margin: 0;
+	}
 	.card-body {
+		padding: 0;
+		.form-check-label {
+			font-size: 0.75rem;
+			text-decoration: line-through;
+		}
 		.summary-stat {
+			font-size: 0.75rem;
 			font-weight: 700;
 			color: #6b6b6b;
 			margin: 0;
@@ -32,12 +77,22 @@
 			}
 		}
 		.accordion-title {
-			font-size: 1rem;
+			font-size: 0.8rem;
+		}
+		.accordion-body {
+			padding: 8px;
+			font-size: 0.75rem;
+			.list-group-item {
+				padding: 5px 10px;
+			}
 		}
 		.accordion-subtext {
 			font-style: italic;
 			font-weight: 300;
 			color: #858585;
+		}
+		.accordion-button {
+			padding: 10px;
 		}
 	}
 }

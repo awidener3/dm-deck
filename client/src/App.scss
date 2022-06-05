@@ -25,12 +25,19 @@
 	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBoldItalic.ttf);
 }
 
+// Media Query Sizing
 $xs: 0;
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 $xxl: 1400px;
+
+// Borders + Cards
+$border-radius: 0.3rem;
+$card-border: 1px solid #aaaaaa;
+$card-outline: 1px solid #aaaaaa;
+$card-outline-offset: -5px;
 
 // Asul 400 or 700 weight available
 h1,

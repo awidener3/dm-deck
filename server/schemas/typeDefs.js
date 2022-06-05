@@ -34,6 +34,7 @@ const typeDefs = gql`
 		swim: Int
 		climb: Int
 		fly: Int
+		burrow: Int
 	}
 
 	type Skills {
@@ -68,6 +69,8 @@ const typeDefs = gql`
 	type SpecialAbilities {
 		name: String
 		desc: String
+		damage_dice: String
+		attack_bonus: Int
 	}
 
 	type Monster {
@@ -138,6 +141,7 @@ const typeDefs = gql`
 		swim: Int
 		climb: Int
 		fly: Int
+		burrow: Int
 	}
 
 	input SkillsInput {
@@ -172,6 +176,8 @@ const typeDefs = gql`
 	input SpecialAbilitiesInput {
 		name: String
 		desc: String
+		damage_dice: String
+		attack_bonus: Int
 	}
 
 	input HeroesInput {
