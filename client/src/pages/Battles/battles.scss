@@ -1,7 +1,7 @@
 .battle-deck {
 	cursor: pointer;
-	width: 18rem;
-	min-height: 26rem;
+	width: 9rem;
+	height: 13rem;
 	border: 1px solid #d4d4d4;
 	outline: 1px solid #c5c5c5;
 	outline-offset: -5px;
@@ -11,13 +11,14 @@
 	position: relative;
 	.battle-deck-title {
 		color: white;
-		font-size: 3rem;
+		font-size: 1.5rem;
+		background-color: rgba(0, 0, 0, 0.418);
 	}
 	.nested-deck,
 	.double-nested-deck {
 		position: absolute;
-		width: 18rem;
-		min-height: 26rem;
+		width: 9rem;
+		min-height: 13rem;
 		border: 1px solid #d4d4d4;
 		border-radius: 0.5rem;
 		background-color: #6b6b6b;
