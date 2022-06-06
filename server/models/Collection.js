@@ -5,6 +5,7 @@ const collectionSchema = new Schema(
   {
     name: String,
     battles: { type: [battleSchema], unique: true },
+    background_img: String,
   },
   {
     toJSON: {

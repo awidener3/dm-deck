@@ -132,6 +132,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     battles: [Battle]
+    background_img: String
   }
 
   # Queries
@@ -323,7 +324,7 @@ const typeDefs = gql`
 
     deleteBattle(battleId: ID!): Battle
 
-    addCollection(_id: ID, name: String): Collection
+    addCollection(_id: ID, name: String, background_img: String): Collection
 
     addBattleToCollection(battleId: ID, collectionId: ID): User
   }
