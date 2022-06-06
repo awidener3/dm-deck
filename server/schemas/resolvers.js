@@ -153,11 +153,12 @@ const resolvers = {
           const user = await User.findOneAndUpdate(
             { _id: context.user._id, "collections._id": collectionId },
             {
-              $push: {
+              $addToSet: {
                 "collections.$.battles": battle,
               },
             },
             {
+              new: true,
               upsert: true,
             }
           );
