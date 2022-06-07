@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Container } from "react-bootstrap";
-import { QUERY_ME } from "utils/queries";
+import { QUERY_ME, QUERY_COLLECTION } from "utils/queries";
 import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from "utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import { RiSwordFill, RiEditLine } from "react-icons/ri";
@@ -66,7 +66,7 @@ const BattleSelect = ({ background = "back_1.jpg" }) => {
         },
       });
       console.log("✅ Battle successfully added to Collection!");
-      console.log("🚀", mutationResponse);
+      console.log("🚀", mutationResponse.data);
     } catch (error) {
       console.log("💥 Battle was not added to Collection.");
       console.error(mutationError);
