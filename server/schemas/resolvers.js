@@ -30,10 +30,6 @@ const resolvers = {
 		battle: async (parent, { battleId }) => {
 			return Battle.findById({ _id: battleId }).populate('userId');
 		},
-		// Gets all battles by user ID
-		userBattles: async (parent, args, context) => {
-			return Battle.find({ userId: context.user._id }).populate('userId');
-		},
 		collections: async (parent, args) => {
 			return Collection.find({}).populate('battles').populate('userId');
 		},
@@ -46,6 +42,20 @@ const resolvers = {
 		// Gets all characters
 		characters: async (parent, args) => {
 			return Character.find().populate('userId');
+		},
+		// Gets all battles by context user
+		userBattles: async (parent, args, context) => {
+			return Battle.find({ userId: context.user._id })
+				.populate('userId')
+				.populate('heroes');
+		},
+		// Gets all collections by context user
+		userCollections: async (parent, args, context) => {
+			return Collection.find({ userId: context.user._id }).populate('battles');
+		},
+		// Gets all collections by context user
+		userCharacters: async (parent, args, context) => {
+			return Character.find({ userId: context.user._id });
 		},
 	},
 
@@ -143,9 +153,9 @@ const resolvers = {
 			throw new AuthenticationError('Not logged in');
 		},
 		// Adds a battle
-		addBattle: async (parent, { name, userId }, context) => {
+		addBattle: async (parent, args, context) => {
 			if (context.user) {
-				return await Battle.create({ name, userId });
+				return await Battle.create(args);
 			}
 			throw new AuthenticationError('Not logged in');
 		},

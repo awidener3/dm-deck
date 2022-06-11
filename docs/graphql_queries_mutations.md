@@ -179,13 +179,38 @@ query UserBattles($userId: ID!) {
 ### Add a battle
 
 ```graphql
-mutation addBattle($userId: ID!, $name: String!) {
-  addBattle(userId: $userId, name: $name) {
+mutation addBattle($userId: ID!, $name: String!, $heroes: [ID], $monsters: [ID]) {
+  addBattle(userId: $userId, name: $name, heroes: $heroes, monsters: $monsters) {
     name
     userId {
       _id
     }
+    heroes {
+      _id
+      name
+    }
+    monsters {
+      _id
+      name
+    }
   }
+}
+```
+
+Example query:
+```json
+{
+  "userId": "6288084eda473f41b688ecc2", // required
+  "name": "Battle with Heroes", // required
+  "heroes": [
+    "62a4bda3f0c46b8212531d63", 
+    "62a4c2239cd70e3533e889b7", 
+    "62a4c22c9cd70e3533e889b9"
+  ],
+  "monsters": [
+    "62a4bda3f0c46b8212531d63", 
+    "62a4c2239cd70e3533e889b7"
+  ],
 }
 ```
 

@@ -151,11 +151,14 @@ const typeDefs = gql`
 		me: User
 		battles: [Battle]
 		battle(battleId: ID!): Battle
-		userBattles: [Battle] # Uses context id
 		collections: [Collection]
 		collection(collectionId: ID!): Collection
 		characters: [Character]
 		character(characterId: ID!): Character
+		# Following queries use context id
+		userBattles: [Battle]
+		userCollections: [Collection]
+		userCharacters: [Character]
 	}
 
 	##########
@@ -350,7 +353,7 @@ const typeDefs = gql`
 		): Monster
 
 		# BATTLE mutations
-		addBattle(userId: ID!, name: String!): Battle
+		addBattle(userId: ID!, name: String!, heroes: [ID], monsters: [ID]): Battle
 
 		updateBattle(battleId: ID!, name: String): Battle
 

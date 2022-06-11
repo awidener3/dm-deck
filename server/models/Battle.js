@@ -10,8 +10,20 @@ const battleSchema = new Schema(
 			type: Schema.Types.ObjectId,
 			ref: 'User',
 		},
-		heroes: [characterSchema],
-		monsters: [monsterSchema],
+		// Reference to an array of characters
+		heroes: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Character',
+			},
+		],
+		// Reference to an array of monsters
+		monsters: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Monster',
+			},
+		],
 	},
 	{
 		toJSON: {
