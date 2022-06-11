@@ -14,6 +14,20 @@
 		font-size: 1.5rem;
 		background-color: rgba(0, 0, 0, 0.418);
 	}
+	.battle-deck-card-number {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: white;
+		border-radius: 100%;
+		bottom: 0;
+		right: 0;
+		margin: 15px;
+		width: 30px;
+		height: 30px;
+		background-color: black;
+	}
 	.nested-deck,
 	.double-nested-deck {
 		position: absolute;
