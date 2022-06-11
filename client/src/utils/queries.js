@@ -38,6 +38,33 @@ export const QUERY_USER_CHARACTERS = gql`
 	}
 `;
 
+export const QUERY_USER_COLLECTIONS = gql`
+	query UserCollections {
+		userCollections {
+			_id
+			name
+			background_img
+			battles {
+				_id
+				name
+			}
+		}
+	}
+`;
+
+export const QUERY_USER_BATTLES = gql`
+	query UserBattles {
+		userBattles {
+			_id
+			name
+			heroes {
+				character_name
+			}
+			monsters
+		}
+	}
+`;
+
 export const QUERY_ME = gql`
 	# Update JWT in 'Headers'
 	# Authorization - Bearer <token here>

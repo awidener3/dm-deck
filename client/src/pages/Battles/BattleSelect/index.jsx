@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Container } from 'react-bootstrap';
-import { QUERY_ME } from 'utils/queries';
+import {
+	QUERY_ME,
+	QUERY_USER_COLLECTIONS,
+	QUERY_USER_BATTLES,
+} from 'utils/queries';
 import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { RiSwordFill, RiEditLine } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
 
@@ -11,62 +15,41 @@ import Summary from './Summary';
 import SummaryAccordion from './SummaryAccordion';
 
 const BattleSelect = ({ background = 'back_1.jpg' }) => {
-	const [battles, setBattles] = useState([]);
-	const [addBattleToCollection, { mutationData, mutationError }] =
-		useMutation(ADD_BATTLE_TO_COLLECTION, {
-			refetchQueries: [{ query: QUERY_ME }, 'Me'],
-		});
-	// const [deleteBattle, { battleError }] = useMutation(DELETE_BATTLE);
-	const [deleteBattle, { battleError }] = useMutation(DELETE_BATTLE, {
-		// update(cache, { data: { deleteBattle } }) {
-		// 	try {
-		// 		console.log('I make it here');
-		// 		cache.writeQuery({
-		// 			query: QUERY_ME,
-		// 			data: { me: deleteBattle },
-		// 		});
-		// 	} catch (e) {
-		// 		console.error(e);
-		// 	}
-		// },
+	const [addBattleToCollection, { error: mutation_error }] = useMutation(
+		ADD_BATTLE_TO_COLLECTION,
+		{ refetchQueries: [{ query: QUERY_ME }, 'Me'] }
+	);
+	const [deleteBattle] = useMutation(DELETE_BATTLE, {
+		refetchQueries: [{ query: QUERY_USER_BATTLES }, 'UserBattles'],
 	});
 
-	const { loading, error, data } = useQuery(QUERY_ME);
-	const user = data?.me || [];
+	const {
+		loading: user_loading,
+		error: user_error,
+		data: user_data,
+	} = useQuery(QUERY_ME);
+	const { data: colls_data } = useQuery(QUERY_USER_COLLECTIONS);
+	const { data: battles_data } = useQuery(QUERY_USER_BATTLES);
 
-	useEffect(() => {
-		if (user) {
-			console.log(user);
-			setBattles(user.battles);
-		}
-	}, [user]);
+	const user = user_data?.me || [];
+	const collections = colls_data?.userCollections || [];
+	const battles = battles_data?.userBattles || [];
 
 	const handleDeleteBattle = async (selectedBattle) => {
-		// let updatedArray = battles.slice();
-
-		// updatedArray = updatedArray.filter(
-		// 	(battle) => battle !== selectedBattle
-		// );
-
 		const id = selectedBattle._id;
-		// setBattles(updatedArray);
 		try {
-			console.log('🔎 Attempting to delete battle...');
-			console.log('🆔', id);
 			const { data } = await deleteBattle({
 				variables: { battleId: id },
 			});
 			console.log('✅ Success!', data);
 		} catch (e) {
-			console.error(e);
 			console.log('🚮 Error deleting battle');
+			console.error(e);
 		}
 	};
 
 	const handleClickDeck = (id) => {
-		console.log(
-			user.collections.find((collection) => collection._id === id)
-		);
+		console.log(collections.find((collection) => collection._id === id));
 	};
 
 	// Grabs id of a battle card to be used when dropped
@@ -92,13 +75,13 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 			console.log('🚀', user.collections);
 		} catch (error) {
 			console.log('💥 Battle was not added to Collection.');
-			console.error(mutationError);
+			console.error(mutation_error);
 		}
 	};
 
-	if (loading) return <div>Loading...</div>;
+	if (user_loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (error) return <div>ERROR!</div>;
+	if (user_error) return <div>ERROR!</div>;
 
 	return (
 		<div className="py-4">
@@ -113,41 +96,34 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 
 			<Container fluid="lg" className="d-flex">
 				{/* Decks */}
-				{user.collections
-					? user.collections.map((collection) => {
-							return (
-								<div
-									className="m-2 card battle-deck d-flex justify-content-center"
-									key={collection._id}
-									onClick={() =>
-										handleClickDeck(collection._id)
-									}
-									onDrop={(e) =>
-										handleDrop(e, collection._id)
-									}
-									onDragOver={(e) => e.preventDefault()}
-									style={{
-										backgroundImage:
-											collection.background_img
-												? `url(${require('assets/images/' +
-														collection.background_img)})`
-												: "url(require('assets/images/back_1.jpg')",
-										backgroundRepeat: 'no-repeat',
-										backgroundSize: 'cover',
-									}}
-								>
-									<h2 className="battle-deck-title text-center">
-										{collection.name}
-									</h2>
-									<span className="battle-deck-card-number">
-										{collection.battles.length}
-									</span>
-									<div className="nested-deck"></div>
-									<div className="double-nested-deck"></div>
-								</div>
-							);
-					  })
-					: null}
+				{collections.map((collection) => {
+					return (
+						<div
+							className="m-2 card battle-deck d-flex justify-content-center"
+							key={collection._id}
+							onClick={() => handleClickDeck(collection._id)}
+							onDrop={(e) => handleDrop(e, collection._id)}
+							onDragOver={(e) => e.preventDefault()}
+							style={{
+								backgroundImage: collection.background_img
+									? `url(${require('assets/images/' +
+											collection.background_img)})`
+									: "url(require('assets/images/back_1.jpg')",
+								backgroundRepeat: 'no-repeat',
+								backgroundSize: 'cover',
+							}}
+						>
+							<h2 className="battle-deck-title text-center">
+								{collection.name}
+							</h2>
+							<span className="battle-deck-card-number">
+								{collection.battles.length}
+							</span>
+							<div className="nested-deck"></div>
+							<div className="double-nested-deck"></div>
+						</div>
+					);
+				})}
 			</Container>
 
 			<Container fluid="lg" className="d-flex flex-wrap">
