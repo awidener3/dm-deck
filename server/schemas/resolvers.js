@@ -8,36 +8,36 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    // Get all users
+    // Gets all users
     users: async () => {
       return User.find({});
     },
-
-    // Get single user
+    // Gets a user by ID
     user: async (parent, { userId }) => {
       const user = User.findById({ _id: userId });
       return user;
     },
-
-    // Get logged in user
+    // Gets logged in user
     me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
-      }
+      if (context.user) return User.findOne({ _id: context.user._id });
       throw new AuthenticationError("You need to be logged in!");
     },
-    // Get battle by ID
-    battle: async (parent, args) => {
-      return Battle.findById({ _id: args.battleId }).populate("userId");
-    },
-    // Get all battles
+    // Gets all battles
     battles: async (parent, args) => {
       return Battle.find({}).populate("userId");
     },
-    // Get collection by ID
-    collection: async (parent, args) => {
-      const collection = Collection.findOne({ _id: args.collectionId });
-      return collection;
+    // Gets a battle by ID
+    battle: async (parent, { battleId }) => {
+      return Battle.findById({ _id: battleId }).populate("userId");
+    },
+    collections: async (parent, args) => {
+      return Collection.find({}).populate("battles").populate("userId");
+    },
+    // Gets a collection by ID
+    collection: async (parent, { collectionId }) => {
+      return Collection.findOne({ _id: collectionId })
+        .populate("battles")
+        .populate("userId");
     },
   },
 
@@ -81,7 +81,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-
+    // TODO: redo
     addCharacter: async (parent, args, context) => {
       if (context.user) {
         const character = await Character.create(args);
@@ -94,7 +94,7 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-
+    // TODO: redo
     addMonster: async (parent, args, context) => {
       if (context.user) {
         const monster = await Monster.create(args);
@@ -110,7 +110,7 @@ const resolvers = {
     // Adds a battle
     addBattle: async (parent, { name, userId }, context) => {
       if (context.user) {
-        return await Battle.create({ name, userId }).populate("userId");
+        return await Battle.create({ name, userId });
       }
       throw new AuthenticationError("Not logged in");
     },
@@ -128,52 +128,74 @@ const resolvers = {
         return await Battle.findByIdAndDelete(battleId);
       }
     },
-
+    // Adds a collection
     addCollection: async (parent, args, context) => {
       if (context.user) {
-        const collection = await Collection.create(args);
-        await User.findByIdAndUpdate(context.user._id, {
-          $push: { collections: collection },
-        });
-
-        return collection;
+        return await Collection.create(args);
       }
-
       throw new AuthenticationError("Not logged in");
     },
-
-    addBattleToCollection: async (
-      parent,
-      { battleId, collectionId },
-      context
-    ) => {
+    // Adds a battle to a collection
+    addBattleToCollection: async (parent, args, context) => {
       if (context.user) {
-        try {
-          const battle = await Battle.findById(battleId);
-          const user = await User.findOneAndUpdate(
-            {
-              _id: context.user._id,
-              "collections._id": collectionId,
-            },
-            {
-              $addToSet: {
-                "collections.$.battles": battle,
-              },
-            },
-            {
-              new: true,
-              upsert: true,
-            }
-          );
-
-          return user;
-        } catch (e) {
-          return e;
-        }
+        return await Collection.findByIdAndUpdate(
+          args.collectionId,
+          { $push: { battles: args.battleId } },
+          { new: true }
+        );
       }
-
       throw new AuthenticationError("Not logged in");
     },
+    // Updates a collection
+    updateCollection: async (parent, args, context) => {
+      if (context.user) {
+        return await Collection.findByIdAndUpdate(
+          args.collectionId,
+          { $set: { name: args.name, background_img: args.background_img } },
+          { new: true }
+        );
+      }
+    },
+    // Deletes a collection
+    deleteCollection: async (parent, { collectionId }, context) => {
+      if (context.user) {
+        return await Collection.findByIdAndDelete(collectionId);
+      }
+      throw new AuthenticationError("Not logged in");
+    },
+    // TODO: redo
+    // addBattleToCollection: async (
+    //   parent,
+    //   { battleId, collectionId },
+    //   context
+    // ) => {
+    //   if (context.user) {
+    //     try {
+    //       const battle = await Battle.findById(battleId);
+    //       const user = await User.findOneAndUpdate(
+    //         {
+    //           _id: context.user._id,
+    //           "collections._id": collectionId,
+    //         },
+    //         {
+    //           $addToSet: {
+    //             "collections.$.battles": battle,
+    //           },
+    //         },
+    //         {
+    //           new: true,
+    //           upsert: true,
+    //         }
+    //       );
+
+    //       return user;
+    //     } catch (e) {
+    //       return e;
+    //     }
+    //   }
+
+    //   throw new AuthenticationError("Not logged in");
+    // },
   },
 };
 

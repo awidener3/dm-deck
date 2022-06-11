@@ -132,6 +132,7 @@ const typeDefs = gql`
   type Collection {
     _id: ID
     name: String
+    userId: User
     battles: [Battle]
     background_img: String
   }
@@ -141,8 +142,9 @@ const typeDefs = gql`
     users: [User]
     user(userId: ID!): User
     me: User
-    battle(battleId: ID): Battle
     battles: [Battle]
+    battle(battleId: ID): Battle
+    collections: [Collection]
     collection(collectionId: ID): Collection
   }
 
@@ -256,11 +258,8 @@ const typeDefs = gql`
   type Mutation {
     # USER mutations
     addUser(username: String!, email: String!, password: String!): Auth
-
     removeUser(userId: ID!): User
-
     updateUser(email: String!, password: String!): User
-
     login(email: String!, password: String!): Auth
 
     # CHARACTER/HERO mutations
@@ -326,10 +325,20 @@ const typeDefs = gql`
     addBattle(userId: ID!, name: String!): Battle
     updateBattle(battleId: ID!, name: String): Battle
     deleteBattle(battleId: ID!): Battle
-
-    addCollection(_id: ID, name: String, background_img: String): Collection
-
-    addBattleToCollection(battleId: ID, collectionId: ID): User
+    # ENCOUNTER mutations
+    addCollection(
+      name: String!
+      background_img: String
+      userId: ID!
+      battles: [ID]
+    ): Collection
+    addBattleToCollection(battleId: ID, collectionId: ID): Collection
+    updateCollection(
+      collectionId: ID!
+      name: String
+      background_img: String
+    ): Collection
+    deleteCollection(collectionId: ID!): Collection
   }
 `;
 

@@ -4,8 +4,18 @@ const { battleSchema } = require("./Battle");
 const collectionSchema = new Schema(
   {
     name: String,
-    battles: { type: [battleSchema], unique: true },
     background_img: String,
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    battles: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Battle",
+      },
+    ],
+    // battles: { type: [battleSchema], unique: true },
   },
   {
     toJSON: {
