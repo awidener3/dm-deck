@@ -17,8 +17,9 @@ const battleSchema = new Schema(
 				ref: 'Character',
 			},
 		],
-		// Reference to an array of monsters
-		monsters: [
+		monsters: [String],
+		// Reference to an array of custom monsters
+		custom_monsters: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'Monster',

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Container } from 'react-bootstrap';
-import { QUERY_ME, QUERY_COLLECTION } from 'utils/queries';
+import { QUERY_ME } from 'utils/queries';
 import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 import { RiSwordFill, RiEditLine } from 'react-icons/ri';

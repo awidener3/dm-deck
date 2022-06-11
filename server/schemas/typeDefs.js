@@ -127,10 +127,11 @@ const typeDefs = gql`
 
 	type Battle {
 		_id: ID
-		userId: User
+		userId: User # ref User id
 		name: String
-		heroes: [Character]
-		monsters: [Monster]
+		heroes: [Character] # ref Character id
+		monsters: [String]
+		custom_monsters: [Monster] # ref Monster id
 	}
 
 	type Collection {
@@ -353,7 +354,13 @@ const typeDefs = gql`
 		): Monster
 
 		# BATTLE mutations
-		addBattle(userId: ID!, name: String!, heroes: [ID], monsters: [ID]): Battle
+		addBattle(
+			userId: ID!
+			name: String!
+			heroes: [ID]
+			monsters: [String]
+			custom_monsters: [ID]
+		): Battle
 
 		updateBattle(battleId: ID!, name: String): Battle
 

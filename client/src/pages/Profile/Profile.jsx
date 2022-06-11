@@ -1,18 +1,31 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../../utils/queries';
+import { QUERY_ME, QUERY_USER_CHARACTERS } from '../../utils/queries';
 import Card from './ProfileCard';
 import { Alert } from 'react-bootstrap';
 
 import './profile.scss';
 
 const Profile = () => {
-	const { loading, error, data } = useQuery(QUERY_ME);
+	// Query user data
+	const {
+		loading: user_loading,
+		error: user_error,
+		data: user_data,
+	} = useQuery(QUERY_ME);
+	// Query character data
+	const {
+		loading: characters_loading,
+		error: characters_error,
+		data: characters_data,
+	} = useQuery(QUERY_USER_CHARACTERS);
+	// Database Results
+	const user = user_data?.me || [];
+	const characters = characters_data?.userCharacters || [];
 
-	const user = data?.me || [];
-
-	if (loading) return <div>Loading...</div>;
+	// Loading/error handling
+	if (user_loading || characters_loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (error) return <div>ERROR!</div>;
+	if (user_error || characters_error) return <div>ERROR!</div>;
 
 	return (
 		<section className="p-4 d-flex flex-column justify-content-center align-items-center container">
@@ -31,7 +44,7 @@ const Profile = () => {
 			<section>
 				<h2>Your Characters</h2>
 				<div className="d-flex flex-wrap justify-content-center">
-					{user.characters.map((character) => (
+					{characters.map((character) => (
 						<Card
 							key={character._id}
 							creature={character}
@@ -41,7 +54,7 @@ const Profile = () => {
 				</div>
 			</section>
 
-			<section>
+			{/* <section>
 				<h2>Your Monsters</h2>
 				<div className="d-flex flex-wrap justify-content-center">
 					{user.monsters.map((monster) => (
@@ -52,7 +65,7 @@ const Profile = () => {
 						/>
 					))}
 				</div>
-			</section>
+			</section> */}
 		</section>
 	);
 };
