@@ -1,191 +1,180 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
-const { Character } = require('../models/Character');
-const { Monster } = require('../models/Monster');
-const { Battle } = require('../models/Battle');
-const { Collection } = require('../models/Collection');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { User } = require("../models");
+const { Character } = require("../models/Character");
+const { Monster } = require("../models/Monster");
+const { Battle } = require("../models/Battle");
+const { Collection } = require("../models/Collection");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
-	Query: {
-		// Get all users
-		users: async () => {
-			return User.find({});
-		},
+  Query: {
+    // Get all users
+    users: async () => {
+      return User.find({});
+    },
 
-		// Get single user
-		user: async (parent, { userId }) => {
-			const user = User.findOne({ _id: userId });
-			return user;
-		},
+    // Get single user
+    user: async (parent, { userId }) => {
+      const user = User.findById({ _id: userId });
+      return user;
+    },
 
-		// Get logged in user
-		me: async (parent, args, context) => {
-			if (context.user) {
-				return User.findOne({ _id: context.user._id });
-			}
-			throw new AuthenticationError('You need to be logged in!');
-		},
+    // Get logged in user
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    // Get battle by ID
+    battle: async (parent, args) => {
+      return Battle.findById({ _id: args.battleId }).populate("userId");
+    },
+    // Get all battles
+    battles: async (parent, args) => {
+      return Battle.find({}).populate("userId");
+    },
+    // Get collection by ID
+    collection: async (parent, args) => {
+      const collection = Collection.findOne({ _id: args.collectionId });
+      return collection;
+    },
+  },
 
-		// Get battle by ID
-		battle: async (parent, args) => {
-			const battle = Battle.findOne({ _id: args.battleId });
-			return battle;
-		},
+  Mutation: {
+    // Add new user
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+      return { token, user };
+    },
+    // update user
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
 
-		// Get collection by ID
-		collection: async (parent, args) => {
-			const collection = Collection.findOne({ _id: args.collectionId });
-			return collection;
-		},
-	},
+      throw new AuthenticationError("Not logged in");
+    },
+    // Remove user
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
+    },
+    // Login
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-	Mutation: {
-		// Add new user
-		addUser: async (parent, args) => {
-			const user = await User.create(args);
-			const token = signToken(user);
-			return { token, user };
-		},
-		// update user
-		updateUser: async (parent, args, context) => {
-			if (context.user) {
-				return await User.findByIdAndUpdate(context.user._id, args, {
-					new: true,
-				});
-			}
+      if (!user) {
+        throw new AuthenticationError("No user with this email found!");
+      }
 
-			throw new AuthenticationError('Not logged in');
-		},
-		// Remove user
-		removeUser: async (parent, { userId }) => {
-			return User.findOneAndDelete({ _id: userId });
-		},
-		// Login
-		login: async (parent, { email, password }) => {
-			const user = await User.findOne({ email });
+      // method on user model to compare passwords
+      const correctPw = await user.isCorrectPassword(password);
 
-			if (!user) {
-				throw new AuthenticationError('No user with this email found!');
-			}
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect password!");
+      }
 
-			// method on user model to compare passwords
-			const correctPw = await user.isCorrectPassword(password);
+      // sends token to be signed by jsonwebtoken package
+      const token = signToken(user);
+      return { token, user };
+    },
 
-			if (!correctPw) {
-				throw new AuthenticationError('Incorrect password!');
-			}
+    addCharacter: async (parent, args, context) => {
+      if (context.user) {
+        const character = await Character.create(args);
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { characters: character },
+        });
 
-			// sends token to be signed by jsonwebtoken package
-			const token = signToken(user);
-			return { token, user };
-		},
+        return character;
+      }
 
-		addCharacter: async (parent, args, context) => {
-			if (context.user) {
-				const character = await Character.create(args);
-				await User.findByIdAndUpdate(context.user._id, {
-					$push: { characters: character },
-				});
+      throw new AuthenticationError("Not logged in");
+    },
 
-				return character;
-			}
+    addMonster: async (parent, args, context) => {
+      if (context.user) {
+        const monster = await Monster.create(args);
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { monsters: monster },
+        });
 
-			throw new AuthenticationError('Not logged in');
-		},
+        return monster;
+      }
 
-		addMonster: async (parent, args, context) => {
-			if (context.user) {
-				const monster = await Monster.create(args);
-				await User.findByIdAndUpdate(context.user._id, {
-					$push: { monsters: monster },
-				});
+      throw new AuthenticationError("Not logged in");
+    },
+    // Adds a battle
+    addBattle: async (parent, { name, userId }, context) => {
+      if (context.user) {
+        return await Battle.create({ name, userId }).populate("userId");
+      }
+      throw new AuthenticationError("Not logged in");
+    },
+    // Updates a battle
+    updateBattle: async (parent, { battleId, name }, context) => {
+      return await Battle.findByIdAndUpdate(
+        battleId,
+        { $set: { name } },
+        { new: true }
+      ).populate("userId");
+    },
+    // Deletes a battle
+    deleteBattle: async (parent, { battleId }, context) => {
+      if (context.user) {
+        return await Battle.findByIdAndDelete(battleId);
+      }
+    },
 
-				return monster;
-			}
+    addCollection: async (parent, args, context) => {
+      if (context.user) {
+        const collection = await Collection.create(args);
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { collections: collection },
+        });
 
-			throw new AuthenticationError('Not logged in');
-		},
+        return collection;
+      }
 
-		addBattle: async (parent, args, context) => {
-			if (context.user) {
-				const battle = await Battle.create(args);
-				await User.findByIdAndUpdate(context.user._id, {
-					$push: { battles: battle },
-				});
+      throw new AuthenticationError("Not logged in");
+    },
 
-				return battle;
-			}
+    addBattleToCollection: async (
+      parent,
+      { battleId, collectionId },
+      context
+    ) => {
+      if (context.user) {
+        try {
+          const battle = await Battle.findById(battleId);
+          const user = await User.findOneAndUpdate(
+            {
+              _id: context.user._id,
+              "collections._id": collectionId,
+            },
+            {
+              $addToSet: {
+                "collections.$.battles": battle,
+              },
+            },
+            {
+              new: true,
+              upsert: true,
+            }
+          );
 
-			throw new AuthenticationError('Not logged in');
-		},
+          return user;
+        } catch (e) {
+          return e;
+        }
+      }
 
-		deleteBattle: async (parent, { battleId }, context) => {
-			console.log('test');
-			if (context.user) {
-				const user = User.findByIdAndUpdate(
-					{ _id: context.user._id },
-					{ $pullAll: { battles: { _id: battleId } } },
-					{
-						$pullAll: {
-							collections: { battles: { _id: battleId } },
-						},
-					},
-					{ new: true }
-				);
-
-				console.log(user);
-
-				return user;
-			}
-		},
-
-		addCollection: async (parent, args, context) => {
-			if (context.user) {
-				const collection = await Collection.create(args);
-				await User.findByIdAndUpdate(context.user._id, {
-					$push: { collections: collection },
-				});
-
-				return collection;
-			}
-
-			throw new AuthenticationError('Not logged in');
-		},
-
-		addBattleToCollection: async (
-			parent,
-			{ battleId, collectionId },
-			context
-		) => {
-			if (context.user) {
-				try {
-					const battle = await Battle.findById(battleId);
-					const user = await User.findOneAndUpdate(
-						{
-							_id: context.user._id,
-							'collections._id': collectionId,
-						},
-						{
-							$addToSet: {
-								'collections.$.battles': battle,
-							},
-						},
-						{
-							new: true,
-							upsert: true,
-						}
-					);
-
-					return user;
-				} catch (e) {
-					return e;
-				}
-			}
-
-			throw new AuthenticationError('Not logged in');
-		},
-	},
+      throw new AuthenticationError("Not logged in");
+    },
+  },
 };
 
 module.exports = resolvers;
