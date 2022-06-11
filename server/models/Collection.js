@@ -1,29 +1,29 @@
-const { Schema, model } = require("mongoose");
-const { battleSchema } = require("./Battle");
+const { Schema, model } = require('mongoose');
 
 const collectionSchema = new Schema(
-  {
-    name: String,
-    background_img: String,
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-    battles: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Battle",
-      },
-    ],
-    // battles: { type: [battleSchema], unique: true },
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
-  }
+	{
+		name: String,
+		background_img: String,
+		// Reference to a user
+		userId: {
+			type: Schema.Types.ObjectId,
+			ref: 'User',
+		},
+		// Reference to an array of battle IDs
+		battles: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Battle',
+			},
+		],
+	},
+	{
+		toJSON: {
+			getters: true,
+		},
+	}
 );
 
-const Collection = model("Collection", collectionSchema);
+const Collection = model('Collection', collectionSchema);
 
 module.exports = { Collection, collectionSchema };
