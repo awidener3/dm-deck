@@ -24,6 +24,7 @@ const typeDefs = gql`
 	type Character {
 		_id: ID
 		type: String
+		userId: User
 		character_name: String
 		player_name: String
 		level: Int
@@ -149,9 +150,12 @@ const typeDefs = gql`
 		user(userId: ID!): User
 		me: User
 		battles: [Battle]
-		battle(battleId: ID): Battle
+		battle(battleId: ID!): Battle
+		userBattles: [Battle] # Uses context id
 		collections: [Collection]
 		collection(collectionId: ID!): Collection
+		characters: [Character]
+		character(characterId: ID!): Character
 	}
 
 	##########
@@ -274,7 +278,19 @@ const typeDefs = gql`
 
 		# CHARACTER/HERO mutations
 		addCharacter(
+			userId: ID!
 			character_name: String!
+			player_name: String
+			level: Int!
+			race: String
+			class: String
+			armor_class: Int!
+			hit_points: Int!
+		): Character
+
+		updateCharacter(
+			characterId: ID!
+			character_name: String
 			player_name: String
 			level: Int
 			race: String
@@ -282,6 +298,8 @@ const typeDefs = gql`
 			armor_class: Int
 			hit_points: Int
 		): Character
+
+		deleteCharacter(characterId: ID!): Character
 
 		# MONSTER mutations
 		addMonster(

@@ -12,9 +12,13 @@
   - [Battles](#battles)
     - [Get all battles](#get-all-battles)
     - [Get a battle by its id](#get-a-battle-by-its-id)
+    - [Get all battles by a user's id](#get-all-battles-by-a-users-id)
     - [Add a battle](#add-a-battle)
     - [Update a battle](#update-a-battle)
     - [Delete a battle](#delete-a-battle)
+  - [Characters](#characters)
+    - [Get all Characters](#get-all-characters)
+    - [Get a character by id](#get-a-character-by-id)
 
 ## Collections
 
@@ -147,13 +151,27 @@ query battles {
 ### Get a battle by its id
 
 ```graphql
-query battle ($battleId: ID) {
+query battle ($battleId: ID!) {
   battle(battleId: $battleId) {
     name
     userId: {
       username
       email
     }
+  }
+}
+```
+
+### Get all battles by a user's id
+
+```graphql
+query UserBattles($userId: ID!) {
+  userBattles(userId: $userId) {
+    userId {
+      username
+    }
+    _id
+    name
   }
 }
 ```
@@ -193,4 +211,29 @@ mutation deleteBattle($battleId: ID!) {
     name
   }
 }
+```
+
+## Characters
+
+### Get all Characters
+
+```graphql
+query Characters {
+  characters {
+    _id
+    type
+    userId {
+      _id
+      username
+    }
+    character_name
+  }
+}
+```
+
+### Get a character by id
+
+```graphql
+
+
 ```

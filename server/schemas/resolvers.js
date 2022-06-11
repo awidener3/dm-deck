@@ -30,6 +30,10 @@ const resolvers = {
 		battle: async (parent, { battleId }) => {
 			return Battle.findById({ _id: battleId }).populate('userId');
 		},
+		// Gets all battles by user ID
+		userBattles: async (parent, args, context) => {
+			return Battle.find({ userId: context.user._id }).populate('userId');
+		},
 		collections: async (parent, args) => {
 			return Collection.find({}).populate('battles').populate('userId');
 		},
@@ -38,6 +42,10 @@ const resolvers = {
 			return Collection.findOne({ _id: collectionId })
 				.populate('battles')
 				.populate('userId');
+		},
+		// Gets all characters
+		characters: async (parent, args) => {
+			return Character.find().populate('userId');
 		},
 	},
 
@@ -81,17 +89,44 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
-		// TODO: redo
+		// Adds a character
 		addCharacter: async (parent, args, context) => {
 			if (context.user) {
 				const character = await Character.create(args);
-				await User.findByIdAndUpdate(context.user._id, {
-					$push: { characters: character },
-				});
 
 				return character;
 			}
 
+			throw new AuthenticationError('Not logged in');
+		},
+		// Updates a character
+		updateCharacter: async (parent, args, context) => {
+			if (context.user) {
+				const character = await Character.findByIdAndUpdate(
+					args.characterId,
+					{
+						$set: {
+							character_name: args.character_name,
+							player_name: args.player_name,
+							level: args.level,
+							race: args.race,
+							class: args.class,
+							armor_class: args.armor_class,
+							hit_points: args.hit_points,
+						},
+					},
+					{ new: true }
+				);
+
+				return character;
+			}
+			throw new AuthenticationError('Not logged in');
+		},
+		// Delete a character
+		deleteCharacter: async (parent, args, context) => {
+			if (context.user) {
+				return await Character.findByIdAndDelete(args.characterId);
+			}
 			throw new AuthenticationError('Not logged in');
 		},
 		// TODO: redo
