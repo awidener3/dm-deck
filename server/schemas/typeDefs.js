@@ -151,7 +151,7 @@ const typeDefs = gql`
 		battles: [Battle]
 		battle(battleId: ID): Battle
 		collections: [Collection]
-		collection(collectionId: ID): Collection
+		collection(collectionId: ID!): Collection
 	}
 
 	##########
