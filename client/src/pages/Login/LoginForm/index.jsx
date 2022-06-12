@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from 'utils/mutations';
+import { LOGIN } from 'utils/mutations/userMutations';
 import Auth from 'utils/auth';
 
 const LoginForm = () => {
@@ -44,9 +44,7 @@ const LoginForm = () => {
 					onChange={handleChange}
 					required
 				/>
-				<Form.Text>
-					We'll never share your email with anyone else.
-				</Form.Text>
+				<Form.Text>We'll never share your email with anyone else.</Form.Text>
 			</Form.Group>
 			<Form.Group>
 				<Form.Label>Password</Form.Label>

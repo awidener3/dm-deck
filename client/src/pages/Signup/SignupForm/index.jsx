@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import Auth from 'utils/auth';
-import { ADD_USER } from 'utils/mutations';
+import { ADD_USER } from 'utils/mutations/userMutations';
 
 const Signup = () => {
 	const [formState, setFormState] = useState({
@@ -61,9 +61,7 @@ const Signup = () => {
 					onChange={handleChange}
 					required
 				/>
-				<Form.Text>
-					We'll never share your email with anyone else.
-				</Form.Text>
+				<Form.Text>We'll never share your email with anyone else.</Form.Text>
 			</Form.Group>
 			<Form.Group>
 				<Form.Label>Password</Form.Label>

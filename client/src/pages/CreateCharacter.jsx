@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import races from 'assets/json/player_races.json';
 import classes from 'assets/json/player_classes.json';
-import { useMutation } from '@apollo/client';
-import { ADD_CHARACTER } from 'utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_CHARACTER } from 'utils/mutations/characterMutations';
+import { QUERY_USER_CHARACTERS } from 'utils/queries/userQueries';
 
 import 'assets/styles/createCharacter.scss';
+import { QUERY_ME } from 'utils/queries/userQueries';
 
 const CreateCharacter = () => {
 	const [values, setValues] = useState({
@@ -18,7 +20,15 @@ const CreateCharacter = () => {
 		hit_points: 0,
 	});
 
-	const [addCharacter, { error }] = useMutation(ADD_CHARACTER);
+	const { loading, error, data } = useQuery(QUERY_ME);
+	const [addCharacter, { error: character_error }] = useMutation(
+		ADD_CHARACTER,
+		{
+			refetchQueries: [{ query: QUERY_USER_CHARACTERS }, 'UserCharacters'],
+		}
+	);
+
+	const user = data?.me || [];
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -33,6 +43,7 @@ const CreateCharacter = () => {
 		try {
 			await addCharacter({
 				variables: {
+					userId: user._id,
 					character_name: values.character_name,
 					player_name: values.player_name,
 					level: parseInt(values.level),
@@ -42,6 +53,11 @@ const CreateCharacter = () => {
 					hit_points: parseInt(values.hit_points),
 				},
 			});
+
+			console.log(
+				`✅ Successfully added ${values.character_name} to ${user.username}'s bag of holding!`
+			);
+
 			setValues({
 				character_name: '',
 				player_name: '',
@@ -53,6 +69,7 @@ const CreateCharacter = () => {
 			});
 		} catch (error) {
 			console.error(error);
+			console.error(character_error);
 		}
 	};
 
@@ -71,6 +88,10 @@ const CreateCharacter = () => {
 			</option>
 		));
 	};
+
+	if (loading) return <div>Loading...</div>;
+	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
+	if (error) return <div>ERROR!</div>;
 
 	return (
 		<div className="container p-4 w-70">
