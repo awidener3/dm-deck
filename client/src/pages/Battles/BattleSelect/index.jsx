@@ -17,10 +17,20 @@ import SummaryAccordion from './SummaryAccordion';
 const BattleSelect = ({ background = 'back_1.jpg' }) => {
 	const [addBattleToCollection, { error: mutation_error }] = useMutation(
 		ADD_BATTLE_TO_COLLECTION,
-		{ refetchQueries: [{ query: QUERY_ME }, 'Me'] }
+		{
+			refetchQueries: [
+				{ query: QUERY_USER_COLLECTIONS },
+				'UserCollections',
+			],
+		}
 	);
 	const [deleteBattle] = useMutation(DELETE_BATTLE, {
-		refetchQueries: [{ query: QUERY_USER_BATTLES }, 'UserBattles'],
+		refetchQueries: [
+			{ query: QUERY_USER_BATTLES },
+			'UserBattles',
+			{ query: QUERY_USER_COLLECTIONS },
+			'UserCollections',
+		],
 	});
 
 	const {
@@ -29,7 +39,8 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 		data: user_data,
 	} = useQuery(QUERY_ME);
 	const { data: colls_data } = useQuery(QUERY_USER_COLLECTIONS);
-	const { data: battles_data } = useQuery(QUERY_USER_BATTLES);
+	const { loading: battles_loading, data: battles_data } =
+		useQuery(QUERY_USER_BATTLES);
 
 	const user = user_data?.me || [];
 	const collections = colls_data?.userCollections || [];
@@ -72,14 +83,14 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 			});
 			console.log('✅ Battle successfully added to Collection!');
 			console.log('🚀', mutationResponse.data);
-			console.log('🚀', user.collections);
+			console.log('🚀', collections);
 		} catch (error) {
 			console.log('💥 Battle was not added to Collection.');
 			console.error(mutation_error);
 		}
 	};
 
-	if (user_loading) return <div>Loading...</div>;
+	if (user_loading || battles_loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
 	if (user_error) return <div>ERROR!</div>;
 

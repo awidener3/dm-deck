@@ -39,12 +39,14 @@ const CreateBattle = () => {
 
 	const handleSave = async () => {
 		try {
+			const heroes = selectedHeroes.map((hero) => hero._id);
+			const monsters = selectedMonsters.map((monster) => monster.slug);
 			const mutationResponse = await addBattle({
 				variables: {
 					name: battleName || 'New Battle',
 					userId: user._id,
-					heroes: selectedHeroes,
-					monsters: selectedMonsters,
+					heroes: heroes,
+					monsters: monsters,
 				},
 			});
 			console.log('🚀', mutationResponse.data);
@@ -78,6 +80,7 @@ const CreateBattle = () => {
 	const handleSelectMonster = (data) => {
 		let updatedArray = [...selectedMonsters, data];
 		setSelectedMonsters(updatedArray);
+		// console.log(updatedArray.map((monster) => monster.slug));
 	};
 
 	const handleSelectHero = (id) => {

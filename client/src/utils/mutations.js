@@ -119,16 +119,15 @@ export const ADD_COLLECTION = gql`
 `;
 
 export const ADD_BATTLE_TO_COLLECTION = gql`
-	mutation AddBattleToCollection($battleId: ID, $collectionId: ID) {
+	mutation AddBattleToCollection($battleId: ID!, $collectionId: ID!) {
 		addBattleToCollection(
 			battleId: $battleId
 			collectionId: $collectionId
 		) {
-			username
-			collections {
+			_id
+			name
+			battles {
 				_id
-				name
-				background_img
 			}
 		}
 	}
