@@ -1,46 +1,71 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-// import { rollDie } from '../utils/diceRolls';
-import { rollDie, getInitiative } from 'utils/diceRolls';
+
 import Monster from './Monster';
 import Hero from './Hero';
 import InfoModal from './InfoModal';
 import RollModal from './RollModal';
 import MonstersModal from './MonstersModal';
 import QuickView from './QuickView';
-// import { getInitiative } from '../utils/diceRolls';
+
 import { slideLeft, slideRight } from 'utils/slideAnimations';
+import { rollDie, getInitiative } from 'utils/diceRolls';
+import { QUERY_ME, QUERY_USER_BATTLES } from 'utils/queries/userQueries';
+import { QUERY_BATTLE } from 'utils/queries/battleQueries';
+import open5e from 'api/open5e';
+
 import {
 	FaChevronLeft,
 	FaChevronRight,
 	FaChevronCircleLeft,
 	FaChevronCircleRight,
 } from 'react-icons/fa';
-import { QUERY_ME } from 'utils/queries';
-import { useQuery } from '@apollo/client';
 import 'App.scss';
-
-// * COMPONENT
 
 const Battle = () => {
 	let params = useParams();
 	const { loading, error, data } = useQuery(QUERY_ME);
-	const user = data?.me || data?.user || [];
+	const { loading: battle_loading, data: battle_data } = useQuery(
+		QUERY_BATTLE,
+		{
+			variables: { battleId: params.battleId },
+		}
+	);
+	const user = data?.me || [];
+	const battle = { ...battle_data?.battle } || '';
 
 	const [sortedData, setSortedData] = useState([]);
 
+	// if (!battle_loading) {
+	// 	const slugs = battle.monsters;
+	// 	console.log('monsters', slugs);
+	// 	const monsters = [];
+
+	// 	slugs.forEach(async (monster) => {
+	// 		const { data } = await open5e.get(`/monsters/${monster}`);
+	// 		monsters.push(data);
+	// 	});
+
+	// 	battle.monsters = monsters;
+	// 	console.log('Battle after mod', battle);
+	// }
+
 	// Set sortedData from sorted and modified query
 	useEffect(() => {
-		if (data) {
-			const current = {
-				...user.battles.find(({ _id }) => _id === params.battleId),
-			};
+		if (!battle_loading) {
+			const monsters = [];
+			battle.monsters.forEach(async (monster) => {
+				const { data } = await open5e.get(`/monsters/${monster}`);
+				monsters.push(data);
+			});
 
+			// current.monsters = [...current.monsters]
 			// Sort alphabetically and check for doubles
-			current.monsters = [...current.monsters]
+			battle.monsters = monsters
 				.sort((a, b) => (a.name > b.name ? 1 : -1))
 				.map((monster, index) =>
-					current.monsters.findIndex(
+					battle.monsters.findIndex(
 						(current) => current.name === monster.name
 					) === index
 						? { ...monster, conditions: [] }
@@ -50,22 +75,20 @@ const Battle = () => {
 								name: `${monster.name} ${index + 1}`,
 						  }
 				);
-
 			// Put monsters and heroes into an array
-			let battle = [].concat(current.monsters).concat(current.heroes);
-
-			// Add initiative
-			battle = battle
+			let newBattle = [].concat(battle.monsters).concat(battle.heroes);
+			// Adds initiative
+			newBattle = newBattle
 				.map((creature) => ({
 					...creature,
 					initiative: getInitiative(creature),
 				}))
 				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
-			setSortedData(battle);
+			setSortedData(newBattle);
+			console.log(sortedData);
 		}
-	}, [data, params.battleId, user]);
-	// }, [data]);
+	}, [params.battleId, user]);
 
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -104,20 +127,13 @@ const Battle = () => {
 
 	if (loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (error) {
-		console.log(error);
-		return <div>ERROR!</div>;
-	}
+	if (error) return <div>ERROR!</div>;
 
 	const renderCards = (sortedData) => {
 		if (sortedData !== null) {
 			return sortedData.map((creature, n) => {
 				let position =
-					n > index
-						? 'nextCard'
-						: n === index
-						? 'activeCard'
-						: 'prevCard';
+					n > index ? 'nextCard' : n === index ? 'activeCard' : 'prevCard';
 
 				if (creature.type !== 'hero') {
 					return (
@@ -148,7 +164,6 @@ const Battle = () => {
 
 	return (
 		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
-			{/* Quick view of monster AC and HP */}
 			<QuickView
 				sortedData={sortedData}
 				turn={turn}
@@ -197,12 +212,12 @@ const Battle = () => {
 				)}
 
 				{/* Cards */}
-				<div className="card-container container d-flex justify-content-center">
+				{/* <div className="card-container container d-flex justify-content-center">
 					<div className="background-block"></div>
 					{sortedData || sortedData[0].initiative
 						? renderCards(sortedData)
 						: null}
-				</div>
+				</div> */}
 
 				{/* Render right Chevron */}
 				{turn === sortedData.length ? (

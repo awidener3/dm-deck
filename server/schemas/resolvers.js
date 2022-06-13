@@ -28,7 +28,9 @@ const resolvers = {
 		},
 		// Gets a battle by ID
 		battle: async (parent, { battleId }) => {
-			return Battle.findById({ _id: battleId }).populate('userId');
+			return Battle.findById({ _id: battleId })
+				.populate('userId')
+				.populate('heroes');
 		},
 		collections: async (parent, args) => {
 			return Collection.find({}).populate('battles').populate('userId');
