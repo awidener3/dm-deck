@@ -13,7 +13,7 @@ import { slideLeft, slideRight } from 'utils/slideAnimations';
 import { rollDie, getInitiative } from 'utils/diceRolls';
 import { QUERY_ME, QUERY_USER_BATTLES } from 'utils/queries/userQueries';
 import { QUERY_BATTLE } from 'utils/queries/battleQueries';
-import open5e from 'api/open5e';
+import fetchMonsterBySlug from 'hooks/fetchMonsterBySlug';
 
 import {
 	FaChevronLeft,
@@ -23,19 +23,56 @@ import {
 } from 'react-icons/fa';
 import 'App.scss';
 
-const Battle = () => {
+const Battle = async () => {
 	let params = useParams();
+	const [sortedData, setSortedData] = useState([]);
+
+	const getMonsters = ({ battle }) => {
+		console.log('🃏 Battle', battle);
+
+		const heroes = [...battle.heroes];
+		console.log('🧙‍♂️ Heroes', heroes);
+
+		const monsterSlugs = [...battle.monsters];
+		const monsters = [];
+
+		monsterSlugs.forEach((monster) => {
+			const response = fetchMonsterBySlug(monster);
+			console.log(data);
+			// const { data } = await open5e.get(`/monsters/${monster}`);
+			// monsters.push(data);
+		});
+
+		console.log('💀 Monsters', monsters);
+
+		let newBattle = [].concat(monsters).concat(heroes);
+		// Adds initiative
+		newBattle = newBattle
+			.map((creature) => ({
+				...creature,
+				initiative: getInitiative(creature),
+			}))
+			.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
+		return newBattle;
+	};
+
 	const { loading, error, data } = useQuery(QUERY_ME);
 	const { loading: battle_loading, data: battle_data } = useQuery(
 		QUERY_BATTLE,
 		{
 			variables: { battleId: params.battleId },
+			onCompleted: (data) => {
+				const battle = getMonsters(data);
+				setSortedData(battle);
+			},
 		}
 	);
 	const user = data?.me || [];
 	const battle = { ...battle_data?.battle } || '';
 
-	const [sortedData, setSortedData] = useState([]);
+	// const showData = () => {
+	// 	console.log(sortedData);
+	// };
 
 	// if (!battle_loading) {
 	// 	const slugs = battle.monsters;
@@ -52,43 +89,43 @@ const Battle = () => {
 	// }
 
 	// Set sortedData from sorted and modified query
-	useEffect(() => {
-		if (!battle_loading) {
-			const monsters = [];
-			battle.monsters.forEach(async (monster) => {
-				const { data } = await open5e.get(`/monsters/${monster}`);
-				monsters.push(data);
-			});
+	// useEffect(() => {
+	// 	if (!battle_loading && battle) {
+	// 		const monsters = [];
+	// 		battle.monsters.forEach(async (monster) => {
+	// 			const { data } = await open5e.get(`/monsters/${monster}`);
+	// 			monsters.push(data);
+	// 		});
 
-			// current.monsters = [...current.monsters]
-			// Sort alphabetically and check for doubles
-			battle.monsters = monsters
-				.sort((a, b) => (a.name > b.name ? 1 : -1))
-				.map((monster, index) =>
-					battle.monsters.findIndex(
-						(current) => current.name === monster.name
-					) === index
-						? { ...monster, conditions: [] }
-						: {
-								...monster,
-								conditions: [],
-								name: `${monster.name} ${index + 1}`,
-						  }
-				);
-			// Put monsters and heroes into an array
-			let newBattle = [].concat(battle.monsters).concat(battle.heroes);
-			// Adds initiative
-			newBattle = newBattle
-				.map((creature) => ({
-					...creature,
-					initiative: getInitiative(creature),
-				}))
-				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
+	// 		// current.monsters = [...current.monsters]
+	// 		// Sort alphabetically and check for doubles
+	// 		battle.monsters = monsters
+	// 			.sort((a, b) => (a.name > b.name ? 1 : -1))
+	// 			.map((monster, index) =>
+	// 				battle.monsters.findIndex(
+	// 					(current) => current.name === monster.name
+	// 				) === index
+	// 					? { ...monster, conditions: [] }
+	// 					: {
+	// 							...monster,
+	// 							conditions: [],
+	// 							name: `${monster.name} ${index + 1}`,
+	// 					  }
+	// 			);
+	// 		// Put monsters and heroes into an array
+	// 		let newBattle = [].concat(battle.monsters).concat(battle.heroes);
+	// 		// Adds initiative
+	// 		newBattle = newBattle
+	// 			.map((creature) => ({
+	// 				...creature,
+	// 				initiative: getInitiative(creature),
+	// 			}))
+	// 			.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
-			setSortedData(newBattle);
-			console.log(sortedData);
-		}
-	}, [params.battleId, user]);
+	// 		setSortedData(newBattle);
+	// 		console.log(sortedData);
+	// 	}
+	// }, []);
 
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -133,7 +170,11 @@ const Battle = () => {
 		if (sortedData !== null) {
 			return sortedData.map((creature, n) => {
 				let position =
-					n > index ? 'nextCard' : n === index ? 'activeCard' : 'prevCard';
+					n > index
+						? 'nextCard'
+						: n === index
+						? 'activeCard'
+						: 'prevCard';
 
 				if (creature.type !== 'hero') {
 					return (
@@ -164,12 +205,16 @@ const Battle = () => {
 
 	return (
 		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
-			<QuickView
-				sortedData={sortedData}
-				turn={turn}
-				setTurn={setTurn}
-				setIndex={setIndex}
-			/>
+			{sortedData.length > 0 ? (
+				<QuickView
+					sortedData={sortedData}
+					turn={turn}
+					setTurn={setTurn}
+					setIndex={setIndex}
+				/>
+			) : (
+				<p>Nothing yet</p>
+			)}
 			<div className="battle-stats mt-2 d-flex">
 				<h4 className="battle-stat mx-2">Round: {round}</h4>
 				<h4 className="battle-stat mx-2">
