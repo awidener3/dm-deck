@@ -6,6 +6,8 @@ const { Battle } = require('../models/Battle');
 const { Collection } = require('../models/Collection');
 const { signToken } = require('../utils/auth');
 
+const axios = require('axios');
+
 const resolvers = {
 	Query: {
 		// Gets all users
@@ -47,9 +49,28 @@ const resolvers = {
 		},
 		// Gets all battles by context user
 		userBattles: async (parent, args, context) => {
-			return Battle.find({ userId: context.user._id })
+			const battle = await Battle.find({ userId: context.user._id })
 				.populate('userId')
 				.populate('heroes');
+
+			await Promise.all(
+				battle[0].monsters.map(async (monster) => {
+					try {
+						const open5eUrl = `https://api.open5e.com/monsters/${monster}`;
+						const { data } = await axios.get(open5eUrl);
+						battle[0].custom_monsters.push(await data);
+						console.log(battle);
+					} catch (err) {
+						console.error(err);
+					}
+				})
+			);
+			// for (const monster of battle[0].monsters) {
+			// }
+			// battle[0].monsters.forEach(async (monster) => {
+			// });
+
+			return battle;
 		},
 		// Gets all collections by context user
 		userCollections: async (parent, args, context) => {

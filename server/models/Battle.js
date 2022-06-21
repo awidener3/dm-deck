@@ -17,14 +17,16 @@ const battleSchema = new Schema(
 				ref: 'Character',
 			},
 		],
+		message: String,
 		monsters: [String],
 		// Reference to an array of custom monsters
-		custom_monsters: [
-			{
-				type: Schema.Types.ObjectId,
-				ref: 'Monster',
-			},
-		],
+		// custom_monsters: [
+		// 	{
+		// 		type: Schema.Types.ObjectId,
+		// 		ref: 'Monster',
+		// 	},
+		// ],
+		custom_monsters: [monsterSchema],
 	},
 	{
 		toJSON: {

@@ -79,7 +79,7 @@ const typeDefs = gql`
 	}
 
 	type Monster {
-		_id: ID
+		# _id: ID
 		slug: String
 		name: String
 		size: String
@@ -132,6 +132,7 @@ const typeDefs = gql`
 		heroes: [Character] # ref Character id
 		monsters: [String]
 		custom_monsters: [Monster] # ref Monster id
+		message: String
 	}
 
 	type Collection {
