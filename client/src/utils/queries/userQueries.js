@@ -40,7 +40,12 @@ export const QUERY_USER_BATTLES = gql`
 			heroes {
 				character_name
 			}
-			monsters
+			monster_slugs
+			monsters {
+				slug
+				name
+				challenge_rating
+			}
 		}
 	}
 `;

@@ -12,8 +12,8 @@ import {
 import Header from './components/Header';
 import Home from './pages/Home';
 import Battles from './pages/Battles';
-import Battle from './pages/Battles/Battle';
-import BattleSelect from './pages/Battles/BattleSelect';
+import Battle from './pages/Battle';
+import BattleSelect from './pages/BattleSelect';
 import CreateBattle from './pages/CreateBattle';
 import CreateCharacter from './pages/CreateCharacter';
 import CreateMonster from './pages/CreateMonster';
@@ -55,13 +55,15 @@ const App = () => {
 
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/battles" element={<Battles />}>
+						<Route path="/battles" element={<BattleSelect />} />
+						<Route path="/battles/:battleId" element={<Battle />} />
+						{/* <Route path="/battles" element={<BattleSelect />}>
 							<Route index element={<BattleSelect />} />
 							<Route
 								path="/battles/:battleId"
 								element={<Battle />}
 							/>
-						</Route>
+						</Route> */}
 						<Route
 							path="/create-battle"
 							element={<CreateBattle />}

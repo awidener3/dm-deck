@@ -78,13 +78,13 @@ export const ADD_BATTLE = gql`
 		$name: String!
 		$userId: ID!
 		$heroes: [ID]
-		$monsters: [String]
+		$monster_slugs: [String]
 	) {
 		addBattle(
 			name: $name
 			userId: $userId
 			heroes: $heroes
-			monsters: $monsters
+			monster_slugs: $monster_slugs
 		) {
 			_id
 			name
@@ -94,7 +94,7 @@ export const ADD_BATTLE = gql`
 			heroes {
 				_id
 			}
-			monsters
+			monster_slugs
 		}
 	}
 `;

@@ -41,12 +41,13 @@ const CreateBattle = () => {
 		try {
 			const heroes = selectedHeroes.map((hero) => hero._id);
 			const monsters = selectedMonsters.map((monster) => monster.slug);
+			console.log('monsters is:', monsters);
 			const mutationResponse = await addBattle({
 				variables: {
 					name: battleName || 'New Battle',
 					userId: user._id,
 					heroes: heroes,
-					monsters: monsters,
+					monster_slugs: monsters,
 				},
 			});
 			console.log('🚀', mutationResponse.data);
@@ -55,7 +56,7 @@ const CreateBattle = () => {
 			console.warn('💥 Battle was not created...', {
 				name: battleName,
 				heroes: selectedHeroes,
-				monsters: selectedMonsters,
+				monster_slugs: selectedMonsters,
 			});
 			console.error(battle_error);
 		}

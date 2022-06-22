@@ -1,9 +1,9 @@
-const Conditions = ({ monster, sortedData, setSortedData }) => {
+const Conditions = ({ monster, battleOrder, setbattleOrder }) => {
 	const handleRemoveCondition = (conditionName) => {
 		let newConditions = monster.conditions.filter(
 			(condition) => condition !== conditionName
 		);
-		let updatedArray = sortedData.map((creature) => {
+		let updatedArray = battleOrder.map((creature) => {
 			if (creature.name === monster.name) {
 				return {
 					...monster,
@@ -12,7 +12,7 @@ const Conditions = ({ monster, sortedData, setSortedData }) => {
 			}
 			return creature;
 		});
-		setSortedData([...updatedArray]);
+		setbattleOrder([...updatedArray]);
 	};
 
 	return (

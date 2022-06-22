@@ -1,23 +1,41 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_BATTLE = gql`
-	query battle($battleId: ID!) {
+	query Battle($battleId: ID!) {
 		battle(battleId: $battleId) {
-			name
-			heroes {
-				character_name
-				player_name
-				level
-				race
-				class
-				armor_class
-				hit_points
-			}
-			monsters
 			userId {
-				_id
 				username
 			}
+			name
+			heroes {
+				type
+				character_name
+				player_name
+			}
+			monsters {
+				name
+				size
+				type
+				subtype
+				group
+				alignment
+				armor_class
+				armor_desc
+				hit_points
+				hit_dice
+				speed {
+					walk
+					swim
+				}
+				actions {
+					name
+					desc
+					attack_bonus
+					damage_dice
+					damage_bonus
+				}
+			}
+			monster_slugs
 		}
 	}
 `;

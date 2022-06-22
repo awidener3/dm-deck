@@ -28,11 +28,29 @@ const resolvers = {
 		battles: async (parent, args) => {
 			return Battle.find({}).populate('userId');
 		},
-		// Gets a battle by ID
+		// Gets a battle by ID + populates with open5e API calls
 		battle: async (parent, { battleId }) => {
-			return Battle.findById({ _id: battleId })
+			const battle = await Battle.findById({ _id: battleId })
 				.populate('userId')
 				.populate('heroes');
+
+			// Fetch open5e json with monster_slugs
+			await Promise.all(
+				battle.monster_slugs.map(async (slug) => {
+					try {
+						const open5eUrl = `https://api.open5e.com/monsters/${slug}`;
+						const { data } = await axios.get(open5eUrl);
+						battle.monsters.push(await data);
+					} catch (err) {
+						console.error(err);
+					}
+				})
+			);
+
+			// Sort alphabetically
+			battle.monsters.sort((a, b) => (a.name > b.name ? 1 : -1));
+
+			return battle;
 		},
 		collections: async (parent, args) => {
 			return Collection.find({}).populate('battles').populate('userId');
@@ -49,32 +67,33 @@ const resolvers = {
 		},
 		// Gets all battles by context user
 		userBattles: async (parent, args, context) => {
-			const battle = await Battle.find({ userId: context.user._id })
+			const battles = await Battle.find({ userId: context.user._id })
 				.populate('userId')
 				.populate('heroes');
 
 			await Promise.all(
-				battle[0].monsters.map(async (monster) => {
-					try {
-						const open5eUrl = `https://api.open5e.com/monsters/${monster}`;
-						const { data } = await axios.get(open5eUrl);
-						battle[0].custom_monsters.push(await data);
-						console.log(battle);
-					} catch (err) {
-						console.error(err);
-					}
+				battles.map((battle) => {
+					return Promise.all(
+						battle.monster_slugs.map(async (slug) => {
+							try {
+								const open5eUrl = `https://api.open5e.com/monsters/${slug}`;
+								const { data } = await axios.get(open5eUrl);
+								battle.monsters.push(await data);
+							} catch (err) {
+								console.error(err);
+							}
+						})
+					);
 				})
 			);
-			// for (const monster of battle[0].monsters) {
-			// }
-			// battle[0].monsters.forEach(async (monster) => {
-			// });
-
-			return battle;
+			console.log(battles);
+			return battles;
 		},
 		// Gets all collections by context user
 		userCollections: async (parent, args, context) => {
-			return Collection.find({ userId: context.user._id }).populate('battles');
+			return Collection.find({ userId: context.user._id }).populate(
+				'battles'
+			);
 		},
 		// Gets all collections by context user
 		userCharacters: async (parent, args, context) => {

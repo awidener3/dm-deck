@@ -3,7 +3,7 @@ export const slideLeft = (
 	index,
 	turn,
 	round,
-	sortedData,
+	battleOrder,
 	setRound,
 	setTurn,
 	setIndex
@@ -16,8 +16,8 @@ export const slideLeft = (
 
 	// Previous round
 	if (index === 0 && round !== 1) {
-		setIndex(sortedData.length - 1);
-		setTurn(sortedData.length);
+		setIndex(battleOrder.length - 1);
+		setTurn(battleOrder.length);
 		setRound(round - 1);
 	}
 };
@@ -27,19 +27,19 @@ export const slideRight = (
 	index,
 	turn,
 	round,
-	sortedData,
+	battleOrder,
 	setRound,
 	setTurn,
 	setIndex
 ) => {
 	// Next turn
-	if (index + 1 <= sortedData.length - 1) {
+	if (index + 1 <= battleOrder.length - 1) {
 		setTurn(turn + 1);
 		setIndex(index + 1);
 	}
 
 	// Next round
-	if (index === sortedData.length - 1) {
+	if (index === battleOrder.length - 1) {
 		setIndex(0);
 		setTurn(1);
 		setRound(round + 1);

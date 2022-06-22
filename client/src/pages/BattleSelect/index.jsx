@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { Form, Container } from 'react-bootstrap';
-import {
-	QUERY_ME,
-	QUERY_USER_COLLECTIONS,
-	QUERY_USER_BATTLES,
-} from 'utils/queries';
+import { QUERY_USER_COLLECTIONS } from 'utils/queries';
+import { QUERY_ME, QUERY_USER_BATTLES } from 'utils/queries/userQueries';
 import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
-import { useQuery, useMutation } from '@apollo/client';
 import { RiSwordFill, RiEditLine } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
+
+import './battles.scss';
 
 import Summary from './Summary';
 import SummaryAccordion from './SummaryAccordion';
@@ -39,7 +38,7 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 		data: user_data,
 	} = useQuery(QUERY_ME);
 	const { data: colls_data } = useQuery(QUERY_USER_COLLECTIONS);
-	const { loading: battles_loading, data: battles_data } =
+	const { data: battles_data, loading: battles_loading } =
 		useQuery(QUERY_USER_BATTLES);
 
 	const user = user_data?.me || [];

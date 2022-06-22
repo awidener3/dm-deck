@@ -9,8 +9,8 @@ import './selectedMonster.scss';
 const SelectedMonster = ({
 	monster,
 	setSelectedMonster,
-	sortedData,
-	setSortedData,
+	battleOrder,
+	setbattleOrder,
 	handleCloseMonstersModal,
 }) => {
 	const [startingHitpoints] = useState(monster.hit_points);
@@ -65,24 +65,24 @@ const SelectedMonster = ({
 	};
 
 	const handleAddCondition = (e) => {
-		const updatedArray = sortedData.slice();
+		const updatedArray = battleOrder.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
 				item.conditions.push(condition);
 			}
 		});
-		setSortedData([...updatedArray]);
+		setbattleOrder([...updatedArray]);
 	};
 
 	// Hitpoints
 	const handleChangeHitpoints = (e) => {
-		const updatedArray = sortedData.slice();
+		const updatedArray = battleOrder.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
 				item.hit_points = e.target.value;
 			}
 		});
-		setSortedData([...updatedArray]);
+		setbattleOrder([...updatedArray]);
 	};
 
 	return (
@@ -93,8 +93,8 @@ const SelectedMonster = ({
 			<Modal.Body className="w-75 m-auto pt-0">
 				<Conditions
 					monster={monster}
-					sortedData={sortedData}
-					setSortedData={setSortedData}
+					battleOrder={battleOrder}
+					setbattleOrder={setbattleOrder}
 				/>
 				<div>
 					<div

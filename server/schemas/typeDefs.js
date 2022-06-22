@@ -130,8 +130,8 @@ const typeDefs = gql`
 		userId: User # ref User id
 		name: String
 		heroes: [Character] # ref Character id
-		monsters: [String]
-		custom_monsters: [Monster] # ref Monster id
+		monster_slugs: [String]
+		monsters: [Monster] # ref Monster id
 		message: String
 	}
 
@@ -359,8 +359,7 @@ const typeDefs = gql`
 			userId: ID!
 			name: String!
 			heroes: [ID]
-			monsters: [String]
-			custom_monsters: [ID]
+			monster_slugs: [String]
 		): Battle
 
 		updateBattle(battleId: ID!, name: String): Battle

@@ -1,5 +1,5 @@
 import { ListGroup, Accordion } from 'react-bootstrap';
-import { getXp } from '../../../utils/basicRuleCalculations';
+import { getXp } from 'utils/basicRuleCalculations';
 
 const SummaryAccordion = ({ battle }) => {
 	return (

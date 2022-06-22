@@ -15,16 +15,16 @@ const Monster = ({
 	cardStyle,
 	handleRollDice,
 	handleShowInfo,
-	sortedData,
-	setSortedData,
+	battleOrder,
+	setbattleOrder,
 }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div className="monster-card m-3">
 				<Conditions
 					monster={monster}
-					sortedData={sortedData}
-					setSortedData={setSortedData}
+					battleOrder={battleOrder}
+					setbattleOrder={setbattleOrder}
 				/>
 				<Circles monster={monster} />
 
@@ -43,7 +43,7 @@ const Monster = ({
 
 				<BaseStats monster={monster} />
 				<AbilityScores monster={monster} />
-				<Stats monster={monster} />
+				{/* <Stats monster={monster} /> */}
 				{monster.special_abilities !== '' ? (
 					<Traits monster={monster} />
 				) : null}
@@ -61,8 +61,8 @@ const Monster = ({
 					<Actions
 						monster={monster}
 						handleRollDice={handleRollDice}
-						sortedData={sortedData}
-						setSortedData={setSortedData}
+						battleOrder={battleOrder}
+						setbattleOrder={setbattleOrder}
 					/>
 				</div>
 

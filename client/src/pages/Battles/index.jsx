@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import './battles.scss';
+// import './battles.scss';
 
 const Battles = () => {
 	return (

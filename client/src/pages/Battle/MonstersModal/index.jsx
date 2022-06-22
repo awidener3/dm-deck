@@ -8,8 +8,8 @@ import SelectedMonster from './SelectedMonster';
 const MonstersModal = ({
 	showMonstersModal,
 	handleCloseMonstersModal,
-	sortedData,
-	setSortedData,
+	battleOrder,
+	setbattleOrder,
 }) => {
 	const [selectedMonster, setSelectedMonster] = useState('');
 
@@ -28,15 +28,15 @@ const MonstersModal = ({
 			{/* Conditional rendering for pages */}
 			{selectedMonster === '' ? (
 				<MonsterSelect
-					monsters={sortedData}
+					monsters={battleOrder}
 					handleViewMonster={handleViewMonster}
 				/>
 			) : (
 				<SelectedMonster
 					monster={selectedMonster}
 					setSelectedMonster={setSelectedMonster}
-					sortedData={sortedData}
-					setSortedData={setSortedData}
+					battleOrder={battleOrder}
+					setbattleOrder={setbattleOrder}
 					handleCloseMonstersModal={handleCloseMonstersModal}
 				/>
 			)}

@@ -10,7 +10,7 @@ import diceSfx from 'assets/audio/dice-roll.mp3';
 import MeleeRangeButtons from './MeleeRangeButtons';
 import SpellButtons from './SpellButtons';
 
-const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
+const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 	// Dice roll sound effect
 	const [playSfx] = useSound(diceSfx);
 
@@ -120,7 +120,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 			action_target === 'self' &&
 			!monster.conditions.includes(condition)
 		) {
-			let updatedArray = sortedData.map((creature) => {
+			let updatedArray = battleOrder.map((creature) => {
 				if (creature.name === monster.name) {
 					return {
 						...monster,
@@ -129,7 +129,7 @@ const Actions = ({ monster, handleRollDice, sortedData, setSortedData }) => {
 				}
 				return creature;
 			});
-			setSortedData([...updatedArray]);
+			setbattleOrder([...updatedArray]);
 		}
 		// otherwise, select a creature to apply the effect to
 	};

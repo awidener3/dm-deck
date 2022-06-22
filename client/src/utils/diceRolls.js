@@ -25,15 +25,15 @@ export const rollDie = (num) => {
 	return Math.floor(Math.random() * num) + 1;
 };
 
-export const addInitiative = (sortedData, setSortedData) => {
-	const arrayWithInitiative = sortedData
+export const addInitiative = (battleOrder, setbattleOrder) => {
+	const arrayWithInitiative = battleOrder
 		.map((creature) => ({
 			...creature,
 			initiative: getInitiative(creature),
 		}))
 		.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 
-	setSortedData(arrayWithInitiative);
+	setbattleOrder(arrayWithInitiative);
 };
 
 export const getInitiative = (obj) => {
