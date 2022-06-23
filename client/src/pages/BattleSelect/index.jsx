@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import { Form, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { QUERY_USER_COLLECTIONS } from 'utils/queries';
+import { QUERY_COLLECTION } from 'utils/queries/battleQueries';
 import { QUERY_ME, QUERY_USER_BATTLES } from 'utils/queries/userQueries';
 import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
-import { RiSwordFill, RiEditLine } from 'react-icons/ri';
-import { FiTrash2 } from 'react-icons/fi';
 
 import './battles.scss';
-
-import Summary from './Summary';
-import SummaryAccordion from './SummaryAccordion';
+import Deck from './Deck';
+import Card from './Card';
 
 const BattleSelect = ({ background = 'back_1.jpg' }) => {
 	const [addBattleToCollection, { error: mutation_error }] = useMutation(
@@ -20,6 +17,8 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 			refetchQueries: [
 				{ query: QUERY_USER_COLLECTIONS },
 				'UserCollections',
+				{ query: QUERY_COLLECTION },
+				'Collection',
 			],
 		}
 	);
@@ -97,114 +96,47 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 		<div className="py-4">
 			<h1 className="text-center">Select a Saved Battle</h1>
 
+			{/* Decks */}
+			<Container fluid="lg" className="d-flex">
+				{collections &&
+					collections.map((collection) => {
+						return (
+							<Deck
+								key={collection._id}
+								collection={collection}
+								handleClickDeck={handleClickDeck}
+								handleDrop={handleDrop}
+							/>
+						);
+					})}
+				<div className="add-deck m-2">
+					<div className="plus-button h-100 d-flex justify-content-center align-items-center">
+						+
+					</div>
+				</div>
+			</Container>
+
+			{/* Cards */}
+			<Container fluid="lg" className="d-flex flex-wrap">
+				{battles &&
+					battles.map((battle) => {
+						return (
+							<Card
+								key={battle._id}
+								battle={battle}
+								startDrag={startDrag}
+								handleDeleteBattle={handleDeleteBattle}
+							/>
+						);
+					})}
+			</Container>
+
 			{/* Corner Button */}
 			<div className="d-flex justify-content-center create-btn-container">
 				<Link to={'/create-battle'} className="create-btn">
 					&#43;
 				</Link>
 			</div>
-
-			<Container fluid="lg" className="d-flex">
-				{/* Decks */}
-				{collections.map((collection) => {
-					return (
-						<div
-							className="m-2 card battle-deck d-flex justify-content-center"
-							key={collection._id}
-							onClick={() => handleClickDeck(collection._id)}
-							onDrop={(e) => handleDrop(e, collection._id)}
-							onDragOver={(e) => e.preventDefault()}
-							style={{
-								backgroundImage: collection.background_img
-									? `url(${require('assets/images/' +
-											collection.background_img)})`
-									: "url(require('assets/images/back_1.jpg')",
-								backgroundRepeat: 'no-repeat',
-								backgroundSize: 'cover',
-							}}
-						>
-							<h2 className="battle-deck-title text-center">
-								{collection.name}
-							</h2>
-							<span className="battle-deck-card-number">
-								{collection.battles.length}
-							</span>
-							<div className="nested-deck"></div>
-							<div className="double-nested-deck"></div>
-						</div>
-					);
-				})}
-			</Container>
-
-			<Container fluid="lg" className="d-flex flex-wrap">
-				{/* Cards */}
-				{battles ? (
-					battles.map((battle) => {
-						return (
-							<div
-								key={battle._id}
-								className="p-2"
-								draggable="true"
-								onDragStart={(e) => startDrag(e, battle._id)}
-							>
-								<div className="card battle-card p-3">
-									<h2 className="battle-card-title text-center">
-										{battle.name}
-									</h2>
-
-									<hr />
-
-									<div className="card-body">
-										<Summary battle={battle} />
-
-										{/* Initiative Roll */}
-										<Form>
-											<Form.Check
-												type="switch"
-												label="Auto-roll Initiative"
-												defaultChecked={true}
-											/>
-										</Form>
-
-										<SummaryAccordion battle={battle} />
-									</div>
-
-									{/* Buttons */}
-									<div className="button-container mt-auto d-flex justify-content-center">
-										<button
-											className="btn btn-outline-danger m-1"
-											title="Delete Battle"
-											onClick={() =>
-												handleDeleteBattle(battle)
-											}
-										>
-											<FiTrash2 size={'1.5rem'} />
-										</button>
-										<Link
-											className="btn btn-outline-secondary disabled m-1"
-											title="Edit Card"
-											to={`/battles/${battle._id}`}
-										>
-											<RiEditLine size={'1.5rem'} />
-										</Link>
-										<Link
-											className="btn btn-outline-primary m-1"
-											title="Start Battle"
-											to={`/battles/${battle._id}`}
-										>
-											<RiSwordFill size={'1.5rem'} />
-										</Link>
-									</div>
-								</div>
-							</div>
-						);
-					})
-				) : (
-					<div>
-						<h2 className="mx-auto">No battles yet!</h2>
-					</div>
-				)}
-			</Container>
 		</div>
 	);
 };

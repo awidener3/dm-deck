@@ -2,6 +2,7 @@ import { ListGroup, Accordion } from 'react-bootstrap';
 import { getXp } from 'utils/basicRuleCalculations';
 
 const SummaryAccordion = ({ battle }) => {
+	console.log(battle.heroes);
 	return (
 		<Accordion className="mb-2" defaultActiveKey={['0']}>
 			<Accordion.Item eventKey="1">

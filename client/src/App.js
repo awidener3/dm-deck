@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -11,7 +10,6 @@ import {
 
 import Header from './components/Header';
 import Home from './pages/Home';
-import Battles from './pages/Battles';
 import Battle from './pages/Battle';
 import BattleSelect from './pages/BattleSelect';
 import CreateBattle from './pages/CreateBattle';
@@ -20,9 +18,10 @@ import CreateMonster from './pages/CreateMonster';
 import Legal from './pages/Legal';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Profile from './pages/Profile/Profile';
+import Profile from './pages/Profile';
 
 import './App.scss';
+import Collection from 'pages/BattleSelect/Collection';
 
 const httpLink = createHttpLink({
 	uri: '/graphql',
@@ -56,14 +55,11 @@ const App = () => {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/battles" element={<BattleSelect />} />
+						<Route
+							path="/collection/:collectionId"
+							element={<Collection />}
+						/>
 						<Route path="/battles/:battleId" element={<Battle />} />
-						{/* <Route path="/battles" element={<BattleSelect />}>
-							<Route index element={<BattleSelect />} />
-							<Route
-								path="/battles/:battleId"
-								element={<Battle />}
-							/>
-						</Route> */}
 						<Route
 							path="/create-battle"
 							element={<CreateBattle />}

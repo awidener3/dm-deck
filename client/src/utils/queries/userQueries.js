@@ -39,6 +39,9 @@ export const QUERY_USER_BATTLES = gql`
 			name
 			heroes {
 				character_name
+				player_name
+				class
+				level
 			}
 			monster_slugs
 			monsters {

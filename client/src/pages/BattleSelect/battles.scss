@@ -1,3 +1,19 @@
+.add-deck {
+	cursor: pointer;
+	width: 9rem;
+	height: 13rem;
+	border-radius: 0.5rem;
+	background-color: #dbdbdb;
+	transition: transform 0.2s;
+	.plus-button {
+		font-size: 4rem;
+		color: #6b6b6b;
+	}
+	&:hover {
+		transform: scale(1.03);
+	}
+}
+
 .battle-deck {
 	cursor: pointer;
 	width: 9rem;
@@ -11,7 +27,7 @@
 	position: relative;
 	.battle-deck-title {
 		color: white;
-		font-size: 1.5rem;
+		font-size: 1.3rem;
 		background-color: rgba(0, 0, 0, 0.418);
 	}
 	.battle-deck-card-number {

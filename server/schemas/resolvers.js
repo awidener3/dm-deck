@@ -34,7 +34,7 @@ const resolvers = {
 				.populate('userId')
 				.populate('heroes');
 
-			// Fetch open5e json with monster_slugs
+			// Using the data found in monster_slugs, fetch full monster data from open5e API
 			await Promise.all(
 				battle.monster_slugs.map(async (slug) => {
 					try {
@@ -57,9 +57,32 @@ const resolvers = {
 		},
 		// Gets a collection by ID
 		collection: async (parent, { collectionId }) => {
-			return Collection.findOne({ _id: collectionId })
-				.populate('battles')
-				.populate('userId');
+			const collection = await Collection.findOne({ _id: collectionId })
+				.populate('userId')
+				.populate({
+					path: 'battles',
+					populate: {
+						path: 'heroes',
+					},
+				});
+
+			await Promise.all(
+				collection.battles.map((battle) => {
+					return Promise.all(
+						battle.monster_slugs.map(async (slug) => {
+							try {
+								const open5eUrl = `https://api.open5e.com/monsters/${slug}`;
+								const { data } = await axios.get(open5eUrl);
+								battle.monsters.push(await data);
+							} catch (err) {
+								console.error(err);
+							}
+						})
+					);
+				})
+			);
+
+			return collection;
 		},
 		// Gets all characters
 		characters: async (parent, args) => {
@@ -71,6 +94,8 @@ const resolvers = {
 				.populate('userId')
 				.populate('heroes');
 
+			// Using the data found in monster_slugs, fetch full monster data from open5e API
+			// This has to be wrapped in two Promise.all()'s since it first maps the battles, then the slugs
 			await Promise.all(
 				battles.map((battle) => {
 					return Promise.all(
@@ -86,7 +111,6 @@ const resolvers = {
 					);
 				})
 			);
-			console.log(battles);
 			return battles;
 		},
 		// Gets all collections by context user
