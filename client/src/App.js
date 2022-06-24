@@ -1,3 +1,4 @@
+import useLocalStorage from 'use-local-storage';
 import { Outlet } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -46,11 +47,24 @@ const client = new ApolloClient({
 });
 
 const App = () => {
+	const defaultDark = window.matchMedia(
+		'(prefers-color-scheme: dark)'
+	).matches;
+	const [theme, setTheme] = useLocalStorage(
+		'theme',
+		defaultDark ? 'dark' : 'light'
+	);
+
+	const switchTheme = () => {
+		const newTheme = theme === 'light' ? 'dark' : 'light';
+		setTheme(newTheme);
+	};
+
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-				<div className="App">
-					<Header />
+				<div className="App" data-theme={theme}>
+					<Header theme={theme} handleTheme={switchTheme} />
 
 					<Routes>
 						<Route path="/" element={<Home />} />
@@ -89,7 +103,6 @@ const App = () => {
 							}
 						/>
 					</Routes>
-
 					<Outlet />
 				</div>
 			</Router>

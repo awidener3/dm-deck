@@ -6,109 +6,110 @@ $xl: 1200px;
 $xxl: 1400px;
 
 .summary-card {
-  width: 24rem;
-  min-height: 35rem;
-  background-color: #fff;
-  border: 1px solid #d4d4d4;
-  outline: 1px solid #c5c5c5;
+	color: var(--card-text);
+	width: 24rem;
+	min-height: 35rem;
+	background-color: #fff;
+	border: 1px solid #d4d4d4;
+	outline: 1px solid #c5c5c5;
 	outline-offset: -5px;
-  border-radius: 0.5rem;
-  padding: 20px;
-  .summary-card-title {
-    margin: 0;
-    text-align: center;
-    font-size: 1.7rem;
-  }
-  .summary-stats {
-    .summary-stat {
-      font-weight: 700;
-      color: #6b6b6b;
-      margin: 0;
-      .total-xp {
-        color: black;
-      }
-      .challenge-rating-display {
-        font-weight: 700;  
-        padding: 0 5px;
-      }
-      .easy {
-        color: #0ea559;
-      }
-      .medium {
-        color: #f5a623;
-      }
-      .hard {
-        color: #e45a1d;
-      }
-      .deadly {
-        color: #d54f4f;
-      }
-    }
-  }
-  .roster-container {
-    .roster-card {
-      height: 11rem;
-      overflow-y: auto;
-      .roster-name-name {
-        font-family: "Mukta Vaani", sans-serif;
-        font-size: 1rem;
-        font-weight: 300;
-      }
-      .roster-title {
-        font-size: 1.3rem;
-        text-align: center;
-      }
-      .roster-subtext {
-        font-style: italic;
-        font-weight: 300;
-        color: #858585;
-        .close-btn {
-          padding: 0 0 0 auto;
-          color: #707070;
-          font-size: 0.9rem;
-          border: none;
-          background: none;
-          transition: color 0.2s;
-        }
-        .close-btn:hover {
-          color: #5e0c0c;
-          background: none;
-        }
-      }
-    }
-  }
-  @media screen and (max-width: $sm) {
-    width: 22rem;
-    .summary-card-title {
-      font-size: 1.5rem;
-    }
-    .summary-stats {
-      .summary-stat {
-        font-size: 0.9rem;
-      }
-    }
-    .roster-container {
-      .roster-card {
-        height: 11rem;
-        overflow-y: auto;
-        .roster-title {
-          font-size: 1.2rem;
-        }
-        .roster-name {
-          font-size: 0.8rem;
-        }
-        .roster-subtext {
-          font-size: 0.8rem;
-        }
-      }
-    }
-  }
+	border-radius: 0.5rem;
+	padding: 20px;
+	.summary-card-title {
+		margin: 0;
+		text-align: center;
+		font-size: 1.7rem;
+	}
+	.summary-stats {
+		.summary-stat {
+			font-weight: 700;
+			color: #6b6b6b;
+			margin: 0;
+			.total-xp {
+				color: black;
+			}
+			.challenge-rating-display {
+				font-weight: 700;
+				padding: 0 5px;
+			}
+			.easy {
+				color: #0ea559;
+			}
+			.medium {
+				color: #f5a623;
+			}
+			.hard {
+				color: #e45a1d;
+			}
+			.deadly {
+				color: #d54f4f;
+			}
+		}
+	}
+	.roster-container {
+		.roster-card {
+			height: 11rem;
+			overflow-y: auto;
+			.roster-name-name {
+				font-family: 'Mukta Vaani', sans-serif;
+				font-size: 1rem;
+				font-weight: 300;
+			}
+			.roster-title {
+				font-size: 1.3rem;
+				text-align: center;
+			}
+			.roster-subtext {
+				font-style: italic;
+				font-weight: 300;
+				color: #858585;
+				.close-btn {
+					padding: 0 0 0 auto;
+					color: #707070;
+					font-size: 0.9rem;
+					border: none;
+					background: none;
+					transition: color 0.2s;
+				}
+				.close-btn:hover {
+					color: #5e0c0c;
+					background: none;
+				}
+			}
+		}
+	}
+	@media screen and (max-width: $sm) {
+		width: 22rem;
+		.summary-card-title {
+			font-size: 1.5rem;
+		}
+		.summary-stats {
+			.summary-stat {
+				font-size: 0.9rem;
+			}
+		}
+		.roster-container {
+			.roster-card {
+				height: 11rem;
+				overflow-y: auto;
+				.roster-title {
+					font-size: 1.2rem;
+				}
+				.roster-name {
+					font-size: 0.8rem;
+				}
+				.roster-subtext {
+					font-size: 0.8rem;
+				}
+			}
+		}
+	}
 }
 
 .roster-card::-webkit-scrollbar {
-		width: 5px;
-	}
-	.roster-card::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background-color: #bdbdbd;
-	}
+	width: 5px;
+}
+.roster-card::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: #bdbdbd;
+}

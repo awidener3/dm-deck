@@ -3,7 +3,7 @@
 	width: 9rem;
 	height: 13rem;
 	border-radius: 0.5rem;
-	background-color: #dbdbdb;
+	background-color: var(--background-secondary);
 	transition: transform 0.2s;
 	.plus-button {
 		font-size: 4rem;
@@ -72,6 +72,7 @@
 	outline: 1px solid #c5c5c5;
 	outline-offset: -5px;
 	border-radius: 0.5rem;
+	color: var(--card-text);
 	.battle-card-title {
 		font-size: 1.5rem;
 		margin: 0;
@@ -125,6 +126,18 @@
 		.accordion-button {
 			padding: 10px;
 		}
+	}
+}
+
+.collection-container {
+	.collection-header {
+		color: #dddddd;
+		text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.76);
+		height: 250px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-position: center;
 	}
 }
 

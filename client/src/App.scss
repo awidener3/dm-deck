@@ -56,69 +56,19 @@ a {
 	font-family: 'Mukta Vaani', sans-serif;
 }
 
-body {
-	background-color: #e6e6e6;
-}
-
-.card-container {
-	position: relative;
-
-	width: 65rem;
-	height: 32rem;
+.App {
+	background-color: var(--background);
+	color: var(--text-primary);
+	min-height: 100vh;
 }
 
 .wrapper {
 	position: absolute;
 }
 
-.prevCard {
-	left: 0%;
-	opacity: 0;
-}
-
-.activeCard {
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 99;
-}
-
-.nextCard {
-	left: 100%;
-	transform: translateX(calc(-100% - 2rem));
-	opacity: 0;
-}
-
 article {
 	position: absolute;
 	transition: all 1s;
-}
-
-.background-block {
-	position: absolute;
-	width: 90%;
-	height: 100%;
-	z-index: 0;
-}
-
-.battle-container {
-	position: relative;
-	.battle-chevron {
-		font-size: 2rem;
-		position: absolute;
-	}
-	.left-chevron {
-		left: 0;
-		z-index: 100;
-	}
-	.right-chevron {
-		right: 0;
-		z-index: 100;
-	}
-}
-
-.info-modal-action {
-	font-style: italic;
-	font-weight: 700;
 }
 
 // Forms

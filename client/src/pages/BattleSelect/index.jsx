@@ -1,24 +1,24 @@
 import { useQuery, useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import { QUERY_USER_COLLECTIONS } from 'utils/queries';
-import { QUERY_COLLECTION } from 'utils/queries/battleQueries';
-import { QUERY_ME, QUERY_USER_BATTLES } from 'utils/queries/userQueries';
+import {
+	QUERY_ME,
+	QUERY_USER_BATTLES,
+	QUERY_USER_COLLECTIONS,
+} from 'utils/queries/userQueries';
 import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
 
-import './battles.scss';
+import './battleSelect.scss';
 import Deck from './Deck';
 import Card from './Card';
 
-const BattleSelect = ({ background = 'back_1.jpg' }) => {
+const BattleSelect = () => {
 	const [addBattleToCollection, { error: mutation_error }] = useMutation(
 		ADD_BATTLE_TO_COLLECTION,
 		{
 			refetchQueries: [
 				{ query: QUERY_USER_COLLECTIONS },
 				'UserCollections',
-				{ query: QUERY_COLLECTION },
-				'Collection',
 			],
 		}
 	);
@@ -97,7 +97,7 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 			<h1 className="text-center">Select a Saved Battle</h1>
 
 			{/* Decks */}
-			<Container fluid="lg" className="d-flex">
+			<Container className="d-flex">
 				{collections &&
 					collections.map((collection) => {
 						return (
@@ -109,11 +109,13 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 							/>
 						);
 					})}
-				<div className="add-deck m-2">
+
+				{/* Add new collection button */}
+				<figure className="add-deck m-2">
 					<div className="plus-button h-100 d-flex justify-content-center align-items-center">
 						+
 					</div>
-				</div>
+				</figure>
 			</Container>
 
 			{/* Cards */}
@@ -126,6 +128,7 @@ const BattleSelect = ({ background = 'back_1.jpg' }) => {
 								battle={battle}
 								startDrag={startDrag}
 								handleDeleteBattle={handleDeleteBattle}
+								draggable={true}
 							/>
 						);
 					})}

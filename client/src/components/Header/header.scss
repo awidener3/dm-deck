@@ -1,38 +1,38 @@
 .version-text {
-  position: absolute;
-  color: rgb(145, 145, 145);
-  top: 55px;
-  left: 10px;
-  font-size: 0.7rem;
-  z-index: 100;
+	position: absolute;
+	color: rgb(145, 145, 145);
+	top: 55px;
+	left: 10px;
+	font-size: 0.7rem;
+	z-index: 100;
 }
 
 .custom-navbar {
-  background-color: #090809;
-  .custom-nav-link {
-    color: #b8b8b8;
-    transition: transform 0.1s ease-in-out;
-  }
-  .active {
-    color: white;
-  }
-  .custom-nav-link:hover {
-    color: #fff;
-    transform: scale(1.1);
-  }
+	background-color: black;
+	.custom-nav-link {
+		color: #b8b8b8;
+		transition: transform 0.1s ease-in-out;
+	}
+	.active {
+		color: white;
+	}
+	.custom-nav-link:hover {
+		color: #fff;
+		transform: scale(1.1);
+	}
 }
 
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .logo-text {
-  font-family: 'Draconis', 'Asul', sans-serif;
-  font-size: 2.5rem;
-  margin: 0;
-  padding: 0;
-  color: #c00913;
-  .logo-subtext {
-    color: #ffffff;
-  }
+	font-family: 'Draconis', 'Asul', sans-serif;
+	font-size: 2.5rem;
+	margin: 0;
+	padding: 0;
+	color: #c00913;
+	.logo-subtext {
+		color: #ffffff;
+	}
 }

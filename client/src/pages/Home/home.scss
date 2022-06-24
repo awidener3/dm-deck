@@ -23,14 +23,15 @@
 }
 
 .quicklink-div {
-	background-color: white;
+	background-color: var(--background-secondary);
+	color: var(--text-primary);
 	width: 200px;
 	height: 100px;
 	margin: 15px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	box-shadow: rgba(53, 53, 53, 0.2) 0px 7px 29px 0px;
 	transition: transform 0.1s ease-in;
 	h3 {
 		font-size: 1.3rem;

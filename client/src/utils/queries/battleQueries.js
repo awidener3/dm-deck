@@ -4,7 +4,9 @@ export const QUERY_COLLECTION = gql`
 	query Collection($collectionId: ID!) {
 		collection(collectionId: $collectionId) {
 			name
+			background_img
 			battles {
+				_id
 				name
 				heroes {
 					_id

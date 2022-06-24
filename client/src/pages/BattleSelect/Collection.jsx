@@ -15,12 +15,31 @@ const Collection = () => {
 	if (loading) return <p>Loading</p>;
 
 	return (
-		<div className="container py-4">
-			<h1 className="text-center">{collection.name}</h1>
+		<div className="collection-container">
+			<div
+				className="collection-header"
+				style={{
+					backgroundImage: collection.background_img
+						? `url(${require('assets/images/' +
+								collection.background_img)})`
+						: "url(require('assets/images/back_1.jpg')",
+					backgroundRepeat: 'no-repeat',
+					backgroundSize: 'cover',
+				}}
+			>
+				<h1 className="text-center">{collection.name}</h1>
+				<div className="fade"></div>
+			</div>
 			<div className="d-flex flex-wrap justify-content-center">
 				{collection &&
 					collection.battles.map((battle) => {
-						return <Card key={battle._id} battle={battle} />;
+						return (
+							<Card
+								key={battle._id}
+								battle={battle}
+								draggable={false}
+							/>
+						);
 					})}
 			</div>
 			<Link to={'/battles'} className="btn btn-primary">

@@ -1,4 +1,4 @@
-// import React, { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import './monster.scss';
 import Conditions from './Conditions';
 import Circles from './Circles';
@@ -43,7 +43,7 @@ const Monster = ({
 
 				<BaseStats monster={monster} />
 				<AbilityScores monster={monster} />
-				{/* <Stats monster={monster} /> */}
+				<Stats monster={monster} />
 				{monster.special_abilities !== '' ? (
 					<Traits monster={monster} />
 				) : null}

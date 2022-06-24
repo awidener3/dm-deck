@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { BsFillSunFill } from 'react-icons/bs';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import Auth from '../../utils/auth';
 
 import './header.scss';
 
-const Header = () => {
+const Header = ({ theme, handleTheme }) => {
 	const [pathname, setPathname] = useState(window.location.pathname || '');
 	return (
 		<div>
-			<p className="m-0 version-text">v0.1.3</p>
+			<p className="m-0 version-text">v0.1.4</p>
 			<nav className="navbar navbar-expand custom-navbar">
 				<div className="container-fluid">
 					<Link to="/" onClick={() => setPathname('/')}>
@@ -100,6 +103,14 @@ const Header = () => {
 						>
 							Legal
 						</Link>
+						<div className="d-flex align-items-center">
+							<Form.Check type="switch" onChange={handleTheme} />
+							{theme === 'light' ? (
+								<FaMoon color="#e6e6e6" />
+							) : (
+								<FaSun color="#e6e6e6" />
+							)}
+						</div>
 					</ul>
 				</div>
 			</nav>

@@ -20,6 +20,7 @@ import {
 	FaChevronCircleRight,
 } from 'react-icons/fa';
 import 'App.scss';
+import './battle.scss';
 
 const Battle = () => {
 	let { battleId } = useParams();

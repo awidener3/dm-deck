@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Deck = ({ collection, handleClickDeck, handleDrop }) => {
 	return (
-		<Link to={`/collection/${collection._id}`} className="create-btn">
+		<Link to={`/collection/${collection._id}`}>
 			<div
 				className="m-2 card battle-deck d-flex justify-content-center"
 				key={collection._id}
