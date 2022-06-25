@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import {
+	Form,
+	FormGroup,
+	FormLabel,
+	FormControl,
+	FormText,
+	Button,
+} from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import Auth from 'utils/auth';
 import { ADD_USER } from 'utils/mutations/userMutations';
+import { FiInfo } from 'react-icons/fi';
+
+import './signup.scss';
 
 const SignUp = () => {
 	const [formState, setFormState] = useState({
 		username: '',
 		email: '',
 		password: '',
+		confirm_password: '',
 	});
 
 	const [addUser, { error }] = useMutation(ADD_USER);
@@ -42,48 +53,69 @@ const SignUp = () => {
 
 	return (
 		<div className="p-4 d-flex flex-column justify-content-center align-items-center container">
-			<h1>Welcome, Adventurer! 🧙</h1>
-			<Form onSubmit={handleFormSubmit}>
-				<Form.Group>
-					<Form.Label>Username</Form.Label>
-					<Form.Control
-						type="text"
-						name="username"
-						placeholder="Enter username"
-						onChange={handleChange}
-						required
-					/>
-				</Form.Group>
-				<Form.Group>
-					<Form.Label>Email Address</Form.Label>
-					<Form.Control
-						type="email"
-						name="email"
-						placeholder="Enter email"
-						onChange={handleChange}
-						required
-					/>
-					<Form.Text>
-						We'll never share your email with anyone else.
-					</Form.Text>
-				</Form.Group>
-				<Form.Group>
-					<Form.Label>Password</Form.Label>
-					<Form.Control
-						type="password"
-						name="password"
-						placeholder="Password"
-						onChange={handleChange}
-						required
-					/>
-				</Form.Group>
+			<div className="form-container">
+				<h1>Welcome, Adventurer! 🧙</h1>
+				<Form onSubmit={handleFormSubmit}>
+					<FormGroup>
+						<FormLabel>Email Address</FormLabel>
+						<FormControl
+							type="email"
+							name="email"
+							placeholder="i.e. tiamat@avernus.com"
+							onChange={handleChange}
+							required
+						/>
+						<FormText>We'll never share your email with anyone else.</FormText>
+					</FormGroup>
+					<FormGroup>
+						<FormLabel>
+							Username{' '}
+							<FiInfo title="Must be between 8-20 characters, and can only contain alphanumeric characters, underscores and dots" />
+						</FormLabel>
+						<FormControl
+							type="text"
+							name="username"
+							placeholder="Enter username"
+							pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$"
+							onChange={handleChange}
+							required
+						/>
+					</FormGroup>
+					<FormGroup>
+						<FormLabel>
+							Password{' '}
+							{formState.password !== formState.confirm_password && (
+								<span className="invalid">Passwords do not match</span>
+							)}
+						</FormLabel>
+						<FormControl
+							type="password"
+							name="password"
+							placeholder="Password"
+							pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+							onChange={handleChange}
+							required
+						/>
+						<FormText>Must contain at least one letter and one number</FormText>
+					</FormGroup>
+					<FormGroup>
+						<FormLabel>Confirm Password</FormLabel>
+						<FormControl
+							type="password"
+							name="confirm_password"
+							placeholder="Confirm Password"
+							onChange={handleChange}
+							required
+						/>
+					</FormGroup>
 
-				<Link to={'/login'}>Have an account? Login!</Link>
-				<br />
-				<Button className="mt-2" variant="primary" type="submit">
-					Signup
-				</Button>
-			</Form>
+					<Link to={'/login'}>Have an account? Login!</Link>
+					<br />
+					<Button className="mt-2" variant="primary" type="submit">
+						Signup
+					</Button>
+				</Form>
+			</div>
 		</div>
 	);
 };
