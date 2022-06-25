@@ -139,3 +139,11 @@ export const ADD_BATTLE_TO_COLLECTION = gql`
 		}
 	}
 `;
+
+export const DELETE_COLLECTION = gql`
+	mutation DeleteCollection($collectionId: ID!) {
+		deleteCollection(collectionId: $collectionId) {
+			name
+		}
+	}
+`;

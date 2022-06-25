@@ -74,6 +74,7 @@ const NewCollectionModal = ({ showModal, handleHide, userId }) => {
 					<div className="image-container mt-3">
 						{Object.keys(images).map((key, index) => (
 							<img
+								key={key}
 								className={
 									image === key ? 'selected' : 'not-selected'
 								}
