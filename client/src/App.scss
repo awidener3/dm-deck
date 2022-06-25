@@ -56,6 +56,10 @@ a {
 	font-family: 'Mukta Vaani', sans-serif;
 }
 
+a {
+	color: var(--text-primary);
+}
+
 .App {
 	background-color: var(--background);
 	color: var(--text-primary);
