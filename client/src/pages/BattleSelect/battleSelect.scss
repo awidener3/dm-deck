@@ -129,18 +129,6 @@
 	}
 }
 
-.collection-container {
-	.collection-header {
-		color: #dddddd;
-		text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.76);
-		height: 250px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-position: center;
-	}
-}
-
 .create-btn-container {
 	position: fixed;
 	bottom: 2rem;
@@ -164,6 +152,27 @@
 	}
 	.create-btn:hover {
 		transform: scale(1.1);
+	}
+}
+
+.image-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	height: 440px;
+	overflow: auto;
+	img {
+		margin: 2px;
+		border-radius: 0.3rem;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	.selected {
+		outline: 3px solid #7a1205;
+	}
+	.not-selected {
+		opacity: 0.6;
 	}
 }
 

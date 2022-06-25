@@ -41,7 +41,6 @@ const CreateBattle = () => {
 		try {
 			const heroes = selectedHeroes.map((hero) => hero._id);
 			const monsters = selectedMonsters.map((monster) => monster.slug);
-			console.log('monsters is:', monsters);
 			const mutationResponse = await addBattle({
 				variables: {
 					name: battleName || 'New Battle',
@@ -81,7 +80,6 @@ const CreateBattle = () => {
 	const handleSelectMonster = (data) => {
 		let updatedArray = [...selectedMonsters, data];
 		setSelectedMonsters(updatedArray);
-		// console.log(updatedArray.map((monster) => monster.slug));
 	};
 
 	const handleSelectHero = (id) => {

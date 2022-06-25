@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 export const QUERY_COLLECTION = gql`
 	query Collection($collectionId: ID!) {
 		collection(collectionId: $collectionId) {
+			_id
 			name
 			background_img
 			battles {

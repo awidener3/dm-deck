@@ -6,12 +6,7 @@ import { Form } from 'react-bootstrap';
 import Summary from './Summary';
 import SummaryAccordion from './SummaryAccordion';
 
-const Card = ({
-	battle,
-	startDrag = null,
-	handleDeleteBattle = null,
-	draggable,
-}) => {
+const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 	return (
 		<div
 			key={battle._id}
