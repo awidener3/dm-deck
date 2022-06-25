@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
@@ -11,8 +12,12 @@ import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
 import './battleSelect.scss';
 import Deck from './Deck';
 import Card from './Card';
+import NewCollectionModal from './NewCollectionModal';
 
 const BattleSelect = () => {
+	const [showCollectionModal, setShowCollectionModal] = useState(false);
+	const handleCloseCollectionModal = () => setShowCollectionModal(false);
+
 	const [addBattleToCollection, { error: mutation_error }] = useMutation(
 		ADD_BATTLE_TO_COLLECTION,
 		{
@@ -55,10 +60,6 @@ const BattleSelect = () => {
 			console.log('🚮 Error deleting battle');
 			console.error(e);
 		}
-	};
-
-	const handleClickDeck = (id) => {
-		console.log(collections.find((collection) => collection._id === id));
 	};
 
 	// Grabs id of a battle card to be used when dropped
@@ -104,14 +105,16 @@ const BattleSelect = () => {
 							<Deck
 								key={collection._id}
 								collection={collection}
-								handleClickDeck={handleClickDeck}
 								handleDrop={handleDrop}
 							/>
 						);
 					})}
 
 				{/* Add new collection button */}
-				<figure className="add-deck m-2">
+				<figure
+					className="add-deck m-2"
+					onClick={() => setShowCollectionModal(true)}
+				>
 					<div className="plus-button h-100 d-flex justify-content-center align-items-center">
 						+
 					</div>
@@ -140,6 +143,11 @@ const BattleSelect = () => {
 					&#43;
 				</Link>
 			</div>
+			<NewCollectionModal
+				showModal={showCollectionModal}
+				handleHide={handleCloseCollectionModal}
+				userId={user._id}
+			/>
 		</div>
 	);
 };

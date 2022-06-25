@@ -1,19 +1,18 @@
 import { Link } from 'react-router-dom';
 
-const Deck = ({ collection, handleClickDeck, handleDrop }) => {
+const Deck = ({ collection, handleDrop }) => {
 	return (
 		<Link to={`/collection/${collection._id}`}>
 			<div
 				className="m-2 card battle-deck d-flex justify-content-center"
 				key={collection._id}
-				onClick={() => handleClickDeck(collection._id)}
 				onDrop={(e) => handleDrop(e, collection._id)}
 				onDragOver={(e) => e.preventDefault()}
 				style={{
 					backgroundImage: collection.background_img
-						? `url(${require('assets/images/' +
+						? `url(${require('assets/images/card_backs/' +
 								collection.background_img)})`
-						: "url(require('assets/images/back_1.jpg')",
+						: "url(require('assets/images/card_backs/back_1.jpg')",
 					backgroundRepeat: 'no-repeat',
 					backgroundSize: 'cover',
 				}}

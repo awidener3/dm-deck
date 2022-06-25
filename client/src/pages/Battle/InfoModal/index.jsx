@@ -1,4 +1,4 @@
-import { Modal } from 'react-bootstrap';
+import { Modal, ModalBody, ModalHeader } from 'react-bootstrap';
 import { GiBookCover } from 'react-icons/gi';
 
 const InfoModal = ({ info, showInfoModal, handleCloseInfoModal }) => {
@@ -9,11 +9,11 @@ const InfoModal = ({ info, showInfoModal, handleCloseInfoModal }) => {
 			onHide={handleCloseInfoModal}
 			centered
 		>
-			<Modal.Header closeButton>
+			<ModalHeader closeButton>
 				<GiBookCover size="2rem" />
-			</Modal.Header>
+			</ModalHeader>
 			<div className="d-flex flex-column justify-content-center">
-				<Modal.Body>
+				<ModalBody>
 					{info.actions
 						? info.actions.map((action) => (
 								<p key={action.name}>
@@ -24,7 +24,7 @@ const InfoModal = ({ info, showInfoModal, handleCloseInfoModal }) => {
 								</p>
 						  ))
 						: null}
-				</Modal.Body>
+				</ModalBody>
 			</div>
 		</Modal>
 	);

@@ -109,9 +109,16 @@ export const DELETE_BATTLE = gql`
 `;
 
 export const ADD_COLLECTION = gql`
-	mutation addCollection($name: String, $backgroundImg: String) {
-		addCollection(name: $name, background_img: $backgroundImg) {
-			_id
+	mutation AddCollection(
+		$name: String!
+		$userId: ID!
+		$backgroundImg: String
+	) {
+		addCollection(
+			name: $name
+			userId: $userId
+			background_img: $backgroundImg
+		) {
 			name
 			background_img
 		}
