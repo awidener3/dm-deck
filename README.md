@@ -16,6 +16,8 @@ This project was also a personal venture by me to learn MERN concepts that I mis
 
 ![Homepage](https://user-images.githubusercontent.com/70721378/175779287-e0812633-bbf0-407b-967f-ba2cd1ca53a3.png)
 
+![Example monster card](https://user-images.githubusercontent.com/70721378/175783251-0debac1f-d07a-431c-b3c3-b99d0e9cf437.png)
+
 
 ## Installation
 
