@@ -147,3 +147,14 @@ export const DELETE_COLLECTION = gql`
 		}
 	}
 `;
+
+export const REMOVE_BATTLE_FROM_COLLECTION = gql`
+	mutation RemoveBattleFromCollection($battleId: ID!, $collectionId: ID!) {
+		removeBattleFromCollection(
+			battleId: $battleId
+			collectionId: $collectionId
+		) {
+			name
+		}
+	}
+`;

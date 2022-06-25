@@ -5,8 +5,10 @@ import { QUERY_COLLECTION } from 'utils/queries/battleQueries';
 import Card from './Card';
 import PageHeader from 'components/PageHeader';
 import { useEffect } from 'react';
-import { DELETE_COLLECTION } from 'utils/mutations';
-import { Redirect } from 'react-router-dom';
+import {
+	DELETE_COLLECTION,
+	REMOVE_BATTLE_FROM_COLLECTION,
+} from 'utils/mutations';
 
 const Collection = () => {
 	let { collectionId } = useParams();
@@ -15,6 +17,9 @@ const Collection = () => {
 	});
 
 	const [deleteCollection] = useMutation(DELETE_COLLECTION);
+	const [removeBattleFromCollection] = useMutation(
+		REMOVE_BATTLE_FROM_COLLECTION
+	);
 
 	const collection = data?.collection || {};
 
@@ -22,9 +27,25 @@ const Collection = () => {
 		refetch();
 	}, []);
 
+	const handleRemoveFromCollection = async (battle) => {
+		console.log(battle._id);
+		try {
+			const { data } = await removeBattleFromCollection({
+				variables: {
+					battleId: battle._id,
+					collectionId: collection._id,
+				},
+			});
+			console.log('✅ Success!', data);
+			refetch();
+		} catch (e) {
+			console.log('Error removing battle from collection');
+			console.log(e);
+		}
+	};
+
 	const handleDeleteCollection = async () => {
 		try {
-			console.log('collection id', collection);
 			const { data } = await deleteCollection({
 				variables: { collectionId: collection._id },
 			});
@@ -32,7 +53,7 @@ const Collection = () => {
 			window.location.assign('/battles');
 		} catch (e) {
 			console.log('Error deleting collection');
-			console.error('e');
+			console.error(e);
 		}
 	};
 
@@ -57,6 +78,7 @@ const Collection = () => {
 								key={battle._id}
 								battle={battle}
 								draggable={false}
+								handleDeleteBattle={handleRemoveFromCollection}
 							/>
 						);
 					})}
