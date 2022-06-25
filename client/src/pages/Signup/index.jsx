@@ -54,7 +54,7 @@ const SignUp = () => {
 	return (
 		<div className="p-4 d-flex flex-column justify-content-center align-items-center container">
 			<div className="form-container">
-				<h1>Welcome, Adventurer! 🧙</h1>
+				<h1>Welcome, Adventurer!</h1>
 				<Form onSubmit={handleFormSubmit}>
 					<FormGroup>
 						<FormLabel>Email Address</FormLabel>
