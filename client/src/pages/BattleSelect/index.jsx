@@ -98,7 +98,7 @@ const BattleSelect = () => {
 			<h1 className="text-center">Select a Saved Battle</h1>
 
 			{/* Decks */}
-			<Container className="d-flex">
+			<div className="container-fluid container-lg d-flex deck-container">
 				{collections &&
 					collections.map((collection) => {
 						return (
@@ -119,10 +119,13 @@ const BattleSelect = () => {
 						+
 					</div>
 				</figure>
-			</Container>
+			</div>
 
 			{/* Cards */}
-			<Container fluid="lg" className="d-flex flex-wrap">
+			<Container
+				fluid="lg"
+				className="d-flex flex-wrap justify-content-center"
+			>
 				{battles &&
 					battles.map((battle) => {
 						return (

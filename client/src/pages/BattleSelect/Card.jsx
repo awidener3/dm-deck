@@ -15,21 +15,12 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 			onDragStart={(e) => startDrag(e, battle._id)}
 		>
 			<div className="card battle-card p-3">
-				<h2 className="battle-card-title text-center">{battle.name}</h2>
-
-				<hr />
+				<h2 className="battle-card-title text-center mb-1 border-bottom">
+					{battle.name}
+				</h2>
 
 				<div className="card-body">
 					<Summary battle={battle} />
-
-					{/* Initiative Roll */}
-					<Form>
-						<Form.Check
-							type="switch"
-							label="Auto-roll Initiative"
-							defaultChecked={true}
-						/>
-					</Form>
 
 					<SummaryAccordion battle={battle} />
 				</div>
@@ -37,25 +28,25 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 				{/* Buttons */}
 				<div className="button-container mt-auto d-flex justify-content-center">
 					<button
-						className="btn btn-outline-danger m-1"
+						className="card-btn btn btn-outline-danger m-1"
 						title="Delete Battle"
 						onClick={() => handleDeleteBattle(battle)}
 					>
-						<FiTrash2 size={'1.5rem'} />
+						<FiTrash2 size={20} />
 					</button>
 					<Link
-						className="btn btn-outline-secondary disabled m-1"
+						className="card-btn btn btn-outline-secondary disabled m-1"
 						title="Edit Card"
 						to={`/battles/${battle._id}`}
 					>
-						<RiEditLine size={'1.5rem'} />
+						<RiEditLine size={20} />
 					</Link>
 					<Link
-						className="btn btn-outline-primary m-1"
+						className="card-btn btn btn-outline-primary m-1"
 						title="Start Battle"
 						to={`/battles/${battle._id}`}
 					>
-						<RiSwordFill size={'1.5rem'} />
+						<RiSwordFill size={20} />
 					</Link>
 				</div>
 			</div>
