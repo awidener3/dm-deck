@@ -1,69 +1,45 @@
-import { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { BsFillSunFill } from 'react-icons/bs';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import Auth from '../../utils/auth';
 
 import './header.scss';
 
 const Header = ({ theme, handleTheme }) => {
-	const [pathname, setPathname] = useState(window.location.pathname || '');
 	return (
 		<div>
 			<p className="m-0 version-text">v0.1.4</p>
-			<nav className="navbar navbar-expand custom-navbar">
-				<div className="container-fluid">
-					<Link to="/" onClick={() => setPathname('/')}>
-						<h1 className="navbar-brand logo-text">
+			<Navbar
+				collapseOnSelect
+				expand="lg"
+				variant="dark"
+				className="custom-navbar"
+			>
+				<Navbar.Brand>
+					<Link to="/">
+						<h1 className="logo-text">
 							DM<span className="logo-subtext">Deck</span>
 						</h1>
 					</Link>
-					<ul className="navbar-nav">
-						<Link
-							to="/"
-							onClick={() => setPathname('/')}
-							className={
-								pathname === '/'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
-						>
+				</Navbar.Brand>
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Collapse id="responsive-navbar-nav">
+					<Nav className="ms-auto">
+						<Link to="/" className="custom-nav-link m-2">
 							Home
 						</Link>
-						<Link
-							to="/battles"
-							onClick={() => setPathname('/battles')}
-							className={
-								pathname === '/battles'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
-						>
+						<Link to="/battles" className="custom-nav-link m-2">
 							Battle
 						</Link>
 						<Link
 							to="/create-battle"
-							onClick={() => setPathname('/create-battle')}
-							className={
-								pathname === '/create-battle'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
+							className={'custom-nav-link m-2'}
 						>
 							Create
 						</Link>
 
 						{Auth.loggedIn() ? (
-							<Link
-								to="/me"
-								onClick={() => setPathname('/profile')}
-								className={
-									pathname === '/profile'
-										? 'nav-link custom-nav-link m-2 active'
-										: 'nav-link custom-nav-link m-2'
-								}
-							>
+							<Link to="/me" className="custom-nav-link m-2">
 								Profile
 							</Link>
 						) : null}
@@ -73,37 +49,20 @@ const Header = ({ theme, handleTheme }) => {
 								to="/login"
 								onClick={() => {
 									Auth.logout();
-									setPathname('/login');
 								}}
-								className={'nav-link custom-nav-link m-2'}
+								className="custom-nav-link m-2"
 							>
 								Logout
 							</Link>
 						) : (
-							<Link
-								to="/login"
-								onClick={() => setPathname('/login')}
-								className={
-									pathname === '/login'
-										? 'nav-link custom-nav-link m-2 active'
-										: 'nav-link custom-nav-link m-2'
-								}
-							>
+							<Link to="/login" className="custom-nav-link m-2">
 								Login
 							</Link>
 						)}
-						<Link
-							to="/legal"
-							onClick={() => setPathname('/legal')}
-							className={
-								pathname === '/legal'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
-						>
+						<Link to="/legal" className="custom-nav-link m-2">
 							Legal
 						</Link>
-						<div className="d-flex align-items-center">
+						<div className="d-flex align-items-center ms-2">
 							<Form.Check type="switch" onChange={handleTheme} />
 							{theme === 'light' ? (
 								<FaMoon color="#e6e6e6" />
@@ -111,9 +70,9 @@ const Header = ({ theme, handleTheme }) => {
 								<FaSun color="#e6e6e6" />
 							)}
 						</div>
-					</ul>
-				</div>
-			</nav>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
 		</div>
 	);
 };
