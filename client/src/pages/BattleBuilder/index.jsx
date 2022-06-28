@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import {
 	QUERY_ME,
 	QUERY_USER_CHARACTERS,
 	QUERY_USER_BATTLES,
-} from '../utils/queries';
-import { ADD_BATTLE } from '../utils/mutations';
-import '../App.scss';
+} from 'utils/queries';
+import { ADD_BATTLE } from 'utils/mutations';
 
-import CreateBattleSummary from '../components/CreateBattleSummary';
-import CreateBattleForm from '../components/CreateBattleForm';
+import CreateBattleSummary from './CreateBattleSummary';
+import CreateBattleForm from './CreateBattleForm';
 
-const CreateBattle = () => {
+const BattleBuilder = () => {
 	// State
 	const [battleName, setBattleName] = useState('');
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
@@ -120,4 +119,4 @@ const CreateBattle = () => {
 	);
 };
 
-export default CreateBattle;
+export default BattleBuilder;

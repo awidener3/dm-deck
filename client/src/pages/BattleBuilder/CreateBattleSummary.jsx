@@ -3,11 +3,11 @@ import {
 	calculateBaseMonsterXp,
 	calculateMonsterXp,
 	getXp,
-} from '../../utils/basicRuleCalculations';
+} from 'utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
 import { Row, Col, ListGroup } from 'react-bootstrap';
 
-import './createBattleSummary.scss';
+import './battleBuilder.scss';
 
 const CreateBattleSummary = ({
 	battleName,
@@ -121,7 +121,7 @@ const CreateBattleSummary = ({
 					</article>
 				</div>
 				<Link
-					to="/battles"
+					to="/battle-select"
 					className="btn btn-outline-success mt-auto"
 					onClick={handleSave}
 				>

@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import { RiSwordFill, RiEditLine } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
-import { Form } from 'react-bootstrap';
-
 import Summary from './Summary';
 import SummaryAccordion from './SummaryAccordion';
 
@@ -37,14 +35,14 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 					<Link
 						className="card-btn btn btn-outline-secondary disabled m-1"
 						title="Edit Card"
-						to={`/battles/${battle._id}`}
+						to={`/battle/${battle._id}`}
 					>
 						<RiEditLine size={20} />
 					</Link>
 					<Link
 						className="card-btn btn btn-outline-primary m-1"
 						title="Start Battle"
-						to={`/battles/${battle._id}`}
+						to={`/battle/${battle._id}`}
 					>
 						<RiSwordFill size={20} />
 					</Link>

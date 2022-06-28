@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
 	Form,
-	Button,
 	FloatingLabel,
 	InputGroup,
 	Row,
@@ -10,9 +9,9 @@ import {
 } from 'react-bootstrap';
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
 import { FaArrowCircleRight } from 'react-icons/fa';
-import './createMonster.scss';
+import './monsterBuilder.scss';
 
-const CreateMonster = () => {
+const MonsterBuilder = () => {
 	const [values, setValues] = useState({
 		name: '',
 	});
@@ -209,38 +208,4 @@ const CreateMonster = () => {
 	);
 };
 
-export default CreateMonster;
-
-/**
- * ✅ name/ slug   STRING
- * ✅ size         STRING
- * ✅ type         STRING
- * ✅ subtype      STRING
- * ✅ alignment    STRING
- * ✅ armor_class  INT
- * ✅ armor_desc   STRING
- * ✅ hit_points   INT
- * ✅ hit_dice     STRING (#d# + #)
- * ✅ speed : {
- *  ✅ walk:       INT
- *  ✅ climb:      INT
- *  ✅ fly:        INT
- *  ✅ swim:       INT
- * }
- * ✅ strength     INT
- * ✅ dexterity    INT
- * ✅ constitution INT
- * ✅ intelligence INT
- * ✅ wisdom       INT
- * ✅ charisma     INT
- *
- * strength_save      INT
- * dexterity_save     INT
- * constitution_save  INT
- * intelligence_save  INT
- * wisdom_save        INT
- * charisma_save      INT
- *
- * perception     INT
- *
- */
+export default MonsterBuilder;

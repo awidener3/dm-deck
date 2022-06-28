@@ -3,7 +3,6 @@ import {
 	calculateBaseMonsterXp,
 	calculateMonsterXp,
 } from 'utils/basicRuleCalculations';
-import { Row, Col } from 'react-bootstrap';
 
 const Summary = ({ battle }) => {
 	return (

@@ -3,7 +3,7 @@ import useFetchMonsters from '../../hooks/useFetchMonsters';
 import { getXp } from '../../utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
 
-import './createBattleForm.scss';
+import './battleBuilder.scss';
 
 const CreateBattleForm = ({
 	setBattleName,
@@ -94,7 +94,7 @@ const CreateBattleForm = ({
 				))}
 			</Container>
 
-			<Link to={'/create-character'} className="btn btn-primary mt-3">
+			<Link to={'/character-builder'} className="btn btn-primary mt-3">
 				Add New Hero
 			</Link>
 
@@ -201,7 +201,7 @@ const CreateBattleForm = ({
 				</Container>
 			) : null}
 
-			<Link to={'/create-monster'} className="btn btn-primary mt-3">
+			<Link to={'/monster-builder'} className="btn btn-primary mt-3">
 				Add Custom Monster (WIP)
 			</Link>
 		</div>
