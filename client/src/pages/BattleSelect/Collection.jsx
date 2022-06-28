@@ -50,7 +50,7 @@ const Collection = () => {
 				variables: { collectionId: collection._id },
 			});
 			console.log('✅ Success!', data);
-			window.location.assign('/battles');
+			window.location.assign('/battle-select');
 		} catch (e) {
 			console.log('Error deleting collection');
 			console.error(e);
@@ -84,7 +84,7 @@ const Collection = () => {
 					})}
 			</div>
 			<div className="d-flex justify-content-center mt-3">
-				<Link to={'/battles'} className="btn btn-secondary me-2">
+				<Link to={'/battle-select'} className="btn btn-secondary me-2">
 					Back
 				</Link>
 				<button

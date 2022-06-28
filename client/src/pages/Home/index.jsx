@@ -16,8 +16,8 @@ const Home = () => {
 
 			<div className="p-4 d-flex flex-column justify-content-center align-items-center container">
 				{/* Introduction Text */}
-				<h1>🃏 Welcome to DM Deck! 🧙‍♂️</h1>
-				<p>
+				<h1>Welcome to DM Deck!</h1>
+				<p className="m-0">
 					This app allows you, the dungeon master, to track your epic
 					D&D Battles in a Trading Card Game style, like Pokemon or
 					Magic! Create encounters on the fly, or prepare ahead of

@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
 import { Form, Button } from 'react-bootstrap';
+import { ADD_CHARACTER } from 'utils/mutations/characterMutations';
+import { QUERY_USER_CHARACTERS, QUERY_ME } from 'utils/queries/userQueries';
+
 import races from 'assets/json/player_races.json';
 import classes from 'assets/json/player_classes.json';
-import { useMutation, useQuery } from '@apollo/client';
-import { ADD_CHARACTER } from 'utils/mutations/characterMutations';
-import { QUERY_USER_CHARACTERS } from 'utils/queries/userQueries';
+import './characterBuilder.scss';
 
-import 'assets/styles/createCharacter.scss';
-import { QUERY_ME } from 'utils/queries/userQueries';
-
-const CreateCharacter = () => {
+const CharacterBuilder = () => {
 	const [values, setValues] = useState({
 		character_name: '',
 		player_name: '',
@@ -24,12 +23,14 @@ const CreateCharacter = () => {
 	const [addCharacter, { error: character_error }] = useMutation(
 		ADD_CHARACTER,
 		{
-			refetchQueries: [{ query: QUERY_USER_CHARACTERS }, 'UserCharacters'],
+			refetchQueries: [
+				{ query: QUERY_USER_CHARACTERS },
+				'UserCharacters',
+			],
 		}
 	);
 
 	const user = data?.me || [];
-
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setValues({
@@ -92,7 +93,6 @@ const CreateCharacter = () => {
 	if (loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
 	if (error) return <div>ERROR!</div>;
-
 	return (
 		<div className="container p-4 w-70">
 			<h1 className="text-center">Create Character</h1>
@@ -204,15 +204,4 @@ const CreateCharacter = () => {
 	);
 };
 
-export default CreateCharacter;
-
-/*
-  Needed Props:
-  character_name
-  player_name
-  level
-  race
-  class
-  armor_class
-  hit_points
-*/
+export default CharacterBuilder;

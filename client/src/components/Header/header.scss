@@ -7,6 +7,22 @@
 	z-index: 100;
 }
 
+.nav-dropdown {
+	.nav-link {
+		color: #b8b8b8 !important;
+		&:hover {
+			color: #fff !important;
+		}
+	}
+}
+
+.link-container {
+	cursor: pointer;
+	&:hover {
+		color: #fff;
+	}
+}
+
 .custom-navbar {
 	background-color: black;
 	padding: 0 10px;

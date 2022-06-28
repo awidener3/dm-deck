@@ -5,6 +5,75 @@ $lg: 992px;
 $xl: 1200px;
 $xxl: 1400px;
 
+.battle-form {
+	.battle-name-input {
+		border: none;
+		border-radius: 0;
+		font-family: 'Mukta Vaani', sans-serif;
+		font-size: 2.2rem;
+		font-weight: 500;
+		line-height: 0;
+		@media screen and (max-width: $lg) {
+			font-size: 1.7rem;
+		}
+		@media screen and (max-width: $sm) {
+			font-size: 1.5rem;
+		}
+	}
+}
+
+.monster-search-input {
+	border: none;
+	border-radius: 0;
+	font-family: 'Mukta Vaani', sans-serif;
+	font-size: 1.4rem;
+	@media screen and (max-width: $lg) {
+		font-size: 1.2rem;
+	}
+	@media screen and (max-width: $sm) {
+		font-size: 1rem;
+	}
+}
+
+.creature-grid {
+	.grid-header {
+		font-weight: 500;
+	}
+	.creature-row {
+		background-color: #ffffff;
+		color: var(--card-text);
+		.row-title {
+			margin: 0;
+			font-size: 1.3rem;
+			font-family: 'Mukta Vaani', sans-serif;
+		}
+		.row-subtitle {
+			margin: 0;
+			line-height: 1;
+			color: #747474;
+			font-weight: 400;
+		}
+		.row-text {
+			font-size: 1rem;
+			margin: 0;
+		}
+		@media screen and (max-width: $sm) {
+			.row-title {
+				font-size: 1rem;
+			}
+			.row-subtitle {
+				font-size: 0.8rem;
+			}
+			.row-text {
+				font-size: 0.8rem;
+			}
+		}
+	}
+	.selected {
+		background-color: #e4fce4;
+	}
+}
+
 .summary-card {
 	color: var(--card-text);
 	width: 24rem;

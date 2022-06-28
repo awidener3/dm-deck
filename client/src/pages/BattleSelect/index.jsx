@@ -142,7 +142,7 @@ const BattleSelect = () => {
 
 			{/* Corner Button */}
 			<div className="d-flex justify-content-center create-btn-container">
-				<Link to={'/create-battle'} className="create-btn">
+				<Link to={'/battle-builder'} className="create-btn">
 					&#43;
 				</Link>
 			</div>

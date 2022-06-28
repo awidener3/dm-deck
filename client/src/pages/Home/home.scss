@@ -22,6 +22,14 @@
 	}
 }
 
+.quick-link {
+	filter: drop-shadow(5px 5px 8px rgba(34, 34, 34, 0.358));
+	@media screen and (max-width: $sm) {
+		width: 225px;
+		height: 115px;
+	}
+}
+
 .quicklink-div {
 	background-color: var(--background-secondary);
 	color: var(--text-primary);

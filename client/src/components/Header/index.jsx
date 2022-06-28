@@ -1,4 +1,5 @@
-import { Form, Nav, Navbar } from 'react-bootstrap';
+import { Form, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import Auth from '../../utils/auth';
@@ -39,21 +40,38 @@ const Header = ({ theme, handleTheme }) => {
 							Home
 						</Link>
 						<Link
-							to="/battles"
+							to="/battle-select"
 							className="custom-nav-link m-2"
 							onClick={() => setExpanded(false)}
 						>
-							Battle
+							Battles
 						</Link>
-						<Link
-							to="/create-battle"
-							className="custom-nav-link m-2"
-							onClick={() => setExpanded(false)}
+						<NavDropdown
+							title="Build"
+							menuVariant="dark"
+							className="nav-dropdown ms-2"
 						>
-							Create
-						</Link>
+							<LinkContainer
+								className="link-container"
+								to="/battle-builder"
+								onClick={() => setExpanded(false)}
+							>
+								<NavItem className="ms-2">
+									Battle Builder
+								</NavItem>
+							</LinkContainer>
+							<LinkContainer
+								className="link-container"
+								to="/character-builder"
+								onClick={() => setExpanded(false)}
+							>
+								<NavItem className="ms-2">
+									Character Builder
+								</NavItem>
+							</LinkContainer>
+						</NavDropdown>
 
-						{Auth.loggedIn() ? (
+						{Auth.loggedIn() && (
 							<Link
 								to="/me"
 								className="custom-nav-link m-2"
@@ -61,7 +79,7 @@ const Header = ({ theme, handleTheme }) => {
 							>
 								Profile
 							</Link>
-						) : null}
+						)}
 
 						{Auth.loggedIn() ? (
 							<Link
