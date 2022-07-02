@@ -25,15 +25,15 @@ article {
 
 .hero-card {
 	padding: 20px;
-	border: 1px solid #0a6817;
-	outline: 1px solid #aaaaaa;
+	border: var(--card-hero-border);
+	outline: var(--card-hero-outline);
 	outline-offset: -5px;
-	background-color: #ffffff;
+	background-color: var(--card-background);
+	color: var(--card-text);
 	width: 20rem;
 	min-height: 30rem;
 	border-radius: 0.5rem;
 	position: relative;
-	color: var(--card-text);
 	.hero-name {
 		font-weight: 700;
 	}

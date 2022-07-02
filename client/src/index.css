@@ -22,7 +22,7 @@ code {
 /* global and LIGHT styling */
 :root {
 	--background: #e6e6e6;
-  --background-secondary: #dbdbdb;
+  --background-secondary: #f8f8f8;
 	--text-primary: #292929;
 
   /* all cards (🌞 LIGHT) */
@@ -32,6 +32,18 @@ code {
   --card-subtext: #858585;
   --card-border: 1px solid #d4d4d4;
   --card-outline: 1px solid #c5c5c5;
+  --card-hero-border: 1px solid #0a6817;
+  --card-hero-outline: 1px solid #23802f;
+  --card-monster-border: 1px solid #7b0b0b;
+  --card-monster-outline: 1px solid #991c1c;
+  --card-button-border: #6c757d;
+  --card-button-color: #6c757d;
+  --card-button-color-hover: #fff;
+
+  /* battle quickview (LIGHT) */
+  --quickview-hover:#00000044;
+  --quickview-selected: #d8ebd7;
+  --quickview-selected-hover: #8dbb8b;
 
   /* all forms (🌞 LIGHT) */
   --form-input-background: #fff;
@@ -51,8 +63,16 @@ code {
   --card-subtext: #aaaaaa;
   --card-border: 1px solid #d4d4d4;
   --card-outline: 1px solid #c5c5c5;
+  --card-button-border: #d8d8d8;
+  --card-button-color: #d8d8d8;
+  --card-button-color-hover: #292929;
+
+  /* battle quickview (DARK) */
+  --quickview-hover: #63636344;
+  --quickview-selected: #276d36;
+  --quickview-selected-hover: #3b864c;
 
   /* all forms (🌙 DARK) */ 
   --form-input-background: #363636;
-  --form-input-selected: rgb(39, 109, 54);
+  --form-input-selected: #276d36;
 }

@@ -1,7 +1,6 @@
 .monster-data {
-	background-color: #fff;
-	border-bottom: 1px solid #ababab;
-	color: var(--card-text);
+	background-color: var(--background-secondary);
+	color: var(--text-primary);
 	.monster-data-card {
 		cursor: pointer;
 		padding: 0 10px;
@@ -25,13 +24,13 @@
 		}
 	}
 	.monster-data-card:hover {
-		background-color: #efefef;
+		background-color: var(--quickview-hover);
 	}
 	.current {
-		background-color: #d8ebd7;
+		background-color: var(--quickview-selected);
 	}
 	.current:hover {
-		background-color: #8dbb8b;
+		background-color: var(--quickview-selected-hover);
 	}
 }
 

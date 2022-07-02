@@ -22,6 +22,15 @@
 	z-index: 0;
 }
 
+.card-btn {
+	color: var(--card-button-color);
+	border-color: var(--card-button-color);
+	&:hover {
+		color: var(--card-button-color-hover);
+		background-color: var(--card-button-color);
+	}
+}
+
 .battle-container {
 	position: relative;
 	.battle-chevron {

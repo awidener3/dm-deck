@@ -1,9 +1,9 @@
 .monster-card {
 	padding: 20px;
-	border: 1px solid #7b0b0b;
-	outline: 1px solid #aaa;
+	border: var(--card-monster-border);
+	outline: var(--card-monster-outline);
 	outline-offset: -5px;
-	background-color: #ffffff;
+	background-color: var(--card-background);
 	width: 20rem;
 	min-height: 30rem;
 	border-radius: 0.5rem;

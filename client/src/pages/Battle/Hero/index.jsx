@@ -37,16 +37,15 @@ const Hero = ({ hero, cardStyle, handleHeroAttack, handleAddEffect }) => {
 				</div>
 
 				{/* PC INFO */}
-				<div className="container text-center pb-2 border-bottom">
+				<div className="container text-center pb-2">
 					<h1 className="hero-name m-0">{hero.character_name}</h1>
 					<h2 className="player-name">{hero.player_name}</h2>
 				</div>
 
 				{/* ACTIONS + ABILITIES */}
 				<div className="pt-2 d-flex flex-column">
-					<h3 className="text-center">Actions:</h3>
 					<button
-						className="btn btn-outline-secondary mb-2"
+						className="btn btn-outline-secondary card-btn mb-2"
 						onClick={handleHeroAttack}
 					>
 						<GiPointySword /> Attack/Cast Spell
