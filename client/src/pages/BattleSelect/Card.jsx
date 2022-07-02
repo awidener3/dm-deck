@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { RiSwordFill, RiEditLine } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
 import Summary from './Summary';
-import SummaryAccordion from './SummaryAccordion';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 	return (
@@ -20,7 +20,34 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 				<div className="card-body">
 					<Summary battle={battle} />
 
-					<SummaryAccordion battle={battle} />
+					<div className="d-flex justify-content-around border-top pt-2">
+						<div>
+							<h3 className="accordion-title">Heroes</h3>
+							<ListGroup variant="flush" className="summary-list">
+								{battle.heroes.map((hero, i) => (
+									<ListGroupItem
+										key={i}
+										className="list-item"
+									>
+										{hero.character_name}
+									</ListGroupItem>
+								))}
+							</ListGroup>
+						</div>
+						<div>
+							<h3 className="accordion-title">Monsters</h3>
+							<ListGroup variant="flush" className="summary-list">
+								{battle.monsters.map((monster, i) => (
+									<ListGroupItem
+										key={i}
+										className="list-item"
+									>
+										{monster.name}
+									</ListGroupItem>
+								))}
+							</ListGroup>
+						</div>
+					</div>
 				</div>
 
 				{/* Buttons */}

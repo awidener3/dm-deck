@@ -12,12 +12,12 @@ import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
 import './battleSelect.scss';
 import Deck from './Deck';
 import Card from './Card';
+import PageHeader from 'components/PageHeader';
 import NewCollectionModal from './NewCollectionModal';
 
 const BattleSelect = () => {
 	const [showCollectionModal, setShowCollectionModal] = useState(false);
 	const handleCloseCollectionModal = () => setShowCollectionModal(false);
-
 	const [addBattleToCollection, { error: mutation_error }] = useMutation(
 		ADD_BATTLE_TO_COLLECTION,
 		{
@@ -35,7 +35,6 @@ const BattleSelect = () => {
 			'UserCollections',
 		],
 	});
-
 	const {
 		loading: user_loading,
 		error: user_error,
@@ -55,10 +54,9 @@ const BattleSelect = () => {
 			const { data } = await deleteBattle({
 				variables: { battleId: id },
 			});
-			console.log('✅ Success!', data);
+			console.log('✅ Success!\n', data);
 		} catch (e) {
-			console.log('🚮 Error deleting battle');
-			console.error(e);
+			console.error('💥 Error deleting battle\n', e);
 		}
 	};
 
@@ -71,8 +69,6 @@ const BattleSelect = () => {
 	const handleDrop = async (e, collectionId) => {
 		e.preventDefault();
 		let data = e.dataTransfer.getData('id');
-		console.log('card id is: ', data);
-		console.log('collection id is: ', collectionId);
 		try {
 			const mutationResponse = await addBattleToCollection({
 				variables: {
@@ -80,12 +76,15 @@ const BattleSelect = () => {
 					collectionId: collectionId,
 				},
 			});
-			console.log('✅ Battle successfully added to Collection!');
-			console.log('🚀', mutationResponse.data);
-			console.log('🚀', collections);
+			console.log(
+				'✅ Battle successfully added to Collection! \n',
+				mutationResponse
+			);
 		} catch (error) {
-			console.log('💥 Battle was not added to Collection.');
-			console.error(mutation_error);
+			console.error(
+				'💥 Battle was not added to Collection! \n',
+				mutation_error
+			);
 		}
 	};
 
@@ -94,32 +93,39 @@ const BattleSelect = () => {
 	if (user_error) return <div>ERROR!</div>;
 
 	return (
-		<div className="py-4">
-			<h1 className="text-center">Select a Saved Battle</h1>
+		<div>
+			<PageHeader
+				image={`url(${require('assets/images/card_backs/back_7.jpg')})`}
+				pageTitle={'Saved Battles'}
+			/>
 
 			{/* Decks */}
-			<div className="container-fluid container-lg d-flex deck-container">
-				{collections &&
-					collections.map((collection) => {
-						return (
-							<Deck
-								key={collection._id}
-								collection={collection}
-								handleDrop={handleDrop}
-							/>
-						);
-					})}
+			<section className="container-fluid deck-drawer">
+				<h2 className="text-center">Deck Drawer</h2>
 
-				{/* Add new collection button */}
-				<figure
-					className="add-deck m-2"
-					onClick={() => setShowCollectionModal(true)}
-				>
-					<div className="plus-button h-100 d-flex justify-content-center align-items-center">
-						+
-					</div>
-				</figure>
-			</div>
+				<div className="deck-container">
+					{collections &&
+						collections.map((collection) => {
+							return (
+								<Deck
+									key={collection._id}
+									collection={collection}
+									handleDrop={handleDrop}
+								/>
+							);
+						})}
+
+					{/* Add new collection button */}
+					<figure
+						className="add-deck m-2"
+						onClick={() => setShowCollectionModal(true)}
+					>
+						<div className="plus-button h-100 d-flex justify-content-center align-items-center">
+							+
+						</div>
+					</figure>
+				</div>
+			</section>
 
 			{/* Cards */}
 			<Container
