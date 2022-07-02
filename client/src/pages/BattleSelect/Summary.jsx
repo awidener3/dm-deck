@@ -18,7 +18,7 @@ const Summary = ({ battle }) => {
 				</span>
 			</p>
 
-			<p className="summary-stat m-0">
+			<p className="summary-stat m-0 pb-1">
 				Adjusted XP{' '}
 				<span className="total-xp">
 					{calculateMonsterXp(battle.monsters)}

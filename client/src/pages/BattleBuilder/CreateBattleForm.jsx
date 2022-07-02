@@ -33,14 +33,14 @@ const CreateBattleForm = ({
 			</Form>
 
 			{/* hero table */}
-			<h2 className="mt-3">Heroes</h2>
+			<h2 className="mt-3">Characters</h2>
 			<Container className="creature-grid">
 				<Row>
-					<Col lg={6} md={7} xs={5} className="grid-header">
+					<Col lg={6} md={7} xs={4} className="grid-header">
 						{' '}
-						Hero
+						Character
 					</Col>
-					<Col md={3} s={4} xs={3} className="grid-header">
+					<Col md={3} s={4} xs={4} className="grid-header">
 						Race/Class
 					</Col>
 					<Col md="auto" xs={1} className="grid-header">
@@ -57,13 +57,13 @@ const CreateBattleForm = ({
 								: 'creature-row mb-1 py-2 d-flex align-items-center'
 						}
 					>
-						<Col xl={6} lg={6} md={7} xs={5} className="border-end">
+						<Col xl={6} lg={6} md={7} xs={4} className="border-end">
 							<h3 className="row-title">
 								{hero.character_name}{' '}
 							</h3>
 							<p className="row-subtitle">{hero.player_name}</p>
 						</Col>
-						<Col md={3} s={4} xs={3} className="border-end">
+						<Col md={3} s={4} xs={4} className="border-end">
 							<p className="row-text">
 								{hero.race} {hero.class}
 							</p>
@@ -94,7 +94,9 @@ const CreateBattleForm = ({
 				))}
 
 				<Row className="add-row mb-1 py-2 d-flex align-items-center text-center">
-					<Link to={'/character-builder'}>+ Add New Hero</Link>
+					<Link to={'/character-builder'}>
+						+ Create New Character
+					</Link>
 				</Row>
 			</Container>
 
