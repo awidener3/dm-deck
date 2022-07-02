@@ -92,6 +92,7 @@ const CreateBattleForm = ({
 						</Col>
 					</Row>
 				))}
+
 				<Row className="add-row mb-1 py-2 d-flex align-items-center text-center">
 					<Link to={'/character-builder'}>+ Add New Hero</Link>
 				</Row>

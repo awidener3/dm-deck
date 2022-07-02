@@ -7,13 +7,15 @@ $xxl: 1400px;
 
 .page-header {
 	color: #dddddd;
-	text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.76);
+	text-shadow: 3px 3px 5px #000000c2;
 	height: 250px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-position: center;
 	position: relative;
+	// black background for lower fade
+	background-color: #000000;
 	h1 {
 		z-index: 2;
 	}
