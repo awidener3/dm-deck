@@ -9,6 +9,7 @@ import { ADD_BATTLE } from 'utils/mutations';
 
 import CreateBattleSummary from './CreateBattleSummary';
 import CreateBattleForm from './CreateBattleForm';
+import PageHeader from 'components/PageHeader';
 
 const BattleBuilder = () => {
 	// State
@@ -94,10 +95,13 @@ const BattleBuilder = () => {
 	if (user_error || characters_error) return <div>ERROR!</div>;
 
 	return (
-		<div className="container-sm container-fluid py-4">
-			<h1 className="text-center">Create New Battle</h1>
+		<div>
+			<PageHeader
+				image={`url(${require('assets/images/card_backs/back_4.jpg')})`}
+				pageTitle={'Battle Builder'}
+			/>
 
-			<div className="d-flex flex-lg-row flex-md-column flex-column">
+			<div className="container d-flex flex-lg-row flex-md-column flex-column py-3">
 				<CreateBattleForm
 					setBattleName={setBattleName}
 					heroes={characters}

@@ -28,8 +28,8 @@ const HomeLinks = () => {
 				className="quick-link"
 				src={link.image}
 				alt={link.alt}
-				width={400}
-				height={200}
+				width={350}
+				height={175}
 			/>
 		</Link>
 	);

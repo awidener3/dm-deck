@@ -19,19 +19,40 @@ code {
 		monospace;
 }
 
+/* global and LIGHT styling */
 :root {
 	--background: #e6e6e6;
   --background-secondary: #dbdbdb;
 	--text-primary: #292929;
+
+  /* all cards (🌞 LIGHT) */
 	--card-background: #fff;
-	--card-border: #d4d4d4;
-	--card-outline: #c5c5c5;
+  --card-background-secondary: #fff;
   --card-text: #292929;
+  --card-subtext: #858585;
+  --card-border: 1px solid #d4d4d4;
+  --card-outline: 1px solid #c5c5c5;
+
+  /* all forms (🌞 LIGHT) */
+  --form-input-background: #fff;
+  --form-input-selected: #e4fce4;
 }
 
+/* DARK styling */
 [data-theme='dark'] {
-	--background: #1d1d1d;
+  --background: #1d1d1d;
   --background-secondary: #111111;
 	--text-primary: #d8d8d8;
-  --card-text: #292929;
+
+  /* all cards (🌙 DARK) */
+  --card-background: #363636;
+  --card-background-secondary: #2b2b2b;
+  --card-text: #d8d8d8;
+  --card-subtext: #aaaaaa;
+  --card-border: 1px solid #d4d4d4;
+  --card-outline: 1px solid #c5c5c5;
+
+  /* all forms (🌙 DARK) */ 
+  --form-input-background: #363636;
+  --form-input-selected: rgb(39, 109, 54);
 }

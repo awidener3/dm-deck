@@ -1,12 +1,21 @@
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
 .page-header {
 	color: #dddddd;
-	text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.76);
+	text-shadow: 3px 3px 5px #000000c2;
 	height: 250px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-position: center;
 	position: relative;
+	// black background for lower fade
+	background-color: #000000;
 	h1 {
 		z-index: 2;
 	}
@@ -21,5 +30,8 @@
 			rgba(0, 0, 0, 0) 50%,
 			rgba(0, 0, 0, 1) 100%
 		);
+	}
+	@media screen and (max-width: $sm) {
+		height: 100px;
 	}
 }
