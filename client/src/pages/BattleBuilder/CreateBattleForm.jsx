@@ -17,23 +17,23 @@ const CreateBattleForm = ({
 	const { monsterData, setMonsterData } = useFetchMonsters();
 
 	return (
-		<div className="m-md-4">
+		<div className="m-md-4 container">
 			{/* battle name */}
 			<Form className="battle-form">
 				<Form.Group>
 					<Form.Control
 						type="text"
 						className="form-control battle-name-input"
-						placeholder="Name your battle"
-						maxLength={20}
+						placeholder="Name your battle..."
+						maxLength={25}
 						onChange={(e) => setBattleName(e.target.value.trim())}
 					/>
-					<Form.Text>20 characters max.</Form.Text>
+					<Form.Text>25 characters max.</Form.Text>
 				</Form.Group>
 			</Form>
 
 			{/* hero table */}
-			<h2 className="mt-3">Select Heroes</h2>
+			<h2 className="mt-3">Heroes</h2>
 			<Container className="creature-grid">
 				<Row>
 					<Col lg={6} md={7} xs={5} className="grid-header">
@@ -92,14 +92,13 @@ const CreateBattleForm = ({
 						</Col>
 					</Row>
 				))}
+				<Row className="add-row mb-1 py-2 d-flex align-items-center text-center">
+					<Link to={'/character-builder'}>+ Add New Hero</Link>
+				</Row>
 			</Container>
 
-			<Link to={'/character-builder'} className="btn btn-primary mt-3">
-				Add New Hero
-			</Link>
-
 			{/* monsters */}
-			<h2 className="mt-4">Select Monsters</h2>
+			<h2 className="mt-4">Monsters</h2>
 			<Form.Group>
 				<Form.Control
 					type="text"
@@ -116,8 +115,7 @@ const CreateBattleForm = ({
 				</Form.Text>
 			</Form.Group>
 
-			{monsterData.results.results &&
-			monsterData.results.results.length > 0 ? (
+			{monsterData.results?.results && (
 				<Container className="mt-2 creature-grid">
 					<Row>
 						<Col
@@ -199,11 +197,7 @@ const CreateBattleForm = ({
 						</Row>
 					))}
 				</Container>
-			) : null}
-
-			<Link to={'/monster-builder'} className="btn btn-primary mt-3">
-				Add Custom Monster (WIP)
-			</Link>
+			)}
 		</div>
 	);
 };

@@ -1,6 +1,9 @@
 import './pageHeader.scss';
 
-const PageHeader = ({ image, pageTitle }) => {
+const PageHeader = ({
+	image = `url(${require('assets/images/card_backs/back_4.jpg')})`,
+	pageTitle,
+}) => {
 	return (
 		<div
 			className="page-header"

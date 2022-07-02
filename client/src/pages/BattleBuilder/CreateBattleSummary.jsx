@@ -27,7 +27,7 @@ const CreateBattleSummary = ({
 	};
 
 	return (
-		<div className="mx-auto mt-5">
+		<div className="mx-auto my-4">
 			<div className="summary-card d-flex flex-column">
 				{/* Title */}
 				<h2 className="summary-card-title">

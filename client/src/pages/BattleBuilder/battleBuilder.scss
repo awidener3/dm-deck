@@ -69,6 +69,16 @@ $xxl: 1400px;
 			}
 		}
 	}
+	.add-row {
+		background-color: #fff;
+		a {
+			color: #8a8a8a;
+			transition: color 0.2s;
+		}
+		a:hover {
+			color: #3f62d3;
+		}
+	}
 	.selected {
 		background-color: #e4fce4;
 	}
