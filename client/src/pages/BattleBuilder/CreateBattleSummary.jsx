@@ -62,7 +62,7 @@ const CreateBattleSummary = ({
 					{/* Heroes */}
 					<article className="card roster-card p-3 w-100">
 						<h2 className="roster-title">Heroes</h2>
-						<ListGroup variant="flush">
+						<ListGroup variant="flush" className="roster-creatures">
 							{selectedHeroes.length > 0 ? (
 								selectedHeroes.map((hero, index) => (
 									<ListGroup.Item
@@ -91,7 +91,7 @@ const CreateBattleSummary = ({
 					{/* Monsters */}
 					<article className="card roster-card mt-3 p-3 w-100">
 						<h2 className="roster-title">Monsters</h2>
-						<ListGroup variant="flush">
+						<ListGroup variant="flush" className="roster-creatures">
 							{selectedMonsters.length > 0 ? (
 								selectedMonsters.map((monster, index) => (
 									<ListGroup.Item
