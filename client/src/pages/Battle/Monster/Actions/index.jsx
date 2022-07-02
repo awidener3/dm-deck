@@ -174,7 +174,7 @@ const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 				) : (
 					<button
 						id="addStatusBtn"
-						className="action-btn btn btn-outline-secondary btn-sm ms-1"
+						className="action-btn btn btn-outline-secondary card-btn btn-sm ms-1"
 						onClick={() => handleConditions(action)}
 					>
 						<GiTwirlCenter /> View Action
