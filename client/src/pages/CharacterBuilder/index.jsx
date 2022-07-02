@@ -145,7 +145,8 @@ const CharacterBuilder = () => {
 							max={20}
 							maxLength={2}
 							name="level"
-							pattern="\d{1,2}"
+							pattern="[0-9]*"
+							inputMode="numeric"
 							placeholder={1}
 							value={values.level}
 							onChange={handleChange}
@@ -164,7 +165,8 @@ const CharacterBuilder = () => {
 							max={40}
 							maxLength={2}
 							name="armor_class"
-							pattern="\d{1,2}"
+							pattern="[0-9]*"
+							inputMode="numeric"
 							placeholder={10}
 							value={values.armor_class}
 							onChange={handleChange}
@@ -179,7 +181,8 @@ const CharacterBuilder = () => {
 							min={1}
 							maxLength={3}
 							name="hit_points"
-							pattern="\d{1,3}"
+							pattern="[0-9]*"
+							inputMode="numeric"
 							placeholder={10}
 							value={values.hit_points}
 							onChange={handleChange}
