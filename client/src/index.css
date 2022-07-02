@@ -24,6 +24,7 @@ code {
 	--background: #e6e6e6;
   --background-secondary: #f8f8f8;
 	--text-primary: #292929;
+  --text-secondary: #d8d8d8;
 
   /* all cards (🌞 LIGHT) */
 	--card-background: #fff;
@@ -55,6 +56,7 @@ code {
   --background: #1d1d1d;
   --background-secondary: #111111;
 	--text-primary: #d8d8d8;
+  --text-secondary: #292929;
 
   /* all cards (🌙 DARK) */
   --card-background: #363636;
