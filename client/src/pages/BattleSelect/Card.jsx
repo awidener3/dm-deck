@@ -22,7 +22,7 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 
 					<div className="d-flex justify-content-around border-top pt-2">
 						<div>
-							<h3 className="accordion-title">Heroes</h3>
+							<h3 className="list-title">Heroes</h3>
 							<ListGroup variant="flush" className="summary-list">
 								{battle.heroes.map((hero, i) => (
 									<ListGroupItem
@@ -35,7 +35,7 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 							</ListGroup>
 						</div>
 						<div>
-							<h3 className="accordion-title">Monsters</h3>
+							<h3 className="list-title">Monsters</h3>
 							<ListGroup variant="flush" className="summary-list">
 								{battle.monsters.map((monster, i) => (
 									<ListGroupItem

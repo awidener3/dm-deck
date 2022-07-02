@@ -128,22 +128,23 @@ const BattleSelect = () => {
 			</section>
 
 			{/* Cards */}
-			<Container
-				fluid="lg"
-				className="d-flex flex-wrap justify-content-center"
-			>
-				{battles &&
-					battles.map((battle) => {
-						return (
-							<Card
-								key={battle._id}
-								battle={battle}
-								startDrag={startDrag}
-								handleDeleteBattle={handleDeleteBattle}
-								draggable={true}
-							/>
-						);
-					})}
+			<Container className="mt-3 d-flex flex-column justify-content-center">
+				<h2 className="text-center">Battles</h2>
+
+				<div className="d-flex flex-wrap justify-content-center justify-content-md-start my-3">
+					{battles &&
+						battles.map((battle) => {
+							return (
+								<Card
+									key={battle._id}
+									battle={battle}
+									startDrag={startDrag}
+									handleDeleteBattle={handleDeleteBattle}
+									draggable={true}
+								/>
+							);
+						})}
+				</div>
 			</Container>
 
 			{/* Corner Button */}
