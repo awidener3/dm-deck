@@ -1,13 +1,22 @@
-.deck-container {
-	overflow: auto;
+@import 'src/App.scss';
+
+.deck-drawer {
+	padding: 20px 0;
+	background-color: var(--background-secondary);
+	display: flex;
+	flex-direction: column;
+	.deck-container {
+		display: flex;
+		overflow: auto;
+	}
 }
 
 .add-deck {
+	background-color: var(--background);
 	cursor: pointer;
 	min-width: 9rem;
 	height: 13rem;
 	border-radius: 0.5rem;
-	background-color: var(--background-secondary);
 	transition: transform 0.2s;
 	.plus-button {
 		font-size: 4rem;
@@ -22,12 +31,12 @@
 	cursor: pointer;
 	width: 9rem;
 	height: 13rem;
-	border: 1px solid #d4d4d4;
-	outline: 1px solid #c5c5c5;
+	border: var(--card-border);
+	outline: var(--card-outline);
 	outline-offset: -5px;
 	border-radius: 0.5rem;
 	padding: 20px;
-	background-color: #6b6b6b;
+	background-color: var(--background-secondary);
 	position: relative;
 	.battle-deck-title {
 		color: white;
@@ -72,11 +81,12 @@
 .battle-card {
 	width: 18rem;
 	min-height: 26rem;
-	border: 1px solid #d4d4d4;
-	outline: 1px solid #c5c5c5;
+	border: var(--card-border);
+	outline: var(--card-outline);
+	color: var(--card-text);
+	background-color: var(--card-background);
 	outline-offset: -5px;
 	border-radius: 0.5rem;
-	color: var(--card-text);
 	.battle-card-title {
 		font-size: 1.5rem;
 		margin: 0;
@@ -88,13 +98,13 @@
 			text-decoration: line-through;
 		}
 		.summary-stat {
+			color: var(--card-text-secondary);
 			font-size: 0.75rem;
 			font-weight: 500;
-			color: #6b6b6b;
 			margin: 0;
 			.total-xp {
+				color: var(--card-text);
 				font-weight: 700;
-				color: black;
 			}
 			.challenge-rating-display {
 				font-weight: 700;
@@ -113,34 +123,35 @@
 				color: #d54f4f;
 			}
 		}
-		.accordion-title {
+
+		.list-title {
 			margin: 0;
 			font-size: 0.8rem;
 		}
-		.accordion-body {
-			padding: 8px;
-			font-size: 0.75rem;
-			.list-group-item {
-				padding: 5px 10px;
+		.summary-list {
+			max-height: 240px;
+			overflow-y: auto;
+			.list-item {
+				color: var(--card-text);
+				background-color: var(--card-background);
+				border: none;
+				padding: 0;
+				font-size: 0.75rem;
 			}
-		}
-		.accordion-subtext {
-			font-style: italic;
-			font-weight: 300;
-			color: #858585;
-		}
-		.accordion-button {
-			padding: 5px;
+			@media screen and (max-width: $sm) {
+				max-height: 90px;
+			}
 		}
 	}
 	@media screen and (max-width: 664px) {
-		width: 11rem;
+		width: 10rem;
 		min-height: 16rem;
 		.battle-card-title {
 			font-size: 1rem;
 		}
 		.card-btn {
-			padding: 5px 10px;
+			display: flex;
+			padding: 2px;
 		}
 		.summary-stat {
 			font-size: 0.5rem;
