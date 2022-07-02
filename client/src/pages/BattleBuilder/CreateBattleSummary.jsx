@@ -59,9 +59,9 @@ const CreateBattleSummary = ({
 				</div>
 
 				<div className="roster-container mt-2">
-					{/* Heroes */}
+					{/* Heroes/Characters */}
 					<article className="card roster-card p-3 w-100">
-						<h2 className="roster-title">Heroes</h2>
+						<h2 className="roster-title">Characters</h2>
 						<ListGroup variant="flush" className="roster-creatures">
 							{selectedHeroes.length > 0 ? (
 								selectedHeroes.map((hero, index) => (
