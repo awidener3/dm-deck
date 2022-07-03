@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import {
 	QUERY_ME,
 	QUERY_USER_CHARACTERS,
 	QUERY_USER_BATTLES,
-} from '../utils/queries';
-import { ADD_BATTLE } from '../utils/mutations';
-import '../App.scss';
+} from 'utils/queries';
+import { ADD_BATTLE } from 'utils/mutations';
 
-import CreateBattleSummary from '../components/CreateBattleSummary';
-import CreateBattleForm from '../components/CreateBattleForm';
+import CreateBattleSummary from './CreateBattleSummary';
+import CreateBattleForm from './CreateBattleForm';
+import PageHeader from 'components/PageHeader';
 
-const CreateBattle = () => {
+const BattleBuilder = () => {
 	// State
 	const [battleName, setBattleName] = useState('');
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
@@ -95,10 +95,13 @@ const CreateBattle = () => {
 	if (user_error || characters_error) return <div>ERROR!</div>;
 
 	return (
-		<div className="container-sm container-fluid py-4">
-			<h1 className="text-center">Create New Battle</h1>
+		<div>
+			<PageHeader
+				image={`url(${require('assets/images/card_backs/back_4.jpg')})`}
+				pageTitle={'Battle Builder'}
+			/>
 
-			<div className="d-flex flex-lg-row flex-md-column flex-column">
+			<div className="container d-flex flex-lg-row flex-md-column flex-column py-3">
 				<CreateBattleForm
 					setBattleName={setBattleName}
 					heroes={characters}
@@ -120,4 +123,4 @@ const CreateBattle = () => {
 	);
 };
 
-export default CreateBattle;
+export default BattleBuilder;

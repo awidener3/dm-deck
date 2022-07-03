@@ -3,11 +3,11 @@ import {
 	calculateBaseMonsterXp,
 	calculateMonsterXp,
 	getXp,
-} from '../../utils/basicRuleCalculations';
+} from 'utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
 import { Row, Col, ListGroup } from 'react-bootstrap';
 
-import './createBattleSummary.scss';
+import './battleBuilder.scss';
 
 const CreateBattleSummary = ({
 	battleName,
@@ -27,7 +27,7 @@ const CreateBattleSummary = ({
 	};
 
 	return (
-		<div className="mx-auto mt-5">
+		<div className="mx-auto my-4">
 			<div className="summary-card d-flex flex-column">
 				{/* Title */}
 				<h2 className="summary-card-title">
@@ -59,10 +59,10 @@ const CreateBattleSummary = ({
 				</div>
 
 				<div className="roster-container mt-2">
-					{/* Heroes */}
+					{/* Heroes/Characters */}
 					<article className="card roster-card p-3 w-100">
-						<h2 className="roster-title">Heroes</h2>
-						<ListGroup variant="flush">
+						<h2 className="roster-title">Characters</h2>
+						<ListGroup variant="flush" className="roster-creatures">
 							{selectedHeroes.length > 0 ? (
 								selectedHeroes.map((hero, index) => (
 									<ListGroup.Item
@@ -91,7 +91,7 @@ const CreateBattleSummary = ({
 					{/* Monsters */}
 					<article className="card roster-card mt-3 p-3 w-100">
 						<h2 className="roster-title">Monsters</h2>
-						<ListGroup variant="flush">
+						<ListGroup variant="flush" className="roster-creatures">
 							{selectedMonsters.length > 0 ? (
 								selectedMonsters.map((monster, index) => (
 									<ListGroup.Item
@@ -121,7 +121,7 @@ const CreateBattleSummary = ({
 					</article>
 				</div>
 				<Link
-					to="/battles"
+					to="/battle-select"
 					className="btn btn-outline-success mt-auto"
 					onClick={handleSave}
 				>

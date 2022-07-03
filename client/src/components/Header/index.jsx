@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Nav, Navbar, NavItem, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
-import { BsFillSunFill } from 'react-icons/bs';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import Auth from '../../utils/auth';
 import changelog from 'changelog';
 
 import './header.scss';
+import { useState } from 'react';
 
 const Header = ({ theme, handleTheme }) => {
-	const [pathname, setPathname] = useState(window.location.pathname || '');
+	const [expanded, setExpanded] = useState(false);
 	return (
 		<div>
 			<p className="m-0 version-text">{changelog.current_version}</p>
@@ -20,91 +20,90 @@ const Header = ({ theme, handleTheme }) => {
 							DM<span className="logo-subtext">Deck</span>
 						</h1>
 					</Link>
-					<ul className="navbar-nav">
+				</Navbar.Brand>
+				<Navbar.Toggle
+					onClick={() => setExpanded(expanded ? false : 'expanded')}
+					aria-controls="responsive-navbar-nav"
+				/>
+				<Navbar.Collapse id="responsive-navbar-nav">
+					<Nav className="ms-auto">
 						<Link
 							to="/"
-							onClick={() => setPathname('/')}
-							className={
-								pathname === '/'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
+							className="custom-nav-link m-2"
+							onClick={() => setExpanded(false)}
 						>
 							Home
 						</Link>
 						<Link
-							to="/battles"
-							onClick={() => setPathname('/battles')}
-							className={
-								pathname === '/battles'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
+							to="/battle-select"
+							className="custom-nav-link m-2"
+							onClick={() => setExpanded(false)}
 						>
-							Battle
+							Battles
 						</Link>
-						<Link
-							to="/create-battle"
-							onClick={() => setPathname('/create-battle')}
-							className={
-								pathname === '/create-battle'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
+						<NavDropdown
+							title="Build"
+							menuVariant="dark"
+							className="nav-dropdown ms-2"
 						>
-							Create
-						</Link>
+							<LinkContainer
+								className="link-container"
+								to="/battle-builder"
+								onClick={() => setExpanded(false)}
+							>
+								<NavItem className="ms-2">
+									Battle Builder
+								</NavItem>
+							</LinkContainer>
+							<LinkContainer
+								className="link-container"
+								to="/character-builder"
+								onClick={() => setExpanded(false)}
+							>
+								<NavItem className="ms-2">
+									Character Builder
+								</NavItem>
+							</LinkContainer>
+						</NavDropdown>
 
-						{Auth.loggedIn() ? (
+						{Auth.loggedIn() && (
 							<Link
 								to="/me"
-								onClick={() => setPathname('/profile')}
-								className={
-									pathname === '/profile'
-										? 'nav-link custom-nav-link m-2 active'
-										: 'nav-link custom-nav-link m-2'
-								}
+								className="custom-nav-link m-2"
+								onClick={() => setExpanded(false)}
 							>
 								Profile
 							</Link>
-						) : null}
+						)}
 
 						{Auth.loggedIn() ? (
 							<Link
 								to="/login"
 								onClick={() => {
 									Auth.logout();
-									setPathname('/login');
+									setExpanded(false);
 								}}
-								className={'nav-link custom-nav-link m-2'}
+								className="custom-nav-link m-2"
 							>
 								Logout
 							</Link>
 						) : (
 							<Link
 								to="/login"
-								onClick={() => setPathname('/login')}
-								className={
-									pathname === '/login'
-										? 'nav-link custom-nav-link m-2 active'
-										: 'nav-link custom-nav-link m-2'
-								}
+								className="custom-nav-link m-2"
+								onClick={() => setExpanded(false)}
 							>
 								Login
 							</Link>
 						)}
 						<Link
 							to="/legal"
-							onClick={() => setPathname('/legal')}
-							className={
-								pathname === '/legal'
-									? 'nav-link custom-nav-link m-2 active'
-									: 'nav-link custom-nav-link m-2'
-							}
+							className="custom-nav-link m-2"
+							onClick={() => setExpanded(false)}
 						>
 							Legal
 						</Link>
-						<div className="d-flex align-items-center">
+						<div className="d-flex align-items-center ms-2">
 							<Form.Check type="switch" onChange={handleTheme} />
 							{theme === 'light' ? (
 								<FaMoon color="#e6e6e6" />
@@ -112,9 +111,9 @@ const Header = ({ theme, handleTheme }) => {
 								<FaSun color="#e6e6e6" />
 							)}
 						</div>
-					</ul>
-				</div>
-			</nav>
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
 		</div>
 	);
 };

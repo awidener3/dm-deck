@@ -1,0 +1,33 @@
+@import 'src/App.scss';
+
+.player-name-input {
+	font-size: 1.5rem;
+	font-weight: 300;
+}
+
+.number-input {
+	width: 75px;
+	height: 70px;
+	font-family: 'Mukta Vaani', sans-serif;
+	text-align: center;
+	font-size: 2.2rem;
+	border: none;
+	border-radius: 0;
+}
+
+.form-select {
+	border-radius: 0;
+	font-size: 1rem;
+	font-family: 'Mukta Vaani', sans-serif;
+	background: var(--card-background)
+		url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'><path fill='%23ffffff' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>")
+		right 0.75rem center/8px 10px no-repeat !important;
+	color: var(--card-text);
+	border: none;
+}
+
+.create-character-btn {
+	font-weight: 700;
+	font-family: 'Asul', sans-serif;
+	padding: 10px 15px;
+}

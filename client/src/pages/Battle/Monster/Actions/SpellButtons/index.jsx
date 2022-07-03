@@ -9,7 +9,7 @@ const SpellButtons = ({ action, handleDealDamage }) => {
 			) : null}
 
 			<button
-				className="action-btn btn btn-outline-secondary btn-sm ms-1"
+				className="action-btn btn btn-outline-secondary card-btn btn-sm ms-1"
 				onClick={() => handleDealDamage(action)}
 			>
 				<GiMineExplosion />{' '}

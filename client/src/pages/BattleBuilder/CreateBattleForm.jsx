@@ -3,7 +3,7 @@ import useFetchMonsters from '../../hooks/useFetchMonsters';
 import { getXp } from '../../utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
 
-import './createBattleForm.scss';
+import './battleBuilder.scss';
 
 const CreateBattleForm = ({
 	setBattleName,
@@ -17,30 +17,30 @@ const CreateBattleForm = ({
 	const { monsterData, setMonsterData } = useFetchMonsters();
 
 	return (
-		<div className="m-md-4">
+		<div className="m-md-4 container">
 			{/* battle name */}
 			<Form className="battle-form">
 				<Form.Group>
 					<Form.Control
 						type="text"
 						className="form-control battle-name-input"
-						placeholder="Name your battle"
-						maxLength={20}
+						placeholder="Name your battle..."
+						maxLength={25}
 						onChange={(e) => setBattleName(e.target.value.trim())}
 					/>
-					<Form.Text>20 characters max.</Form.Text>
+					<Form.Text>25 characters max.</Form.Text>
 				</Form.Group>
 			</Form>
 
 			{/* hero table */}
-			<h2 className="mt-3">Select Heroes</h2>
+			<h2 className="mt-3">Characters</h2>
 			<Container className="creature-grid">
 				<Row>
-					<Col lg={6} md={7} xs={5} className="grid-header">
+					<Col lg={6} md={7} xs={4} className="grid-header">
 						{' '}
-						Hero
+						Character
 					</Col>
-					<Col md={3} s={4} xs={3} className="grid-header">
+					<Col md={3} s={4} xs={4} className="grid-header">
 						Race/Class
 					</Col>
 					<Col md="auto" xs={1} className="grid-header">
@@ -57,13 +57,13 @@ const CreateBattleForm = ({
 								: 'creature-row mb-1 py-2 d-flex align-items-center'
 						}
 					>
-						<Col xl={6} lg={6} md={7} xs={5} className="border-end">
+						<Col xl={6} lg={6} md={7} xs={4} className="border-end">
 							<h3 className="row-title">
 								{hero.character_name}{' '}
 							</h3>
 							<p className="row-subtitle">{hero.player_name}</p>
 						</Col>
-						<Col md={3} s={4} xs={3} className="border-end">
+						<Col md={3} s={4} xs={4} className="border-end">
 							<p className="row-text">
 								{hero.race} {hero.class}
 							</p>
@@ -92,14 +92,16 @@ const CreateBattleForm = ({
 						</Col>
 					</Row>
 				))}
+
+				<Row className="add-row mb-1 py-2 d-flex align-items-center text-center">
+					<Link to={'/character-builder'}>
+						+ Create New Character
+					</Link>
+				</Row>
 			</Container>
 
-			<Link to={'/create-character'} className="btn btn-primary mt-3">
-				Add New Hero
-			</Link>
-
 			{/* monsters */}
-			<h2 className="mt-4">Select Monsters</h2>
+			<h2 className="mt-4">Monsters</h2>
 			<Form.Group>
 				<Form.Control
 					type="text"
@@ -116,8 +118,7 @@ const CreateBattleForm = ({
 				</Form.Text>
 			</Form.Group>
 
-			{monsterData.results.results &&
-			monsterData.results.results.length > 0 ? (
+			{monsterData.results?.results && (
 				<Container className="mt-2 creature-grid">
 					<Row>
 						<Col
@@ -199,11 +200,7 @@ const CreateBattleForm = ({
 						</Row>
 					))}
 				</Container>
-			) : null}
-
-			<Link to={'/create-monster'} className="btn btn-primary mt-3">
-				Add Custom Monster (WIP)
-			</Link>
+			)}
 		</div>
 	);
 };

@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import {
+	Form,
+	FormGroup,
+	FormLabel,
+	FormControl,
+	FormSelect,
+	Button,
+} from 'react-bootstrap';
+import { ADD_CHARACTER } from 'utils/mutations/characterMutations';
+import { QUERY_USER_CHARACTERS, QUERY_ME } from 'utils/queries/userQueries';
+
 import races from 'assets/json/player_races.json';
 import classes from 'assets/json/player_classes.json';
-import { useMutation, useQuery } from '@apollo/client';
-import { ADD_CHARACTER } from 'utils/mutations/characterMutations';
-import { QUERY_USER_CHARACTERS } from 'utils/queries/userQueries';
+import './characterBuilder.scss';
+import PageHeader from 'components/PageHeader';
 
-import 'assets/styles/createCharacter.scss';
-import { QUERY_ME } from 'utils/queries/userQueries';
-
-const CreateCharacter = () => {
+const CharacterBuilder = () => {
 	const [values, setValues] = useState({
 		character_name: '',
 		player_name: '',
@@ -24,12 +31,14 @@ const CreateCharacter = () => {
 	const [addCharacter, { error: character_error }] = useMutation(
 		ADD_CHARACTER,
 		{
-			refetchQueries: [{ query: QUERY_USER_CHARACTERS }, 'UserCharacters'],
+			refetchQueries: [
+				{ query: QUERY_USER_CHARACTERS },
+				'UserCharacters',
+			],
 		}
 	);
 
 	const user = data?.me || [];
-
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setValues({
@@ -76,7 +85,7 @@ const CreateCharacter = () => {
 	const getPlayerRaces = () => {
 		return races.map((race) => (
 			<option key={race.name} value={race.name}>
-				{race.name} ({race.source})
+				{race.name}
 			</option>
 		));
 	};
@@ -92,127 +101,135 @@ const CreateCharacter = () => {
 	if (loading) return <div>Loading...</div>;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
 	if (error) return <div>ERROR!</div>;
-
 	return (
-		<div className="container p-4 w-70">
-			<h1 className="text-center">Create Character</h1>
-
-			<Form onSubmit={handleFormSubmit}>
-				<Form.Group className="my-2" controlId="character_name">
-					<Form.Label>Hero Name</Form.Label>
-					<Form.Control
+		<div>
+			<PageHeader
+				image={`url(${require('assets/images/card_backs/back_9.jpg')})`}
+				pageTitle={'Character Builder'}
+			/>
+			<Form
+				onSubmit={handleFormSubmit}
+				className="container d-flex flex-column"
+			>
+				<FormGroup className="my-2" controlId="character_name">
+					<FormLabel>Character Name</FormLabel>
+					<FormControl
 						type="text"
 						className="form-control form-name-input character-name-input"
 						name="character_name"
 						value={values.character_name}
 						onChange={handleChange}
-						placeholder="Hero Name"
-					></Form.Control>
-				</Form.Group>
+						placeholder="Arkhan"
+					></FormControl>
+				</FormGroup>
 
-				<Form.Group className="my-2" controlId="player_name">
-					<Form.Label>Player Name</Form.Label>
-					<Form.Control
+				<FormGroup className="my-2" controlId="player_name">
+					<FormLabel>Player Name</FormLabel>
+					<FormControl
 						type="text"
 						className="form-control form-name-input player-name-input"
 						name="player_name"
 						value={values.player_name}
 						onChange={handleChange}
-						placeholder="Player Name"
-					></Form.Control>
-				</Form.Group>
+						placeholder="Joe"
+					></FormControl>
+				</FormGroup>
 
 				<div className="d-flex justify-content-around text-center">
-					<Form.Group controlId="level">
-						<Form.Label>Level</Form.Label>
-						<Form.Control
+					<FormGroup controlId="level">
+						<FormLabel>Level</FormLabel>
+						<FormControl
 							className="number-input"
 							type="number"
 							min={1}
 							max={20}
+							maxLength={2}
 							name="level"
+							pattern="[0-9]*"
+							inputMode="numeric"
+							placeholder={1}
 							value={values.level}
 							onChange={handleChange}
-						></Form.Control>
-					</Form.Group>
+						></FormControl>
+					</FormGroup>
 
-					<Form.Group
+					<FormGroup
 						controlId="armor_class"
 						className="d-flex flex-column align-items-center"
 					>
-						<Form.Label>Armor Class</Form.Label>
-						<Form.Control
+						<FormLabel>Armor Class</FormLabel>
+						<FormControl
 							className="number-input"
 							type="number"
 							min={1}
 							max={40}
+							maxLength={2}
 							name="armor_class"
+							pattern="[0-9]*"
+							inputMode="numeric"
+							placeholder={10}
 							value={values.armor_class}
 							onChange={handleChange}
-						></Form.Control>
-					</Form.Group>
+						></FormControl>
+					</FormGroup>
 
-					<Form.Group controlId="hit_points">
-						<Form.Label>Hit Points</Form.Label>
-						<Form.Control
+					<FormGroup controlId="hit_points">
+						<FormLabel>Hit Points</FormLabel>
+						<FormControl
 							className="number-input"
 							type="number"
 							min={1}
-							max={500}
+							maxLength={3}
 							name="hit_points"
+							pattern="[0-9]*"
+							inputMode="numeric"
+							placeholder={10}
 							value={values.hit_points}
 							onChange={handleChange}
-						></Form.Control>
-					</Form.Group>
+						></FormControl>
+					</FormGroup>
 				</div>
 
-				<Form.Group controlId="race">
-					<Form.Label>Race</Form.Label>
-					<Form.Select
+				<FormGroup controlId="race" className="mt-2">
+					<FormLabel>Race</FormLabel>
+					<FormSelect
 						name="race"
 						value={values.race}
 						onChange={handleChange}
 						className="form-select"
 					>
 						<option value="" disabled>
-							Select
+							Select...
 						</option>
 						{getPlayerRaces()}
-					</Form.Select>
-				</Form.Group>
+					</FormSelect>
+				</FormGroup>
 
-				<Form.Group controlId="class">
-					<Form.Label>Class</Form.Label>
-					<Form.Select
+				<FormGroup controlId="class" className="mt-2">
+					<FormLabel>Class</FormLabel>
+					<FormSelect
 						name="class"
 						value={values.class}
 						onChange={handleChange}
 						className="form-select"
 					>
 						<option value="" disabled>
-							Select
+							Select...
 						</option>
 						{getPlayerClasses()}
-					</Form.Select>
-				</Form.Group>
+					</FormSelect>
+				</FormGroup>
 
-				<Button className="mt-2" variant="primary" type="submit">
-					Create!
+				<Button
+					className="mt-4 mx-auto create-character-btn"
+					variant="success"
+					type="submit"
+				>
+					Create Character
 				</Button>
 			</Form>
 		</div>
 	);
 };
 
-export default CreateCharacter;
-
-/*
-  Needed Props:
-  character_name
-  player_name
-  level
-  race
-  class
-  armor_class
-  hit_points
-*/
+export default CharacterBuilder;

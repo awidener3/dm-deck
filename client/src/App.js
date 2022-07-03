@@ -13,9 +13,9 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Battle from './pages/Battle';
 import BattleSelect from './pages/BattleSelect';
-import CreateBattle from './pages/CreateBattle';
-import CreateCharacter from './pages/CreateCharacter';
-import CreateMonster from './pages/CreateMonster';
+import BattleBuilder from './pages/BattleBuilder';
+import CharacterBuilder from 'pages/CharacterBuilder';
+import MonsterBuilder from './pages/MonsterBuilder';
 import Legal from './pages/Legal';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -68,23 +68,26 @@ const App = () => {
 
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/battles" element={<BattleSelect />} />
+						<Route
+							path="/battle-select"
+							element={<BattleSelect />}
+						/>
 						<Route
 							path="/collection/:collectionId"
 							element={<Collection />}
 						/>
-						<Route path="/battles/:battleId" element={<Battle />} />
+						<Route path="/battle/:battleId" element={<Battle />} />
 						<Route
-							path="/create-battle"
-							element={<CreateBattle />}
+							path="/battle-builder"
+							element={<BattleBuilder />}
 						/>
 						<Route
-							path="/create-character"
-							element={<CreateCharacter />}
+							path="/character-builder"
+							element={<CharacterBuilder />}
 						/>
 						<Route
-							path="/create-monster"
-							element={<CreateMonster />}
+							path="/monster-builder"
+							element={<MonsterBuilder />}
 						/>
 						<Route path="/legal" element={<Legal />} />
 						<Route path="/login" element={<Login />} />
