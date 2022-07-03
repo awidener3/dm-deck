@@ -1,13 +1,19 @@
 .monster-data {
 	background-color: var(--background-secondary);
 	color: var(--text-primary);
+	overflow-x: scroll;
+	width: 100vw;
+	display: flex;
 	.monster-data-card {
 		cursor: pointer;
-		padding: 0 10px;
-		min-width: 4rem;
+		padding: 0 5px;
+		min-width: 100px;
 		transition: background-color 0.2s;
+		display: flex;
+		flex-direction: column;
 		h5 {
-			font-size: 1.2rem;
+			font-size: 1rem;
+			flex: 1;
 		}
 		p {
 			font-size: 1rem;

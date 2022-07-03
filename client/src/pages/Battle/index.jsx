@@ -134,7 +134,7 @@ const Battle = () => {
 	};
 
 	return (
-		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
+		<div className="battle-container d-flex flex-column justify-content-center align-items-center">
 			{battleOrder && (
 				<>
 					<QuickView

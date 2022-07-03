@@ -22,7 +22,7 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 	};
 
 	return (
-		<div className="monster-data vw-100 d-flex justify-content-center flex-wrap">
+		<div className="monster-data">
 			{battleOrder.map((creature, index) => (
 				<div
 					className={
@@ -36,19 +36,19 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 						setTurn(index + 1);
 					}}
 				>
-					<h5 className="m-0">
-						{creature.name || creature.character_name}
-					</h5>
 					<div className="d-flex justify-content-center">
-						<p className="mb-0 me-1">
+						<p className="d-flex align-items-center mb-0 me-1">
 							<RiHeartFill className="hp-icon" />{' '}
 							{creature.hit_points}
 						</p>
-						<p className="mb-0 ms-1">
+						<p className="d-flex align-items-center mb-0 ms-1">
 							<RiShieldFill className="ac-icon" />{' '}
 							{creature.armor_class}
 						</p>
 					</div>
+					<h5 className="m-0">
+						{creature.name || creature.character_name}
+					</h5>
 					<div className="condition-markers">
 						{getConditions(creature)}
 					</div>
