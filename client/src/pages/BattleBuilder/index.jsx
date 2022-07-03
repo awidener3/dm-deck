@@ -110,6 +110,7 @@ const BattleBuilder = () => {
 					handleSelectHero={handleSelectHero}
 					handleRemoveHero={handleRemoveHero}
 				/>
+
 				<CreateBattleSummary
 					battleName={battleName}
 					selectedHeroes={selectedHeroes}

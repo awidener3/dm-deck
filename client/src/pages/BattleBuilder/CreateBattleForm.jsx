@@ -1,4 +1,13 @@
-import { Form, Container, Row, Col } from 'react-bootstrap';
+import {
+	Form,
+	FormGroup,
+	FormText,
+	FormControl,
+	FormLabel,
+	Container,
+	Row,
+	Col,
+} from 'react-bootstrap';
 import useFetchMonsters from '../../hooks/useFetchMonsters';
 import { getXp } from '../../utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
@@ -20,25 +29,26 @@ const CreateBattleForm = ({
 		<div className="m-md-4 container">
 			{/* battle name */}
 			<Form className="battle-form">
-				<Form.Group>
-					<Form.Control
+				<FormGroup>
+					<FormLabel>Encounter Name</FormLabel>
+					<FormControl
 						type="text"
 						className="form-control battle-name-input"
-						placeholder="Name your battle..."
+						placeholder="Name your encounter..."
 						maxLength={25}
 						onChange={(e) => setBattleName(e.target.value.trim())}
 					/>
-					<Form.Text>25 characters max.</Form.Text>
-				</Form.Group>
+					<FormText>25 characters max.</FormText>
+				</FormGroup>
 			</Form>
 
 			{/* hero table */}
-			<h2 className="mt-3">Characters</h2>
+			<FormLabel className="mt-2">Character Select</FormLabel>
 			<Container className="creature-grid">
 				<Row>
 					<Col lg={6} md={7} xs={4} className="grid-header">
 						{' '}
-						Character
+						Name
 					</Col>
 					<Col md={3} s={4} xs={4} className="grid-header">
 						Race/Class
@@ -75,7 +85,7 @@ const CreateBattleForm = ({
 							{!currentHeroes.includes(hero) ? (
 								<button
 									type="button"
-									className="btn btn-outline-secondary btn-sm m-0"
+									className="btn btn-outline-success btn-sm m-0"
 									onClick={() => handleSelectHero(hero._id)}
 								>
 									ADD
@@ -101,9 +111,9 @@ const CreateBattleForm = ({
 			</Container>
 
 			{/* monsters */}
-			<h2 className="mt-4">Monsters</h2>
-			<Form.Group>
-				<Form.Control
+			<FormLabel className="mt-2">Monster Select</FormLabel>
+			<FormGroup>
+				<FormControl
 					type="text"
 					placeholder="Search for a monster"
 					className="form-control monster-search-input"
@@ -112,11 +122,11 @@ const CreateBattleForm = ({
 						setMonsterData({ ...monsterData, slug: e.target.value })
 					}
 				/>
-				<Form.Text>
+				<FormText>
 					Only shows 10 results. If your search does not return your
 					monster, try being specific (i.e. Adult Green Dragon)
-				</Form.Text>
-			</Form.Group>
+				</FormText>
+			</FormGroup>
 
 			{monsterData.results?.results && (
 				<Container className="mt-2 creature-grid">
@@ -191,7 +201,7 @@ const CreateBattleForm = ({
 							<Col xs="auto" className="ms-auto pe-2">
 								<button
 									type="button"
-									className="btn btn-outline-secondary btn-sm m-0"
+									className="btn btn-outline-success btn-sm m-0"
 									onClick={() => handleSelectMonster(monster)}
 								>
 									ADD
