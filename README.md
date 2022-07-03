@@ -14,10 +14,18 @@ The project is heavily inspired by tools such as D&D Beyond, although it attempt
 
 This project was also a personal venture by me to learn MERN concepts that I missed while self-learning and completing my coding education. I didn't fully grasp React and GraphQL, so what better way to learn than to build something! This has definitely grown much larger than I anticipated, but I am happy with the progress I've made and am excited to continue developing it.
 
-![Homepage](https://user-images.githubusercontent.com/70721378/175779287-e0812633-bbf0-407b-967f-ba2cd1ca53a3.png)
+## Preview
 
-![Example monster card](https://user-images.githubusercontent.com/70721378/175783251-0debac1f-d07a-431c-b3c3-b99d0e9cf437.png)
+### Mobile
 
+| Home | Battle | Battle Builder | Character Builder |
+|:----:|:------:|:--------------:|:-----------------:|
+|![homepage lightmode](https://user-images.githubusercontent.com/70721378/177043301-762480ab-4d86-4222-b948-888830baff38.png)|![battle lightmode](https://user-images.githubusercontent.com/70721378/177043386-6d4c9a89-92d9-4ea0-9922-a3621db85487.png)|![battle builder lightmode](https://user-images.githubusercontent.com/70721378/177043401-59c2e6cf-ed4a-4503-83d6-8f980dfcac13.png)|![character builder darkmode](https://user-images.githubusercontent.com/70721378/177043442-ddcbaee7-9f36-4a85-b0d5-6deaa1303073.png)|
+|![homepage darkmode](https://user-images.githubusercontent.com/70721378/177043333-013d6caa-8983-48d1-830a-2ace221f19c8.png)|![battle darkmode](https://user-images.githubusercontent.com/70721378/177043359-b0d0297d-88dd-49a1-838e-054486269ee9.png)|![battle builder darkmode](https://user-images.githubusercontent.com/70721378/177043415-ec82e611-8334-43ec-8ffa-1b6e2dd4c30d.png)|![character builder darkmode](https://user-images.githubusercontent.com/70721378/177043435-af51d3f9-a8e0-463f-b27e-4622b73ee34b.png)|
+
+### Desktop
+
+Desktop mode is currently in development, screenshots will be available upon a future release!
 
 ## Installation
 
