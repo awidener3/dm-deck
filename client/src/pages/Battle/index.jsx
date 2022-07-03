@@ -35,20 +35,30 @@ const Battle = () => {
 		if (data) {
 			const battle = { ...data.battle };
 
-			// Add conditions prop
+			// add conditions property to monster
 			battle.monsters = battle.monsters.map((monster) => {
 				return { ...monster, conditions: [] };
 			});
 
+			// combine into one array
 			let combined = battle.heroes.concat(battle.monsters);
+
+			// add initiative + sort high to low
 			combined = combined
-				.map((obj) => ({
-					...obj,
-					initiative: getInitiative(obj),
-				}))
+				.map((obj) => {
+					// add initiative if property doesn't exist on object
+					if (!obj?.initiative) {
+						return {
+							...obj,
+							initiative: getInitiative(obj),
+						};
+					} else {
+						return obj;
+					}
+				})
 				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 			setbattleOrder(combined);
-			console.log(battleOrder);
+			console.log('ORDER', battleOrder);
 		}
 	}, [data]);
 
