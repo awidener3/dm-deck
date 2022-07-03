@@ -1,16 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RiSwordFill, RiEditLine } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
 import Summary from './Summary';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
+	let navigate = useNavigate();
+
 	return (
 		<div
 			key={battle._id}
 			className="p-2"
 			draggable={draggable}
 			onDragStart={(e) => startDrag(e, battle._id)}
+			onClick={() => navigate(`/battle/${battle._id}`)}
 		>
 			<div className="card battle-card p-3">
 				<h2 className="battle-card-title text-center mb-1 border-bottom">
@@ -51,7 +54,7 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 				</div>
 
 				{/* Buttons */}
-				<div className="button-container mt-auto d-flex justify-content-center">
+				<div className="button-container mt-auto d-flex justify-content-between">
 					<button
 						className="card-btn btn btn-outline-danger m-1"
 						title="Delete Battle"
