@@ -3,6 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import Auth from '../../utils/auth';
+import changelog from 'changelog';
 
 import './header.scss';
 import { useState } from 'react';
@@ -11,17 +12,11 @@ const Header = ({ theme, handleTheme }) => {
 	const [expanded, setExpanded] = useState(false);
 	return (
 		<div>
-			<p className="m-0 version-text">v0.1.4</p>
-			<Navbar
-				expanded={expanded}
-				collapseOnSelect
-				expand="lg"
-				variant="dark"
-				className="custom-navbar"
-			>
-				<Navbar.Brand>
-					<Link to="/">
-						<h1 className="logo-text">
+			<p className="m-0 version-text">{changelog.current_version}</p>
+			<nav className="navbar navbar-expand custom-navbar">
+				<div className="container-fluid">
+					<Link to="/" onClick={() => setPathname('/')}>
+						<h1 className="navbar-brand logo-text">
 							DM<span className="logo-subtext">Deck</span>
 						</h1>
 					</Link>
