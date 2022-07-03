@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import {
 	Form,
@@ -17,14 +18,16 @@ import './characterBuilder.scss';
 import PageHeader from 'components/PageHeader';
 
 const CharacterBuilder = () => {
+	const navigate = useNavigate();
+
 	const [values, setValues] = useState({
 		character_name: '',
 		player_name: '',
-		level: 1,
+		level: '',
 		race: '',
 		class: '',
-		armor_class: 0,
-		hit_points: 0,
+		armor_class: '',
+		hit_points: '',
 	});
 
 	const { loading, error, data } = useQuery(QUERY_ME);
@@ -70,12 +73,14 @@ const CharacterBuilder = () => {
 			setValues({
 				character_name: '',
 				player_name: '',
-				level: 1,
+				level: '',
 				race: '',
 				class: '',
-				armor_class: 0,
-				hit_points: 0,
+				armor_class: '',
+				hit_points: '',
 			});
+
+			navigate(-1);
 		} catch (error) {
 			console.error(error);
 			console.error(character_error);
@@ -108,7 +113,7 @@ const CharacterBuilder = () => {
 				pageTitle={'Character Builder'}
 			/>
 			<Form
-				onSubmit={handleFormSubmit}
+				onSubmit={(e) => e.preventDefault()}
 				className="container d-flex flex-column"
 			>
 				<FormGroup className="my-2" controlId="character_name">
@@ -120,6 +125,7 @@ const CharacterBuilder = () => {
 						value={values.character_name}
 						onChange={handleChange}
 						placeholder="Arkhan"
+						required
 					></FormControl>
 				</FormGroup>
 
@@ -132,6 +138,7 @@ const CharacterBuilder = () => {
 						value={values.player_name}
 						onChange={handleChange}
 						placeholder="Joe"
+						required
 					></FormControl>
 				</FormGroup>
 
@@ -143,13 +150,16 @@ const CharacterBuilder = () => {
 							type="number"
 							min={1}
 							max={20}
-							maxLength={2}
 							name="level"
 							pattern="[0-9]*"
 							inputMode="numeric"
 							placeholder={1}
 							value={values.level}
-							onChange={handleChange}
+							onChange={(e) => {
+								if (e.target.value.length > 2) return false;
+								handleChange(e);
+							}}
+							required
 						></FormControl>
 					</FormGroup>
 
@@ -169,7 +179,11 @@ const CharacterBuilder = () => {
 							inputMode="numeric"
 							placeholder={10}
 							value={values.armor_class}
-							onChange={handleChange}
+							onChange={(e) => {
+								if (e.target.value.length > 2) return false;
+								handleChange(e);
+							}}
+							required
 						></FormControl>
 					</FormGroup>
 
@@ -185,7 +199,11 @@ const CharacterBuilder = () => {
 							inputMode="numeric"
 							placeholder={10}
 							value={values.hit_points}
-							onChange={handleChange}
+							onChange={(e) => {
+								if (e.target.value.length > 3) return false;
+								handleChange(e);
+							}}
+							required
 						></FormControl>
 					</FormGroup>
 				</div>
@@ -197,6 +215,7 @@ const CharacterBuilder = () => {
 						value={values.race}
 						onChange={handleChange}
 						className="form-select"
+						required
 					>
 						<option value="" disabled>
 							Select...
@@ -212,6 +231,7 @@ const CharacterBuilder = () => {
 						value={values.class}
 						onChange={handleChange}
 						className="form-select"
+						required
 					>
 						<option value="" disabled>
 							Select...
@@ -223,7 +243,8 @@ const CharacterBuilder = () => {
 				<Button
 					className="mt-4 mx-auto create-character-btn"
 					variant="success"
-					type="submit"
+					type="button"
+					onClick={handleFormSubmit}
 				>
 					Create Character
 				</Button>
