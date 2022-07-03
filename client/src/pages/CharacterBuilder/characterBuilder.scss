@@ -5,6 +5,11 @@
 	font-weight: 300;
 }
 
+.creature-grid {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
 .number-input {
 	width: 75px;
 	height: 70px;
