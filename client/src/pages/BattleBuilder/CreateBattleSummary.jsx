@@ -5,7 +5,7 @@ import {
 	getXp,
 } from 'utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
-import { Row, Col, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, FormLabel } from 'react-bootstrap';
 
 import './battleBuilder.scss';
 
@@ -28,6 +28,7 @@ const CreateBattleSummary = ({
 
 	return (
 		<div className="mx-auto my-4">
+			<FormLabel>Encounter Summary</FormLabel>
 			<div className="summary-card d-flex flex-column">
 				{/* Title */}
 				<h2 className="summary-card-title">
