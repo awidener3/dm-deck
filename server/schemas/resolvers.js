@@ -47,9 +47,23 @@ const resolvers = {
 				})
 			);
 
-			// Sort alphabetically
-			battle.monsters.sort((a, b) => (a.name > b.name ? 1 : -1));
+			// Adds numbers after duplicate monsters (i.e. Goblin, Goblin 2, Goblin 3)
+			if (battle.monsters.length > 1) {
+				for (let i = 0; i < battle.monsters.length; i++) {
+					let num = 1;
+					let current = battle.monsters[i];
 
+					for (let j = i + 1; j < battle.monsters.length; j++) {
+						if (battle.monsters[j].name === current.name) {
+							battle.monsters[j].name = `${
+								battle.monsters[j].name
+							} ${num + 1}`;
+							num++;
+						}
+					}
+					num = 1;
+				}
+			}
 			return battle;
 		},
 		collections: async (parent, args) => {
