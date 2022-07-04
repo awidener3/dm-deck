@@ -34,21 +34,27 @@ const Battle = () => {
 	useEffect(() => {
 		if (data) {
 			const battle = { ...data.battle };
-
-			// Add conditions prop
+			// add conditions property to monster
 			battle.monsters = battle.monsters.map((monster) => {
 				return { ...monster, conditions: [] };
 			});
-
+			// combine into one array
 			let combined = battle.heroes.concat(battle.monsters);
+			// add initiative + sort high to low
 			combined = combined
-				.map((obj) => ({
-					...obj,
-					initiative: getInitiative(obj),
-				}))
+				.map((obj) => {
+					// add initiative if property doesn't exist on object
+					if (!obj?.initiative) {
+						return {
+							...obj,
+							initiative: getInitiative(obj),
+						};
+					} else {
+						return obj;
+					}
+				})
 				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 			setbattleOrder(combined);
-			console.log(battleOrder);
 		}
 	}, [data]);
 
@@ -85,6 +91,16 @@ const Battle = () => {
 		setShowInfoModal(true);
 	};
 
+	const handleSetHp = (monster, value) => {
+		const updatedArray = battleOrder.slice();
+		updatedArray.forEach((item) => {
+			if (item.name === monster.name) {
+				item.hit_points = value;
+			}
+		});
+		setbattleOrder([...updatedArray]);
+	};
+
 	const handleHeroAttack = () => setShowMonstersModal(true);
 
 	if (loading) return <div>Loading...</div>;
@@ -103,10 +119,11 @@ const Battle = () => {
 					<Monster
 						key={`${creature.name} ${i}`}
 						monster={creature}
+						battleOrder={battleOrder}
 						cardStyle={position}
 						handleRollDice={handleRollDice}
 						handleShowInfo={handleShowInfo}
-						battleOrder={battleOrder}
+						handleSetHp={handleSetHp}
 						setbattleOrder={setbattleOrder}
 					/>
 				);
@@ -120,11 +137,12 @@ const Battle = () => {
 					/>
 				);
 			}
+			return null;
 		});
 	};
 
 	return (
-		<div className="battle-container d-flex flex-column justify-content-center align-items-center container">
+		<div className="battle-container d-flex flex-column justify-content-center align-items-center">
 			{battleOrder && (
 				<>
 					<QuickView

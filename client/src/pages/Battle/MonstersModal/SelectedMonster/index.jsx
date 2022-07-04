@@ -1,6 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Modal } from 'react-bootstrap';
+import { useState } from 'react';
+import {
+	ModalTitle,
+	ModalBody,
+	Button,
+	FormSelect,
+	FormLabel,
+	FormGroup,
+} from 'react-bootstrap';
 import { rollDie } from 'utils/diceRolls';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import { FaDiceD20, FaCheck } from 'react-icons/fa';
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
 import AbilityOption from './AbilityOption';
 import Conditions from '../../Monster/Conditions';
@@ -13,10 +22,9 @@ const SelectedMonster = ({
 	setbattleOrder,
 	handleCloseMonstersModal,
 }) => {
-	const [startingHitpoints] = useState(monster.hit_points);
+	const [hpModifier, setHpModifier] = useState('');
 	const [modifier, setModifier] = useState(0);
 	const [condition, setCondition] = useState('');
-
 	const [savingThrowResult, setSavingThrowResult] = useState(0);
 
 	// Saving Throw
@@ -59,7 +67,6 @@ const SelectedMonster = ({
 		setSavingThrowResult(result);
 	};
 
-	// Conditions
 	const changeCondition = (e) => {
 		setCondition(e.target.value);
 	};
@@ -67,163 +74,187 @@ const SelectedMonster = ({
 	const handleAddCondition = (e) => {
 		const updatedArray = battleOrder.slice();
 		updatedArray.forEach((item) => {
-			if (item.name === monster.name) {
+			if (
+				item.name === monster.name &&
+				!item.conditions.includes(condition)
+			) {
 				item.conditions.push(condition);
 			}
 		});
 		setbattleOrder([...updatedArray]);
 	};
 
-	// Hitpoints
-	const handleChangeHitpoints = (e) => {
+	const handleAddHp = () => {
 		const updatedArray = battleOrder.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
-				item.hit_points = e.target.value;
+				item.hit_points = Number(item.hit_points) + Number(hpModifier);
+			}
+		});
+		setbattleOrder([...updatedArray]);
+	};
+
+	const handleSubtractHp = () => {
+		const updatedArray = battleOrder.slice();
+		updatedArray.forEach((item) => {
+			if (item.name === monster.name) {
+				if (Number(item.hit_points) - Number(hpModifier) <= 0) {
+					item.hit_points = 0;
+				} else {
+					item.hit_points =
+						Number(item.hit_points) - Number(hpModifier);
+				}
 			}
 		});
 		setbattleOrder([...updatedArray]);
 	};
 
 	return (
-		<div>
-			<Modal.Title className="text-center">
-				<h1 className="m-0">{monster.name}</h1>
-			</Modal.Title>
-			<Modal.Body className="w-75 m-auto pt-0">
-				<Conditions
-					monster={monster}
-					battleOrder={battleOrder}
-					setbattleOrder={setbattleOrder}
-				/>
-				<div>
+		<>
+			<ModalTitle className="text-center">
+				<h1 className="m-1">{monster.name}</h1>
+			</ModalTitle>
+
+			<ModalBody>
+				<section className="d-flex justify-content-around border-bottom py-2">
+					<div className="hp-adjust-container d-flex flex-column">
+						<Button
+							variant="success"
+							size="sm"
+							onClick={handleAddHp}
+						>
+							Heal
+						</Button>
+						<input
+							type="number"
+							className="number-input"
+							name="hitpoints"
+							id="hitpoints"
+							min={0}
+							pattern="[0-9]*"
+							placeholder="0"
+							inputMode="numeric"
+							value={hpModifier}
+							onChange={(e) => setHpModifier(e.target.value)}
+						/>
+						<Button
+							variant="danger"
+							size="sm"
+							onClick={handleSubtractHp}
+						>
+							Damage
+						</Button>
+					</div>
 					<div
 						id="monster-stats"
-						className="d-flex justify-content-center"
+						className="d-flex flex-column justify-content-center"
 					>
-						<p
-							className="mx-2"
-							title={`Hitpoints: ${startingHitpoints}`}
-						>
-							<RiHeartFill className="hp-icon" size={'2rem'} />{' '}
-							{startingHitpoints}
+						<p>
+							<RiHeartFill className="hp-icon" size="2.5rem" />{' '}
+							{monster.hit_points}
 						</p>
-						<p
-							className="mx-2"
-							title={`Armor Class: ${monster.armor_class}`}
-						>
-							<RiShieldFill className="ac-icon" size={'2rem'} />{' '}
+						<p>
+							<RiShieldFill className="ac-icon" size="2.5rem" />{' '}
 							{monster.armor_class}
 						</p>
 					</div>
-					<div className="d-flex flex-column">
-						{/* SAVING THROWS */}
-						<h5>Roll Saving Throw</h5>
-						{monster.saving_throw_bonus ? (
-							<p className="saving-throw-bonus">
-								{monster.saving_throw_bonus}
-							</p>
-						) : null}
-						<div className="input-group mb-2">
-							<select
-								className="form-select"
-								name="saving-throws"
-								id="saving-throws"
-								onChange={changeModifier}
-							>
-								<option defaultValue={true}>
-									Choose an Ability
-								</option>
-								{renderOptions()}
-							</select>
-							<button
-								className="btn btn-outline-secondary"
-								type="button"
-								onClick={handleRollSavingThrow}
-							>
-								Roll
-							</button>
-							<span className="input-group-text">
-								{savingThrowResult}
-							</span>
-						</div>
+				</section>
 
-						{/* CONDITIONS */}
-						<h5>Add Condition(s)</h5>
-						<div className="input-group mb-2">
-							<select
-								className="form-select"
-								name="conditions"
-								id="conditions"
-								onChange={changeCondition}
-							>
-								<option defaultValue="">
-									Select a Condition
-								</option>
-								<option value="blind">Blinded</option>
-								<option value="charmed">Charmed</option>
-								<option value="deafened">Defeaned</option>
-								<option value="frightened">Frightened</option>
-								<option value="grappled">Grappled</option>
-								<option value="incapacitated">
-									Incapacitated
-								</option>
-								<option value="invisible">Invisible</option>
-								<option value="paralyzed">Paralyzed</option>
-								<option value="petrified">Petrified</option>
-								<option value="poisoned">Poisoned</option>
-								<option value="prone">Prone</option>
-								<option value="restrained">Restrained</option>
-								<option value="stunned">Stunned</option>
-								<option value="unconcious">Unconscious</option>
-							</select>
-							<button
-								className="btn btn-outline-secondary"
-								type="button"
-								onClick={handleAddCondition}
-							>
-								Add
-							</button>
-						</div>
-
-						{/* HP */}
-						<h5>Change {monster.name}'s HP</h5>
-						<div className="input-group-lg">
+				<section className="d-flex justify-content-center my-2">
+					{/* saving throws */}
+					<FormGroup className="d-flex flex-column mx-1">
+						<FormLabel>Saving Throws</FormLabel>
+						<FormSelect
+							name="saving-throws"
+							onChange={changeModifier}
+							id="saving-throws"
+						>
+							<option value="">Select...</option>
+							{renderOptions()}
+						</FormSelect>
+						<Button
+							variant="outline"
+							className="card-btn mt-2"
+							onClick={handleRollSavingThrow}
+						>
+							Roll
+						</Button>
+						<div className="dice-input-wrapper">
+							<FaDiceD20 className="input-icon" />
 							<input
 								type="number"
-								className="form-control text-center"
-								name="hitpoints"
-								id="hitpoints"
-								min="0"
-								value={monster.hit_points}
-								onChange={handleChangeHitpoints}
+								className="dice-input mt-2"
+								name="save"
+								id="save"
+								placeholder="0"
+								value={savingThrowResult}
+								readOnly
 							/>
 						</div>
-					</div>
-				</div>
+					</FormGroup>
 
-				<div className="d-flex justify-content-center mt-2">
-					{/* Button to return back to monster select */}
-					<button
-						className="btn btn-outline-secondary m-1"
+					{/* conditions */}
+
+					<FormGroup className="d-flex flex-column mx-1 flex-grow-1">
+						<FormLabel>Conditions</FormLabel>
+						<FormSelect
+							name="conditions"
+							id="conditions"
+							onChange={changeCondition}
+						>
+							<option defaultValue="">Select...</option>
+							<option value="blind">Blinded</option>
+							<option value="charmed">Charmed</option>
+							<option value="deafened">Defeaned</option>
+							<option value="frightened">Frightened</option>
+							<option value="grappled">Grappled</option>
+							<option value="incapacitated">Incapacitated</option>
+							<option value="invisible">Invisible</option>
+							<option value="paralyzed">Paralyzed</option>
+							<option value="petrified">Petrified</option>
+							<option value="poisoned">Poisoned</option>
+							<option value="prone">Prone</option>
+							<option value="restrained">Restrained</option>
+							<option value="stunned">Stunned</option>
+							<option value="unconcious">Unconscious</option>
+						</FormSelect>
+						<Button
+							variant="outline"
+							className="card-btn mt-2"
+							onClick={handleAddCondition}
+						>
+							Add
+						</Button>
+						<Conditions
+							monster={monster}
+							battleOrder={battleOrder}
+							setbattleOrder={setbattleOrder}
+						/>
+					</FormGroup>
+				</section>
+
+				{/* back/forward buttons */}
+				<section className="d-flex justify-content-between mt-4 mx-3">
+					<Button
+						variant="outline"
+						className="card-btn m-1"
 						onClick={() => setSelectedMonster('')}
 					>
-						Back
-					</button>
-
-					{/* Apply damage */}
-					<button
-						className="btn btn-outline-secondary m-1"
+						<IoMdArrowRoundBack size={'1.5rem'} />
+					</Button>
+					<Button
+						variant="outline-success"
+						className="m-1"
 						onClick={() => {
 							setSelectedMonster('');
 							handleCloseMonstersModal();
 						}}
 					>
-						Apply
-					</button>
-				</div>
-			</Modal.Body>
-		</div>
+						<FaCheck size={'1.5rem'} />
+					</Button>
+				</section>
+			</ModalBody>
+		</>
 	);
 };
 

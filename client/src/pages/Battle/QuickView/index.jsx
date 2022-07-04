@@ -1,4 +1,5 @@
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
+import { FaSkull } from 'react-icons/fa';
 import './quickView.scss';
 
 const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
@@ -22,39 +23,45 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 	};
 
 	return (
-		<div className="monster-data vw-100 d-flex justify-content-center flex-wrap">
+		// Drawer
+		<section className="monster-data">
 			{battleOrder.map((creature, index) => (
 				<div
 					className={
-						turn === index + 1
-							? `monster-data-card text-center current`
-							: `monster-data-card text-center`
+						creature.hit_points === 0
+							? 'monster-data-card dead'
+							: turn === index + 1
+							? 'monster-data-card current'
+							: 'monster-data-card'
 					}
-					key={index}
+					key={creature.name || creature.character_name}
 					onClick={() => {
 						setIndex(index);
 						setTurn(index + 1);
 					}}
 				>
-					<h5 className="m-0">
-						{creature.name || creature.character_name}
-					</h5>
+					{creature.hit_points === 0 && (
+						<FaSkull className="dead-icon" />
+					)}
 					<div className="d-flex justify-content-center">
-						<p className="mb-0 me-1">
+						<p className="d-flex align-items-center mb-0">
 							<RiHeartFill className="hp-icon" />{' '}
 							{creature.hit_points}
 						</p>
-						<p className="mb-0 ms-1">
+						<p className="d-flex align-items-center mb-0 ms-1">
 							<RiShieldFill className="ac-icon" />{' '}
 							{creature.armor_class}
 						</p>
 					</div>
+					<h5 className="m-0">
+						{creature.name || creature.character_name}
+					</h5>
 					<div className="condition-markers">
 						{getConditions(creature)}
 					</div>
 				</div>
 			))}
-		</div>
+		</section>
 	);
 };
 
