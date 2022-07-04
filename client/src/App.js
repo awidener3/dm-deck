@@ -8,7 +8,6 @@ import {
 	ApolloProvider,
 	createHttpLink,
 } from '@apollo/client';
-
 import Header from './components/Header';
 import Home from './pages/Home';
 import Battle from './pages/Battle';
@@ -20,7 +19,6 @@ import Legal from './pages/Legal';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
-
 import './App.scss';
 import Collection from 'pages/BattleSelect/Collection';
 
@@ -39,7 +37,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-	// Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+	// execute the `authLink` middleware prior to making the request GraphQL
 	link: authLink.concat(httpLink),
 	cache: new InMemoryCache({
 		addTypename: false,

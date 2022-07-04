@@ -18,6 +18,12 @@
 	font-size: 2.2rem;
 	border: none;
 	border-radius: 0;
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	-moz-appearance: textfield;
 }
 
 .form-select {

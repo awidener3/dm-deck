@@ -1,7 +1,7 @@
 .monster-data {
 	background-color: var(--background-secondary);
 	color: var(--text-primary);
-	overflow-x: scroll;
+	overflow-x: auto;
 	width: 100vw;
 	display: flex;
 	.monster-data-card {
@@ -23,7 +23,7 @@
 				width: 12px;
 			}
 			.ac-icon {
-				color: #123a0e;
+				color: #29901f;
 				height: 10px;
 				width: 10px;
 			}

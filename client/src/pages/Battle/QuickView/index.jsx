@@ -37,7 +37,7 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 					}}
 				>
 					<div className="d-flex justify-content-center">
-						<p className="d-flex align-items-center mb-0 me-1">
+						<p className="d-flex align-items-center mb-0">
 							<RiHeartFill className="hp-icon" />{' '}
 							{creature.hit_points}
 						</p>

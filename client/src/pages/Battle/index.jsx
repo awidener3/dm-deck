@@ -34,15 +34,12 @@ const Battle = () => {
 	useEffect(() => {
 		if (data) {
 			const battle = { ...data.battle };
-
 			// add conditions property to monster
 			battle.monsters = battle.monsters.map((monster) => {
 				return { ...monster, conditions: [] };
 			});
-
 			// combine into one array
 			let combined = battle.heroes.concat(battle.monsters);
-
 			// add initiative + sort high to low
 			combined = combined
 				.map((obj) => {
@@ -58,7 +55,6 @@ const Battle = () => {
 				})
 				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 			setbattleOrder(combined);
-			console.log('ORDER', battleOrder);
 		}
 	}, [data]);
 

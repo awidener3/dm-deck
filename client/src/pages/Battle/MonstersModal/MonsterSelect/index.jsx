@@ -1,31 +1,26 @@
-import { Modal } from 'react-bootstrap';
+import { ModalTitle, ModalBody } from 'react-bootstrap';
 
 const MonsterSelect = ({ monsters, handleViewMonster }) => {
 	return (
-		<div>
-			<Modal.Title className="text-center">Select a Monster</Modal.Title>
-			<Modal.Body>
-				<div className="monster-btns d-flex flex-column">
-					{monsters.map((monster) => {
-						let currentMonster = monster;
-						if (currentMonster.type !== 'hero') {
-							return (
-								<button
-									className="btn btn-outline-secondary mb-2 w-75 m-auto"
-									key={monster.name}
-									onClick={() =>
-										handleViewMonster(currentMonster)
-									}
-								>
-									{monster.name}
-								</button>
-							);
-						}
-						return null;
-					})}
-				</div>
-			</Modal.Body>
-		</div>
+		<>
+			<ModalTitle className="text-center">Select a Monster</ModalTitle>
+			<ModalBody className="monster-btns text-center">
+				{monsters.map((monster) => {
+					if (monster.type !== 'hero') {
+						return (
+							<button
+								className="btn btn-outline-secondary card-btn mb-2 w-75 m-auto"
+								key={monster.name}
+								onClick={() => handleViewMonster(monster)}
+							>
+								{monster.name}
+							</button>
+						);
+					}
+					return null;
+				})}
+			</ModalBody>
+		</>
 	);
 };
 
