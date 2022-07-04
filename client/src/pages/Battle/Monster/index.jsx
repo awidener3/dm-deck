@@ -7,20 +7,41 @@ import Traits from './Traits';
 import Actions from './Actions';
 import BaseStats from './BaseStats';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { FaSkull } from 'react-icons/fa';
 // import { GiConcentrationOrb } from 'react-icons/gi';
 import AbilityScores from './AbilityScores';
+import { Button } from 'react-bootstrap';
 
 const Monster = ({
 	monster,
 	cardStyle,
 	handleRollDice,
 	handleShowInfo,
+	handleSetHp,
 	battleOrder,
 	setbattleOrder,
 }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
-			<div className="monster-card m-3">
+			<div
+				className={
+					monster.hit_points === 0
+						? 'monster-card m-3 dead'
+						: 'monster-card m-3'
+				}
+			>
+				{monster.hit_points === 0 && (
+					<div className="dead-screen">
+						<FaSkull className="dead-icon" />
+						<Button
+							variant="outline"
+							className="card-btn reset-dead"
+							onClick={() => handleSetHp(monster, 1)}
+						>
+							Revive
+						</Button>
+					</div>
+				)}
 				<Conditions
 					monster={monster}
 					battleOrder={battleOrder}

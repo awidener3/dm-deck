@@ -91,6 +91,16 @@ const Battle = () => {
 		setShowInfoModal(true);
 	};
 
+	const handleSetHp = (monster, value) => {
+		const updatedArray = battleOrder.slice();
+		updatedArray.forEach((item) => {
+			if (item.name === monster.name) {
+				item.hit_points = value;
+			}
+		});
+		setbattleOrder([...updatedArray]);
+	};
+
 	const handleHeroAttack = () => setShowMonstersModal(true);
 
 	if (loading) return <div>Loading...</div>;
@@ -109,10 +119,11 @@ const Battle = () => {
 					<Monster
 						key={`${creature.name} ${i}`}
 						monster={creature}
+						battleOrder={battleOrder}
 						cardStyle={position}
 						handleRollDice={handleRollDice}
 						handleShowInfo={handleShowInfo}
-						battleOrder={battleOrder}
+						handleSetHp={handleSetHp}
 						setbattleOrder={setbattleOrder}
 					/>
 				);
