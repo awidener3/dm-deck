@@ -67,7 +67,6 @@ const SelectedMonster = ({
 		setSavingThrowResult(result);
 	};
 
-	// Conditions
 	const changeCondition = (e) => {
 		setCondition(e.target.value);
 	};
