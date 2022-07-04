@@ -82,6 +82,38 @@ input {
 	color: var(--text-primary) !important;
 }
 
+.dice-input-wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	.dice-input {
+		width: 125px;
+		height: 70px;
+		font-family: 'Mukta Vaani', sans-serif;
+		text-align: end;
+		font-size: 2.2rem;
+		padding-right: 15px;
+		border: none;
+		border-radius: 0;
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		&::before {
+			content: 'test';
+		}
+		-moz-appearance: textfield;
+	}
+	.input-icon {
+		font-size: 2rem;
+		position: absolute;
+		left: 0;
+		margin: 15px;
+	}
+}
+
 .form-label {
 	font-family: 'Asul', sans-serif;
 	font-size: 1.1rem;

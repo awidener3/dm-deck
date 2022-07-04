@@ -30,7 +30,7 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 							? `monster-data-card text-center current`
 							: `monster-data-card text-center`
 					}
-					key={index}
+					key={creature.name || creature.character_name}
 					onClick={() => {
 						setIndex(index);
 						setTurn(index + 1);

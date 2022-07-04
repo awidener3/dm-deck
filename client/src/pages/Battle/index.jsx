@@ -126,6 +126,7 @@ const Battle = () => {
 					/>
 				);
 			}
+			return null;
 		});
 	};
 

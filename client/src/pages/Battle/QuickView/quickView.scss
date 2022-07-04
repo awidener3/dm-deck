@@ -51,31 +51,33 @@
 		border-radius: 100%;
 	}
 	.invisible {
+		color: #171717;
 		background-color: #aaa;
 	}
 	.poisoned {
+		color: #171717;
 		background-color: #6acf61;
 	}
 	.hexed {
 		background-color: #e865db;
 	}
 	.blind {
-		color: #cbcbcb;
+		color: #fff;
 		background-color: #171717;
 	}
 	.charmed {
 		background-color: #ffc0cb;
 	}
 	.deafened {
-		color: #f6f6f6;
+		color: #fff;
 		font-weight: 400;
 		background-color: #808080;
 	}
 	.frightened {
-		background-color: rgb(222, 222, 23);
+		background-color: #dede17;
 	}
 	.grappled {
-		color: #ffffff;
+		color: #fff;
 		background-color: #a52a2a;
 	}
 	.incapacitated {
@@ -83,10 +85,11 @@
 		background-color: #e86b28;
 	}
 	.paralyzed {
+		color: #171717;
 		background-color: yellow;
 	}
 	.petrified {
-		color: #e2e2e2;
+		color: #fff;
 		background-color: #2f4f4f;
 	}
 	.prone {

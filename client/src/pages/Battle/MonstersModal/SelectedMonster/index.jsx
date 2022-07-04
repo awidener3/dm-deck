@@ -1,6 +1,15 @@
 import { useState } from 'react';
-import { ModalTitle, ModalBody, Button } from 'react-bootstrap';
+import {
+	ModalTitle,
+	ModalBody,
+	Button,
+	FormSelect,
+	FormLabel,
+	FormGroup,
+} from 'react-bootstrap';
 import { rollDie } from 'utils/diceRolls';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import { FaDiceD20, FaCheck } from 'react-icons/fa';
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
 import AbilityOption from './AbilityOption';
 import Conditions from '../../Monster/Conditions';
@@ -66,19 +75,11 @@ const SelectedMonster = ({
 	const handleAddCondition = (e) => {
 		const updatedArray = battleOrder.slice();
 		updatedArray.forEach((item) => {
-			if (item.name === monster.name) {
+			if (
+				item.name === monster.name &&
+				!item.conditions.includes(condition)
+			) {
 				item.conditions.push(condition);
-			}
-		});
-		setbattleOrder([...updatedArray]);
-	};
-
-	// Hitpoints
-	const handleChangeHitpoints = (e) => {
-		const updatedArray = battleOrder.slice();
-		updatedArray.forEach((item) => {
-			if (item.name === monster.name) {
-				item.hit_points = e.target.value;
 			}
 		});
 		setbattleOrder([...updatedArray]);
@@ -98,7 +99,12 @@ const SelectedMonster = ({
 		const updatedArray = battleOrder.slice();
 		updatedArray.forEach((item) => {
 			if (item.name === monster.name) {
-				item.hit_points = Number(item.hit_points) - Number(hpModifier);
+				if (Number(item.hit_points) - Number(hpModifier) <= 0) {
+					item.hit_points = 0;
+				} else {
+					item.hit_points =
+						Number(item.hit_points) - Number(hpModifier);
+				}
 			}
 		});
 		setbattleOrder([...updatedArray]);
@@ -107,17 +113,12 @@ const SelectedMonster = ({
 	return (
 		<>
 			<ModalTitle className="text-center">
-				<h1>{monster.name}</h1>
+				<h1 className="m-1">{monster.name}</h1>
 			</ModalTitle>
-			<ModalBody className="w-75 m-auto pt-0">
-				<Conditions
-					monster={monster}
-					battleOrder={battleOrder}
-					setbattleOrder={setbattleOrder}
-				/>
-				{/* FIRST ROW */}
-				<section className="d-flex justify-content-around">
-					<div className="hp-adjust-container d-flex flex-column mx-auto">
+
+			<ModalBody>
+				<section className="d-flex justify-content-around border-bottom py-2">
+					<div className="hp-adjust-container d-flex flex-column">
 						<Button
 							variant="success"
 							size="sm"
@@ -134,7 +135,6 @@ const SelectedMonster = ({
 							pattern="[0-9]*"
 							placeholder="0"
 							inputMode="numeric"
-							p
 							value={hpModifier}
 							onChange={(e) => setHpModifier(e.target.value)}
 						/>
@@ -161,49 +161,49 @@ const SelectedMonster = ({
 					</div>
 				</section>
 
-				{/* SECOND ROW */}
-				<section className="d-flex flex-column">
-					{/* SAVING THROWS */}
-					<h5>Roll Saving Throw</h5>
-					{monster.saving_throw_bonus ? (
-						<p className="saving-throw-bonus">
-							{monster.saving_throw_bonus}
-						</p>
-					) : null}
-					<div className="input-group mb-2">
-						<select
-							className="form-select"
+				<section className="d-flex justify-content-center my-2">
+					{/* saving throws */}
+					<FormGroup className="d-flex flex-column mx-1">
+						<FormLabel>Saving Throws</FormLabel>
+						<FormSelect
 							name="saving-throws"
-							id="saving-throws"
 							onChange={changeModifier}
+							id="saving-throws"
 						>
-							<option defaultValue="true">
-								Choose an Ability
-							</option>
+							<option value="">Select...</option>
 							{renderOptions()}
-						</select>
-						<button
-							className="btn btn-outline-secondary"
-							type="button"
+						</FormSelect>
+						<Button
+							variant="outline"
+							className="card-btn mt-2"
 							onClick={handleRollSavingThrow}
 						>
 							Roll
-						</button>
-						<span className="input-group-text">
-							{savingThrowResult}
-						</span>
-					</div>
+						</Button>
+						<div className="dice-input-wrapper">
+							<FaDiceD20 className="input-icon" />
+							<input
+								type="number"
+								className="dice-input mt-2"
+								name="save"
+								id="save"
+								placeholder="0"
+								value={savingThrowResult}
+								readOnly
+							/>
+						</div>
+					</FormGroup>
 
-					{/* CONDITIONS */}
-					<h5>Add Condition(s)</h5>
-					<div className="input-group mb-2">
-						<select
-							className="form-select"
+					{/* conditions */}
+
+					<FormGroup className="d-flex flex-column mx-1 flex-grow-1">
+						<FormLabel>Conditions</FormLabel>
+						<FormSelect
 							name="conditions"
 							id="conditions"
 							onChange={changeCondition}
 						>
-							<option defaultValue="">Select a Condition</option>
+							<option defaultValue="">Select...</option>
 							<option value="blind">Blinded</option>
 							<option value="charmed">Charmed</option>
 							<option value="deafened">Defeaned</option>
@@ -218,35 +218,40 @@ const SelectedMonster = ({
 							<option value="restrained">Restrained</option>
 							<option value="stunned">Stunned</option>
 							<option value="unconcious">Unconscious</option>
-						</select>
-						<button
-							className="btn btn-outline-secondary"
-							type="button"
+						</FormSelect>
+						<Button
+							variant="outline"
+							className="card-btn mt-2"
 							onClick={handleAddCondition}
 						>
 							Add
-						</button>
-					</div>
+						</Button>
+						<Conditions
+							monster={monster}
+							battleOrder={battleOrder}
+							setbattleOrder={setbattleOrder}
+						/>
+					</FormGroup>
 				</section>
 
-				{/* BUTTONS */}
-				<section className="d-flex justify-content-center mt-2">
+				{/* back/forward buttons */}
+				<section className="d-flex justify-content-between mt-4 mx-3">
 					<Button
 						variant="outline"
 						className="card-btn m-1"
 						onClick={() => setSelectedMonster('')}
 					>
-						Back
+						<IoMdArrowRoundBack size={'1.5rem'} />
 					</Button>
 					<Button
-						variant="outline"
-						className="card-btn m-1"
+						variant="outline-success"
+						className="m-1"
 						onClick={() => {
 							setSelectedMonster('');
 							handleCloseMonstersModal();
 						}}
 					>
-						Apply
+						<FaCheck size={'1.5rem'} />
 					</Button>
 				</section>
 			</ModalBody>
