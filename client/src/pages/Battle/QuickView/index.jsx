@@ -1,4 +1,5 @@
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri';
+import { FaSkull } from 'react-icons/fa';
 import './quickView.scss';
 
 const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
@@ -22,13 +23,16 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 	};
 
 	return (
-		<div className="monster-data">
+		// Drawer
+		<section className="monster-data">
 			{battleOrder.map((creature, index) => (
 				<div
 					className={
-						turn === index + 1
-							? `monster-data-card text-center current`
-							: `monster-data-card text-center`
+						creature.hit_points === 0
+							? 'monster-data-card dead'
+							: turn === index + 1
+							? 'monster-data-card current'
+							: 'monster-data-card'
 					}
 					key={creature.name || creature.character_name}
 					onClick={() => {
@@ -36,6 +40,9 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 						setTurn(index + 1);
 					}}
 				>
+					{creature.hit_points === 0 && (
+						<FaSkull className="dead-icon" />
+					)}
 					<div className="d-flex justify-content-center">
 						<p className="d-flex align-items-center mb-0">
 							<RiHeartFill className="hp-icon" />{' '}
@@ -54,7 +61,7 @@ const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
 					</div>
 				</div>
 			))}
-		</div>
+		</section>
 	);
 };
 
