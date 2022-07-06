@@ -7,6 +7,7 @@ import Hero from './Hero';
 import InfoModal from './InfoModal';
 import RollModal from './RollModal';
 import MonstersModal from './MonstersModal';
+import InitiativeModal from './InitiativeModal';
 import QuickView from './QuickView';
 
 import { slideLeft, slideRight } from 'utils/slideAnimations';
@@ -26,14 +27,20 @@ const Battle = () => {
 	let { battleId } = useParams();
 	const [battleOrder, setbattleOrder] = useState(null);
 
-	const { loading, error, data } = useQuery(QUERY_BATTLE, {
+	const {
+		loading,
+		error,
+		data: battleData,
+	} = useQuery(QUERY_BATTLE, {
 		variables: { battleId: battleId },
 	});
 
+	const battle = { ...battleData?.battle };
+
 	// Set battleOrder from sorted and modified query
 	useEffect(() => {
-		if (data) {
-			const battle = { ...data.battle };
+		if (battleData) {
+			// const battle = { ...battleData.battle };
 			// add conditions property to monster
 			battle.monsters = battle.monsters.map((monster) => {
 				return { ...monster, conditions: [] };
@@ -56,7 +63,7 @@ const Battle = () => {
 				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
 			setbattleOrder(combined);
 		}
-	}, [data]);
+	}, [battleData]);
 
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -68,9 +75,11 @@ const Battle = () => {
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
 	const [showMonstersModal, setShowMonstersModal] = useState(false);
+	const [showInitiativeModal, setShowInitiativeModal] = useState(true);
 	const handleCloseRollModal = () => setShowRollModal(false);
 	const handleCloseInfoModal = () => setShowInfoModal(false);
 	const handleCloseMonstersModal = () => setShowMonstersModal(false);
+	const handleCloseInitiativeModal = () => setShowInitiativeModal(false);
 
 	// Dice rolls
 	const [rollModifier, setRollModifier] = useState(0);
@@ -233,6 +242,12 @@ const Battle = () => {
 					/>
 				)}
 			</div>
+
+			<InitiativeModal
+				showInitiativeModal={showInitiativeModal}
+				handleCloseInitiativeModal={handleCloseInitiativeModal}
+				battle={!loading && battle}
+			/>
 
 			<RollModal
 				showRollModal={showRollModal}

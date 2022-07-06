@@ -77,3 +77,24 @@
 	width: 65rem;
 	height: 32rem;
 }
+
+.initiative-input {
+	width: 32px;
+	height: 32px;
+	font-family: 'Mukta Vaani', sans-serif;
+	text-align: center;
+	font-size: 1.2rem;
+	border: none;
+	border-radius: 0;
+	margin-right: 10px;
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	-moz-appearance: textfield;
+}
+
+.initiative-name {
+	font-size: 1.3rem;
+}
