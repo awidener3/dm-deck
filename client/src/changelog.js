@@ -1,6 +1,15 @@
 const changelog = {
-	current_version: 'v0.1.5',
+	current_version: 'v0.1.6',
 	version: [
+		{
+			name: 'v0.1.6',
+			changes: [
+				'🐛 Various bug fixes across the app.',
+				'🎲 Added ability for users to set initiative before starting a battle, or allow the app to roll initiative automatically.',
+				'💀 There is now visual feedback when a monsters HP reaches 0.',
+				'🧌 Adjusted monster modal layout.',
+			],
+		},
 		{
 			name: 'v0.1.5',
 			changes: [
