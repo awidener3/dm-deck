@@ -7,6 +7,7 @@ import Hero from './Hero';
 import InfoModal from './InfoModal';
 import RollModal from './RollModal';
 import MonstersModal from './MonstersModal';
+import InitiativeModal from './InitiativeModal';
 import QuickView from './QuickView';
 
 import { slideLeft, slideRight } from 'utils/slideAnimations';
@@ -23,40 +24,14 @@ import 'App.scss';
 import './battle.scss';
 
 const Battle = () => {
-	let { battleId } = useParams();
 	const [battleOrder, setbattleOrder] = useState(null);
+	const [battle, setBattle] = useState({});
 
-	const { loading, error, data } = useQuery(QUERY_BATTLE, {
-		variables: { battleId: battleId },
+	let { battleId } = useParams();
+	const { loading, error } = useQuery(QUERY_BATTLE, {
+		variables: { battleId },
+		onCompleted: (data) => setBattle(data.battle),
 	});
-
-	// Set battleOrder from sorted and modified query
-	useEffect(() => {
-		if (data) {
-			const battle = { ...data.battle };
-			// add conditions property to monster
-			battle.monsters = battle.monsters.map((monster) => {
-				return { ...monster, conditions: [] };
-			});
-			// combine into one array
-			let combined = battle.heroes.concat(battle.monsters);
-			// add initiative + sort high to low
-			combined = combined
-				.map((obj) => {
-					// add initiative if property doesn't exist on object
-					if (!obj?.initiative) {
-						return {
-							...obj,
-							initiative: getInitiative(obj),
-						};
-					} else {
-						return obj;
-					}
-				})
-				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
-			setbattleOrder(combined);
-		}
-	}, [data]);
 
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -68,9 +43,11 @@ const Battle = () => {
 	const [showRollModal, setShowRollModal] = useState(false);
 	const [showInfoModal, setShowInfoModal] = useState(false);
 	const [showMonstersModal, setShowMonstersModal] = useState(false);
+	const [showInitiativeModal, setShowInitiativeModal] = useState(true);
 	const handleCloseRollModal = () => setShowRollModal(false);
 	const handleCloseInfoModal = () => setShowInfoModal(false);
 	const handleCloseMonstersModal = () => setShowMonstersModal(false);
+	const handleCloseInitiativeModal = () => setShowInitiativeModal(false);
 
 	// Dice rolls
 	const [rollModifier, setRollModifier] = useState(0);
@@ -233,6 +210,16 @@ const Battle = () => {
 					/>
 				)}
 			</div>
+
+			{battle && (
+				<InitiativeModal
+					showInitiativeModal={showInitiativeModal}
+					handleCloseInitiativeModal={handleCloseInitiativeModal}
+					battle={!loading && battle}
+					setBattle={setBattle}
+					setbattleOrder={setbattleOrder}
+				/>
+			)}
 
 			<RollModal
 				showRollModal={showRollModal}
