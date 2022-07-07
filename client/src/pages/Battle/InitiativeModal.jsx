@@ -1,19 +1,54 @@
 import { Modal, ModalTitle, ModalBody, Button } from 'react-bootstrap';
+import { getInitiative } from 'utils/diceRolls';
 import './battle.scss';
 
 const InitiativeModal = ({
 	showInitiativeModal,
 	handleCloseInitiativeModal,
 	battle,
+	setBattle,
+	setbattleOrder,
 }) => {
-	console.log(battle);
+	const handleAddInitiative = (value, type, index) => {
+		if (type === 'hero') {
+			const clone = JSON.parse(JSON.stringify(battle));
+			clone.heroes[index]['initiative'] = Number(value);
+			setBattle(clone);
+		} else {
+			const clone = JSON.parse(JSON.stringify(battle));
+			clone.monsters[index]['initiative'] = Number(value);
+			setBattle(clone);
+		}
+	};
+
+	const handleClose = () => {
+		const clone = JSON.parse(JSON.stringify(battle));
+		clone.monsters = clone.monsters.map((monster) => {
+			return { ...monster, conditions: [] }; // Add 'conditions' to monsters
+		});
+
+		const combined = clone.heroes.concat(clone.monsters); // Combine into single array
+
+		const order = combined.map((combatant) => {
+			if (!combatant?.initiative) {
+				console.log('⌛ Adding initiative...');
+				return { ...combatant, initiative: getInitiative(combatant) }; // Add initiative
+			} else {
+				console.log('✅ Initiative detected!');
+				return combatant;
+			}
+		});
+
+		const sorted = order.sort((a, b) =>
+			a.initiative < b.initiative ? 1 : -1
+		);
+		console.log('🏆 Initiative processed & sorted!\n', sorted);
+		setbattleOrder(sorted);
+		handleCloseInitiativeModal();
+	};
+
 	return (
-		<Modal
-			size="sm"
-			show={showInitiativeModal}
-			// onHide={handleCloseInitiativeModal}
-			centered
-		>
+		<Modal size="sm" show={showInitiativeModal} centered>
 			<ModalTitle></ModalTitle>
 			<ModalBody className="d-flex flex-column">
 				<h3>Set Initiative</h3>
@@ -22,42 +57,63 @@ const InitiativeModal = ({
 				<section className="d-flex justify-content-around">
 					<div className="flex-grow-1">
 						<h4>Characters</h4>
-						{battle.heroes.map((hero) => (
-							<div className="d-flex">
-								<input
-									key={hero._id}
-									type="number"
-									className="initiative-input"
-									placeholder="?"
-								/>
-								<p className="initiative-name">
-									{hero.character_name}
-								</p>
-							</div>
-						))}
+						{battle.heroes &&
+							battle.heroes.map((hero, index) => (
+								<div className="d-flex" key={index}>
+									<input
+										key={hero._id}
+										type="number"
+										className="initiative-input"
+										min={0}
+										max={75}
+										pattern="[0-9]*"
+										inputMode="numeric"
+										placeholder="?"
+										onChange={(e) =>
+											handleAddInitiative(
+												e.target.value,
+												'hero',
+												index
+											)
+										}
+									/>
+									<p className="initiative-name">
+										{hero.character_name}
+									</p>
+								</div>
+							))}
 					</div>
 
 					<div className="flex-grow-1">
 						<h4>Monsters</h4>
-						{battle.monsters.map((monster) => (
-							<div className="d-flex">
-								<input
-									type="number"
-									className="initiative-input"
-									placeholder="?"
-								/>
-								<p className="initiative-name">
-									{monster.name}
-								</p>
-							</div>
-						))}
+						{battle.monsters &&
+							battle.monsters.map((monster, index) => (
+								<div className="d-flex" key={index}>
+									<input
+										type="number"
+										className="initiative-input"
+										min={0}
+										max={75}
+										pattern="[0-9]*"
+										inputMode="numeric"
+										placeholder="?"
+										onChange={(e) =>
+											handleAddInitiative(
+												e.target.value,
+												'monster',
+												index
+											)
+										}
+									/>
+									<p className="initiative-name">
+										{monster.name}
+									</p>
+								</div>
+							))}
 					</div>
 				</section>
 
-				<Button
-					variant="outline-success"
-					onClick={handleCloseInitiativeModal}
-				>
+				<Button variant="outline-success" onClick={handleClose}>
 					Set!
 				</Button>
 			</ModalBody>

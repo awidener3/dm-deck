@@ -24,46 +24,14 @@ import 'App.scss';
 import './battle.scss';
 
 const Battle = () => {
-	let { battleId } = useParams();
 	const [battleOrder, setbattleOrder] = useState(null);
+	const [battle, setBattle] = useState({});
 
-	const {
-		loading,
-		error,
-		data: battleData,
-	} = useQuery(QUERY_BATTLE, {
-		variables: { battleId: battleId },
+	let { battleId } = useParams();
+	const { loading, error, data } = useQuery(QUERY_BATTLE, {
+		variables: { battleId },
+		onCompleted: () => setBattle(data?.battle),
 	});
-
-	const battle = { ...battleData?.battle };
-
-	// Set battleOrder from sorted and modified query
-	useEffect(() => {
-		if (battleData) {
-			// const battle = { ...battleData.battle };
-			// add conditions property to monster
-			battle.monsters = battle.monsters.map((monster) => {
-				return { ...monster, conditions: [] };
-			});
-			// combine into one array
-			let combined = battle.heroes.concat(battle.monsters);
-			// add initiative + sort high to low
-			combined = combined
-				.map((obj) => {
-					// add initiative if property doesn't exist on object
-					if (!obj?.initiative) {
-						return {
-							...obj,
-							initiative: getInitiative(obj),
-						};
-					} else {
-						return obj;
-					}
-				})
-				.sort((a, b) => (a.initiative < b.initiative ? 1 : -1));
-			setbattleOrder(combined);
-		}
-	}, [battleData]);
 
 	// Variables to control battle statistics
 	const [index, setIndex] = useState(0);
@@ -243,11 +211,15 @@ const Battle = () => {
 				)}
 			</div>
 
-			<InitiativeModal
-				showInitiativeModal={showInitiativeModal}
-				handleCloseInitiativeModal={handleCloseInitiativeModal}
-				battle={!loading && battle}
-			/>
+			{battle && (
+				<InitiativeModal
+					showInitiativeModal={showInitiativeModal}
+					handleCloseInitiativeModal={handleCloseInitiativeModal}
+					battle={!loading && battle}
+					setBattle={setBattle}
+					setbattleOrder={setbattleOrder}
+				/>
+			)}
 
 			<RollModal
 				showRollModal={showRollModal}
