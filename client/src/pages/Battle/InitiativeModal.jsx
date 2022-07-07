@@ -1,5 +1,7 @@
 import { Modal, ModalTitle, ModalBody, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { getInitiative } from 'utils/diceRolls';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import './battle.scss';
 
 const InitiativeModal = ({
@@ -9,6 +11,8 @@ const InitiativeModal = ({
 	setBattle,
 	setbattleOrder,
 }) => {
+	const navigate = useNavigate();
+
 	const handleAddInitiative = (value, type, index) => {
 		if (type === 'hero') {
 			const clone = JSON.parse(JSON.stringify(battle));
@@ -49,10 +53,19 @@ const InitiativeModal = ({
 
 	return (
 		<Modal size="sm" show={showInitiativeModal} centered>
-			<ModalTitle></ModalTitle>
+			<ModalTitle className="ms-2 mt-2 p-0 d-flex align-items-center">
+				<Button
+					variant="outline-secondary"
+					onClick={() => navigate(-1)}
+				>
+					<IoMdArrowRoundBack size="1.5rem" /> Back
+				</Button>
+			</ModalTitle>
 			<ModalBody className="d-flex flex-column">
-				<h3>Set Initiative</h3>
-				<p>Any blanks fields will be randomly rolled.</p>
+				<h3 className="text-center display-5 m-0">Set Initiative</h3>
+				<p className="text-center mb-2">
+					Any blanks fields will be randomly rolled.
+				</p>
 
 				<section className="d-flex justify-content-around">
 					<div className="flex-grow-1">

@@ -28,9 +28,9 @@ const Battle = () => {
 	const [battle, setBattle] = useState({});
 
 	let { battleId } = useParams();
-	const { loading, error, data } = useQuery(QUERY_BATTLE, {
+	const { loading, error } = useQuery(QUERY_BATTLE, {
 		variables: { battleId },
-		onCompleted: () => setBattle(data?.battle),
+		onCompleted: (data) => setBattle(data.battle),
 	});
 
 	// Variables to control battle statistics
