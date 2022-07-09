@@ -55,7 +55,7 @@ const InitiativeModal = ({
 
 	return (
 		<Modal
-			size="sm"
+			size="md"
 			show={showInitiativeModal}
 			centered
 			data-theme={theme === 'dark' ? 'dark' : 'light'}
