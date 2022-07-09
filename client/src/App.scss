@@ -39,6 +39,10 @@ $card-border: 1px solid #aaaaaa;
 $card-outline: 1px solid #aaaaaa;
 $card-outline-offset: -5px;
 
+body {
+	background-color: var(--background);
+}
+
 // Asul 400 or 700 weight available
 h1,
 h2,

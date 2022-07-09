@@ -7,6 +7,23 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 	let navigate = useNavigate();
 
+	const CreatureList = ({ type }) => {
+		return (
+			<section className="creature-list">
+				<h3 className="creature-list-title">
+					{type === 'heroes' ? 'Characters' : 'Monsters'}
+				</h3>
+				<ListGroup variant="flush" className="summary-list">
+					{battle[type].map((creature, i) => (
+						<ListGroupItem key={i} className="list-item">
+							{creature?.character_name || creature.name}
+						</ListGroupItem>
+					))}
+				</ListGroup>
+			</section>
+		);
+	};
+
 	return (
 		<div
 			key={battle._id}
@@ -23,33 +40,9 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 				<div className="card-body">
 					<Summary battle={battle} />
 
-					<div className="d-flex justify-content-around border-top pt-2">
-						<div>
-							<h3 className="list-title">Characters</h3>
-							<ListGroup variant="flush" className="summary-list">
-								{battle.heroes.map((hero, i) => (
-									<ListGroupItem
-										key={i}
-										className="list-item"
-									>
-										{hero.character_name}
-									</ListGroupItem>
-								))}
-							</ListGroup>
-						</div>
-						<div>
-							<h3 className="list-title">Monsters</h3>
-							<ListGroup variant="flush" className="summary-list">
-								{battle.monsters.map((monster, i) => (
-									<ListGroupItem
-										key={i}
-										className="list-item"
-									>
-										{monster.name}
-									</ListGroupItem>
-								))}
-							</ListGroup>
-						</div>
+					<div className="creature-container">
+						<CreatureList type={'heroes'} />
+						<CreatureList type={'monsters'} />
 					</div>
 				</div>
 

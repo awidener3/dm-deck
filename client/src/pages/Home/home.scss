@@ -2,6 +2,9 @@
 
 .splash-screen {
 	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 300px;
 	width: 100%;
 	.splash-logo-text {
@@ -54,4 +57,11 @@ a {
 
 .quicklink-div:hover {
 	transform: scale(1.05);
+}
+
+.home-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

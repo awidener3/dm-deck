@@ -19,8 +19,8 @@ import Legal from './pages/Legal';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Profile from './pages/Profile';
-import './App.scss';
 import Collection from 'pages/BattleSelect/Collection';
+import './App.scss';
 
 const httpLink = createHttpLink({
 	uri: '/graphql',
@@ -57,6 +57,8 @@ const App = () => {
 		const newTheme = theme === 'light' ? 'dark' : 'light';
 		setTheme(newTheme);
 	};
+
+	document.querySelector('#root').dataset.theme = theme;
 
 	return (
 		<ApolloProvider client={client}>

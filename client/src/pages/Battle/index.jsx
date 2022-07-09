@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ import InitiativeModal from './InitiativeModal';
 import QuickView from './QuickView';
 
 import { slideLeft, slideRight } from 'utils/slideAnimations';
-import { rollDie, getInitiative } from 'utils/diceRolls';
+import { rollDie } from 'utils/diceRolls';
 import { QUERY_BATTLE } from 'utils/queries/battleQueries';
 
 import {
@@ -81,7 +81,7 @@ const Battle = () => {
 	const handleHeroAttack = () => setShowMonstersModal(true);
 
 	if (loading) return <div>Loading...</div>;
-	if (error) return <div>ERROR!</div>;
+	if (error) return `Error! ${error}`;
 
 	const renderCards = (battleOrder) => {
 		return battleOrder.map((creature, i) => {

@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
+import battle_deck_select from 'assets/images/battle_deck_select.png';
 import character_builder from 'assets/images/character_builder.png';
 import battle_builder from 'assets/images/battle_builder.png';
-import monster_builder from 'assets/images/monster_builder.png';
+// import monster_builder from 'assets/images/monster_builder.png';
 
 const HomeLinks = () => {
 	const linkImages = [
+		{
+			image: battle_deck_select,
+			alt: 'Link to battle and deck select',
+			endpoint: 'battle-select',
+		},
 		{
 			image: battle_builder,
 			alt: 'Link to the battle builder',
@@ -15,11 +21,13 @@ const HomeLinks = () => {
 			alt: 'Link to the character builder',
 			endpoint: 'character-builder',
 		},
-		{
-			image: monster_builder,
+		/* Add back in the future - monster-builder not ready.
+		{	
+      image: monster_builder,
 			alt: 'Link to the monster builder',
 			endpoint: 'monster-builder',
 		},
+    */
 	];
 
 	const QuickLink = ({ link }) => (

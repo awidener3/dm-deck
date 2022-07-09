@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation, NetworkStatus } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import {
@@ -14,10 +14,14 @@ import Deck from './Deck';
 import Card from './Card';
 import PageHeader from 'components/PageHeader';
 import NewCollectionModal from './NewCollectionModal';
+import Loading from 'components/Loading';
+import NotAuthorized from 'components/NotAuthorized';
 
 const BattleSelect = () => {
 	const [showCollectionModal, setShowCollectionModal] = useState(false);
 	const handleCloseCollectionModal = () => setShowCollectionModal(false);
+
+	// Add a battle
 	const [addBattleToCollection, { error: mutation_error }] = useMutation(
 		ADD_BATTLE_TO_COLLECTION,
 		{
@@ -27,6 +31,8 @@ const BattleSelect = () => {
 			],
 		}
 	);
+
+	// Delete a battle
 	const [deleteBattle] = useMutation(DELETE_BATTLE, {
 		refetchQueries: [
 			{ query: QUERY_USER_BATTLES },
@@ -35,26 +41,37 @@ const BattleSelect = () => {
 			'UserCollections',
 		],
 	});
+
+	// Get user data
 	const {
 		loading: user_loading,
 		error: user_error,
 		data: user_data,
 	} = useQuery(QUERY_ME);
+
+	// Get collection data
 	const { data: colls_data } = useQuery(QUERY_USER_COLLECTIONS);
-	const { data: battles_data, loading: battles_loading } =
-		useQuery(QUERY_USER_BATTLES);
+
+	// Get battle data
+	const {
+		data: battles_data,
+		loading: battles_loading,
+		networkStatus,
+	} = useQuery(QUERY_USER_BATTLES, {
+		notifyOnNetworkStatusChange: true,
+	});
 
 	const user = user_data?.me || [];
 	const collections = colls_data?.userCollections || [];
 	const battles = battles_data?.userBattles || [];
 
 	const handleDeleteBattle = async (selectedBattle) => {
-		const id = selectedBattle._id;
+		const battleId = selectedBattle._id;
 		try {
 			const { data } = await deleteBattle({
-				variables: { battleId: id },
+				variables: { battleId },
 			});
-			console.log('✅ Success!\n', data);
+			console.log('✅ Battle successfully deleted!\n', data);
 		} catch (e) {
 			console.error('💥 Error deleting battle\n', e);
 		}
@@ -68,12 +85,12 @@ const BattleSelect = () => {
 	// Calls mutation to add battle to collection
 	const handleDrop = async (e, collectionId) => {
 		e.preventDefault();
-		let data = e.dataTransfer.getData('id');
+		const battleId = e.dataTransfer.getData('id');
 		try {
 			const mutationResponse = await addBattleToCollection({
 				variables: {
-					battleId: data,
-					collectionId: collectionId,
+					battleId,
+					collectionId,
 				},
 			});
 			console.log(
@@ -88,12 +105,20 @@ const BattleSelect = () => {
 		}
 	};
 
-	if (user_loading || battles_loading) return <div>Loading...</div>;
-	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (user_error) return <div>ERROR!</div>;
+	if (networkStatus === NetworkStatus.refetch)
+		return <h3 className="text-center p-4">📮 Refetching!</h3>;
+	if (user_loading || battles_loading) return <Loading />;
+	if (!user?.username) return <NotAuthorized />;
+	if (user_error)
+		return (
+			<div className="text-center p-4">
+				<h3>❌ Error!</h3>
+				<pre>{user_error}</pre>
+			</div>
+		);
 
 	return (
-		<div>
+		<>
 			<PageHeader
 				image={`url(${require('assets/images/card_backs/back_7.jpg')})`}
 				pageTitle={'Saved Battles'}
@@ -128,10 +153,10 @@ const BattleSelect = () => {
 			</section>
 
 			{/* Cards */}
-			<Container className="mt-3 d-flex flex-column justify-content-center">
+			<Container className="mt-3 pb-5 d-flex flex-column justify-content-center">
 				<h2 className="text-center">Battles</h2>
 
-				<div className="d-flex flex-wrap justify-content-center justify-content-md-start my-3">
+				<div className="d-flex flex-wrap justify-content-around justify-content-md-start my-3">
 					{battles &&
 						battles.map((battle) => {
 							return (
@@ -158,7 +183,7 @@ const BattleSelect = () => {
 				handleHide={handleCloseCollectionModal}
 				userId={user._id}
 			/>
-		</div>
+		</>
 	);
 };
 
