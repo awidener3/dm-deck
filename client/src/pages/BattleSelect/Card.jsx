@@ -7,6 +7,10 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 	let navigate = useNavigate();
 
+	const handleClick = (e) => {
+		navigate(`/battle/${battle._id}`);
+	};
+
 	const CreatureList = ({ type }) => {
 		return (
 			<section className="creature-list">
@@ -25,29 +29,30 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 	};
 
 	return (
-		<div
+		<figure
 			key={battle._id}
 			className="p-2"
 			draggable={draggable}
 			onDragStart={(e) => startDrag(e, battle._id)}
-			onClick={() => navigate(`/battle/${battle._id}`)}
 		>
-			<div className="card battle-card p-3">
-				<h2 className="battle-card-title text-center mb-1 border-bottom">
-					{battle.name}
-				</h2>
+			<section className="card battle-card p-3">
+				<div className="card-content" onClick={handleClick}>
+					<h2 className="battle-card-title text-center mb-1 border-bottom">
+						{battle.name}
+					</h2>
 
-				<div className="card-body">
-					<Summary battle={battle} />
+					<div className="card-body">
+						<Summary battle={battle} />
 
-					<div className="creature-container">
-						<CreatureList type={'heroes'} />
-						<CreatureList type={'monsters'} />
+						<div className="creature-container">
+							<CreatureList type={'heroes'} />
+							<CreatureList type={'monsters'} />
+						</div>
 					</div>
 				</div>
 
 				{/* Buttons */}
-				<div className="button-container mt-auto d-flex justify-content-between">
+				<section className="button-container mt-auto d-flex justify-content-between">
 					<button
 						className="card-btn btn btn-outline-danger m-1"
 						title="Delete Battle"
@@ -69,9 +74,9 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 					>
 						<RiSwordFill size={20} />
 					</Link>
-				</div>
-			</div>
-		</div>
+				</section>
+			</section>
+		</figure>
 	);
 };
 
