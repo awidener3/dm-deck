@@ -64,7 +64,7 @@ const InitiativeModal = ({
 				<Button
 					variant="outline-secondary"
 					size="sm"
-					onClick={() => navigate(-1)}
+					onClick={() => navigate(-1) || navigate('/battle-select')}
 				>
 					<IoMdArrowRoundBack size="1.5rem" /> Back
 				</Button>
