@@ -68,7 +68,7 @@ const Monster = ({
 				<BaseStats monster={monster} />
 				<AbilityScores monster={monster} />
 				<Stats monster={monster} />
-				{monster.special_abilities !== '' ? (
+				{monster.special_abilities[0].name !== null ? (
 					<Traits monster={monster} />
 				) : null}
 

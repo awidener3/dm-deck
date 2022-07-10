@@ -1,18 +1,24 @@
 // Handles all stats within a monsters object
 const renderStats = (monster) => {
+	console.log(monster);
+	const checkNull = (monster) => {
+		return !Object.values(monster.skills).every((val) => val === null);
+	};
+
 	return (
 		<>
-			{Object.keys(monster.skills).length !== 0 ? (
+			{checkNull(monster) && (
 				<Stat monster={monster} title={'Skills'} property={'skills'} />
-			) : null}
-			{monster.damage_resistances ? (
+			)}
+
+			{monster.damage_resistances && (
 				<Stat
 					monster={monster}
 					title={'Damage Resistances'}
 					property={'damage_resistances'}
 					connector={'; '}
 				/>
-			) : null}
+			)}
 			{monster.damage_immunities ? (
 				<Stat
 					monster={monster}
