@@ -28,6 +28,32 @@ export const ADD_CHARACTER = gql`
 	}
 `;
 
+export const UPDATE_CHARACTER = gql`
+	mutation updateCharacter(
+		$characterId: ID!
+		$characterName: String
+		$playerName: String
+		$level: Int
+		$race: String
+		$class: String
+		$armorClass: Int
+		$hitPoints: Int
+	) {
+		updateCharacter(
+			characterId: $characterId
+			character_name: $characterName
+			player_name: $playerName
+			level: $level
+			race: $race
+			class: $class
+			armor_class: $armorClass
+			hit_points: $hitPoints
+		) {
+			character_name
+		}
+	}
+`;
+
 export const DELETE_CHARACTER = gql`
 	mutation deleteCharacter($characterId: ID!) {
 		deleteCharacter(characterId: $characterId) {

@@ -51,7 +51,7 @@ const Card = ({ creature, cardStyle, setShowWarningModal, setSelected }) => {
 				<section className="d-flex mt-auto justify-content-between">
 					<button
 						className="card-btn btn btn-outline-danger m-1"
-						title="Delete Battle"
+						title="Delete character"
 						onClick={() => {
 							setSelected(creature);
 							setShowWarningModal(true);
@@ -60,9 +60,10 @@ const Card = ({ creature, cardStyle, setShowWarningModal, setSelected }) => {
 						<FiTrash2 size={20} />
 					</button>
 					<Link
-						className="card-btn btn btn-outline-secondary disabled m-1"
-						title="Edit Card"
-						to={`/`}
+						className="card-btn btn btn-outline-secondary m-1"
+						title="Edit character"
+						to={'/character-builder'}
+						state={creature} // send creature data to form
 					>
 						<RiEditLine size={20} />
 					</Link>
