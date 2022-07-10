@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import {
 	Form,
@@ -9,7 +9,10 @@ import {
 	FormSelect,
 	Button,
 } from 'react-bootstrap';
-import { ADD_CHARACTER } from 'utils/mutations/characterMutations';
+import {
+	ADD_CHARACTER,
+	UPDATE_CHARACTER,
+} from 'utils/mutations/characterMutations';
 import { QUERY_USER_CHARACTERS, QUERY_ME } from 'utils/queries/userQueries';
 
 import races from 'assets/json/player_races.json';
@@ -19,26 +22,38 @@ import PageHeader from 'components/PageHeader';
 
 const CharacterBuilder = () => {
 	const navigate = useNavigate();
+	const { state: character } = useLocation();
 
-	const [values, setValues] = useState({
-		character_name: '',
-		player_name: '',
-		level: '',
-		race: '',
-		class: '',
-		armor_class: '',
-		hit_points: '',
-	});
+	// if rendered from "edit" button, use character in state
+	const [values, setValues] = useState(
+		!!character
+			? {
+					character_name: character.character_name || '',
+					player_name: character.player_name || '',
+					level: character.level || 0,
+					race: character.race || '',
+					class: character.class || '',
+					armor_class: character.armor_class || 0,
+					hit_points: character.hit_points || 0,
+			  }
+			: {
+					character_name: '',
+					player_name: '',
+					level: '',
+					race: '',
+					class: '',
+					armor_class: '',
+					hit_points: '',
+			  }
+	);
 
 	const { loading, error, data } = useQuery(QUERY_ME);
+	const [updateCharacter] = useMutation(UPDATE_CHARACTER, {
+		refetchQueries: [{ query: QUERY_USER_CHARACTERS }],
+	});
 	const [addCharacter, { error: character_error }] = useMutation(
 		ADD_CHARACTER,
-		{
-			refetchQueries: [
-				{ query: QUERY_USER_CHARACTERS },
-				'UserCharacters',
-			],
-		}
+		{ refetchQueries: [{ query: QUERY_USER_CHARACTERS }] }
 	);
 
 	const user = data?.me || [];
@@ -50,7 +65,38 @@ const CharacterBuilder = () => {
 		});
 	};
 
-	const handleFormSubmit = async (e) => {
+	const handleUpdateCharacter = async () => {
+		const character = character;
+		try {
+			await updateCharacter({
+				variables: {
+					characterId: character._id,
+					characterName: values.character_name,
+					playerName: values.player_name,
+					level: parseInt(values.level),
+					race: values.race,
+					class: values.class,
+					armorClass: parseInt(values.armor_class),
+					hitPoints: parseInt(values.hit_points),
+				},
+			});
+			console.log(`✅ Successfully updated ${values.character_name}!`);
+			setValues({
+				character_name: '',
+				player_name: '',
+				level: '',
+				race: '',
+				class: '',
+				armor_class: '',
+				hit_points: '',
+			});
+			navigate(-1);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const handleAddCharacter = async (e) => {
 		e.preventDefault();
 		try {
 			await addCharacter({
@@ -240,14 +286,25 @@ const CharacterBuilder = () => {
 					</FormSelect>
 				</FormGroup>
 
-				<Button
-					className="mt-4 mx-auto create-character-btn"
-					variant="success"
-					type="button"
-					onClick={handleFormSubmit}
-				>
-					Create Character
-				</Button>
+				{!!character ? (
+					<Button
+						className="mt-4 mx-auto create-character-btn"
+						variant="success"
+						type="button"
+						onClick={handleUpdateCharacter}
+					>
+						Update Character
+					</Button>
+				) : (
+					<Button
+						className="mt-4 mx-auto create-character-btn"
+						variant="success"
+						type="button"
+						onClick={handleAddCharacter}
+					>
+						Create Character
+					</Button>
+				)}
 			</Form>
 		</div>
 	);
