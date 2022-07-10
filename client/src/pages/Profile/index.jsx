@@ -1,26 +1,81 @@
-import { useQuery } from '@apollo/client';
+import { Alert, Button } from 'react-bootstrap';
+import { useMutation, useQuery } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
 import { QUERY_ME, QUERY_USER_CHARACTERS } from '../../utils/queries';
+import { DELETE_CHARACTER } from 'utils/mutations/characterMutations';
+import { REMOVE_USER } from 'utils/mutations';
 import Card from './ProfileCard';
-import { Alert } from 'react-bootstrap';
-
+import WarningModal from './WarningModal';
+import { useState } from 'react';
 import './profile.scss';
 
 const Profile = () => {
+	const navigate = useNavigate();
+	const [selected, setSelected] = useState({});
+
 	// Query user data
 	const {
 		loading: user_loading,
 		error: user_error,
 		data: user_data,
 	} = useQuery(QUERY_ME);
+
 	// Query character data
 	const {
 		loading: characters_loading,
 		error: characters_error,
 		data: characters_data,
 	} = useQuery(QUERY_USER_CHARACTERS);
+
+	// Delete character mutation
+	const [deleteCharacter] = useMutation(DELETE_CHARACTER, {
+		refetchQueries: [{ query: QUERY_USER_CHARACTERS }, 'UserCharacters'],
+	});
+
+	const [removeUser] = useMutation(REMOVE_USER);
+
 	// Database Results
 	const user = user_data?.me || [];
 	const characters = characters_data?.userCharacters || [];
+
+	// Modals
+	const [showWarningModal, setShowWarningModal] = useState(false);
+	const hideWarning = () => {
+		console.log('attempting to hide warning modal');
+		setShowWarningModal(false);
+	};
+
+	const handleDelete = async (character) => {
+		console.log(`deleting ${character.character_name}...${character._id}`);
+		const characterId = character._id;
+		try {
+			const { data } = await deleteCharacter({
+				variables: { characterId },
+			});
+			console.log(`✅ ${character.character_name} was deleted!\n`, data);
+			setShowWarningModal(false);
+		} catch (err) {
+			console.error('💥 Error deleting character\n', err);
+		}
+	};
+
+	const handleDeleteAccount = async () => {
+		console.log('user about to delete account');
+		const userId = user._id;
+
+		try {
+			const { data } = await removeUser({
+				variables: { userId },
+			});
+			console.log(
+				`✅ Successfully deleted ${user.username}'s account\n`,
+				data
+			);
+			navigate('/signup');
+		} catch (err) {
+			console.error('💥 Could not delete account!\n', err);
+		}
+	};
 
 	// Loading/error handling
 	if (user_loading || characters_loading) return <div>Loading...</div>;
@@ -49,6 +104,8 @@ const Profile = () => {
 							key={character._id}
 							creature={character}
 							cardStyle={character.type}
+							setShowWarningModal={setShowWarningModal}
+							setSelected={setSelected}
 						/>
 					))}
 				</div>
@@ -66,6 +123,32 @@ const Profile = () => {
 					))}
 				</div>
 			</section> */}
+
+			<section className="danger-zone">
+				<h2>Danger Zone!</h2>
+
+				<div className="delete-account">
+					<p>
+						Are you sure that you want to delete your account? This
+						will delete all decks, battles, and characters that you
+						have made!
+					</p>
+					<Button
+						variant="outline-danger"
+						className="mx-auto delete-btn"
+						onClick={handleDeleteAccount}
+					>
+						Yes, I would like to delete my account.
+					</Button>
+				</div>
+			</section>
+
+			<WarningModal
+				showWarning={showWarningModal}
+				hideWarning={hideWarning}
+				handleDelete={handleDelete}
+				thing={selected}
+			/>
 		</section>
 	);
 };
