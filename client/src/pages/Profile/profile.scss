@@ -3,10 +3,10 @@
 	// Styling
 	padding: 20px;
 	color: var(--card-text);
-	border: 1px solid #0a6817;
+	border: var(--card-hero-border);
+	outline: var(--card-hero-outline);
 	outline-offset: -5px;
-	outline: 1px solid #aaaaaa;
-	background-color: #ffffff;
+	background-color: var(--card-background);
 
 	// Sizing
 	width: 10rem;
@@ -18,10 +18,14 @@
 	.hero-name {
 		font-size: 1.4rem;
 		font-weight: 700;
+		margin-top: 16px;
 	}
 	.player-name {
 		font-style: italic;
 		font-size: 1rem;
+	}
+	.character-details {
+		font-size: 0.75rem;
 	}
 	.icon-container {
 		position: relative;
@@ -66,5 +70,27 @@
 	.monster-name {
 		font-size: 1.4rem;
 		font-weight: 700;
+	}
+}
+
+.danger-zone {
+	$red: #dd0c0c;
+	color: $red;
+	border: 1px solid $red;
+	border-radius: 0.3rem;
+	padding: 8px 16px;
+	margin-top: 16px;
+	.delete-account {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		.delete-btn {
+			border-color: $red;
+			color: $red;
+			margin-bottom: 8px;
+			&:hover {
+				color: white;
+			}
+		}
 	}
 }
