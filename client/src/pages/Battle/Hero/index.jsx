@@ -26,10 +26,20 @@ const HealthIcon = ({ hp }) => {
 	);
 };
 
-const Hero = ({ hero, cardStyle, handleHeroAttack, handleAddEffect }) => {
+const Hero = ({
+	hero,
+	cardStyle,
+	handleHeroAttack,
+	handleAddEffect,
+	handlePointerEvent,
+}) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
-			<div className="hero-card m-3 d-flex flex-column justify-content-center align-items-center">
+			<div
+				className="card hero-card m-3 d-flex flex-column justify-content-center align-items-center"
+				onMouseDown={handlePointerEvent}
+				onTouchStart={handlePointerEvent}
+			>
 				{/* AC + HP Icons */}
 				<div className="hero-stats d-flex justify-content-between w-100">
 					<ArmorClassIcon ac={hero.armor_class} />

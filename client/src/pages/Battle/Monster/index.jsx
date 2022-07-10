@@ -20,15 +20,18 @@ const Monster = ({
 	handleSetHp,
 	battleOrder,
 	setbattleOrder,
+	handlePointerEvent,
 }) => {
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div
 				className={
 					monster.hit_points === 0
-						? 'monster-card m-3 dead'
-						: 'monster-card m-3'
+						? 'card monster-card m-3 dead'
+						: 'card monster-card m-3'
 				}
+				onMouseDown={handlePointerEvent}
+				onTouchStart={handlePointerEvent}
 			>
 				{monster.hit_points === 0 && (
 					<div className="dead-screen">

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-
 import Monster from './Monster';
 import Hero from './Hero';
 import InfoModal from './InfoModal';
@@ -9,11 +8,9 @@ import RollModal from './RollModal';
 import MonstersModal from './MonstersModal';
 import InitiativeModal from './InitiativeModal';
 import QuickView from './QuickView';
-
 import { slideLeft, slideRight } from 'utils/slideAnimations';
 import { rollDie } from 'utils/diceRolls';
 import { QUERY_BATTLE } from 'utils/queries/battleQueries';
-
 import {
 	FaChevronLeft,
 	FaChevronRight,
@@ -48,6 +45,7 @@ const Battle = () => {
 	const handleCloseInfoModal = () => setShowInfoModal(false);
 	const handleCloseMonstersModal = () => setShowMonstersModal(false);
 	const handleCloseInitiativeModal = () => setShowInitiativeModal(false);
+	const handleHeroAttack = () => setShowMonstersModal(true);
 
 	// Dice rolls
 	const [rollModifier, setRollModifier] = useState(0);
@@ -78,10 +76,76 @@ const Battle = () => {
 		setbattleOrder([...updatedArray]);
 	};
 
-	const handleHeroAttack = () => setShowMonstersModal(true);
+	const handlePointerEvent = (e) => {
+		let isTouchEvent = e.type === 'touchstart' ? true : false;
+		let card = e.target.closest('.card');
+		let offset = 0;
+		let initialX = isTouchEvent ? e.touches[0].clientX : e.clientX;
 
-	if (loading) return <div>Loading...</div>;
-	if (error) return `Error! ${error}`;
+		document.onmousemove = onPointerMove;
+		document.onmouseup = onPointerEnd;
+		document.ontouchmove = onPointerMove;
+		document.ontouchend = onPointerEnd;
+
+		function onPointerMove(e) {
+			offset =
+				(isTouchEvent ? e.touches[0].clientX : e.clientX) - initialX;
+			card.style.left = offset + 'px';
+
+			if (offset <= -100) {
+				slideRight(
+					index,
+					turn,
+					round,
+					battleOrder,
+					setRound,
+					setTurn,
+					setIndex
+				);
+				if (index === battleOrder.length - 1) {
+					card.style.left = 0;
+				} else {
+					setTimeout(() => {
+						card.style.left = 0;
+					}, 1000);
+				}
+				return;
+			}
+			if (offset >= 100) {
+				slideLeft(
+					index,
+					turn,
+					round,
+					battleOrder,
+					setRound,
+					setTurn,
+					setIndex
+				);
+				if (index === 0) {
+					card.style.left = 0;
+				} else {
+					setTimeout(() => {
+						card.style.left = 0;
+					}, 1000);
+				}
+				return;
+			}
+			card.style.left = offset + 'px';
+		}
+
+		function onPointerEnd(e) {
+			if (offset < 0 && offset > -100) {
+				card.style.left = 0;
+			}
+			if (offset > 0 && offset < 100) {
+				card.style.left = 0;
+			}
+			document.onmousemove = null;
+			document.onmouseup = null;
+			document.ontouchmove = null;
+			document.ontouchend = null;
+		}
+	};
 
 	const renderCards = (battleOrder) => {
 		return battleOrder.map((creature, i) => {
@@ -94,7 +158,7 @@ const Battle = () => {
 			if (creature.type !== 'hero') {
 				return (
 					<Monster
-						key={`${creature.name} ${i}`}
+						key={`${creature.name}-${i}`}
 						monster={creature}
 						battleOrder={battleOrder}
 						cardStyle={position}
@@ -102,21 +166,26 @@ const Battle = () => {
 						handleShowInfo={handleShowInfo}
 						handleSetHp={handleSetHp}
 						setbattleOrder={setbattleOrder}
+						handlePointerEvent={handlePointerEvent}
 					/>
 				);
 			} else if (creature.type === 'hero') {
 				return (
 					<Hero
-						key={creature.player_name}
+						key={`${creature.character_name}-${i}`}
 						hero={creature}
 						cardStyle={position}
 						handleHeroAttack={handleHeroAttack}
+						handlePointerEvent={handlePointerEvent}
 					/>
 				);
 			}
 			return null;
 		});
 	};
+
+	if (loading) return <div>Loading...</div>;
+	if (error) return `Error! ${error}`;
 
 	return (
 		<div className="battle-container d-flex flex-column justify-content-center align-items-center">
