@@ -66,7 +66,6 @@ const CharacterBuilder = () => {
 	};
 
 	const handleUpdateCharacter = async () => {
-		const character = character;
 		try {
 			await updateCharacter({
 				variables: {
