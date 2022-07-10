@@ -1,6 +1,5 @@
 // Handles all stats within a monsters object
 const renderStats = (monster) => {
-	console.log(monster);
 	const checkNull = (monster) => {
 		return !Object.values(monster.skills).every((val) => val === null);
 	};

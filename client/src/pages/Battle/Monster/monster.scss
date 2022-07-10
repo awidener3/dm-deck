@@ -1,5 +1,6 @@
 .monster-card {
 	padding: 20px;
+	padding-bottom: 32px;
 	border: var(--card-monster-border);
 	outline: var(--card-monster-outline);
 	outline-offset: -5px;
@@ -183,6 +184,12 @@
 			line-height: 1.2;
 			color: #808080;
 			margin: 0;
+		}
+		.action-description {
+			line-height: 1.1;
+			font-size: 0.8rem;
+			max-height: 50px;
+			overflow: auto;
 		}
 		.action-btn {
 			font-size: 0.8rem;

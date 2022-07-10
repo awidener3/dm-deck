@@ -23,7 +23,7 @@ const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 				attack_bonus: action.attack_bonus,
 			};
 
-			// Process name
+			// Process name - checks to see if an actions name has brackets after (i.e. Recharge [5-6])
 			if (action.name.match(/\(([^\)]*)\)/)) {
 				let extraInfo = action.name.match(/\(([^\)]*)\)/);
 				newAction.name = action.name.replace(extraInfo[0], '').trim();
@@ -56,8 +56,10 @@ const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 						.slice(0, 3)
 						.toUpperCase()}`;
 			} else {
-				console.log('other');
+				newAction.attack_type = 'Info';
 			}
+
+			console.log(newAction);
 
 			// Process damage and bonus damage dice
 			if (action.damage_dice) {
@@ -87,7 +89,6 @@ const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 				}
 			}
 
-			// console.log(action.name, 'original', action, 'updated', newAction);
 			// Add to actions array to be set as action state for the current monster
 			newActions.push(newAction);
 		});
@@ -134,53 +135,67 @@ const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 		// otherwise, select a creature to apply the effect to
 	};
 
+	console.log(actions);
+
 	return actions.map((action) => (
 		<div
 			key={action.name}
 			className="d-flex justify-content-between align-items-center mb-2"
 		>
-			<div className="d-flex align-items-center m-0">
-				<div className="d-flex alignt-items-center me-1">
-					{action.attack_type === 'Melee' ? (
-						<GiBattleAxe />
-					) : action.attack_type === 'Ranged' ? (
-						<GiPocketBow className="ranged-icon me-1" />
-					) : action.attack_type === 'Melee or Ranged' ? (
-						<GiThrownSpear />
-					) : (
-						<GiTwirlCenter />
-					)}{' '}
-				</div>
-				<div>
-					<h4 className="action-title">{action.name}</h4>
-					{action.name_subtext ? (
-						<p className="action-subtext">{action.name_subtext}</p>
-					) : null}
-				</div>
-			</div>
-			<div>
-				{action.attack_type === 'Melee' ||
-				action.attack_type === 'Ranged' ? (
-					<MeleeRangeButtons
-						action={action}
-						handleToHit={handleToHit}
-						handleDealDamage={handleDealDamage}
-					/>
-				) : action.damage ? (
-					<SpellButtons
-						action={action}
-						handleDealDamage={handleDealDamage}
-					/>
-				) : (
-					<button
-						id="addStatusBtn"
-						className="action-btn btn btn-outline-secondary card-btn btn-sm ms-1"
-						onClick={() => handleConditions(action)}
-					>
-						<GiTwirlCenter /> View Action
-					</button>
-				)}
-			</div>
+			{action.attack_type === 'Info' ? (
+				<p className="m-0 action-description">
+					<span className="action-title">{action.name}</span>
+					{'. '}
+					{action.desc}
+				</p>
+			) : (
+				<>
+					<div className="d-flex align-items-center m-0">
+						<div className="d-flex alignt-items-center me-1">
+							{action.attack_type === 'Melee' ? (
+								<GiBattleAxe />
+							) : action.attack_type === 'Ranged' ? (
+								<GiPocketBow className="ranged-icon me-1" />
+							) : action.attack_type === 'Melee or Ranged' ? (
+								<GiThrownSpear />
+							) : (
+								<GiTwirlCenter />
+							)}{' '}
+						</div>
+						<div>
+							<h4 className="action-title">{action.name}</h4>
+							{action.name_subtext ? (
+								<p className="action-subtext">
+									{action.name_subtext}
+								</p>
+							) : null}
+						</div>
+					</div>
+					<div>
+						{action.attack_type === 'Melee' ||
+						action.attack_type === 'Ranged' ? (
+							<MeleeRangeButtons
+								action={action}
+								handleToHit={handleToHit}
+								handleDealDamage={handleDealDamage}
+							/>
+						) : action.damage ? (
+							<SpellButtons
+								action={action}
+								handleDealDamage={handleDealDamage}
+							/>
+						) : (
+							<button
+								id="addStatusBtn"
+								className="action-btn btn btn-outline-secondary card-btn btn-sm ms-1"
+								onClick={() => handleConditions(action)}
+							>
+								<GiTwirlCenter /> View Action
+							</button>
+						)}
+					</div>
+				</>
+			)}
 		</div>
 	));
 };
