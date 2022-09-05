@@ -15,6 +15,10 @@ class AuthService {
 		return !!token && !this.isTokenExpired(token);
 	}
 
+	isGuest() {
+		// Checks to see if the user is in guest mode
+	}
+
 	isTokenExpired(token) {
 		try {
 			const decoded = decode(token);

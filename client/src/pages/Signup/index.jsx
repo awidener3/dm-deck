@@ -65,7 +65,9 @@ const SignUp = () => {
 							onChange={handleChange}
 							required
 						/>
-						<FormText>We'll never share your email with anyone else.</FormText>
+						<FormText>
+							We'll never share your email with anyone else.
+						</FormText>
 					</FormGroup>
 					<FormGroup>
 						<FormLabel>
@@ -84,8 +86,11 @@ const SignUp = () => {
 					<FormGroup>
 						<FormLabel>
 							Password{' '}
-							{formState.password !== formState.confirm_password && (
-								<span className="invalid">Passwords do not match</span>
+							{formState.password !==
+								formState.confirm_password && (
+								<span className="invalid">
+									Passwords do not match
+								</span>
 							)}
 						</FormLabel>
 						<FormControl
@@ -96,7 +101,9 @@ const SignUp = () => {
 							onChange={handleChange}
 							required
 						/>
-						<FormText>Must contain at least one letter and one number</FormText>
+						<FormText>
+							Must contain at least one letter and one number
+						</FormText>
 					</FormGroup>
 					<FormGroup>
 						<FormLabel>Confirm Password</FormLabel>
@@ -110,10 +117,16 @@ const SignUp = () => {
 					</FormGroup>
 
 					<Link to={'/login'}>Have an account? Login!</Link>
-					<br />
-					<Button className="mt-2" variant="primary" type="submit">
-						Signup
-					</Button>
+
+					<div className="d-flex justify-content-center">
+						<Button
+							className="mt-2"
+							variant="primary"
+							type="submit"
+						>
+							Signup
+						</Button>
+					</div>
 				</Form>
 			</div>
 		</div>

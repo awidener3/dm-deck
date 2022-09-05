@@ -62,41 +62,54 @@ const App = () => {
 
 	return (
 		<ApolloProvider client={client}>
+			{/* Controls all routes in the application */}
 			<Router>
 				<div className="App" data-theme={theme}>
 					<Header theme={theme} handleTheme={switchTheme} />
 
 					<Routes>
 						<Route path="/" element={<Home />} />
+
 						<Route
 							path="/battle-select"
 							element={<BattleSelect />}
 						/>
+
 						<Route
 							path="/collection/:collectionId"
 							element={<Collection />}
 						/>
 						<Route path="/battle/:battleId" element={<Battle />} />
+
 						<Route
 							path="/battle-builder"
 							element={<BattleBuilder />}
 						/>
+
 						<Route
 							path="/character-builder"
 							element={<CharacterBuilder />}
 						/>
+
 						<Route
 							path="/monster-builder"
 							element={<MonsterBuilder />}
 						/>
+
 						<Route path="/legal" element={<Legal />} />
+
 						<Route path="/login" element={<Login />} />
+
 						<Route path="/me" element={<Profile />} />
+
 						<Route
 							path="/profile/:username"
 							element={<Profile />}
 						/>
+
 						<Route path="/signup" element={<Signup />} />
+
+						{/* 404 route */}
 						<Route
 							path="/*"
 							element={
