@@ -11,7 +11,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import Auth from 'utils/auth';
-import changelog from 'changelog';
 import './header.scss';
 
 const Header = ({ theme, handleTheme }) => {
@@ -19,7 +18,7 @@ const Header = ({ theme, handleTheme }) => {
 	return (
 		<>
 			{/* Version text underneath logo */}
-			<p className="m-0 version-text">{changelog.current_version}</p>
+			<p className="m-0 version-text">v0.1.7</p>
 
 			<Navbar
 				expanded={expanded}
@@ -48,6 +47,7 @@ const Header = ({ theme, handleTheme }) => {
 						>
 							Home
 						</Link>
+
 						{/* Logged in nav links */}
 						{Auth.loggedIn() && (
 							<>
@@ -102,25 +102,69 @@ const Header = ({ theme, handleTheme }) => {
 							</>
 						)}
 
-						{/* Logged out nav links */}
-						{!Auth.loggedIn() && (
+						{localStorage.getItem('guest_id') && (
 							<>
 								<Link
-									to="/login"
+									to="/battle-select"
 									className="custom-nav-link m-2"
 									onClick={() => setExpanded(false)}
 								>
-									Login
+									Battles
 								</Link>
+								<NavDropdown
+									title="Build"
+									menuVariant="dark"
+									className="nav-dropdown ms-2"
+								>
+									<LinkContainer
+										className="link-container"
+										to="/battle-builder"
+										onClick={() => setExpanded(false)}
+									>
+										<NavItem className="ms-2">
+											Battle Builder
+										</NavItem>
+									</LinkContainer>
+									<LinkContainer
+										className="link-container"
+										to="/character-builder"
+										onClick={() => setExpanded(false)}
+									>
+										<NavItem className="ms-2">
+											Character Builder
+										</NavItem>
+									</LinkContainer>
+								</NavDropdown>
 								<Link
-									to="/signup"
+									to="/guest"
 									className="custom-nav-link m-2"
 									onClick={() => setExpanded(false)}
 								>
-									Signup
+									Profile
 								</Link>
 							</>
 						)}
+
+						{/* Logged out nav links */}
+						{!Auth.loggedIn() &&
+							!localStorage.getItem('guest_id') && (
+								<>
+									<Link
+										to="/login"
+										className="custom-nav-link m-2"
+										onClick={() => setExpanded(false)}
+									>
+										Login
+									</Link>
+									<Link
+										to="/signup"
+										className="custom-nav-link m-2"
+										onClick={() => setExpanded(false)}
+									>
+										Signup
+									</Link>
+								</>
+							)}
 
 						{/* Other links (legal, bug reports, etc.) */}
 						<NavDropdown

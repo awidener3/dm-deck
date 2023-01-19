@@ -27,7 +27,7 @@ const Login = () => {
 		console.log('Attempting to log in as a guest');
 		const guestId = uuidv4();
 		localStorage.setItem('guest_id', guestId);
-		navigate('/profile/guest');
+		navigate('/guest');
 	};
 
 	const handleFormSubmit = async (e) => {

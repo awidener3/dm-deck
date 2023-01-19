@@ -8,18 +8,19 @@ import {
 	ApolloProvider,
 	createHttpLink,
 } from '@apollo/client';
-import Header from './components/Header';
-import Home from './pages/Home';
-import Battle from './pages/Battle';
-import BattleSelect from './pages/BattleSelect';
-import BattleBuilder from './pages/BattleBuilder';
+import Header from 'components/Header';
+import Home from 'pages/Home';
+import Battle from 'pages/Battle';
+import BattleSelect from 'pages/BattleSelect';
+import BattleBuilder from 'pages/BattleBuilder';
 import CharacterBuilder from 'pages/CharacterBuilder';
-import MonsterBuilder from './pages/MonsterBuilder';
-import Legal from './pages/Legal';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Profile from './pages/Profile';
+import MonsterBuilder from 'pages/MonsterBuilder';
+import Legal from 'pages/Legal';
+import Login from 'pages/Login';
+import Signup from 'pages/Signup';
+import Profile from 'pages/Profile';
 import Collection from 'pages/BattleSelect/Collection';
+import GuestProfile from 'pages/GuestProfile';
 import './App.scss';
 
 const httpLink = createHttpLink({
@@ -101,6 +102,8 @@ const App = () => {
 						<Route path="/login" element={<Login />} />
 
 						<Route path="/me" element={<Profile />} />
+
+						<Route path="/guest" element={<GuestProfile />} />
 
 						<Route
 							path="/profile/:username"
