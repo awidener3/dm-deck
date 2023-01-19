@@ -1,7 +1,7 @@
 // Hero Card
 .hero {
 	// Styling
-	padding: 20px;
+	padding: 10px;
 	color: var(--card-text);
 	border: var(--card-hero-border);
 	outline: var(--card-hero-outline);
@@ -9,8 +9,8 @@
 	background-color: var(--card-background);
 
 	// Sizing
-	width: 10rem;
-	min-height: 15rem;
+	width: 150px;
+	min-height: 240px;
 	border-radius: 0.5rem;
 
 	// Positioning
@@ -73,6 +73,7 @@
 	}
 }
 
+// User deletion div
 .danger-zone {
 	$red: #dd0c0c;
 	color: $red;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
 	Form,
 	FormGroup,
@@ -13,11 +13,22 @@ import Auth from 'utils/auth';
 import ErrorMessage from './ErrorMessage';
 import { FiLogIn } from 'react-icons/fi';
 import './login.scss';
+import { v4 as uuidv4 } from 'uuid';
 
 const Login = () => {
+	const navigate = useNavigate();
+
 	const [formState, setFormState] = useState({ email: '', password: '' });
 	const [formStatus, setFormStatus] = useState('');
 	const [login, { loading, error }] = useMutation(LOGIN);
+
+	const handleGuest = async (e) => {
+		// logs in with a guest account
+		console.log('Attempting to log in as a guest');
+		const guestId = uuidv4();
+		localStorage.setItem('guest_id', guestId);
+		navigate('/guest');
+	};
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
@@ -62,8 +73,8 @@ const Login = () => {
 							required
 						/>
 						<Form.Text>
-							We'll never share your email with anyone else, because we don't
-							know how...
+							We'll never share your email with anyone else,
+							because we don't know how...
 						</Form.Text>
 					</FormGroup>
 					<FormGroup className="mb-2">
@@ -77,7 +88,14 @@ const Login = () => {
 						/>
 					</FormGroup>
 					<Link to={'/signup'}>No account? Signup!</Link>
-					<div className="d-flex justify-content-center">
+					<div className="d-flex justify-content-around">
+						<Button
+							className="mt-2"
+							variant="success"
+							onClick={handleGuest}
+						>
+							Continue as Guest
+						</Button>
 						<Button
 							className="mt-2 d-flex align-items-center"
 							variant="success"

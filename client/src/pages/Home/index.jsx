@@ -1,5 +1,4 @@
 import Links from './Links';
-import Changelog from './Changelog';
 import './home.scss';
 
 const Home = () => {
@@ -22,8 +21,6 @@ const Home = () => {
 				</p>
 
 				<Links />
-
-				<Changelog />
 			</section>
 		</>
 	);
