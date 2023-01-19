@@ -20,7 +20,7 @@ const Login = () => {
 
 	const [formState, setFormState] = useState({ email: '', password: '' });
 	const [formStatus, setFormStatus] = useState('');
-	const [login, { loading, error }] = useMutation(LOGIN);
+	const [login, { loading }] = useMutation(LOGIN);
 
 	const handleGuest = async (e) => {
 		// logs in with a guest account

@@ -17,15 +17,15 @@ const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 	const processActions = (actions) => {
 		let newActions = [];
 
-		actions.map((action) => {
+		actions.forEach((action) => {
 			let newAction = {
 				desc: action.desc,
 				attack_bonus: action.attack_bonus,
 			};
 
 			// Process name - checks to see if an actions name has brackets after (i.e. Recharge [5-6])
-			if (action.name.match(/\(([^\)]*)\)/)) {
-				let extraInfo = action.name.match(/\(([^\)]*)\)/);
+			if (action.name.match(/\(([^)]*)\)/)) {
+				let extraInfo = action.name.match(/\(([^)]*)\)/);
 				newAction.name = action.name.replace(extraInfo[0], '').trim();
 				newAction.name_subtext = extraInfo[0];
 			} else {
@@ -95,9 +95,7 @@ const Actions = ({ monster, handleRollDice, battleOrder, setbattleOrder }) => {
 		return newActions;
 	};
 
-	const [actions, setActions] = useState(() =>
-		processActions(monster.actions)
-	);
+	const [actions] = useState(() => processActions(monster.actions));
 
 	// Roll a d20 and add monsters attack bonus, if any
 	const handleToHit = (attack_bonus) => {

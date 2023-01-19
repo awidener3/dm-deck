@@ -2,10 +2,7 @@ import { Alert, Button } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
 import { QUERY_ME, QUERY_USER_CHARACTERS } from '../../utils/queries';
-import {
-	UPDATE_CHARACTER,
-	DELETE_CHARACTER,
-} from 'utils/mutations/characterMutations';
+import { DELETE_CHARACTER } from 'utils/mutations/characterMutations';
 import { REMOVE_USER } from 'utils/mutations';
 import Card from './ProfileCard';
 import WarningModal from './WarningModal';

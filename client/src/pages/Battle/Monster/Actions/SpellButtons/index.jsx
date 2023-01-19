@@ -1,4 +1,4 @@
-import { GiMineExplosion, GiPointySword } from 'react-icons/gi';
+import { GiMineExplosion } from 'react-icons/gi';
 import './spellButton.scss';
 
 const SpellButtons = ({ action, handleDealDamage }) => {

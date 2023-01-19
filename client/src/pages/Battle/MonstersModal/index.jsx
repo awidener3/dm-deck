@@ -3,7 +3,6 @@ import { Modal, ModalHeader } from 'react-bootstrap';
 import { GiGoblinHead } from 'react-icons/gi';
 import MonsterSelect from './MonsterSelect';
 import SelectedMonster from './SelectedMonster';
-import { useEffect } from 'react';
 import useLocalStorage from 'use-local-storage';
 
 const MonstersModal = ({

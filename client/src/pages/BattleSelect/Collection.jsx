@@ -25,7 +25,7 @@ const Collection = () => {
 
 	useEffect(() => {
 		refetch();
-	}, []);
+	});
 
 	const handleRemoveFromCollection = async (battle) => {
 		console.log(battle._id);
