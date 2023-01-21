@@ -88,6 +88,11 @@ const App = () => {
 						/>
 
 						<Route
+							path="/battle-builder/:battleId"
+							element={<BattleBuilder />}
+						/>
+
+						<Route
 							path="/character-builder"
 							element={<CharacterBuilder />}
 						/>

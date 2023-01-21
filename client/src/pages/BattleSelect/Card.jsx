@@ -7,7 +7,7 @@ import { ListGroup, ListGroupItem } from 'react-bootstrap';
 const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 	let navigate = useNavigate();
 
-	const handleClick = (e) => {
+	const handleClick = () => {
 		navigate(`/battle/${battle._id}`);
 	};
 
@@ -35,12 +35,11 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 			draggable={draggable}
 			onDragStart={(e) => startDrag(e, battle._id)}
 		>
-			<section className="card battle-card p-3">
+			<section className="card battle-card">
 				<div className="card-content" onClick={handleClick}>
-					<h2 className="battle-card-title text-center mb-1 border-bottom">
-						{battle.name}
-					</h2>
+					<h2 className="battle-card-title">{battle.name}</h2>
 
+					{/* Stats about the battle (i.e. Difficulty, Total XP) */}
 					<div className="card-body">
 						<Summary battle={battle} />
 
@@ -61,9 +60,9 @@ const Card = ({ battle, startDrag = null, handleDeleteBattle, draggable }) => {
 						<FiTrash2 size={20} />
 					</button>
 					<Link
-						className="card-btn btn btn-outline-secondary disabled m-1"
+						className="card-btn btn btn-outline-secondary m-1"
 						title="Edit Card"
-						to={`/battle/${battle._id}`}
+						to={`/battle-builder/${battle._id}`}
 					>
 						<RiEditLine size={20} />
 					</Link>

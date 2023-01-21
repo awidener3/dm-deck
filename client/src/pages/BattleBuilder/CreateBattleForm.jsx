@@ -16,8 +16,9 @@ import './battleBuilder.scss';
 
 const CreateBattleForm = ({
 	setBattleName,
+	battleName,
 	heroes,
-	currentHeroes,
+	selectedHeroes,
 	handleSelectHero,
 	handleSelectMonster,
 	handleRemoveHero,
@@ -27,7 +28,7 @@ const CreateBattleForm = ({
 
 	return (
 		<div className="m-md-4 container">
-			{/* battle name */}
+			{/* Battle name */}
 			<Form className="battle-form">
 				<FormGroup>
 					<FormLabel>Encounter Name</FormLabel>
@@ -36,13 +37,14 @@ const CreateBattleForm = ({
 						className="form-control battle-name-input"
 						placeholder="Name your encounter..."
 						maxLength={25}
+						value={battleName}
 						onChange={(e) => setBattleName(e.target.value.trim())}
 					/>
 					<FormText>25 characters max.</FormText>
 				</FormGroup>
 			</Form>
 
-			{/* hero table */}
+			{/* Hero table */}
 			<FormLabel className="mt-2">Character Select</FormLabel>
 			<Container className="creature-grid">
 				<Row>
@@ -58,11 +60,13 @@ const CreateBattleForm = ({
 					</Col>
 					<Col md={1} xs="auto"></Col>
 				</Row>
-				{heroes.map((hero, index) => (
+
+				{/* Map through heroes and add a row to the table */}
+				{heroes.map((hero) => (
 					<Row
 						key={hero._id}
 						className={
-							currentHeroes.includes(hero)
+							selectedHeroes.some((h) => h._id === hero._id)
 								? 'creature-row mb-1 py-2 d-flex align-items-center selected'
 								: 'creature-row mb-1 py-2 d-flex align-items-center'
 						}
@@ -82,7 +86,7 @@ const CreateBattleForm = ({
 							<p className="text-center row-text">{hero.level}</p>
 						</Col>
 						<Col xs="auto" className="ms-auto">
-							{!currentHeroes.includes(hero) ? (
+							{!selectedHeroes.some((h) => h._id === hero._id) ? (
 								<button
 									type="button"
 									className="btn btn-outline-success btn-sm m-0"

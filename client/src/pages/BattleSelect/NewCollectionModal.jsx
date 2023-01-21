@@ -8,7 +8,7 @@ import {
 	FormLabel,
 	FormControl,
 } from 'react-bootstrap';
-import { ADD_COLLECTION } from 'utils/mutations';
+import { ADD_COLLECTION } from 'utils/mutations/battleMutations';
 import { QUERY_USER_COLLECTIONS } from 'utils/queries/userQueries';
 
 const importAll = (r) => {

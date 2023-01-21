@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
-import { QUERY_COLLECTION } from 'utils/queries/battleQueries';
 import Card from './Card';
 import PageHeader from 'components/PageHeader';
-import { useEffect } from 'react';
+import { QUERY_COLLECTION } from 'utils/queries/battleQueries';
 import {
 	DELETE_COLLECTION,
 	REMOVE_BATTLE_FROM_COLLECTION,
-} from 'utils/mutations';
+} from 'utils/mutations/battleMutations';
 
 const Collection = () => {
 	let { collectionId } = useParams();
@@ -23,36 +22,36 @@ const Collection = () => {
 
 	const collection = data?.collection || {};
 
-	useEffect(() => {
-		refetch();
-	});
-
+	/**
+	 * Removes a battle from a collection
+	 * @function handleRemoveFromCollection
+	 * @param {Object} battle Battle being deleted
+	 */
 	const handleRemoveFromCollection = async (battle) => {
-		console.log(battle._id);
 		try {
-			const { data } = await removeBattleFromCollection({
+			await removeBattleFromCollection({
 				variables: {
 					battleId: battle._id,
 					collectionId: collection._id,
 				},
 			});
-			console.log('✅ Success!', data);
 			refetch();
 		} catch (e) {
-			console.log('Error removing battle from collection');
-			console.log(e);
+			console.error(e);
 		}
 	};
 
+	/**
+	 * Deletes a collection
+	 * @function handleDeleteCollection
+	 */
 	const handleDeleteCollection = async () => {
 		try {
-			const { data } = await deleteCollection({
+			await deleteCollection({
 				variables: { collectionId: collection._id },
 			});
-			console.log('✅ Success!', data);
 			window.location.assign('/battle-select');
 		} catch (e) {
-			console.log('Error deleting collection');
 			console.error(e);
 		}
 	};

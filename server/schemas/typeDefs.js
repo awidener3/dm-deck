@@ -362,7 +362,13 @@ const typeDefs = gql`
 			monster_slugs: [String]
 		): Battle
 
-		updateBattle(battleId: ID!, name: String): Battle
+		updateBattle(
+			battleId: ID!
+			name: String
+			userId: ID!
+			heroes: [ID]
+			monster_slugs: [String]
+		): Battle
 
 		deleteBattle(battleId: ID!): Battle
 

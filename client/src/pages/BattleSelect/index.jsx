@@ -7,7 +7,10 @@ import {
 	QUERY_USER_BATTLES,
 	QUERY_USER_COLLECTIONS,
 } from 'utils/queries/userQueries';
-import { DELETE_BATTLE, ADD_BATTLE_TO_COLLECTION } from 'utils/mutations';
+import {
+	DELETE_BATTLE,
+	ADD_BATTLE_TO_COLLECTION,
+} from 'utils/mutations/battleMutations';
 
 import './battleSelect.scss';
 import Deck from './Deck';

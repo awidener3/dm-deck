@@ -36,6 +36,7 @@ export const QUERY_COLLECTION = gql`
 export const QUERY_BATTLE = gql`
 	query Battle($battleId: ID!) {
 		battle(battleId: $battleId) {
+			name
 			heroes {
 				_id
 				type

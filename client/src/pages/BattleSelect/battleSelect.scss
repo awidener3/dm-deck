@@ -5,6 +5,7 @@
 	background-color: var(--background-secondary);
 	display: flex;
 	flex-direction: column;
+
 	.deck-container {
 		display: flex;
 		overflow: auto;
@@ -18,10 +19,12 @@
 	height: 13rem;
 	border-radius: 0.5rem;
 	transition: transform 0.2s;
+
 	.plus-button {
 		font-size: 4rem;
-		color: #6b6b6b;
+		color: $dark-gray;
 	}
+
 	&:hover {
 		transform: scale(1.03);
 	}
@@ -38,11 +41,13 @@
 	padding: 20px;
 	background-color: var(--background-secondary);
 	position: relative;
+
 	.battle-deck-title {
 		color: white;
 		font-size: 1.3rem;
 		background-color: rgba(0, 0, 0, 0.418);
 	}
+
 	.battle-deck-card-number {
 		position: absolute;
 		display: flex;
@@ -57,20 +62,23 @@
 		height: 30px;
 		background-color: black;
 	}
+
 	.nested-deck,
 	.double-nested-deck {
 		position: absolute;
 		width: 9rem;
 		min-height: 13rem;
-		border: 1px solid #d4d4d4;
+		border: 1px solid $light-gray;
 		border-radius: 0.5rem;
-		background-color: #6b6b6b;
+		background-color: $dark-gray;
 	}
+
 	.nested-deck {
 		top: 3px;
 		left: 3px;
 		z-index: -1;
 	}
+
 	.double-nested-deck {
 		top: 6px;
 		left: 6px;
@@ -81,44 +89,58 @@
 .battle-card {
 	width: 18rem;
 	min-height: 26rem;
+	padding: 16px;
 	border: var(--card-border);
 	outline: var(--card-outline);
 	color: var(--card-text);
 	background-color: var(--card-background);
 	outline-offset: -5px;
 	border-radius: 0.5rem;
+	cursor: pointer;
+
 	.battle-card-title {
+		text-align: center;
 		font-size: 1.5rem;
-		margin: 0;
+		margin: 0 0 4px 0;
+		border-bottom: $gray-border;
 	}
+
 	.card-body {
 		padding: 0;
+
 		.form-check-label {
 			font-size: 0.75rem;
 			text-decoration: line-through;
 		}
+
 		.summary-stat {
 			color: var(--card-text-secondary);
 			font-size: 0.75rem;
 			font-weight: 500;
 			margin: 0;
+
 			.total-xp {
 				color: var(--card-text);
 				font-weight: 700;
 			}
+
 			.challenge-rating-display {
 				font-weight: 700;
 				padding: 0 5px;
 			}
+
 			.easy {
 				color: #0ea559;
 			}
+
 			.medium {
 				color: #f5a623;
 			}
+
 			.hard {
 				color: #e45a1d;
 			}
+
 			.deadly {
 				color: #d54f4f;
 			}
@@ -128,9 +150,11 @@
 			margin: 0;
 			font-size: 0.8rem;
 		}
+
 		.summary-list {
 			max-height: 240px;
 			overflow-y: auto;
+
 			.list-item {
 				color: var(--card-text);
 				background-color: var(--card-background);
@@ -138,31 +162,38 @@
 				padding: 0;
 				font-size: 0.75rem;
 			}
+
 			@media screen and (max-width: $sm) {
 				max-height: 90px;
 			}
 		}
 	}
+
 	@media screen and (max-width: 664px) {
 		width: 10rem;
 		min-height: 16rem;
+
 		.battle-card-title {
 			font-size: 1rem;
 		}
+
 		.card-btn {
 			display: flex;
 			padding: 2px;
 		}
+
 		.summary-stat {
 			font-size: 0.5rem;
 			font-weight: 700;
 			color: #6b6b6b;
 			margin: 0;
+
 			.challenge-rating-display {
 				font-weight: 700;
 				padding: 0 5px;
 			}
 		}
+
 		.creature-container {
 			display: flex;
 			justify-content: space-around;
@@ -170,13 +201,16 @@
 			padding-top: 8px;
 			gap: 5px;
 		}
+
 		.creature-list {
 			width: 50%;
 		}
+
 		.summary-list {
 			height: 60px;
 			overflow-y: auto;
 		}
+
 		.list-item {
 			overflow: hidden;
 			white-space: nowrap;
@@ -190,6 +224,7 @@
 	bottom: 2rem;
 	right: 2rem;
 	z-index: 2;
+
 	.create-btn {
 		width: 50px;
 		height: 50px;
@@ -201,11 +236,13 @@
 		align-items: center;
 		color: white;
 		transition: transform 0.2s ease-in-out;
+
 		@media screen and (min-width: 1200px) {
 			width: 65px;
 			height: 65px;
 		}
 	}
+
 	.create-btn:hover {
 		transform: scale(1.1);
 	}
@@ -217,16 +254,20 @@
 	justify-content: center;
 	height: 440px;
 	overflow: auto;
+
 	img {
 		margin: 2px;
 		border-radius: 0.3rem;
+
 		&:hover {
 			cursor: pointer;
 		}
 	}
+
 	.selected {
 		outline: 3px solid #7a1205;
 	}
+
 	.not-selected {
 		opacity: 0.6;
 	}
