@@ -15,8 +15,8 @@ import {
 } from 'utils/mutations/characterMutations';
 import { QUERY_USER_CHARACTERS, QUERY_ME } from 'utils/queries/userQueries';
 
-import races from 'assets/json/player_races.json';
-import classes from 'assets/json/player_classes.json';
+import races from 'assets/json/player_races_full.json';
+import classes from 'assets/json/player_classes_full.json';
 import './characterBuilder.scss';
 import PageHeader from 'components/PageHeader';
 
@@ -79,7 +79,6 @@ const CharacterBuilder = () => {
 					hitPoints: parseInt(values.hit_points),
 				},
 			});
-			console.log(`✅ Successfully updated ${values.character_name}!`);
 			setValues({
 				character_name: '',
 				player_name: '',
@@ -111,10 +110,6 @@ const CharacterBuilder = () => {
 				},
 			});
 
-			console.log(
-				`✅ Successfully added ${values.character_name} to ${user.username}'s bag of holding!`
-			);
-
 			setValues({
 				character_name: '',
 				player_name: '',
@@ -133,19 +128,25 @@ const CharacterBuilder = () => {
 	};
 
 	const getPlayerRaces = () => {
-		return races.map((race) => (
-			<option key={race.name} value={race.name}>
-				{race.name}
-			</option>
-		));
+		return races
+			.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0))
+			.map((race) => (
+				<option key={race.name} value={race.name}>
+					{race.name}
+				</option>
+			));
 	};
 
 	const getPlayerClasses = () => {
-		return classes.map((item) => (
-			<option key={item.class} value={item.class}>
-				{item.class}
-			</option>
-		));
+		return classes
+			.sort((a, b) =>
+				a.class > b.class ? 1 : b.class > a.class ? -1 : 0
+			)
+			.map((item) => (
+				<option key={item.class} value={item.class}>
+					{item.class}
+				</option>
+			));
 	};
 
 	if (loading) return <div>Loading...</div>;

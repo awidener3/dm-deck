@@ -1,5 +1,15 @@
 import { gql } from '@apollo/client';
 
+/**
+ * Mutations for "Battles" and "Collections"
+ *
+ * Contains CRUD operations:
+ * ADD_BATTLE, UPDATE_BATTLE, DELETE_BATTLE, ADD_COLLECTION, DELETE_COLLECTION, ADD_BATTLE_TO_COLLECTION, REMOVE_BATTLE_FROM_COLLECTION
+ */
+
+/**
+ * BATTLES
+ */
 export const ADD_BATTLE = gql`
 	mutation AddBattle(
 		$name: String!
@@ -62,6 +72,10 @@ export const DELETE_BATTLE = gql`
 	}
 `;
 
+/**
+ * COLLECTIONS
+ */
+
 export const ADD_COLLECTION = gql`
 	mutation AddCollection(
 		$name: String!
@@ -79,6 +93,14 @@ export const ADD_COLLECTION = gql`
 	}
 `;
 
+export const DELETE_COLLECTION = gql`
+	mutation DeleteCollection($collectionId: ID!) {
+		deleteCollection(collectionId: $collectionId) {
+			name
+		}
+	}
+`;
+
 export const ADD_BATTLE_TO_COLLECTION = gql`
 	mutation AddBattleToCollection($battleId: ID!, $collectionId: ID!) {
 		addBattleToCollection(
@@ -90,14 +112,6 @@ export const ADD_BATTLE_TO_COLLECTION = gql`
 			battles {
 				_id
 			}
-		}
-	}
-`;
-
-export const DELETE_COLLECTION = gql`
-	mutation DeleteCollection($collectionId: ID!) {
-		deleteCollection(collectionId: $collectionId) {
-			name
 		}
 	}
 `;

@@ -1,5 +1,12 @@
 import { gql } from '@apollo/client';
 
+/**
+ * Mutations for "User"
+ *
+ * Contains CRUD operations:
+ * ADD_USER, LOGIN, UPDATE_USER, REMOVE_USER
+ */
+
 export const ADD_USER = gql`
 	mutation addUser($username: String!, $email: String!, $password: String!) {
 		addUser(username: $username, email: $email, password: $password) {

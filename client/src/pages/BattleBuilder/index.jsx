@@ -5,7 +5,7 @@ import {
 	QUERY_ME,
 	QUERY_USER_CHARACTERS,
 	QUERY_USER_BATTLES,
-} from 'utils/queries';
+} from 'utils/queries/userQueries';
 import { ADD_BATTLE, UPDATE_BATTLE } from 'utils/mutations/battleMutations';
 import { QUERY_BATTLE } from 'utils/queries/battleQueries';
 

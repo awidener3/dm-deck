@@ -1,5 +1,12 @@
 import { gql } from '@apollo/client';
 
+/**
+ * Mutations for "Characters"
+ *
+ * Contains CRUD operations:
+ * ADD_CHARACTER, UPDATE_CHARACTER, DELETE_CHARACTER
+ */
+
 export const ADD_CHARACTER = gql`
 	mutation addCharacter(
 		$userId: ID!

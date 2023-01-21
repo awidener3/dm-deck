@@ -1,10 +1,12 @@
-import { Alert, Button } from 'react-bootstrap';
+import { Alert, Button, Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-import { QUERY_ME, QUERY_USER_CHARACTERS } from '../../utils/queries';
+import { QUERY_ME, QUERY_USER_CHARACTERS } from 'utils/queries/userQueries';
 import { DELETE_CHARACTER } from 'utils/mutations/characterMutations';
-import { REMOVE_USER } from 'utils/mutations';
-import Card from './ProfileCard';
+import { REMOVE_USER } from 'utils/mutations/userMutations';
+import { FiTrash2 } from 'react-icons/fi';
+import { RiEditLine } from 'react-icons/ri';
 import WarningModal from './WarningModal';
 import { useState } from 'react';
 import './profile.scss';
@@ -115,19 +117,82 @@ const Profile = () => {
 			</Alert>
 
 			{/* Character cards */}
-			<section>
+			<section className="characters">
 				<h2>Your Characters</h2>
-				<div className="d-flex flex-wrap justify-content-center">
-					{characters.map((character) => (
-						<Card
-							key={character._id}
-							creature={character}
-							cardStyle={character.type}
-							setShowWarningModal={setShowWarningModal}
-							setSelected={setSelected}
-						/>
+				<Container className="character-table">
+					<Row>
+						<Col lg={6} md={7} xs={4} className="grid-header">
+							{' '}
+							Name
+						</Col>
+						<Col md={3} s={4} xs={4} className="grid-header">
+							Race/Class
+						</Col>
+						<Col md="auto" xs={1} className="grid-header">
+							Level
+						</Col>
+						<Col md={1} xs="auto"></Col>
+					</Row>
+
+					{/* Map through heroes and add a row to the table */}
+					{characters.map((hero) => (
+						<Row
+							key={hero._id}
+							className="character-row mb-1 py-2 d-flex align-items-center"
+						>
+							<Col
+								xl={6}
+								lg={6}
+								md={7}
+								xs={4}
+								className="border-end"
+							>
+								<h3 className="row-title">
+									{hero.character_name}{' '}
+								</h3>
+								<p className="row-subtitle">
+									{hero.player_name}
+								</p>
+							</Col>
+							<Col md={3} s={4} xs={4} className="border-end">
+								<p className="row-text">
+									{hero.race} {hero.class}
+								</p>
+							</Col>
+							<Col lg={1} md="auto" xs={1}>
+								<p className="text-center row-text">
+									{hero.level}
+								</p>
+							</Col>
+							<Col xs="auto" className="ms-auto">
+								<Link
+									className="card-btn btn btn-outline-secondary m-1"
+									title="Edit character"
+									to={'/character-builder'}
+									state={hero} // send creature data to edit form
+								>
+									<RiEditLine size={20} />
+								</Link>
+								<button
+									className="card-btn btn btn-outline-danger m-1"
+									title="Delete character"
+									onClick={() => {
+										setSelected(hero);
+										setShowWarningModal(true);
+									}}
+								>
+									<FiTrash2 size={20} />
+								</button>
+							</Col>
+						</Row>
 					))}
-				</div>
+
+					<Row className="add-row mb-1 py-2 d-flex align-items-center text-center">
+						<Link to={'/character-builder'}>
+							+ Create New Character
+						</Link>
+					</Row>
+				</Container>
 			</section>
 
 			{/* <section>
@@ -173,5 +238,13 @@ const Profile = () => {
 		</section>
 	);
 };
+
+/*<Card
+    key={character._id}
+    creature={character}
+    cardStyle={character.type}
+    setShowWarningModal={setShowWarningModal}
+    setSelected={setSelected}
+  />*/
 
 export default Profile;

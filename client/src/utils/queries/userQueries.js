@@ -1,7 +1,14 @@
 import { gql } from '@apollo/client';
 
-// Update JWT in Apollo Global Headers
-// 'Authorization' 'Bearer <token>'
+// * Update JWT in Apollo Global Headers
+// * 'Authorization' 'Bearer <token>'
+
+/**
+ * Queries for "User"
+ *
+ * Contains:
+ * QUERY_ME, QUERY_USER_CHARACTERS, QUERY_USER_BATTLES, QUERY_USER_COLLECTIONS
+ */
 
 // Gets logged in user
 export const QUERY_ME = gql`
@@ -10,6 +17,30 @@ export const QUERY_ME = gql`
 			_id
 			username
 			email
+		}
+	}
+`;
+
+// * not in use
+export const QUERY_USERS = gql`
+	query users {
+		users {
+			_id
+			username
+			email
+			password
+		}
+	}
+`;
+
+// * not in use
+export const QUERY_USER = gql`
+	query User($username: String!) {
+		user(username: $username) {
+			_id
+			username
+			email
+			password
 		}
 	}
 `;

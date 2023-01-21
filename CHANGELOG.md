@@ -3,6 +3,7 @@
 ## v0.1.7
 * Added ability to edit or delete your created characters.
 * Added ability to delete your account.
+* Added ability to edit an existing battle.
 
 ## v0.1.6
 * Various bug fixes across the app.

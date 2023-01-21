@@ -1,37 +1,11 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_COLLECTION = gql`
-	query Collection($collectionId: ID!) {
-		collection(collectionId: $collectionId) {
-			_id
-			name
-			background_img
-			battles {
-				_id
-				name
-				heroes {
-					_id
-					type
-					character_name
-					player_name
-					level
-					race
-					class
-					armor_class
-					hit_points
-				}
-				monsters {
-					name
-					size
-					type
-					subtype
-					group
-					challenge_rating
-				}
-			}
-		}
-	}
-`;
+/**
+ * Queries for "Battles" and "Collections"
+ *
+ * Contains:
+ * QUERY_BATTLE, QUERY_COLLECTION,
+ */
 
 export const QUERY_BATTLE = gql`
 	query Battle($battleId: ID!) {
@@ -128,6 +102,39 @@ export const QUERY_BATTLE = gql`
 				document__slug
 				document__title
 				document__license_url
+			}
+		}
+	}
+`;
+
+export const QUERY_COLLECTION = gql`
+	query Collection($collectionId: ID!) {
+		collection(collectionId: $collectionId) {
+			_id
+			name
+			background_img
+			battles {
+				_id
+				name
+				heroes {
+					_id
+					type
+					character_name
+					player_name
+					level
+					race
+					class
+					armor_class
+					hit_points
+				}
+				monsters {
+					name
+					size
+					type
+					subtype
+					group
+					challenge_rating
+				}
 			}
 		}
 	}
