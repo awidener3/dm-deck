@@ -6,8 +6,6 @@ const { Battle } = require('../models/Battle');
 const { Collection } = require('../models/Collection');
 const { signToken } = require('../utils/auth');
 
-const axios = require('axios');
-
 const resolvers = {
 	Query: {
 		// Gets all users
@@ -32,20 +30,8 @@ const resolvers = {
 		battle: async (parent, { battleId }) => {
 			const battle = await Battle.findById({ _id: battleId })
 				.populate('userId')
-				.populate('heroes');
-
-			// Using the data found in monster_slugs, fetch full monster data from open5e API
-			await Promise.all(
-				battle.monster_slugs.map(async (slug) => {
-					try {
-						const open5eUrl = `https://api.open5e.com/monsters/${slug}`;
-						const { data } = await axios.get(open5eUrl);
-						battle.monsters.push(await data);
-					} catch (err) {
-						console.error(err);
-					}
-				})
-			);
+				.populate('heroes')
+				.populate('monsters');
 
 			// Adds numbers after duplicate monsters (i.e. Goblin, Goblin 2, Goblin 3)
 			if (battle.monsters.length > 1) {
@@ -78,23 +64,13 @@ const resolvers = {
 					populate: {
 						path: 'heroes',
 					},
-				});
-
-			await Promise.all(
-				collection.battles.map((battle) => {
-					return Promise.all(
-						battle.monster_slugs.map(async (slug) => {
-							try {
-								const open5eUrl = `https://api.open5e.com/monsters/${slug}`;
-								const { data } = await axios.get(open5eUrl);
-								battle.monsters.push(await data);
-							} catch (err) {
-								console.error(err);
-							}
-						})
-					);
 				})
-			);
+				.populate({
+					path: 'battles',
+					populate: {
+						path: 'monsters',
+					},
+				});
 
 			return collection;
 		},
@@ -102,29 +78,16 @@ const resolvers = {
 		characters: async (parent, args) => {
 			return Character.find().populate('userId');
 		},
+		monsters: async (parent, args) => {
+			return Monster.find();
+		},
 		// Gets all battles by context user
 		userBattles: async (parent, args, context) => {
 			const battles = await Battle.find({ userId: context.user._id })
 				.populate('userId')
-				.populate('heroes');
+				.populate('heroes')
+				.populate('monsters');
 
-			// Using the data found in monster_slugs, fetch full monster data from open5e API
-			// This has to be wrapped in two Promise.all()'s since it first maps the battles, then the slugs
-			await Promise.all(
-				battles.map((battle) => {
-					return Promise.all(
-						battle.monster_slugs.map(async (slug) => {
-							try {
-								const open5eUrl = `https://api.open5e.com/monsters/${slug}`;
-								const { data } = await axios.get(open5eUrl);
-								battle.monsters.push(await data);
-							} catch (err) {
-								console.error(err);
-							}
-						})
-					);
-				})
-			);
 			return battles;
 		},
 		// Gets all collections by context user
@@ -240,10 +203,16 @@ const resolvers = {
 			throw new AuthenticationError('Not logged in');
 		},
 		// Updates a battle
-		updateBattle: async (parent, { battleId, name }, context) => {
+		updateBattle: async (parent, args, context) => {
 			return await Battle.findByIdAndUpdate(
-				battleId,
-				{ $set: { name } },
+				args.battleId,
+				{
+					$set: {
+						name: args.name,
+						heroes: args.heroes,
+						monsters: args.monsters,
+					},
+				},
 				{ new: true }
 			).populate('userId');
 		},

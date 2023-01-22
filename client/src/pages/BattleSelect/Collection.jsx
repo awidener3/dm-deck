@@ -8,6 +8,7 @@ import {
 	DELETE_COLLECTION,
 	REMOVE_BATTLE_FROM_COLLECTION,
 } from 'utils/mutations/battleMutations';
+import Loading from 'components/Loading';
 
 const Collection = () => {
 	let { collectionId } = useParams();
@@ -56,7 +57,7 @@ const Collection = () => {
 		}
 	};
 
-	if (loading) return <p>Loading</p>;
+	if (loading) return <Loading />;
 
 	return (
 		<>

@@ -108,8 +108,7 @@ const BattleSelect = () => {
 		}
 	};
 
-	if (networkStatus === NetworkStatus.refetch)
-		return <h3 className="text-center p-4">📮 Refetching!</h3>;
+	if (networkStatus === NetworkStatus.refetch) return <Loading />;
 	if (user_loading || battles_loading) return <Loading />;
 	if (!user?.username) return <NotAuthorized />;
 	if (user_error)

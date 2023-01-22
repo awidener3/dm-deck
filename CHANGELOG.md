@@ -4,6 +4,7 @@
 * Added ability to edit or delete your created characters.
 * Added ability to delete your account.
 * Added ability to edit an existing battle.
+* Removed Open5e api dependency, data is now read from SRD reference JSON file.
 
 ## v0.1.6
 * Various bug fixes across the app.

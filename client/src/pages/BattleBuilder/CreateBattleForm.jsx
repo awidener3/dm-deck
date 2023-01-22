@@ -8,7 +8,6 @@ import {
 	Row,
 	Col,
 } from 'react-bootstrap';
-import useFetchMonsters from '../../hooks/useFetchMonsters';
 import { getXp } from '../../utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
 
@@ -19,13 +18,11 @@ const CreateBattleForm = ({
 	battleName,
 	heroes,
 	selectedHeroes,
+	monsters,
 	handleSelectHero,
 	handleSelectMonster,
 	handleRemoveHero,
 }) => {
-	// The data from the open5e API call
-	const { monsterData, setMonsterData } = useFetchMonsters();
-
 	return (
 		<div className="m-md-4 container">
 			{/* Battle name */}
@@ -114,107 +111,83 @@ const CreateBattleForm = ({
 				</Row>
 			</Container>
 
-			{/* monsters */}
+			{/* Monsters */}
 			<FormLabel className="mt-2">Monster Select</FormLabel>
 			<FormGroup>
 				<FormControl
 					type="text"
 					placeholder="Search for a monster"
 					className="form-control monster-search-input"
-					value={monsterData.slug}
-					onChange={(e) =>
-						setMonsterData({ ...monsterData, slug: e.target.value })
-					}
 				/>
-				<FormText>
-					Only shows 10 results. If your search does not return your
-					monster, try being specific (i.e. Adult Green Dragon)
-				</FormText>
 			</FormGroup>
 
-			{monsterData.results?.results && (
-				<Container className="mt-2 creature-grid">
-					<Row>
-						<Col
-							lg={8}
-							md={9}
-							sm={8}
-							xs={6}
-							className="grid-header"
-						>
-							{' '}
-							Monster
+			<Container className="mt-2 creature-grid">
+				<Row>
+					<Col lg={8} md={9} sm={8} xs={6} className="grid-header">
+						{' '}
+						Monster
+					</Col>
+					<Col
+						lg={1}
+						md="auto"
+						sm={1}
+						xs={2}
+						className="text-center grid-header"
+					>
+						CR
+					</Col>
+					<Col
+						lg={1}
+						md="auto"
+						xs={1}
+						className="text-center grid-header"
+					>
+						XP
+					</Col>
+					<Col xs="auto"></Col>
+				</Row>
+
+				{monsters.map((monster) => (
+					<Row
+						key={monster.name}
+						className="creature-row mb-1 py-2 d-flex align-items-center"
+					>
+						<Col lg={8} md={9} sm={8} xs={6} className="border-end">
+							<div>
+								<h3 className="row-title">{monster.name} </h3>
+								<p className="row-subtitle">
+									{monster.size} {monster.type}
+								</p>
+							</div>
 						</Col>
 						<Col
 							lg={1}
 							md="auto"
 							sm={1}
 							xs={2}
-							className="text-center grid-header"
+							className="border-end"
 						>
-							CR
+							<p className="text-center row-text">
+								{monster.challenge_rating}
+							</p>
 						</Col>
-						<Col
-							lg={1}
-							md="auto"
-							xs={1}
-							className="text-center grid-header"
-						>
-							XP
+						<Col lg={1} md="auto" xs={1}>
+							<p className="text-center row-text">
+								{getXp(monster)}
+							</p>
 						</Col>
-						<Col xs="auto"></Col>
+						<Col xs="auto" className="ms-auto pe-2">
+							<button
+								type="button"
+								className="btn btn-outline-success btn-sm m-0"
+								onClick={() => handleSelectMonster(monster)}
+							>
+								ADD
+							</button>
+						</Col>
 					</Row>
-
-					{monsterData.results.results.map((monster) => (
-						<Row
-							key={monster.slug}
-							className="creature-row mb-1 py-2 d-flex align-items-center"
-						>
-							<Col
-								lg={8}
-								md={9}
-								sm={8}
-								xs={6}
-								className="border-end"
-							>
-								<div>
-									<h3 className="row-title">
-										{monster.name}{' '}
-									</h3>
-									<p className="row-subtitle">
-										{monster.size} {monster.type}
-									</p>
-								</div>
-							</Col>
-							<Col
-								lg={1}
-								md="auto"
-								sm={1}
-								xs={2}
-								className="border-end"
-							>
-								<p className="text-center row-text">
-									{monster.challenge_rating}
-								</p>
-							</Col>
-							<Col lg={1} md="auto" xs={1}>
-								<p className="text-center row-text">
-									{getXp(monster)}
-								</p>
-							</Col>
-							<Col xs="auto" className="ms-auto pe-2">
-								<button
-									type="button"
-									className="btn btn-outline-success btn-sm m-0"
-									onClick={() => handleSelectMonster(monster)}
-								>
-									ADD
-								</button>
-							</Col>
-						</Row>
-					))}
-				</Container>
-			)}
+				))}
+			</Container>
 		</div>
 	);
 };

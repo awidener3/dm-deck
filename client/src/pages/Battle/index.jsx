@@ -19,6 +19,7 @@ import {
 } from 'react-icons/fa';
 import 'App.scss';
 import './battle.scss';
+import Loading from 'components/Loading';
 
 const Battle = () => {
 	const [battleOrder, setbattleOrder] = useState(null);
@@ -184,7 +185,7 @@ const Battle = () => {
 		});
 	};
 
-	if (loading) return <div>Loading...</div>;
+	if (loading) return <Loading />;
 	if (error) return `Error! ${error}`;
 
 	return (

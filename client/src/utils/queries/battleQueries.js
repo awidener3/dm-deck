@@ -23,24 +23,15 @@ export const QUERY_BATTLE = gql`
 				hit_points
 			}
 			monsters {
-				slug
 				name
 				size
 				type
 				subtype
-				group
 				alignment
 				armor_class
-				armor_desc
 				hit_points
 				hit_dice
-				speed {
-					walk
-					swim
-					climb
-					fly
-					burrow
-				}
+				speed
 				strength
 				dexterity
 				constitution
@@ -53,27 +44,24 @@ export const QUERY_BATTLE = gql`
 				intelligence_save
 				wisdom_save
 				charisma_save
+				acrobatics
+				animal_handling
+				arcana
+				athletics
+				deception
+				history
+				insight
+				intimidation
+				investigation
+				medicine
+				nature
 				perception
-				skills {
-					acrobatics
-					animal_handling
-					arcana
-					athletics
-					deception
-					history
-					insight
-					intimidation
-					investigation
-					medicine
-					nature
-					perception
-					performance
-					persuasion
-					religion
-					sleight_of_hand
-					stealth
-					survival
-				}
+				performance
+				persuasion
+				religion
+				sleight_of_hand
+				stealth
+				survival
 				damage_vulnerabilities
 				damage_resistances
 				damage_immunities
@@ -88,20 +76,23 @@ export const QUERY_BATTLE = gql`
 					damage_dice
 					damage_bonus
 				}
-				reactions
-				legendary_desc
-				legendary_actions
+				reactions {
+					name
+					desc
+					attack_bonus
+				}
+				legendary_actions {
+					name
+					desc
+					attack_bonus
+				}
 				special_abilities {
 					name
 					desc
-					damage_dice
 					attack_bonus
+					damage_dice
+					damage_bonus
 				}
-				spell_list
-				img_main
-				document__slug
-				document__title
-				document__license_url
 			}
 		}
 	}
@@ -132,7 +123,6 @@ export const QUERY_COLLECTION = gql`
 					size
 					type
 					subtype
-					group
 					challenge_rating
 				}
 			}

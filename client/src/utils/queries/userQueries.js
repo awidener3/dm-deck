@@ -74,9 +74,7 @@ export const QUERY_USER_BATTLES = gql`
 				class
 				level
 			}
-			monster_slugs
 			monsters {
-				slug
 				name
 				challenge_rating
 			}

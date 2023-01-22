@@ -1,0 +1,82 @@
+{
+	"slug": "",
+	"name": "",
+	"size": "",
+	"type": "",
+	"subtype": "",
+	"group": "",
+	"alignment": "",
+	"armor_class": 0,
+	"armor_desc": 0,
+	"hit_points": 0,
+	"hit_dice": "",
+	"speed": {
+		"walk": 0,
+		"swim": 0,
+		"climb": 0,
+		"fly": 0
+	},
+	"strength": 0,
+	"dexterity": 0,
+	"constitution": 0,
+	"intelligence": 0,
+	"wisdom": 0,
+	"charisma": 0,
+	"strength_save": 0,
+	"dexterity_save": 0,
+	"constitution_save": 0,
+	"intelligence_save": 0,
+	"wisdom_save": 0,
+	"charisma_save": 0,
+	"perception": 0,
+	"skills": {
+		"acrobatics": 0,
+		"animal_handling": 0,
+		"arcana": 0,
+		"athletics": 0,
+		"deception": 0,
+		"history": 0,
+		"insight": 0,
+		"intimidation": 0,
+		"investigation": 0,
+		"medicine": 0,
+		"nature": 0,
+		"perception": 0,
+		"performance": 0,
+		"persuasion": 0,
+		"religion": 0,
+		"sleight_of_hand": 0,
+		"stealth": 0,
+		"survival": 0
+	},
+	"damage_vulnerabilities": "",
+	"damage_resistances": "",
+	"damage_immunities": "",
+	"condition_immunities": "",
+	"senses": "",
+	"languages": "",
+	"challenge_rating": 0,
+	"actions": [
+		{
+			"name": "",
+			"desc": "",
+			"attack_bonus": "",
+			"damage_dice": "",
+			"damage_bonus": ""
+		}
+	],
+	"reactions": "",
+	"legendary_desc": "",
+	"legendary_actions": "",
+	"special_abilities": [
+		{
+			"name": "",
+			"desc": ""
+		}
+	],
+	"spell_list": [],
+	"img_main": "",
+	"document__slug": "",
+	"document__title": "",
+	"document__license_url": ""
+}

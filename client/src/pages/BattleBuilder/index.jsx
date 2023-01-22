@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
-import {
-	QUERY_ME,
-	QUERY_USER_CHARACTERS,
-	QUERY_USER_BATTLES,
-} from 'utils/queries/userQueries';
+import { QUERY_ME, QUERY_USER_BATTLES } from 'utils/queries/userQueries';
+import { GET_BATTLE_BUILDER_DATA } from 'utils/queries/battleBuilderQueries';
 import { ADD_BATTLE, UPDATE_BATTLE } from 'utils/mutations/battleMutations';
 import { QUERY_BATTLE } from 'utils/queries/battleQueries';
 
 import CreateBattleSummary from './CreateBattleSummary';
 import CreateBattleForm from './CreateBattleForm';
 import PageHeader from 'components/PageHeader';
+import Loading from 'components/Loading';
 
 /**
- * @route /battle-builder
+ * Main view for the "Battle Builder"
+ *
+ * todo: currently, updating a battle has some bugs with monsters - most likely having to do with _id's?
  */
 const BattleBuilder = () => {
 	let { battleId } = useParams();
@@ -37,6 +37,11 @@ const BattleBuilder = () => {
 		}
 	);
 
+	console.log(selectedHeroes);
+	console.log(selectedMonsters);
+
+	const { loading, error, data } = useQuery(GET_BATTLE_BUILDER_DATA);
+
 	// Database queries
 	const {
 		loading: user_loading,
@@ -44,15 +49,8 @@ const BattleBuilder = () => {
 		data: user_data,
 	} = useQuery(QUERY_ME);
 
-	const {
-		loading: characters_loading,
-		error: characters_error,
-		data: characters_data,
-	} = useQuery(QUERY_USER_CHARACTERS);
-
 	// Query Results
 	const user = user_data?.me || user_data?.user || [];
-	const characters = characters_data?.userCharacters || [];
 
 	// Database mutations
 	const [addBattle] = useMutation(ADD_BATTLE, {
@@ -70,7 +68,9 @@ const BattleBuilder = () => {
 	const handleSave = async () => {
 		try {
 			const heroes = selectedHeroes.map((hero) => hero._id);
-			const monsters = selectedMonsters.map((monster) => monster.slug);
+			const monsters = selectedMonsters.map((monster) => monster._id);
+
+			console.log('🚍', heroes, monsters);
 
 			let mutationResponse;
 
@@ -81,7 +81,7 @@ const BattleBuilder = () => {
 						name: battleName || 'New Battle',
 						userId: user._id,
 						heroes: heroes,
-						monster_slugs: monsters,
+						monsters: monsters,
 					},
 				});
 			} else {
@@ -90,7 +90,7 @@ const BattleBuilder = () => {
 						name: battleName || 'New Battle',
 						userId: user._id,
 						heroes: heroes,
-						monster_slugs: monsters,
+						monsters: monsters,
 					},
 				});
 			}
@@ -100,13 +100,12 @@ const BattleBuilder = () => {
 			console.warn('💥 Battle was not created...', {
 				name: battleName,
 				heroes: selectedHeroes,
-				monster_slugs: selectedMonsters,
+				monsters: selectedMonsters,
 			});
-			console.log('ERROR:', error);
+			console.log(error);
 		}
 	};
 
-	// todo: handleRemoveMonster & handleRemoveHero can be refactored into one function
 	/**
 	 * Removes a monster from the selectedMonsters array
 	 * @function handleRemoveMonster
@@ -143,18 +142,16 @@ const BattleBuilder = () => {
 	};
 
 	const handleSelectHero = (id) => {
-		characters.forEach((hero) => {
+		data.userCharacters.forEach((hero) => {
 			if (hero._id === id && !selectedHeroes.includes(hero))
 				setSelectedHeroes([...selectedHeroes, hero]);
 		});
 	};
 
 	// User validation
-	if (user_loading || characters_loading || battle_loading)
-		return <div>Loading...</div>;
+	if (loading || user_loading || battle_loading) return <Loading />;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (user_error || characters_error || query_battle_error)
-		return <div>ERROR!</div>;
+	if (user_error || error || query_battle_error) return <div>ERROR!</div>;
 
 	return (
 		<div>
@@ -167,8 +164,9 @@ const BattleBuilder = () => {
 				<CreateBattleForm
 					setBattleName={setBattleName}
 					battleName={battleName}
-					heroes={characters}
+					heroes={data.userCharacters}
 					selectedHeroes={selectedHeroes}
+					monsters={data.monsters}
 					handleSelectMonster={handleSelectMonster}
 					handleSelectHero={handleSelectHero}
 					handleRemoveHero={handleRemoveHero}

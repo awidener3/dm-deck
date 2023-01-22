@@ -1,14 +1,51 @@
+import { capitalize } from '../../../utils/utils';
 // Handles all stats within a monsters object
 const renderStats = (monster) => {
-	const checkNull = (monster) => {
-		return !Object.values(monster.skills).every((val) => val === null);
-	};
+	const skills = [
+		'acrobatics',
+		'animal_handling',
+		'arcana',
+		'athletics',
+		'deception',
+		'history',
+		'insight',
+		'intimidation',
+		'investigation',
+		'medicine',
+		'nature',
+		'perception',
+		'performance',
+		'persuasion',
+		'religion',
+		'sleight_of_hand',
+		'stealth',
+		'survival',
+	];
+
+	let skillsArr = [];
+
+	skills.forEach((skill) => {
+		if (monster[skill]) {
+			skillsArr.push(
+				`${capitalize(skill)} ${
+					(monster[skill] < 0 ? '' : '+') + monster[skill]
+				}`
+			);
+		}
+	});
 
 	return (
 		<>
-			{checkNull(monster) && (
+			{/* {checkNull(monster) && (
 				<Stat monster={monster} title={'Skills'} property={'skills'} />
-			)}
+			)} */}
+
+			<div className="d-flex flex-wrap">
+				<p className="stat-text my-0">
+					<span className="stat-title">Skills</span>{' '}
+					{skillsArr.join(', ')}
+				</p>
+			</div>
 
 			{monster.damage_resistances && (
 				<Stat

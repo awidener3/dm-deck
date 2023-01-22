@@ -12,6 +12,7 @@ import { useState } from 'react';
 import './profile.scss';
 import Auth from 'utils/auth';
 import { useEffect } from 'react';
+import Loading from 'components/Loading';
 
 const Profile = () => {
 	const navigate = useNavigate();
@@ -98,7 +99,7 @@ const Profile = () => {
 	};
 
 	// Loading/error handling
-	if (user_loading || characters_loading) return <div>Loading...</div>;
+	if (user_loading || characters_loading) return <Loading />;
 	if (user_error || characters_error) return <div>ERROR!</div>;
 
 	return (

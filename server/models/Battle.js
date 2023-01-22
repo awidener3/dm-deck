@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { characterSchema } = require('./Character');
 const { monsterSchema } = require('./Monster');
 
 const battleSchema = new Schema(
@@ -17,9 +16,13 @@ const battleSchema = new Schema(
 				ref: 'Character',
 			},
 		],
+		monsters: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Monster',
+			},
+		],
 		message: String,
-		monster_slugs: [String],
-		monsters: [monsterSchema],
 	},
 	{
 		toJSON: {
