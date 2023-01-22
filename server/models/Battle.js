@@ -1,6 +1,8 @@
 const { Schema, model } = require('mongoose');
-const { monsterSchema } = require('./Monster');
 
+/**
+ * Schema for a battle, a collection of monsters and heroes
+ */
 const battleSchema = new Schema(
 	{
 		name: String,
@@ -16,6 +18,7 @@ const battleSchema = new Schema(
 				ref: 'Character',
 			},
 		],
+		// Reference to an array of monsters
 		monsters: [
 			{
 				type: Schema.Types.ObjectId,

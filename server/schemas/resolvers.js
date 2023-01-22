@@ -6,26 +6,36 @@ const { Battle } = require('../models/Battle');
 const { Collection } = require('../models/Collection');
 const { signToken } = require('../utils/auth');
 
+/**
+ * Resolvers are responsible for populating the data for a single field in a schema.
+ * When adding a new CRUD operation, the operation needs to be added here.
+ */
+
 const resolvers = {
+	// GET requests
 	Query: {
 		// Gets all users
 		users: async () => {
 			return User.find({});
 		},
+
 		// Gets a user by ID
 		user: async (parent, { userId }) => {
 			const user = User.findById({ _id: userId });
 			return user;
 		},
+
 		// Gets logged in user
 		me: async (parent, args, context) => {
 			if (context.user) return User.findOne({ _id: context.user._id });
 			throw new AuthenticationError('You need to be logged in!');
 		},
+
 		// Gets all battles
 		battles: async (parent, args) => {
 			return Battle.find({}).populate('userId');
 		},
+
 		// Gets a battle by ID + populates with open5e API calls
 		battle: async (parent, { battleId }) => {
 			const battle = await Battle.findById({ _id: battleId })
@@ -102,6 +112,7 @@ const resolvers = {
 		},
 	},
 
+	// CREATE, UPDATE, DELETE requests
 	Mutation: {
 		// Add new user
 		addUser: async (parent, args) => {
@@ -109,6 +120,7 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
+
 		// update user
 		updateUser: async (parent, args, context) => {
 			if (context.user) {
@@ -119,10 +131,12 @@ const resolvers = {
 
 			throw new AuthenticationError('Not logged in');
 		},
+
 		// Remove user
 		removeUser: async (parent, { userId }) => {
 			return User.findOneAndDelete({ _id: userId });
 		},
+
 		// Login
 		login: async (parent, { email, password }) => {
 			const user = await User.findOne({ email });
@@ -142,6 +156,7 @@ const resolvers = {
 			const token = signToken(user);
 			return { token, user };
 		},
+
 		// Adds a character
 		addCharacter: async (parent, args, context) => {
 			if (context.user) {
@@ -152,6 +167,7 @@ const resolvers = {
 
 			throw new AuthenticationError('Not logged in');
 		},
+
 		// Updates a character
 		updateCharacter: async (parent, args, context) => {
 			if (context.user) {
@@ -175,6 +191,7 @@ const resolvers = {
 			}
 			throw new AuthenticationError('Not logged in');
 		},
+
 		// Delete a character
 		deleteCharacter: async (parent, args, context) => {
 			if (context.user) {
@@ -182,7 +199,8 @@ const resolvers = {
 			}
 			throw new AuthenticationError('Not logged in');
 		},
-		// TODO: redo
+
+		// todo: update this when Monster Builder is functional
 		addMonster: async (parent, args, context) => {
 			if (context.user) {
 				const monster = await Monster.create(args);
@@ -195,6 +213,7 @@ const resolvers = {
 
 			throw new AuthenticationError('Not logged in');
 		},
+
 		// Adds a battle
 		addBattle: async (parent, args, context) => {
 			if (context.user) {
@@ -202,6 +221,7 @@ const resolvers = {
 			}
 			throw new AuthenticationError('Not logged in');
 		},
+
 		// Updates a battle
 		updateBattle: async (parent, args, context) => {
 			return await Battle.findByIdAndUpdate(
@@ -216,12 +236,14 @@ const resolvers = {
 				{ new: true }
 			).populate('userId');
 		},
+
 		// Deletes a battle
 		deleteBattle: async (parent, { battleId }, context) => {
 			if (context.user) {
 				return await Battle.findByIdAndDelete(battleId);
 			}
 		},
+
 		// Adds a collection
 		addCollection: async (parent, args, context) => {
 			if (context.user) {
@@ -229,6 +251,7 @@ const resolvers = {
 			}
 			throw new AuthenticationError('Not logged in');
 		},
+
 		// Adds a battle to a collection
 		addBattleToCollection: async (parent, args, context) => {
 			if (context.user) {
@@ -240,6 +263,7 @@ const resolvers = {
 			}
 			throw new AuthenticationError('Not logged in');
 		},
+
 		// Removes a battle from collection
 		removeBattleFromCollection: async (parent, args, context) => {
 			if (context.user) {
@@ -251,6 +275,7 @@ const resolvers = {
 				return collection;
 			}
 		},
+
 		// Updates a collection
 		updateCollection: async (parent, args, context) => {
 			if (context.user) {
@@ -266,6 +291,7 @@ const resolvers = {
 				);
 			}
 		},
+
 		// Deletes a collection
 		deleteCollection: async (parent, { collectionId }, context) => {
 			if (context.user) {

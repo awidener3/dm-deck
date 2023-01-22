@@ -4,12 +4,6 @@ const Legal = () => {
 			<div className="p-4 d-flex flex-column align-items-center container">
 				<h1>Legal Information</h1>
 				<p>
-					Permission to copy, modify and distribute the files
-					collectively known as open5e.com is granted solely through
-					the use of the Open Gaming License, Version 1.0a.
-				</p>
-
-				<p>
 					This material is being released using the Open Gaming
 					License Version 1.0a and you should read and understand the
 					terms of that license before using this material.

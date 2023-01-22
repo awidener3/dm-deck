@@ -1,5 +1,8 @@
 const { Schema, model } = require('mongoose');
 
+/**
+ * Schema for a collection of battles, and the user they are associated with
+ */
 const collectionSchema = new Schema(
 	{
 		name: String,

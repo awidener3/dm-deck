@@ -1,5 +1,10 @@
 const { Schema, model } = require('mongoose');
 
+/**
+ * Schema for a user-created player-character
+ *
+ * todo: add field for "Campaign"
+ */
 const characterSchema = new Schema(
 	{
 		type: {

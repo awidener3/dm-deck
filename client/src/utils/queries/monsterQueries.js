@@ -1,5 +1,11 @@
 import { gql } from '@apollo/client';
 
+/**
+ * General queries for "Monsters"
+ *
+ * Contains:
+ * GET_MONSTERS_BASIC, GET_MONSTERS_DETAILED,
+ */
 // Gets all monsters with basic data
 export const GET_MONSTERS_BASIC = gql`
 	query Monsters {

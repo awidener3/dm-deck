@@ -1,5 +1,8 @@
 import decode from 'jwt-decode';
 
+/**
+ * Authorization service used when handling in user login and logout / authentication
+ */
 class AuthService {
 	getProfile() {
 		return decode(this.getToken());

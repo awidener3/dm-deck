@@ -1,4 +1,9 @@
-// XP by monster CR
+/**
+ * Returns an XP value based on a monsters 'challenge_rating'
+ * @function getXp
+ * @param {Object} monster Monster object
+ * @returns {Number} An xp amount
+ */
 export const getXp = (monster) => {
 	let xp;
 	switch (monster.challenge_rating) {
@@ -111,7 +116,12 @@ export const getXp = (monster) => {
 	return xp;
 };
 
-// Player difficulty threshold
+/**
+ * Returns an array of XP thresholds for each encounter difficulty
+ * @function calculateXpThreshold
+ * @param {Object} hero Hero object
+ * @returns {Array} Array of XP thresholds ["Easy", "Medium", "Hard", "Deadly"]
+ */
 export const calculateXpThreshold = (hero) => {
 	let threshold = [];
 
@@ -183,7 +193,12 @@ export const calculateXpThreshold = (hero) => {
 	return threshold;
 };
 
-// Party difficulty thresholds
+/**
+ * Calculates the threshold for an entire hero party
+ * @function calculatePartyXpThreshold
+ * @param {Array} heroes Array of Hero objects (party)
+ * @returns {Object} An object containing threshold data for each encounter difficulty
+ */
 export const calculatePartyXpThreshold = (heroes) => {
 	let easy = 0;
 	let medium = 0;
@@ -201,7 +216,12 @@ export const calculatePartyXpThreshold = (heroes) => {
 	return { easy, medium, hard, deadly };
 };
 
-// Monster XP without adjustments
+/**
+ * Calculates the base XP gained from an array of monsters
+ * @function calculateBaseMonsterXp
+ * @param {Array} monsters Array of Monster objects
+ * @returns {Number} Base Monster XP
+ */
 export const calculateBaseMonsterXp = (monsters) => {
 	let total = 0;
 
@@ -212,7 +232,12 @@ export const calculateBaseMonsterXp = (monsters) => {
 	return total;
 };
 
-// Monster XP with adjustments
+/**
+ * Adjusts base encounter XP with total number of monsters
+ * @function calculateMonsterXP
+ * @param {Array} monsters Array of Monster objects
+ * @returns {Number} Total XP amount after # of monsters is accounted for
+ */
 export const calculateMonsterXp = (monsters) => {
 	let total = calculateBaseMonsterXp(monsters);
 
@@ -231,7 +256,12 @@ export const calculateMonsterXp = (monsters) => {
 	return total;
 };
 
-// Challenge rating calculation
+/**
+ * Returns a JSX element with the result of an encounters challenge rating
+ * @function getChallengeRating
+ * @param {Object} battle Battle object
+ * @returns {Object} jsx object with the challenge rating of an encounter
+ */
 export const getChallengeRating = (battle) => {
 	const partyThresholds = calculatePartyXpThreshold(battle.heroes);
 	const totalMonsterXp = calculateMonsterXp(battle.monsters);

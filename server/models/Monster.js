@@ -1,5 +1,10 @@
 const { Schema, model } = require('mongoose');
 
+/**
+ * Monster schema for seeded and custom-made monsters
+ *
+ * Includes: action, special abilities, reactions, and legendary actions schemas
+ */
 const actionSchema = new Schema({
 	name: String,
 	desc: String,
@@ -30,6 +35,7 @@ const legendaryActionSchema = new Schema({
 
 const monsterSchema = new Schema(
 	{
+		// Basic data
 		name: String,
 		size: String,
 		type: String,
@@ -39,6 +45,7 @@ const monsterSchema = new Schema(
 		hit_points: Number,
 		hit_dice: String,
 		speed: String,
+		// Ability scores
 		strength: Number,
 		dexterity: Number,
 		constitution: Number,
@@ -51,6 +58,7 @@ const monsterSchema = new Schema(
 		intelligence_save: Number,
 		wisdom_save: Number,
 		charisma_save: Number,
+		// Skills
 		acrobatics: Number,
 		animal_handling: Number,
 		arcana: Number,
@@ -69,6 +77,7 @@ const monsterSchema = new Schema(
 		sleight_of_hand: Number,
 		stealth: Number,
 		survival: Number,
+		// Damage/condition effects
 		damage_vulnerabilities: String,
 		damage_resistances: String,
 		damage_immunities: String,
@@ -76,6 +85,7 @@ const monsterSchema = new Schema(
 		senses: String,
 		languages: String,
 		challenge_rating: String,
+		// Abilities
 		actions: [actionSchema],
 		reactions: [reactionSchema],
 		legendary_actions: [legendaryActionSchema],

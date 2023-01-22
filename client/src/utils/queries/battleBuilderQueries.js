@@ -1,5 +1,11 @@
 import { gql } from '@apollo/client';
 
+/**
+ * Queries for Battle Builder-specific data
+ *
+ * Contains:
+ * GET_BATTLE_BUILDER_DATA
+ */
 export const GET_BATTLE_BUILDER_DATA = gql`
 	query BattleBuilderData {
 		monsters {

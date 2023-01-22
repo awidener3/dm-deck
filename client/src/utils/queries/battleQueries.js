@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 /**
- * Queries for "Battles" and "Collections"
+ * General queries for "Battles" and "Collections"
  *
  * Contains:
  * QUERY_BATTLE, QUERY_COLLECTION,

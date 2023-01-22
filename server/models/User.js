@@ -1,6 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+/**
+ * User schema for users of DMDeck
+ */
 const userSchema = new Schema(
 	{
 		username: {
