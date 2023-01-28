@@ -23,6 +23,7 @@ const BattleBuilder = () => {
 	const [battleName, setBattleName] = useState('');
 	const [selectedHeroes, setSelectedHeroes] = useState([]);
 	const [selectedMonsters, setSelectedMonsters] = useState([]);
+	const [selectedNpcs, setSelectedNpcs] = useState([]);
 
 	const { loading: battle_loading, error: query_battle_error } = useQuery(
 		QUERY_BATTLE,
@@ -66,6 +67,7 @@ const BattleBuilder = () => {
 		try {
 			const heroes = selectedHeroes.map((hero) => hero._id);
 			const monsters = selectedMonsters.map((monster) => monster._id);
+			const npcs = selectedNpcs.map((npc) => npc._id);
 
 			let mutationResponse;
 
@@ -101,11 +103,6 @@ const BattleBuilder = () => {
 		}
 	};
 
-	/**
-	 * Removes a monster from the selectedMonsters array
-	 * @function handleRemoveMonster
-	 * @param {Object} monster Monster object
-	 */
 	const handleRemoveMonster = (monster) => {
 		const updatedArray = selectedMonsters.slice();
 
@@ -119,10 +116,19 @@ const BattleBuilder = () => {
 		setSelectedMonsters(updatedArray);
 	};
 
-	/**
-	 * Removes a hero from the selectedHeroes array
-	 * @param {Object} hero Hero object
-	 */
+	const handleRemoveNpc = (npc) => {
+		const updatedArray = selectedNpcs.slice();
+
+		// Find index of monster being removed
+		const index = updatedArray.findIndex((item) => item === npc);
+
+		// Splice from array
+		updatedArray.splice(index, 1);
+
+		// Updated selectedMonsters variable
+		setSelectedNpcs(updatedArray);
+	};
+
 	const handleRemoveHero = (hero) => {
 		const updatedArray = selectedHeroes.slice();
 		let index = updatedArray.findIndex((item) => item === hero);
@@ -143,6 +149,11 @@ const BattleBuilder = () => {
 		});
 	};
 
+	const handleSelectNpc = (data) => {
+		let updatedArray = [...selectedNpcs, data];
+		setSelectedNpcs(updatedArray);
+	};
+
 	// User validation
 	if (loading || user_loading || battle_loading) return <Loading />;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
@@ -154,9 +165,7 @@ const BattleBuilder = () => {
 				image={`url(${require('assets/images/card_backs/back_4.jpg')})`}
 				pageTitle={'Battle Builder'}
 			/>
-
-			{/* <div className="container d-flex flex-lg-row flex-md-column flex-column py-3"> */}
-			<div className="container d-flex flex-column py-3">
+			<section className="container d-flex flex-column py-3">
 				<CreateBattleForm
 					setBattleName={setBattleName}
 					battleName={battleName}
@@ -165,6 +174,7 @@ const BattleBuilder = () => {
 					monsters={data.monsters}
 					handleSelectMonster={handleSelectMonster}
 					handleSelectHero={handleSelectHero}
+					handleSelectNpc={handleSelectNpc}
 					handleRemoveHero={handleRemoveHero}
 				/>
 
@@ -172,11 +182,13 @@ const BattleBuilder = () => {
 					battleName={battleName}
 					selectedHeroes={selectedHeroes}
 					selectedMonsters={selectedMonsters}
+					selectedNpcs={selectedNpcs}
 					handleRemoveMonster={handleRemoveMonster}
 					handleRemoveHero={handleRemoveHero}
+					handleRemoveNpc={handleRemoveNpc}
 					handleSave={handleSave}
 				/>
-			</div>
+			</section>
 		</div>
 	);
 };

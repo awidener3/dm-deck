@@ -4,13 +4,11 @@ import {
 	FormText,
 	FormControl,
 	FormLabel,
-	Container,
-	Row,
-	Col,
 	Table,
 } from 'react-bootstrap';
 import { getXp } from '../../utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 import './battleBuilder.scss';
 import { useState } from 'react';
@@ -23,16 +21,47 @@ const CreateBattleForm = ({
 	monsters,
 	handleSelectHero,
 	handleSelectMonster,
+	handleSelectNpc,
 	handleRemoveHero,
 }) => {
 	const [monsterSearchInput, setMonsterSearchInput] = useState('');
+	const [npcSearchInput, setNpcSearchInput] = useState('');
+	const [heroTableVisible, setHeroTableVisible] = useState(false);
+	const [npcTableVisible, setNpcTableVisible] = useState(false);
+	const [monsterTableVisible, setMonsterTableVisible] = useState(false);
 
 	const handleMonsterSearchChange = (e) => {
 		setMonsterSearchInput(e.target.value);
 	};
 
+	const handleNpcSearchChange = (e) => {
+		setNpcSearchInput(e.target.value);
+	};
+
+	const toggleTable = (table) => {
+		switch (table) {
+			case 'hero':
+				heroTableVisible
+					? setHeroTableVisible(false)
+					: setHeroTableVisible(true);
+				break;
+			case 'npc':
+				npcTableVisible
+					? setNpcTableVisible(false)
+					: setNpcTableVisible(true);
+				break;
+			case 'monster':
+				monsterTableVisible
+					? setMonsterTableVisible(false)
+					: setMonsterTableVisible(true);
+				break;
+			default:
+				break;
+		}
+	};
+
 	return (
-		<div className="m-md-4 container">
+		<section className="m-md-4 container">
 			{/* Battle name */}
 			<Form className="battle-form">
 				<FormGroup>
@@ -50,8 +79,14 @@ const CreateBattleForm = ({
 			</Form>
 
 			{/* Hero table */}
-			<section className="hero-table-header">
-				<FormLabel className="mt-2">Hero Select</FormLabel>
+			<section
+				className="table-header"
+				onClick={() => toggleTable('hero')}
+			>
+				<FormLabel className="mt-2">
+					{heroTableVisible ? <FaChevronUp /> : <FaChevronDown />}{' '}
+					Hero Select
+				</FormLabel>
 				<Link
 					to={'/character-builder'}
 					className="add-character-btn btn btn-success"
@@ -60,31 +95,71 @@ const CreateBattleForm = ({
 				</Link>
 			</section>
 
-			<HeroTable
-				heroes={heroes}
-				selectedHeroes={selectedHeroes}
-				handleSelectHero={handleSelectHero}
-				handleRemoveHero={handleRemoveHero}
-			/>
+			{heroTableVisible && (
+				<HeroTable
+					heroes={heroes}
+					selectedHeroes={selectedHeroes}
+					handleSelectHero={handleSelectHero}
+					handleRemoveHero={handleRemoveHero}
+				/>
+			)}
+
+			{/* NPC table */}
+			<section
+				className="table-header"
+				onClick={() => toggleTable('npc')}
+			>
+				<FormLabel className="mt-2">
+					{npcTableVisible ? <FaChevronUp /> : <FaChevronDown />} NPC
+					Select (Optional)
+				</FormLabel>
+			</section>
+
+			{npcTableVisible && (
+				<FormGroup>
+					<FormControl
+						type="text"
+						placeholder="Search for an NPC"
+						className="form-control monster-search-input"
+						onChange={handleNpcSearchChange}
+						value={npcSearchInput}
+					/>
+					<CreatureTable
+						monsters={monsters}
+						monsterSearchInput={npcSearchInput}
+						handleSelectMonster={handleSelectNpc}
+					/>
+				</FormGroup>
+			)}
 
 			{/* Monsters */}
-			<FormLabel className="mt-2">Monster Select</FormLabel>
-			<FormGroup>
-				<FormControl
-					type="text"
-					placeholder="Search for a monster"
-					className="form-control monster-search-input"
-					onChange={handleMonsterSearchChange}
-					value={monsterSearchInput}
-				/>
-			</FormGroup>
+			<section
+				className="table-header"
+				onClick={() => toggleTable('monster')}
+			>
+				<FormLabel className="mt-2">
+					{monsterTableVisible ? <FaChevronUp /> : <FaChevronDown />}{' '}
+					Monster Select
+				</FormLabel>
+			</section>
 
-			<MonsterTable
-				monsters={monsters}
-				monsterSearchInput={monsterSearchInput}
-				handleSelectMonster={handleSelectMonster}
-			/>
-		</div>
+			{monsterTableVisible && (
+				<FormGroup>
+					<FormControl
+						type="text"
+						placeholder="Search for a monster"
+						className="form-control monster-search-input"
+						onChange={handleMonsterSearchChange}
+						value={monsterSearchInput}
+					/>
+					<CreatureTable
+						monsters={monsters}
+						monsterSearchInput={monsterSearchInput}
+						handleSelectMonster={handleSelectMonster}
+					/>
+				</FormGroup>
+			)}
+		</section>
 	);
 };
 
@@ -149,7 +224,7 @@ const HeroTable = ({
 	);
 };
 
-const MonsterTable = ({
+const CreatureTable = ({
 	monsters,
 	monsterSearchInput,
 	handleSelectMonster,
