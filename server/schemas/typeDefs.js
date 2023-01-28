@@ -130,7 +130,7 @@ const typeDefs = gql`
 		userId: User # ref User id
 		name: String
 		heroes: [Character] # ref Character id
-		monster_slugs: [String]
+		npcs: [Monster] # ref Monster id
 		monsters: [Monster] # ref Monster id
 		message: String
 	}
@@ -359,6 +359,7 @@ const typeDefs = gql`
 			userId: ID!
 			name: String!
 			heroes: [ID]
+			npcs: [ID]
 			monsters: [ID]
 		): Battle
 
@@ -367,6 +368,7 @@ const typeDefs = gql`
 			name: String
 			userId: ID!
 			heroes: [ID]
+			npcs: [ID]
 			monsters: [ID]
 		): Battle
 

@@ -15,12 +15,14 @@ export const ADD_BATTLE = gql`
 		$name: String!
 		$userId: ID!
 		$heroes: [ID]
+		$npcs: [ID]
 		$monsters: [ID]
 	) {
 		addBattle(
 			name: $name
 			userId: $userId
 			heroes: $heroes
+			npcs: $npcs
 			monsters: $monsters
 		) {
 			_id
@@ -29,6 +31,9 @@ export const ADD_BATTLE = gql`
 				_id
 			}
 			heroes {
+				_id
+			}
+			npcs {
 				_id
 			}
 			monsters {
@@ -44,6 +49,7 @@ export const UPDATE_BATTLE = gql`
 		$name: String!
 		$userId: ID!
 		$heroes: [ID]
+		$npcs: [ID]
 		$monsters: [ID]
 	) {
 		updateBattle(
@@ -51,6 +57,7 @@ export const UPDATE_BATTLE = gql`
 			name: $name
 			userId: $userId
 			heroes: $heroes
+			npcs: $npcs
 			monsters: $monsters
 		) {
 			_id

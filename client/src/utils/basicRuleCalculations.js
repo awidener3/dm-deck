@@ -193,24 +193,47 @@ export const calculateXpThreshold = (hero) => {
 	return threshold;
 };
 
+export const calculateNpcXpThreshold = (npc) => {
+	let threshold = [];
+
+	const xp = getXp(npc);
+
+	threshold[0] = xp * 0.15; // easy
+	threshold[1] = xp * 0.3; // medium
+	threshold[2] = xp * 0.45; // hard
+	threshold[3] = xp * 0.7; // deadly
+
+	return threshold;
+};
+
 /**
  * Calculates the threshold for an entire hero party
  * @function calculatePartyXpThreshold
  * @param {Array} heroes Array of Hero objects (party)
  * @returns {Object} An object containing threshold data for each encounter difficulty
  */
-export const calculatePartyXpThreshold = (heroes) => {
+export const calculatePartyXpThreshold = (heroes, npcs) => {
 	let easy = 0;
 	let medium = 0;
 	let hard = 0;
 	let deadly = 0;
 
-	for (let i = 0; i < heroes.length; i++) {
-		let heroThreshold = calculateXpThreshold(heroes[i]);
-		easy += heroThreshold[0];
-		medium += heroThreshold[1];
-		hard += heroThreshold[2];
-		deadly += heroThreshold[3];
+	heroes.forEach((hero) => {
+		let threshold = calculateXpThreshold(hero);
+		easy += threshold[0];
+		medium += threshold[1];
+		hard += threshold[2];
+		deadly += threshold[3];
+	});
+
+	if (npcs) {
+		npcs.forEach((npc) => {
+			let threshold = calculateNpcXpThreshold(npc);
+			easy += threshold[0];
+			medium += threshold[1];
+			hard += threshold[2];
+			deadly += threshold[3];
+		});
 	}
 
 	return { easy, medium, hard, deadly };
@@ -225,9 +248,9 @@ export const calculatePartyXpThreshold = (heroes) => {
 export const calculateBaseMonsterXp = (monsters) => {
 	let total = 0;
 
-	for (let i = 0; i < monsters.length; i++) {
-		total += getXp(monsters[i]);
-	}
+	monsters.forEach((monster) => {
+		total += getXp(monster);
+	});
 
 	return total;
 };
@@ -263,7 +286,10 @@ export const calculateMonsterXp = (monsters) => {
  * @returns {Object} jsx object with the challenge rating of an encounter
  */
 export const getChallengeRating = (battle) => {
-	const partyThresholds = calculatePartyXpThreshold(battle.heroes);
+	const partyThresholds = calculatePartyXpThreshold(
+		battle.heroes,
+		battle?.npcs
+	);
 	const totalMonsterXp = calculateMonsterXp(battle.monsters);
 
 	if (totalMonsterXp === 0) {

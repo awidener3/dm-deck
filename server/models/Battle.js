@@ -18,6 +18,12 @@ const battleSchema = new Schema(
 				ref: 'Character',
 			},
 		],
+		npcs: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'Monster',
+			},
+		],
 		// Reference to an array of monsters
 		monsters: [
 			{

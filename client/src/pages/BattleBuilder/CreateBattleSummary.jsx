@@ -22,6 +22,7 @@ const CreateBattleSummary = ({
 	const handleGetChallengeRating = () => {
 		let battle = {
 			heroes: selectedHeroes,
+			npcs: selectedNpcs,
 			monsters: selectedMonsters,
 		};
 

@@ -78,6 +78,7 @@ const BattleBuilder = () => {
 						name: battleName || 'New Battle',
 						userId: user._id,
 						heroes: heroes,
+						npcs: npcs,
 						monsters: monsters,
 					},
 				});
@@ -87,6 +88,7 @@ const BattleBuilder = () => {
 						name: battleName || 'New Battle',
 						userId: user._id,
 						heroes: heroes,
+						npcs: npcs,
 						monsters: monsters,
 					},
 				});
@@ -97,6 +99,7 @@ const BattleBuilder = () => {
 			console.warn('💥 Battle was not created...', {
 				name: battleName,
 				heroes: selectedHeroes,
+				npcs: selectedNpcs,
 				monsters: selectedMonsters,
 			});
 			console.log(error);
@@ -157,7 +160,12 @@ const BattleBuilder = () => {
 	// User validation
 	if (loading || user_loading || battle_loading) return <Loading />;
 	if (!user?.username) return <h4>You need to be logged in to see this.</h4>;
-	if (user_error || error || query_battle_error) return <div>ERROR!</div>;
+	if (user_error || error || query_battle_error) {
+		console.log(user_error);
+		console.log(error);
+		console.log(query_battle_error);
+		return <div>ERROR!</div>;
+	}
 
 	return (
 		<div>
