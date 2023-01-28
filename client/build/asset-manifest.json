@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.ab6dc094.css",
-    "main.js": "/static/js/main.fe57e7db.js",
+    "main.css": "/static/css/main.85073380.css",
+    "main.js": "/static/js/main.a552cf97.js",
     "static/js/845.97512762.chunk.js": "/static/js/845.97512762.chunk.js",
     "static/js/787.88b09d28.chunk.js": "/static/js/787.88b09d28.chunk.js",
     "static/media/battle_builder.png": "/static/media/battle_builder.34ba7a8f259939ec1d3d.png",
     "static/media/battle_deck_select.png": "/static/media/battle_deck_select.ec7ea6704b5824ebd370.png",
     "static/media/character_builder.png": "/static/media/character_builder.75d63a62d215bea0f5af.png",
+    "static/media/monster_builder.png": "/static/media/monster_builder.da8add7fa3e577d10f39.png",
     "static/media/back_15.jpg": "/static/media/back_15.e73d51b404c71b08b8bf.jpg",
     "static/media/back_7.jpg": "/static/media/back_7.12bf9c000c59762d5f6a.jpg",
     "static/media/back_4.jpg": "/static/media/back_4.af40f92bd97d7bb118c0.jpg",
@@ -26,13 +27,13 @@
     "static/media/Draconis.ttf": "/static/media/Draconis.a680907cf7417672cfa0.ttf",
     "static/media/dice-roll.mp3": "/static/media/dice-roll.0a4b12767f6ea2a889bc.mp3",
     "index.html": "/index.html",
-    "main.ab6dc094.css.map": "/static/css/main.ab6dc094.css.map",
-    "main.fe57e7db.js.map": "/static/js/main.fe57e7db.js.map",
+    "main.85073380.css.map": "/static/css/main.85073380.css.map",
+    "main.a552cf97.js.map": "/static/js/main.a552cf97.js.map",
     "845.97512762.chunk.js.map": "/static/js/845.97512762.chunk.js.map",
     "787.88b09d28.chunk.js.map": "/static/js/787.88b09d28.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab6dc094.css",
-    "static/js/main.fe57e7db.js"
+    "static/css/main.85073380.css",
+    "static/js/main.a552cf97.js"
   ]
 }

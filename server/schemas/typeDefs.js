@@ -73,6 +73,7 @@ const typeDefs = gql`
 	type Monster {
 		_id: ID
 		name: String
+		source: String
 		size: String
 		type: String
 		subtype: String
@@ -209,6 +210,7 @@ const typeDefs = gql`
 	input MonstersInput {
 		_id: ID
 		name: String
+		source: String
 		size: String
 		type: String
 		subtype: String
@@ -300,6 +302,7 @@ const typeDefs = gql`
 		addMonster(
 			_id: ID
 			name: String
+			source: String
 			size: String
 			type: String
 			subtype: String

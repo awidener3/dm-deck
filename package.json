@@ -8,6 +8,7 @@
 		"develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
 		"install": "cd server && npm i && cd ../client && npm i",
 		"seed": "cd server && npm run seed",
+		"seed:monsters": "cd server && npm run seedMonsters",
 		"build": "cd client && npm run build"
 	},
 	"author": "",
@@ -16,6 +17,7 @@
 		"concurrently": "^5.3.0"
 	},
 	"dependencies": {
+		"html-react-parser": "^3.0.8",
 		"uuid": "^8.3.2"
 	}
 }

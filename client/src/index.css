@@ -21,7 +21,7 @@ code {
 
 #root {
   background-color: var(--background);
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 /* global and LIGHT styling */

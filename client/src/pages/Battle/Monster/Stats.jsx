@@ -1,6 +1,19 @@
 import { capitalize } from '../../../utils/utils';
-// Handles all stats within a monsters object
-const renderStats = (monster) => {
+
+// Returns a <div> with the title of the stat and a description
+const Stat = ({ monster, title, property }) => {
+	const statStr = monster[property];
+
+	return (
+		<div className="d-flex flex-wrap">
+			<p className="stat-text my-0">
+				<span className="stat-title">{title}</span> {statStr}
+			</p>
+		</div>
+	);
+};
+
+const Stats = ({ monster }) => {
 	const skills = [
 		'acrobatics',
 		'animal_handling',
@@ -35,11 +48,8 @@ const renderStats = (monster) => {
 	});
 
 	return (
-		<>
-			{/* {checkNull(monster) && (
-				<Stat monster={monster} title={'Skills'} property={'skills'} />
-			)} */}
-
+		<div className="dmd-card-row dmd-card-stats my-1 border-bottom">
+			{/* Skills */}
 			<div className="d-flex flex-wrap">
 				<p className="stat-text my-0">
 					<span className="stat-title">Skills</span>{' '}
@@ -47,6 +57,7 @@ const renderStats = (monster) => {
 				</p>
 			</div>
 
+			{/* Damage Resistance */}
 			{monster.damage_resistances && (
 				<Stat
 					monster={monster}
@@ -55,68 +66,38 @@ const renderStats = (monster) => {
 					connector={'; '}
 				/>
 			)}
-			{monster.damage_immunities ? (
+
+			{/* Damage Immunities */}
+			{monster.damage_immunities && (
 				<Stat
 					monster={monster}
 					title={'Damage Immunities'}
 					property={'damage_immunities'}
 				/>
-			) : null}
-			{monster.condition_immunities ? (
+			)}
+
+			{/* Condition Immunitites */}
+			{monster.condition_immunities && (
 				<Stat
 					monster={monster}
 					title={'Condition Immunities'}
 					property={'condition_immunities'}
 				/>
-			) : null}
-			{monster.senses ? (
+			)}
+
+			{/* Senses */}
+			{monster.senses && (
 				<Stat monster={monster} title={'Senses'} property={'senses'} />
-			) : null}
-			{monster.languages ? (
+			)}
+
+			{/* Languages */}
+			{monster.languages && (
 				<Stat
 					monster={monster}
 					title={'Languages'}
 					property={'languages'}
 				/>
-			) : null}
-			{monster.proficiency_bones > 0 ? (
-				<p className="stat-text m-0">
-					<span className="stat-title">Proficiency Bonus</span> +
-					{monster.proficiency_bonus}
-				</p>
-			) : null}
-		</>
-	);
-};
-
-const formatSkills = (monster) => {
-	let str = '';
-	for (const skill in monster.skills) {
-		if (monster.skills[skill] !== null) {
-			str += `${skill} +${monster.skills[skill]}, `;
-		}
-	}
-	return str.slice(0, -2);
-};
-
-// Returns a <div> with the title of the stat and a description
-const Stat = ({ monster, title, property, connector = ', ' }) => {
-	return (
-		<div className="d-flex flex-wrap">
-			<p className="stat-text my-0">
-				<span className="stat-title">{title}</span>{' '}
-				{property === 'skills'
-					? formatSkills(monster)
-					: monster[`${property}`]}
-			</p>
-		</div>
-	);
-};
-
-const Stats = ({ monster }) => {
-	return (
-		<div className="dmd-card-row dmd-card-stats my-1 border-bottom">
-			{renderStats(monster)}
+			)}
 		</div>
 	);
 };

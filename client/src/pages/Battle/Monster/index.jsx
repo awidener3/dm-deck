@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react';
 import './monster.scss';
 import Conditions from './Conditions';
 import Circles from './Circles';
@@ -25,6 +24,7 @@ const Monster = ({
 	return (
 		<article className={`wrapper ${cardStyle}`}>
 			<div
+				// Determines if a monster has 0 hit points
 				className={
 					monster.hit_points === 0
 						? 'card monster-card m-3 dead'
@@ -33,6 +33,7 @@ const Monster = ({
 				onMouseDown={handlePointerEvent}
 				onTouchStart={handlePointerEvent}
 			>
+				{/* Allows users to "revive" a monster */}
 				{monster.hit_points === 0 && (
 					<div className="dead-screen">
 						<FaSkull className="dead-icon" />

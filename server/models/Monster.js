@@ -37,6 +37,7 @@ const monsterSchema = new Schema(
 	{
 		// Basic data
 		name: String,
+		source: String,
 		size: String,
 		type: String,
 		subtype: String,

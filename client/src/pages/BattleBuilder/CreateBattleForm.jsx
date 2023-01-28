@@ -149,7 +149,7 @@ const CreateBattleForm = ({
 
 				{monsters.map((monster) => (
 					<Row
-						key={monster.name}
+						key={monster._id}
 						className="creature-row mb-1 py-2 d-flex align-items-center"
 					>
 						<Col lg={8} md={9} sm={8} xs={6} className="border-end">
