@@ -37,9 +37,6 @@ const BattleBuilder = () => {
 		}
 	);
 
-	console.log(selectedHeroes);
-	console.log(selectedMonsters);
-
 	const { loading, error, data } = useQuery(GET_BATTLE_BUILDER_DATA);
 
 	// Database queries
@@ -69,8 +66,6 @@ const BattleBuilder = () => {
 		try {
 			const heroes = selectedHeroes.map((hero) => hero._id);
 			const monsters = selectedMonsters.map((monster) => monster._id);
-
-			console.log('🚍', heroes, monsters);
 
 			let mutationResponse;
 
@@ -160,7 +155,8 @@ const BattleBuilder = () => {
 				pageTitle={'Battle Builder'}
 			/>
 
-			<div className="container d-flex flex-lg-row flex-md-column flex-column py-3">
+			{/* <div className="container d-flex flex-lg-row flex-md-column flex-column py-3"> */}
+			<div className="container d-flex flex-column py-3">
 				<CreateBattleForm
 					setBattleName={setBattleName}
 					battleName={battleName}

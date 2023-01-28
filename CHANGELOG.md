@@ -5,6 +5,7 @@
 * Added ability to delete your account.
 * Added ability to edit an existing battle.
 * Removed Open5e api dependency, data is now read from SRD reference JSON file.
+* Added ability to create a private data repository if a user would like to use custom-made monsters.
 
 ## v0.1.6
 * Various bug fixes across the app.

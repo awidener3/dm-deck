@@ -7,11 +7,13 @@ import {
 	Container,
 	Row,
 	Col,
+	Table,
 } from 'react-bootstrap';
 import { getXp } from '../../utils/basicRuleCalculations';
 import { Link } from 'react-router-dom';
 
 import './battleBuilder.scss';
+import { useState } from 'react';
 
 const CreateBattleForm = ({
 	setBattleName,
@@ -23,6 +25,12 @@ const CreateBattleForm = ({
 	handleSelectMonster,
 	handleRemoveHero,
 }) => {
+	const [monsterSearchInput, setMonsterSearchInput] = useState('');
+
+	const handleMonsterSearchChange = (e) => {
+		setMonsterSearchInput(e.target.value);
+	};
+
 	return (
 		<div className="m-md-4 container">
 			{/* Battle name */}
@@ -42,47 +50,80 @@ const CreateBattleForm = ({
 			</Form>
 
 			{/* Hero table */}
-			<FormLabel className="mt-2">Character Select</FormLabel>
-			<Container className="creature-grid">
-				<Row>
-					<Col lg={6} md={7} xs={4} className="grid-header">
-						{' '}
-						Name
-					</Col>
-					<Col md={3} s={4} xs={4} className="grid-header">
-						Race/Class
-					</Col>
-					<Col md="auto" xs={1} className="grid-header">
-						Level
-					</Col>
-					<Col md={1} xs="auto"></Col>
-				</Row>
+			<section className="hero-table-header">
+				<FormLabel className="mt-2">Hero Select</FormLabel>
+				<Link
+					to={'/character-builder'}
+					className="add-character-btn btn btn-success"
+				>
+					+ Create New Character
+				</Link>
+			</section>
 
-				{/* Map through heroes and add a row to the table */}
+			<HeroTable
+				heroes={heroes}
+				selectedHeroes={selectedHeroes}
+				handleSelectHero={handleSelectHero}
+				handleRemoveHero={handleRemoveHero}
+			/>
+
+			{/* Monsters */}
+			<FormLabel className="mt-2">Monster Select</FormLabel>
+			<FormGroup>
+				<FormControl
+					type="text"
+					placeholder="Search for a monster"
+					className="form-control monster-search-input"
+					onChange={handleMonsterSearchChange}
+					value={monsterSearchInput}
+				/>
+			</FormGroup>
+
+			<MonsterTable
+				monsters={monsters}
+				monsterSearchInput={monsterSearchInput}
+				handleSelectMonster={handleSelectMonster}
+			/>
+		</div>
+	);
+};
+
+const HeroTable = ({
+	heroes,
+	selectedHeroes,
+	handleSelectHero,
+	handleRemoveHero,
+}) => {
+	return (
+		<Table className="table heroes">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Player</th>
+					<th>Race / Class</th>
+					<th>Level</th>
+					<th>Add</th>
+				</tr>
+			</thead>
+
+			{/* Map through heroes and add a row to the table */}
+			<tbody>
 				{heroes.map((hero) => (
-					<Row
+					<tr
 						key={hero._id}
 						className={
 							selectedHeroes.some((h) => h._id === hero._id)
-								? 'creature-row mb-1 py-2 d-flex align-items-center selected'
-								: 'creature-row mb-1 py-2 d-flex align-items-center'
+								? 'selected'
+								: ''
 						}
 					>
-						<Col xl={6} lg={6} md={7} xs={4} className="border-end">
-							<h3 className="row-title">
-								{hero.character_name}{' '}
-							</h3>
-							<p className="row-subtitle">{hero.player_name}</p>
-						</Col>
-						<Col md={3} s={4} xs={4} className="border-end">
-							<p className="row-text">
-								{hero.race} {hero.class}
-							</p>
-						</Col>
-						<Col lg={1} md="auto" xs={1}>
-							<p className="text-center row-text">{hero.level}</p>
-						</Col>
-						<Col xs="auto" className="ms-auto">
+						<td>{hero.character_name}</td>
+						<td>{hero.player_name}</td>
+						<td>
+							{hero.race} / {hero.class}
+						</td>
+						<td>{hero.level}</td>
+						<td xs="auto" className="ms-auto">
 							{!selectedHeroes.some((h) => h._id === hero._id) ? (
 								<button
 									type="button"
@@ -100,83 +141,53 @@ const CreateBattleForm = ({
 									DEL
 								</button>
 							)}
-						</Col>
-					</Row>
+						</td>
+					</tr>
 				))}
+			</tbody>
+		</Table>
+	);
+};
 
-				<Row className="add-row mb-1 py-2 d-flex align-items-center text-center">
-					<Link to={'/character-builder'}>
-						+ Create New Character
-					</Link>
-				</Row>
-			</Container>
+const MonsterTable = ({
+	monsters,
+	monsterSearchInput,
+	handleSelectMonster,
+}) => {
+	const filteredMonsters = monsters.filter((monster) => {
+		if (monsterSearchInput === '') {
+			return monster;
+		} else {
+			return monster.name
+				.toLowerCase()
+				.match(monsterSearchInput.toLowerCase());
+		}
+	});
 
-			{/* Monsters */}
-			<FormLabel className="mt-2">Monster Select</FormLabel>
-			<FormGroup>
-				<FormControl
-					type="text"
-					placeholder="Search for a monster"
-					className="form-control monster-search-input"
-				/>
-			</FormGroup>
-
-			<Container className="mt-2 creature-grid">
-				<Row>
-					<Col lg={8} md={9} sm={8} xs={6} className="grid-header">
-						{' '}
-						Monster
-					</Col>
-					<Col
-						lg={1}
-						md="auto"
-						sm={1}
-						xs={2}
-						className="text-center grid-header"
-					>
-						CR
-					</Col>
-					<Col
-						lg={1}
-						md="auto"
-						xs={1}
-						className="text-center grid-header"
-					>
-						XP
-					</Col>
-					<Col xs="auto"></Col>
-				</Row>
-
-				{monsters.map((monster) => (
-					<Row
-						key={monster._id}
-						className="creature-row mb-1 py-2 d-flex align-items-center"
-					>
-						<Col lg={8} md={9} sm={8} xs={6} className="border-end">
-							<div>
-								<h3 className="row-title">{monster.name} </h3>
-								<p className="row-subtitle">
-									{monster.size} {monster.type}
-								</p>
-							</div>
-						</Col>
-						<Col
-							lg={1}
-							md="auto"
-							sm={1}
-							xs={2}
-							className="border-end"
-						>
-							<p className="text-center row-text">
-								{monster.challenge_rating}
-							</p>
-						</Col>
-						<Col lg={1} md="auto" xs={1}>
-							<p className="text-center row-text">
-								{getXp(monster)}
-							</p>
-						</Col>
-						<Col xs="auto" className="ms-auto pe-2">
+	return (
+		<Table className="table monsters">
+			<thead>
+				<tr>
+					<th>Monster</th>
+					<th>Size / Type</th>
+					<th>Source</th>
+					<th>CR</th>
+					<th>XP</th>
+					<th>Add</th>
+				</tr>
+			</thead>
+			<tbody>
+				{filteredMonsters.map((monster) => (
+					<tr key={monster._id}>
+						<td>{monster.name}</td>
+						<td>
+							{monster.size} / {monster.type}{' '}
+							{monster.subtype && `(${monster.subtype})`}
+						</td>
+						<td>{monster.source}</td>
+						<td>{monster.challenge_rating}</td>
+						<td>{getXp(monster)}</td>
+						<td>
 							<button
 								type="button"
 								className="btn btn-outline-success btn-sm m-0"
@@ -184,11 +195,11 @@ const CreateBattleForm = ({
 							>
 								ADD
 							</button>
-						</Col>
-					</Row>
+						</td>
+					</tr>
 				))}
-			</Container>
-		</div>
+			</tbody>
+		</Table>
 	);
 };
 

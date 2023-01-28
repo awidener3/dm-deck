@@ -30,54 +30,163 @@
 	}
 }
 
-// table shown for characters & monsters
-.creature-grid {
-	.grid-header {
-		font-weight: 500;
+.hero-table-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/****************
+  DEFAULT TABLE
+****************/
+.table {
+	margin-top: 10px;
+	color: var(--text-primary);
+
+	// HEADER
+	thead {
+		width: calc(100% - 1em);
+
+		tr {
+			// TEXT STYLING
+			th {
+				padding: 8px;
+				font-family: 'Mukta Vaani', sans-serif;
+			}
+		}
 	}
-	.creature-row {
-		background-color: var(--form-input-background);
+
+	// BODY
+	tbody {
+		display: block;
+		max-height: 750px;
+		overflow-y: auto;
+
+		// ROW STYLING
+		tr {
+			background-color: var(--form-input-background);
+			margin-top: 4px;
+
+			// DATA STYLING
+			td {
+				border-bottom: none;
+			}
+		}
+	}
+}
+
+/*************
+  HERO TABLE
+**************/
+.table.heroes {
+	thead tr,
+	tbody tr {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr max-content 63px;
+	}
+
+	/*
+    TABLE MEDIA QUERIES
+  */
+	@media screen and (max-width: $md) {
+		thead {
+			tr {
+				grid-template-columns: 1fr 1fr 1fr 63px !important;
+				th {
+					&:nth-child(3) {
+						display: none;
+					}
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				grid-template-columns: 1fr 1fr 1fr 63px !important;
+				td {
+					font-size: 0.8rem;
+
+					&:nth-child(3) {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+/****************
+  MONSTER TABLE
+****************/
+.table.monsters {
+	thead tr,
+	tbody tr {
+		display: grid;
+		grid-template-columns: 2fr 2fr 2fr 1fr 1fr 63px;
+	}
+
+	tbody tr td {
+		h3,
+		p {
+			margin: 0;
+		}
+	}
+
+	/*
+    TABLE MEDIA QUERIES
+  */
+	@media screen and (max-width: $md) {
+		thead {
+			tr {
+				grid-template-columns: 2fr 1fr 1fr 63px !important;
+				th {
+					&:nth-child(2),
+					&:nth-child(3) {
+						display: none;
+					}
+				}
+			}
+		}
+
+		tbody {
+			max-height: 500px;
+
+			tr {
+				grid-template-columns: 2fr 1fr 1fr 63px !important;
+				td {
+					font-size: 0.8rem;
+
+					&:nth-child(2),
+					&:nth-child(3) {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+// "button" at bottom of hero grid
+.add-row {
+	background-color: var(--form-input-background);
+	a {
 		color: var(--text-primary);
-		.row-title {
-			margin: 0;
-			font-size: 1.3rem;
-			font-family: 'Mukta Vaani', sans-serif;
-		}
-		.row-subtitle {
-			margin: 0;
-			color: var(--text-primary);
-			line-height: 1;
-			font-weight: 400;
-		}
-		.row-text {
-			margin: 0;
-			font-size: 1rem;
-		}
-		@media screen and (max-width: $sm) {
-			.row-title {
-				font-size: 1rem;
-			}
-			.row-subtitle,
-			.row-text {
-				font-size: 0.8rem;
-			}
-		}
+		transition: color 0.2s;
 	}
-	// "button" at bottom of hero grid
-	.add-row {
-		background-color: var(--form-input-background);
-		a {
-			color: var(--text-primary);
-			transition: color 0.2s;
-		}
-		a:hover {
-			color: #3f62d3;
-		}
+	a:hover {
+		color: #3f62d3;
 	}
-	// green highlight when hero is selected
-	.selected {
-		background-color: var(--form-input-selected);
-	}
+}
+
+.add-character-btn {
+	font-weight: 700;
+	font-family: 'Asul', sans-serif;
+	padding: 10px 15px;
+}
+
+// green highlight when hero is selected
+.selected {
+	background-color: var(--form-input-selected) !important;
 }
 
 // card found at bottom/side of battle builder

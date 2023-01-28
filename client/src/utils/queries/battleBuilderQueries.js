@@ -11,6 +11,7 @@ export const GET_BATTLE_BUILDER_DATA = gql`
 		monsters {
 			_id
 			name
+			source
 			challenge_rating
 			size
 			type
