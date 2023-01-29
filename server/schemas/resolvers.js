@@ -41,26 +41,31 @@ const resolvers = {
 			const battle = await Battle.findById({ _id: battleId })
 				.populate('userId')
 				.populate('heroes')
+				.populate('npcs')
 				.populate('monsters');
 
-			// Adds numbers after duplicate monsters (i.e. Goblin, Goblin 2, Goblin 3)
-			if (battle.monsters.length > 1) {
-				for (let i = 0; i < battle.monsters.length; i++) {
-					let num = 1;
-					let current = battle.monsters[i];
+			const copy = JSON.parse(JSON.stringify(battle));
+			console.log(copy);
 
-					for (let j = i + 1; j < battle.monsters.length; j++) {
-						if (battle.monsters[j].name === current.name) {
-							battle.monsters[j].name = `${
-								battle.monsters[j].name
-							} ${num + 1}`;
-							num++;
-						}
+			let num = 1;
+
+			for (let i = 0; i < copy.monsters.length; i++) {
+				const current = copy.monsters[i];
+
+				for (let j = i; j < copy.monsters.length; j++) {
+					const compare = copy.monsters[j];
+					if (current.name === compare.name) {
+						current.name = `${current.name} ${num}`;
+						num++;
+
+						break;
 					}
-					num = 1;
 				}
 			}
-			return battle;
+
+			console.log(copy);
+
+			return copy;
 		},
 		collections: async (parent, args) => {
 			return Collection.find({}).populate('battles').populate('userId');
@@ -73,6 +78,12 @@ const resolvers = {
 					path: 'battles',
 					populate: {
 						path: 'heroes',
+					},
+				})
+				.populate({
+					path: 'battles',
+					populate: {
+						path: 'npcs',
 					},
 				})
 				.populate({
@@ -96,15 +107,14 @@ const resolvers = {
 			const battles = await Battle.find({ userId: context.user._id })
 				.populate('userId')
 				.populate('heroes')
+				.populate('npcs')
 				.populate('monsters');
 
 			return battles;
 		},
 		// Gets all collections by context user
 		userCollections: async (parent, args, context) => {
-			return Collection.find({ userId: context.user._id }).populate(
-				'battles'
-			);
+			return Collection.find({ userId: context.user._id }).populate('battles');
 		},
 		// Gets all collections by context user
 		userCharacters: async (parent, args, context) => {

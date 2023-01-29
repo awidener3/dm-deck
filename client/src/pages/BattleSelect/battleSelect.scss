@@ -182,6 +182,14 @@
 			padding: 2px;
 		}
 
+		.card-body {
+			font-size: 0.8rem;
+
+			.roster {
+				display: none;
+			}
+		}
+
 		.summary-stat {
 			font-size: 0.5rem;
 			font-weight: 700;

@@ -10,6 +10,7 @@ import { gql } from '@apollo/client';
 export const QUERY_BATTLE = gql`
 	query Battle($battleId: ID!) {
 		battle(battleId: $battleId) {
+			_id
 			name
 			heroes {
 				_id
@@ -23,6 +24,7 @@ export const QUERY_BATTLE = gql`
 				hit_points
 			}
 			npcs {
+				_id
 				name
 				size
 				type
@@ -95,6 +97,7 @@ export const QUERY_BATTLE = gql`
 				}
 			}
 			monsters {
+				_id
 				name
 				size
 				type

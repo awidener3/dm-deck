@@ -74,6 +74,9 @@ export const QUERY_USER_BATTLES = gql`
 				class
 				level
 			}
+			npcs {
+				name
+			}
 			monsters {
 				name
 				challenge_rating

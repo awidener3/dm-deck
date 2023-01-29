@@ -35,7 +35,7 @@ export const getInitiative = (obj) => {
 	if (obj.type === 'monster') {
 		return (
 			Math.floor(Math.random() * 20 + 1) +
-			Math.floor((obj.ability_scores.dexterity - 10) / 2)
+			Math.floor((obj.dexterity - 10) / 2)
 		);
 	} else {
 		return Math.floor(Math.random() * 20 + 1);

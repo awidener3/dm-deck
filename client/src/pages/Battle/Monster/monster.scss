@@ -1,267 +1,343 @@
-.monster-card {
-	padding: 20px;
-	padding-bottom: 32px;
-	border: var(--card-monster-border);
-	outline: var(--card-monster-outline);
-	outline-offset: -5px;
-	background-color: var(--card-background);
-	width: 20rem;
-	min-height: 30rem;
-	border-radius: 0.5rem;
-	position: relative;
-	color: var(--card-text);
+@import 'src/App.scss';
 
-	hr {
-		margin: 0.5rem 0;
-	}
-	.condition-container {
-		position: absolute;
-		max-width: 200px;
-		top: 0;
-		left: 0;
-		margin: 8px 0 0 8px;
-		.condition {
-			padding: 0 4px;
-			margin: 1px 2px;
-			font-weight: 500;
-			border-radius: 10px;
-			font-size: 0.6rem;
-		}
-		.invis {
-			color: #171717;
-			background-color: #aaa;
-		}
-		.poison {
-			color: #171717;
-			background-color: #6acf61;
-		}
-		.hex {
-			color: #171717;
-			background-color: #e865db;
-		}
-		.blind {
-			color: #fff;
-			background-color: #171717;
-		}
-		.charm {
-			color: #171717;
-			background-color: #ffc0cb;
-		}
-		.deaf {
-			color: #fff;
-			font-weight: 400;
-			background-color: #808080;
-		}
-		.fright {
-			color: #171717;
-			background-color: rgb(222, 222, 23);
-		}
-		.grapple {
-			color: #fff;
-			background-color: #a52a2a;
-		}
-		.incapacitate {
-			color: #fff;
-			background-color: #e86b28;
-		}
-		.paralyze {
-			color: #171717;
-			background-color: yellow;
-		}
-		.petrify {
-			color: #fff;
-			background-color: #2f4f4f;
-		}
-		.prone {
-			color: #fff;
-			background-color: #7b0b0b;
-		}
-		.restrain {
-			color: #171717;
-			background-color: #aae6a5;
-		}
-		.stun {
-			color: #171717;
-			background-color: #11e6e6;
-		}
-		.unconscious {
-			color: #fff;
-			background-color: #000;
-		}
-	}
-	.circle-container {
-		cursor: default;
-		position: absolute;
-		right: 0;
-		top: 0;
-		.stat-circle {
-			color: var(--text-secondary);
-			width: 25px;
-			height: 25px;
-			border-radius: 100%;
-			margin: 5px 3px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			font-size: 0.7rem;
-			font-weight: 900;
-		}
-		.cr-circle {
-			background-color: #aae6a5;
-		}
-		.race-circle {
-			background-color: #e6e5a5;
-		}
-		.alignment-circle {
-			background-color: #e6a7a5;
-		}
-	}
-	.monster-card-header {
-		.name {
-			font-size: 2rem;
-			font-weight: 700;
-		}
-		.challenge-rating {
-			font-weight: 700;
-		}
-	}
-	.dmd-card-row {
-		// Icons
-		.hp-icon {
-			color: #cf1414;
-			height: 20px;
-			width: 20px;
-		}
-		.ac-icon {
-			color: #29901f;
-			height: 18px;
-			width: 18px;
-		}
-		.speed-icon {
-			color: #1b6db1;
-			height: 16px;
-			width: 16px;
-		}
-		// Stats
-		.stat-title {
-			font-family: 'Mukta Vaani', sans-serif;
-			font-size: 0.8rem;
-			font-weight: 700;
-			span {
-				font-weight: 400;
-			}
-		}
-		.stat-num {
-			font-size: 0.8rem;
-		}
-		.stat-text {
-			font-size: 0.8rem;
-		}
-		// Abilities
-		.ability-title {
-			font-size: 0.8rem;
-			font-weight: 700;
-			font-style: italic;
-		}
-		.ability-text {
-			font-size: 0.8rem;
-		}
-		// Actions
-		.actions-header {
-			font-size: 1rem;
-			font-weight: 700;
-		}
-		.action-title {
-			font-size: 0.9rem;
-			font-weight: 700;
-			font-style: italic;
-			margin: 0;
-		}
-		.action-subtext {
-			font-size: 0.7rem;
-			font-weight: 300;
-			font-style: italic;
-			line-height: 1.2;
-			color: #808080;
-			margin: 0;
-		}
-		.action-description {
-			line-height: 1.1;
-			font-size: 0.8rem;
-			max-height: 50px;
-			overflow: auto;
-		}
-		.action-btn {
-			font-size: 0.8rem;
-		}
-		.ranged-icon {
-			transform: rotate(-90deg);
-		}
-	}
-	.dmd-card-traits,
-	.dmd-card-stats {
-		overflow: auto;
-	}
-	.dmd-card-traits {
-		max-height: 5rem;
-	}
-	.dmd-card-stats {
-		max-height: 3.5rem;
-	}
-	.dmd-card-traits::-webkit-scrollbar,
-	.dmd-card-stats::-webkit-scrollbar {
-		width: 5px;
-	}
-	.dmd-card-traits::-webkit-scrollbar-thumb,
-	.dmd-card-stats::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background-color: #bdbdbd;
-	}
-	.initiative-div {
-		pointer-events: none;
-		position: absolute;
-		bottom: 0;
-		left: 50%;
-		transform: translate(-50%, 0);
-		border: 2px solid #aaaaaa;
-		width: 35px;
-		height: 35px;
-		border-radius: 100%;
-		font-family: 'Asul', sans-serif;
-		font-weight: 700;
-	}
+.monster-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  padding-bottom: 32px;
+  border: var(--card-monster-border);
+  outline: var(--card-monster-outline);
+  background-color: var(--card-background);
+  outline-offset: $card-outline-offset;
+  // width: 20rem;
+  width: 45rem;
+  min-height: 30rem;
+  border-radius: $border-radius;
+  position: relative;
+  color: var(--card-text);
+
+  hr {
+    margin: 0.5rem 0;
+  }
+
+  .condition-container {
+    position: absolute;
+    max-width: 200px;
+    top: 0;
+    left: 0;
+    margin: 8px 0 0 8px;
+    .condition {
+      padding: 0 4px;
+      margin: 1px 2px;
+      font-weight: 500;
+      border-radius: 10px;
+      font-size: 0.6rem;
+    }
+    .invis {
+      color: #171717;
+      background-color: #aaa;
+    }
+    .poison {
+      color: #171717;
+      background-color: #6acf61;
+    }
+    .hex {
+      color: #171717;
+      background-color: #e865db;
+    }
+    .blind {
+      color: #fff;
+      background-color: #171717;
+    }
+    .charm {
+      color: #171717;
+      background-color: #ffc0cb;
+    }
+    .deaf {
+      color: #fff;
+      font-weight: 400;
+      background-color: #808080;
+    }
+    .fright {
+      color: #171717;
+      background-color: rgb(222, 222, 23);
+    }
+    .grapple {
+      color: #fff;
+      background-color: #a52a2a;
+    }
+    .incapacitate {
+      color: #fff;
+      background-color: #e86b28;
+    }
+    .paralyze {
+      color: #171717;
+      background-color: yellow;
+    }
+    .petrify {
+      color: #fff;
+      background-color: #2f4f4f;
+    }
+    .prone {
+      color: #fff;
+      background-color: #7b0b0b;
+    }
+    .restrain {
+      color: #171717;
+      background-color: #aae6a5;
+    }
+    .stun {
+      color: #171717;
+      background-color: #11e6e6;
+    }
+    .unconscious {
+      color: #fff;
+      background-color: #000;
+    }
+  }
+
+  .circle-container {
+    cursor: default;
+    position: absolute;
+    right: 0;
+    top: 0;
+    .stat-circle {
+      color: var(--text-secondary);
+      width: 25px;
+      height: 25px;
+      border-radius: 100%;
+      margin: 5px 3px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.7rem;
+      font-weight: 900;
+    }
+    .cr-circle {
+      background-color: #aae6a5;
+    }
+    .race-circle {
+      background-color: #e6e5a5;
+    }
+    .alignment-circle {
+      background-color: #e6a7a5;
+    }
+  }
+
+  .monster-card-header {
+    .name {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .challenge-rating {
+      font-weight: 700;
+    }
+  }
+
+  .dmd-card-row {
+    /********
+      ICONS 
+    *********/
+    .hp-icon {
+      color: #cf1414;
+      height: 20px;
+      width: 20px;
+    }
+
+    .ac-icon {
+      color: #29901f;
+      height: 18px;
+      width: 18px;
+    }
+
+    .speed-icon {
+      color: #1b6db1;
+      height: 16px;
+      width: 16px;
+    }
+
+    /********
+      STATS 
+    *********/
+    .stat-title {
+      font-family: 'Mukta Vaani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+
+      span {
+        font-weight: 400;
+      }
+    }
+
+    .stat-num {
+      font-size: 0.8rem;
+    }
+
+    .stat-text {
+      font-size: 0.8rem;
+    }
+
+    /***********
+      ABILITIES 
+    ***********/
+    .ability-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .ability-text {
+      font-size: 0.8rem;
+    }
+
+    /**********
+      ACTIONS 
+    **********/
+    .actions-header {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .action-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .action-subtext {
+      font-size: 0.7rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.2;
+      color: #808080;
+      margin: 0;
+    }
+
+    .action-description {
+      margin: 0;
+      line-height: 1.1;
+      font-size: 0.8rem;
+      overflow-y: auto;
+    }
+
+    .action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .action-btn {
+      font-size: 0.8rem;
+    }
+
+    .ranged-icon {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .actions-section {
+    margin-top: 50px;
+  }
+
+  .dmd-card-traits,
+  .dmd-card-stats {
+    overflow-y: auto;
+  }
+
+  .dmd-card-traits {
+    border-bottom: 1px solid #dee2e6;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+
+  .dmd-card-stats {
+    max-height: 3.5rem;
+  }
+
+  .dmd-card-traits::-webkit-scrollbar,
+  .dmd-card-stats::-webkit-scrollbar,
+  .action-description::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .dmd-card-traits::-webkit-scrollbar-thumb,
+  .dmd-card-stats::-webkit-scrollbar-thumb,
+  .action-description::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #bdbdbd;
+  }
+
+  .initiative-div {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 2px solid #aaaaaa;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    font-family: 'Asul', sans-serif;
+    font-weight: 700;
+  }
+
+  @media screen and (max-width: $md) {
+    width: 30rem;
+    grid-template-columns: 1fr;
+
+    .actions-section {
+      margin-top: 0;
+    }
+
+    .dmd-card-traits {
+      max-height: 100px;
+    }
+
+    .dmd-card-traits:last-of-type {
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    width: 20rem;
+  }
 }
 
 .dead {
-	position: relative;
-	&::after {
-		content: '';
-		z-index: 10;
-		display: block;
-		position: absolute;
-		height: 100%;
-		top: 0;
-		left: 0;
-		right: 0;
-		background: rgba($color: #000000, $alpha: 0.5);
-	}
+  position: relative;
+  &::after {
+    content: '';
+    z-index: 10;
+    display: block;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba($color: #000000, $alpha: 0.5);
+  }
 }
 
 .dead-screen {
-	position: absolute;
-	z-index: 12;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	display: flex;
-	flex-direction: column;
-	.dead-icon {
-		font-size: 5rem;
-	}
-	.reset-dead {
-		font-family: 'Asul', sans-serif;
-		font-size: 1.4rem;
-		padding: 0;
-		margin-top: 20px;
-	}
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  .dead-icon {
+    font-size: 5rem;
+  }
+  .reset-dead {
+    font-family: 'Asul', sans-serif;
+    font-size: 1.4rem;
+    padding: 0;
+    margin-top: 20px;
+  }
 }

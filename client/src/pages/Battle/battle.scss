@@ -1,101 +1,124 @@
 .prevCard {
-	left: 0%;
-	opacity: 0;
+  left: 0%;
+  opacity: 0;
 }
 
 .activeCard {
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 99;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
 }
 
 .nextCard {
-	left: 100%;
-	transform: translateX(calc(-100% - 2rem));
-	opacity: 0;
-}
-
-.background-block {
-	position: absolute;
-	width: 90%;
-	height: 100%;
-	z-index: 0;
+  left: 100%;
+  transform: translateX(calc(-100% - 2rem));
+  opacity: 0;
 }
 
 .card-btn {
-	color: var(--card-button-color);
-	border-color: var(--card-button-color);
-	&:hover {
-		color: var(--card-button-color-hover);
-		background-color: var(--card-button-color);
-	}
+  color: var(--card-button-color);
+  border-color: var(--card-button-color);
+  &:hover {
+    color: var(--card-button-color-hover);
+    background-color: var(--card-button-color);
+  }
 }
 
 .battle-container {
-	position: relative;
-	.battle-chevron {
-		font-size: 2rem;
-		position: absolute;
-	}
-	.left-chevron {
-		left: 0;
-		z-index: 100;
-	}
-	.right-chevron {
-		right: 0;
-		z-index: 100;
-	}
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .battle-stats {
+    display: flex;
+    margin-top: 0.5rem;
+
+    .battle-stat {
+      margin: 0 0.5rem;
+    }
+  }
+
+  .battle-chevron {
+    font-size: 2rem;
+    position: absolute;
+  }
+
+  .left-chevron {
+    left: 0;
+    z-index: 100;
+  }
+
+  .right-chevron {
+    right: 0;
+    z-index: 100;
+  }
+
+  .card-field {
+    display: flex;
+    align-items: center;
+
+    .card-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+
+      width: 65rem;
+      height: 32rem;
+
+      .background-block {
+        position: absolute;
+        width: 90%;
+        height: 100%;
+        z-index: 0;
+      }
+    }
+  }
 }
 
 .modal-content {
-	background-color: var(--background);
-	color: var(--text-primary);
+  background-color: var(--background);
+  color: var(--text-primary);
 }
 
 .btn-close {
-	color: var(--text-primary);
-	background: none;
-	&::after {
-		content: '\2716';
-		font-size: 1.5rem;
-		color: var(--text-primary);
-		position: absolute;
-		top: 0;
-		right: 0;
-		margin: 10px;
-	}
+  color: var(--text-primary);
+  background: none;
+  &::after {
+    content: '\2716';
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+  }
 }
 
 .info-modal-action {
-	font-style: italic;
-	font-weight: 700;
-}
-
-.card-container {
-	position: relative;
-
-	width: 65rem;
-	height: 32rem;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .initiative-input {
-	width: 48px;
-	height: 48px;
-	font-family: 'Mukta Vaani', sans-serif;
-	text-align: center;
-	font-size: 1.2rem;
-	border: none;
-	border-radius: 0;
-	margin-right: 10px;
-	&::-webkit-inner-spin-button,
-	&::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-	}
-	-moz-appearance: textfield;
+  width: 48px;
+  height: 48px;
+  font-family: 'Mukta Vaani', sans-serif;
+  text-align: center;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0;
+  margin-right: 10px;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  -moz-appearance: textfield;
 }
 
 .initiative-name {
-	font-size: 1.3rem;
-	margin: 0;
+  font-size: 1.3rem;
+  margin: 0;
 }
