@@ -5,13 +5,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 import useLocalStorage from 'use-local-storage'
 import './battle.scss'
 
-const InitiativeModal = ({
-  showInitiativeModal,
-  handleCloseInitiativeModal,
-  battle,
-  setBattle,
-  setbattleOrder,
-}) => {
+const InitiativeModal = ({ showInitiativeModal, handleCloseInitiativeModal, battle, setBattle, setbattleOrder }) => {
   const navigate = useNavigate()
   const [theme] = useLocalStorage('theme')
 
@@ -30,17 +24,17 @@ const InitiativeModal = ({
 
   const handleClose = () => {
     const clone = JSON.parse(JSON.stringify(battle))
-    clone.monsters = clone.monsters.map((monster) => {
+    clone.monsters = clone.monsters.map(monster => {
       return { ...monster, type: 'monster', conditions: [] } // Add 'conditions' to monsters
     })
 
-    clone.npcs = clone.npcs.map((npc) => {
+    clone.npcs = clone.npcs.map(npc => {
       return { ...npc, type: 'npc', conditions: [] } // Add 'conditions' to monsters
     })
 
     const combined = clone.heroes.concat(clone.monsters, clone.npcs) // Combine into single array
 
-    const order = combined.map((combatant) => {
+    const order = combined.map(combatant => {
       if (!combatant?.initiative) {
         console.log('⌛ Adding initiative...')
         return { ...combatant, initiative: getInitiative(combatant) } // Add initiative
@@ -56,21 +50,11 @@ const InitiativeModal = ({
     localStorage.setItem(`${battle._id}`, JSON.stringify(sorted))
     handleCloseInitiativeModal()
   }
-  console.log(battle)
 
   return (
-    <Modal
-      size="lg"
-      show={showInitiativeModal}
-      centered
-      data-theme={theme === 'dark' ? 'dark' : 'light'}
-    >
+    <Modal size="lg" show={showInitiativeModal} centered data-theme={theme === 'dark' ? 'dark' : 'light'}>
       <ModalTitle className="ms-2 mt-2 p-0 d-flex align-items-center">
-        <Button
-          variant="outline-secondary"
-          size="sm"
-          onClick={() => navigate(-1) || navigate('/battle-select')}
-        >
+        <Button variant="outline-secondary" size="sm" onClick={() => navigate(-1) || navigate('/battle-select')}>
           <IoMdArrowRoundBack size="1.5rem" /> Back
         </Button>
       </ModalTitle>
@@ -95,9 +79,7 @@ const InitiativeModal = ({
                     pattern="[0-9]*"
                     inputMode="numeric"
                     placeholder="?"
-                    onChange={(e) =>
-                      handleAddInitiative(e.target.value, 'hero', index)
-                    }
+                    onChange={e => handleAddInitiative(e.target.value, 'hero', index)}
                   />
                   <p className="initiative-name">{hero.character_name}</p>
                 </div>
@@ -117,9 +99,7 @@ const InitiativeModal = ({
                     pattern="[0-9]*"
                     inputMode="numeric"
                     placeholder="?"
-                    onChange={(e) =>
-                      handleAddInitiative(e.target.value, 'monster', index)
-                    }
+                    onChange={e => handleAddInitiative(e.target.value, 'monster', index)}
                   />
                   <p className="initiative-name">{npc.name}</p>
                 </div>
@@ -139,9 +119,7 @@ const InitiativeModal = ({
                     pattern="[0-9]*"
                     inputMode="numeric"
                     placeholder="?"
-                    onChange={(e) =>
-                      handleAddInitiative(e.target.value, 'monster', index)
-                    }
+                    onChange={e => handleAddInitiative(e.target.value, 'monster', index)}
                   />
                   <p className="initiative-name">{monster.name}</p>
                 </div>
