@@ -1,302 +1,309 @@
-@import 'src/App.scss';
+@import '../../styles/App.scss';
 
 .battle-form {
-	.battle-name-input {
-		border: none;
-		border-radius: 0;
-		font-family: 'Mukta Vaani', sans-serif;
-		font-size: 2.2rem;
-		font-weight: 500;
-		line-height: 0;
-		@media screen and (max-width: $lg) {
-			font-size: 1.7rem;
-		}
-		@media screen and (max-width: $sm) {
-			font-size: 1.5rem;
-		}
-	}
+  .battle-name-input {
+    border: none;
+    border-radius: 0;
+    font-family: 'Mukta Vaani', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 500;
+    line-height: 0;
+
+    @media screen and (max-width: $lg) {
+      font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: $sm) {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .monster-search-input {
-	border: none;
-	border-radius: 0;
-	font-family: 'Mukta Vaani', sans-serif;
-	font-size: 1.4rem;
-	@media screen and (max-width: $lg) {
-		font-size: 1.2rem;
-	}
-	@media screen and (max-width: $sm) {
-		font-size: 1rem;
-	}
+  border: none;
+  border-radius: 0;
+  font-family: 'Mukta Vaani', sans-serif;
+  font-size: 1.4rem;
+
+  @media screen and (max-width: $lg) {
+    font-size: 1.2rem;
+  }
+
+  @media screen and (max-width: $sm) {
+    font-size: 1rem;
+  }
 }
 
 .table-header {
-	cursor: pointer;
-	background-color: var(--card-background-secondary);
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 10px 0;
-	padding: 10px;
-	user-select: none;
+  cursor: pointer;
+  background-color: $card-background-secondary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  user-select: none;
 }
 
 /****************
   DEFAULT TABLE
 ****************/
 .table {
-	margin-top: 10px;
-	color: var(--text-primary);
+  margin-top: 10px;
+  color: $text-primary;
 
-	// HEADER
-	thead {
-		width: calc(100% - 1em);
+  // HEADER
+  thead {
+    width: calc(100% - 1em);
 
-		tr {
-			// TEXT STYLING
-			th {
-				padding: 8px;
-				font-family: 'Mukta Vaani', sans-serif;
-			}
-		}
-	}
+    tr {
+      // TEXT STYLING
+      th {
+        padding: 8px;
+        font-family: 'Mukta Vaani', sans-serif;
+      }
+    }
+  }
 
-	// BODY
-	tbody {
-		display: block;
-		max-height: 750px;
-		overflow-y: auto;
+  // BODY
+  tbody {
+    display: block;
+    max-height: 750px;
+    overflow-y: auto;
 
-		// ROW STYLING
-		tr {
-			background-color: var(--form-input-background);
-			margin-top: 4px;
+    // ROW STYLING
+    tr {
+      background-color: $field-background;
+      margin-top: 4px;
 
-			// DATA STYLING
-			td {
-				border-bottom: none;
-			}
-		}
-	}
+      // DATA STYLING
+      td {
+        border-bottom: none;
+      }
+    }
+  }
 }
 
 /*************
   HERO TABLE
 **************/
 .table.heroes {
-	thead tr,
-	tbody tr {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr max-content 63px;
-	}
+  thead tr,
+  tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr max-content 63px;
+  }
 
-	/*
+  /*
     TABLE MEDIA QUERIES
   */
-	@media screen and (max-width: $md) {
-		thead {
-			tr {
-				grid-template-columns: 1fr 1fr 1fr 63px !important;
-				th {
-					&:nth-child(3) {
-						display: none;
-					}
-				}
-			}
-		}
+  @media screen and (max-width: $md) {
+    thead {
+      tr {
+        grid-template-columns: 1fr 1fr 1fr 63px !important;
+        th {
+          &:nth-child(3) {
+            display: none;
+          }
+        }
+      }
+    }
 
-		tbody {
-			tr {
-				grid-template-columns: 1fr 1fr 1fr 63px !important;
-				td {
-					font-size: 0.8rem;
+    tbody {
+      tr {
+        grid-template-columns: 1fr 1fr 1fr 63px !important;
+        td {
+          font-size: 0.8rem;
 
-					&:nth-child(3) {
-						display: none;
-					}
-				}
-			}
-		}
-	}
+          &:nth-child(3) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }
 
 /****************
   MONSTER TABLE
 ****************/
 .table.monsters {
-	thead tr,
-	tbody tr {
-		display: grid;
-		grid-template-columns: 2fr 2fr 2fr 1fr 1fr 63px;
-	}
+  thead tr,
+  tbody tr {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr 1fr 63px;
+  }
 
-	tbody tr td {
-		h3,
-		p {
-			margin: 0;
-		}
-	}
+  tbody tr td {
+    h3,
+    p {
+      margin: 0;
+    }
+  }
 
-	/*
+  /*
     TABLE MEDIA QUERIES
   */
-	@media screen and (max-width: $md) {
-		thead {
-			tr {
-				grid-template-columns: 2fr 1fr 1fr 63px !important;
-				th {
-					&:nth-child(2),
-					&:nth-child(3) {
-						display: none;
-					}
-				}
-			}
-		}
+  @media screen and (max-width: $md) {
+    thead {
+      tr {
+        grid-template-columns: 2fr 1fr 1fr 63px !important;
+        th {
+          &:nth-child(2),
+          &:nth-child(3) {
+            display: none;
+          }
+        }
+      }
+    }
 
-		tbody {
-			max-height: 500px;
+    tbody {
+      max-height: 500px;
 
-			tr {
-				grid-template-columns: 2fr 1fr 1fr 63px !important;
-				td {
-					font-size: 0.8rem;
+      tr {
+        grid-template-columns: 2fr 1fr 1fr 63px !important;
+        td {
+          font-size: 0.8rem;
 
-					&:nth-child(2),
-					&:nth-child(3) {
-						display: none;
-					}
-				}
-			}
-		}
-	}
+          &:nth-child(2),
+          &:nth-child(3) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }
 
 // "button" at bottom of hero grid
 .add-row {
-	background-color: var(--form-input-background);
-	a {
-		color: var(--text-primary);
-		transition: color 0.2s;
-	}
-	a:hover {
-		color: #3f62d3;
-	}
+  background-color: $field-background;
+
+  a {
+    color: $text-primary;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: $icon-blue;
+  }
 }
 
 .add-character-btn {
-	font-weight: 700;
-	font-family: 'Asul', sans-serif;
-	padding: 10px 15px;
+  font-weight: 700;
+  font-family: 'Asul', sans-serif;
+  padding: 10px 15px;
 }
 
 // green highlight when hero is selected
 .selected {
-	background-color: var(--form-input-selected) !important;
+  background-color: $field-selected !important;
 }
 
 // card found at bottom/side of battle builder
 .summary-card {
-	color: var(--card-text);
-	width: 24rem;
-	min-height: 35rem;
-	background-color: var(--card-background);
-	border: var(--card-border);
-	outline: var(--card-outline);
-	outline-offset: -5px;
-	border-radius: 0.5rem;
-	padding: 20px;
-	.summary-card-title {
-		margin: 0;
-		text-align: center;
-		font-size: 1.7rem;
-	}
-	.summary-stats {
-		.summary-stat {
-			font-weight: 700;
-			color: var(--card-subtext);
-			margin: 0;
-			.total-xp {
-				color: var(--card-text);
-			}
-			.challenge-rating-display {
-				font-weight: 700;
-				padding: 0 5px;
-			}
-			.easy {
-				color: #0ea559;
-			}
-			.medium {
-				color: #f5a623;
-			}
-			.hard {
-				color: #e45a1d;
-			}
-			.deadly {
-				color: #d54f4f;
-			}
-		}
-	}
-	.roster-container {
-		.roster-card {
-			background-color: var(--card-background-secondary);
-			height: 11rem;
-			.roster-title {
-				font-size: 1.3rem;
-				text-align: center;
-			}
-			.roster-creatures {
-				overflow-y: auto;
-				.roster-name {
-					background-color: var(--card-background-secondary);
-					color: var(--card-text);
-					font-family: 'Mukta Vaani', sans-serif;
-				}
-				.roster-subtext {
-					font-style: italic;
-					font-weight: 300;
-					color: var(--card-subtext);
-					.close-btn {
-						padding: 0 0 0 auto;
-						color: #707070;
-						font-size: 0.9rem;
-						border: none;
-						background: none;
-						transition: color 0.2s;
-					}
-					.close-btn:hover {
-						color: #5e0c0c;
-						background: none;
-					}
-				}
-			}
-		}
-	}
-	@media screen and (max-width: $sm) {
-		width: 22rem;
-		.summary-card-title {
-			font-size: 1.5rem;
-		}
-		.summary-stats {
-			.summary-stat {
-				font-size: 0.9rem;
-			}
-		}
-		.roster-container {
-			.roster-card {
-				height: 11rem;
-				overflow-y: auto;
-				.roster-title {
-					font-size: 1.2rem;
-				}
-			}
-		}
-	}
+  color: $card-text;
+  width: 24rem;
+  min-height: 35rem;
+  background-color: $card-background;
+  border: $card-border;
+  outline: $card-outline;
+  outline-offset: -5px;
+  border-radius: 0.5rem;
+  padding: 20px;
+  .summary-card-title {
+    margin: 0;
+    text-align: center;
+    font-size: 1.7rem;
+  }
+  .summary-stats {
+    .summary-stat {
+      font-weight: 700;
+      color: $card-subtext;
+      margin: 0;
+
+      .total-xp {
+        color: $card-text;
+      }
+
+      .challenge-rating-display {
+        font-weight: 700;
+        padding: 0 5px;
+      }
+    }
+  }
+  .roster-container {
+    .roster-card {
+      background-color: $card-background-secondary;
+      height: 11rem;
+
+      .roster-title {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+
+      .roster-creatures {
+        overflow-y: auto;
+
+        .roster-name {
+          background-color: $card-background-secondary;
+          color: $card-text;
+          font-family: 'Mukta Vaani', sans-serif;
+        }
+
+        .roster-subtext {
+          font-style: italic;
+          font-weight: 300;
+          color: $card-subtext;
+
+          .close-btn {
+            padding: 0 0 0 auto;
+            color: #707070;
+            font-size: 0.9rem;
+            border: none;
+            background: none;
+            transition: color 0.2s;
+          }
+
+          .close-btn:hover {
+            color: #5e0c0c;
+            background: none;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $sm) {
+    width: 22rem;
+
+    .summary-card-title {
+      font-size: 1.5rem;
+    }
+
+    .summary-stats {
+      .summary-stat {
+        font-size: 0.9rem;
+      }
+    }
+
+    .roster-container {
+      .roster-card {
+        height: 11rem;
+        overflow-y: auto;
+
+        .roster-title {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
 }
 
 .roster-card::-webkit-scrollbar {
-	width: 5px;
+  width: 5px;
 }
 .roster-card::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	background-color: #bdbdbd;
+  border-radius: 10px;
+  background-color: #bdbdbd;
 }

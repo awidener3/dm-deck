@@ -1,6 +1,5 @@
 import Links from './Links'
 import './home.scss'
-import Loading from 'components/Loading/Loading'
 
 const Home = () => {
   return (

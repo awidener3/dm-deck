@@ -1,164 +1,171 @@
-@import 'src/App.scss';
+@import '../../styles/App.scss';
 
 // Hero Card
 .characters {
-	width: 100%;
+  width: 100%;
 
-	.character-table {
-		width: 100%;
-		height: 500px;
-		overflow: auto;
+  .character-table {
+    width: 100%;
+    height: 500px;
+    overflow: auto;
 
-		.row:nth-child(1) {
-			background-color: var(--background);
-			position: sticky;
-			top: 0;
-			z-index: 10;
-		}
+    .row:nth-child(1) {
+      background-color: $background;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-		.row:last-child {
-			position: sticky;
-			bottom: 0;
-			z-index: 10;
-			border-top: 4px solid var(--background);
-		}
+    .row:last-child {
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      border-top: 4px solid $background;
+    }
 
-		.character-row {
-			background-color: var(--form-input-background);
-			color: var(--text-primary);
-			.row-title {
-				margin: 0;
-				font-size: 1.3rem;
-				font-family: 'Mukta Vaani', sans-serif;
-			}
-			.row-subtitle {
-				margin: 0;
-				color: var(--text-primary);
-				line-height: 1;
-				font-weight: 400;
-			}
-			.row-text {
-				margin: 0;
-				font-size: 1rem;
-			}
-			@media screen and (max-width: $sm) {
-				.row-title {
-					font-size: 1rem;
-				}
-				.row-subtitle,
-				.row-text {
-					font-size: 0.8rem;
-				}
-			}
-		}
+    .character-row {
+      background-color: $field-background;
+      color: $text-primary;
 
-		// "button" at bottom of hero grid
-		.add-row {
-			background-color: var(--form-input-background);
-			a {
-				color: var(--text-primary);
-				transition: color 0.2s;
-			}
-			a:hover {
-				color: #3f62d3;
-			}
-		}
-	}
+      .row-title {
+        margin: 0;
+        font-size: 1.3rem;
+        font-family: 'Mukta Vaani', sans-serif;
+      }
+
+      .row-subtitle {
+        margin: 0;
+        color: $text-primary;
+        line-height: 1;
+        font-weight: 400;
+      }
+
+      .row-text {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: $sm) {
+        .row-title {
+          font-size: 1rem;
+        }
+
+        .row-subtitle,
+        .row-text {
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    // "button" at bottom of hero grid
+    .add-row {
+      background-color: $field-background;
+      a {
+        color: $text-primary;
+        transition: color 0.2s;
+      }
+
+      a:hover {
+        color: #3f62d3;
+      }
+    }
+  }
 }
 
 .hero {
-	// Styling
-	padding: 10px;
-	color: var(--card-text);
-	border: var(--card-hero-border);
-	outline: var(--card-hero-outline);
-	outline-offset: -5px;
-	background-color: var(--card-background);
+  // Styling
+  padding: 10px;
+  color: $card-text;
+  border: $card-hero-border;
+  outline: $card-hero-outline;
+  outline-offset: -5px;
+  background-color: $card-background;
+  width: 150px;
+  min-height: 240px;
+  border-radius: 0.5rem;
+  position: relative;
 
-	// Sizing
-	width: 150px;
-	min-height: 240px;
-	border-radius: 0.5rem;
+  .hero-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 16px;
+  }
 
-	// Positioning
-	position: relative;
-	.hero-name {
-		font-size: 1.4rem;
-		font-weight: 700;
-		margin-top: 16px;
-	}
-	.player-name {
-		font-style: italic;
-		font-size: 1rem;
-	}
-	.character-details {
-		font-size: 0.75rem;
-	}
-	.icon-container {
-		position: relative;
-		.hp-icon {
-			font-size: 2rem;
-			color: #cf1414;
-		}
-		.ac-icon {
-			font-size: 2rem;
-			color: #29901f;
-		}
-		// Number inside icon
-		.icon-value {
-			position: absolute;
-			font-size: 1rem;
-			font-weight: 500;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			z-index: 2;
-			color: white;
-		}
-	}
+  .player-name {
+    font-style: italic;
+    font-size: 1rem;
+  }
+
+  .character-details {
+    font-size: 0.75rem;
+  }
+
+  .icon-container {
+    position: relative;
+
+    .hp-icon {
+      font-size: 2rem;
+      color: $icon-red;
+    }
+
+    .ac-icon {
+      font-size: 2rem;
+      color: $icon-green;
+    }
+
+    // Number inside icon
+    .icon-value {
+      position: absolute;
+      font-size: 1rem;
+      font-weight: 500;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      color: white;
+    }
+  }
 }
 
 // Monster Card
 .monster {
-	// Styling
-	padding: 20px;
-	border: 1px solid #7b0b0b;
-	outline-offset: -5px;
-	outline: 1px solid #aaaaaa;
-	background-color: #ffffff;
+  padding: 20px;
+  border: $card-monster-border;
+  outline-offset: -5px;
+  outline: $card-monster-outline;
+  background-color: $card-background;
+  width: 10rem;
+  min-height: 15rem;
+  border-radius: 0.5rem;
+  position: relative;
 
-	// Sizing
-	width: 10rem;
-	min-height: 15rem;
-	border-radius: 0.5rem;
-
-	// Positioning
-	position: relative;
-	.monster-name {
-		font-size: 1.4rem;
-		font-weight: 700;
-	}
+  .monster-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
 }
 
 // User deletion div
 .danger-zone {
-	$red: #dd0c0c;
-	color: $red;
-	border: 1px solid $red;
-	border-radius: 0.3rem;
-	padding: 8px 16px;
-	margin-top: 16px;
-	.delete-account {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		.delete-btn {
-			border-color: $red;
-			color: $red;
-			margin-bottom: 8px;
-			&:hover {
-				color: white;
-			}
-		}
-	}
+  color: $icon-red;
+  border: 1px solid $icon-red;
+  border-radius: 0.3rem;
+  padding: 8px 16px;
+  margin-top: 16px;
+
+  .delete-account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .delete-btn {
+      border-color: $icon-red;
+      color: $icon-red;
+      margin-bottom: 8px;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
 }

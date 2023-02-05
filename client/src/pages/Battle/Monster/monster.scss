@@ -1,4 +1,4 @@
-@import 'src/App.scss';
+@import '../../../styles/App.scss';
 
 .monster-card {
   display: grid;
@@ -6,16 +6,15 @@
   gap: 20px;
   padding: 20px;
   padding-bottom: 32px;
-  border: var(--card-monster-border);
-  outline: var(--card-monster-outline);
-  background-color: var(--card-background);
+  border: $card-monster-border;
+  outline: $card-monster-outline;
+  background-color: $card-background;
   outline-offset: $card-outline-offset;
-  // width: 20rem;
   width: 45rem;
   min-height: 30rem;
   border-radius: $border-radius;
   position: relative;
-  color: var(--card-text);
+  color: $card-text;
 
   hr {
     margin: 0.5rem 0;
@@ -27,73 +26,13 @@
     top: 0;
     left: 0;
     margin: 8px 0 0 8px;
+
     .condition {
       padding: 0 4px;
       margin: 1px 2px;
       font-weight: 500;
       border-radius: 10px;
       font-size: 0.6rem;
-    }
-    .invis {
-      color: #171717;
-      background-color: #aaa;
-    }
-    .poison {
-      color: #171717;
-      background-color: #6acf61;
-    }
-    .hex {
-      color: #171717;
-      background-color: #e865db;
-    }
-    .blind {
-      color: #fff;
-      background-color: #171717;
-    }
-    .charm {
-      color: #171717;
-      background-color: #ffc0cb;
-    }
-    .deaf {
-      color: #fff;
-      font-weight: 400;
-      background-color: #808080;
-    }
-    .fright {
-      color: #171717;
-      background-color: rgb(222, 222, 23);
-    }
-    .grapple {
-      color: #fff;
-      background-color: #a52a2a;
-    }
-    .incapacitate {
-      color: #fff;
-      background-color: #e86b28;
-    }
-    .paralyze {
-      color: #171717;
-      background-color: yellow;
-    }
-    .petrify {
-      color: #fff;
-      background-color: #2f4f4f;
-    }
-    .prone {
-      color: #fff;
-      background-color: #7b0b0b;
-    }
-    .restrain {
-      color: #171717;
-      background-color: #aae6a5;
-    }
-    .stun {
-      color: #171717;
-      background-color: #11e6e6;
-    }
-    .unconscious {
-      color: #fff;
-      background-color: #000;
     }
   }
 
@@ -102,8 +41,9 @@
     position: absolute;
     right: 0;
     top: 0;
+
     .stat-circle {
-      color: var(--text-secondary);
+      color: $text-secondary;
       width: 25px;
       height: 25px;
       border-radius: 100%;
@@ -114,14 +54,16 @@
       font-size: 0.7rem;
       font-weight: 900;
     }
+
     .cr-circle {
-      background-color: #aae6a5;
+      background-color: $icon-cr;
     }
+
     .race-circle {
-      background-color: #e6e5a5;
+      background-color: $icon-race;
     }
     .alignment-circle {
-      background-color: #e6a7a5;
+      background-color: $icon-alignment;
     }
   }
 
@@ -136,23 +78,20 @@
   }
 
   .dmd-card-row {
-    /********
-      ICONS 
-    *********/
     .hp-icon {
-      color: #cf1414;
+      color: $icon-red;
       height: 20px;
       width: 20px;
     }
 
     .ac-icon {
-      color: #29901f;
+      color: $icon-green;
       height: 18px;
       width: 18px;
     }
 
     .speed-icon {
-      color: #1b6db1;
+      color: $icon-blue;
       height: 16px;
       width: 16px;
     }
@@ -211,7 +150,7 @@
       font-weight: 300;
       font-style: italic;
       line-height: 1.2;
-      color: #808080;
+      color: $card-subtext;
       margin: 0;
     }
 

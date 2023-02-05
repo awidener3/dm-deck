@@ -1,6 +1,5 @@
 import { Modal, Button } from 'react-bootstrap'
 import { FaDiceD20 } from 'react-icons/fa'
-import './rollModal.scss'
 
 const RollModal = ({ showRollModal, handleCloseRollModal, die, rollModifier }) => {
   function addToSelected(e) {
@@ -8,7 +7,7 @@ const RollModal = ({ showRollModal, handleCloseRollModal, die, rollModifier }) =
   }
 
   return (
-    <Modal dialogClassName="roll-modal" show={showRollModal} onHide={handleCloseRollModal} centered>
+    <Modal id="rollModal" show={showRollModal} onHide={handleCloseRollModal} centered>
       <Modal.Header closeButton>
         <FaDiceD20 size="2rem" />
       </Modal.Header>
@@ -23,6 +22,7 @@ const RollModal = ({ showRollModal, handleCloseRollModal, die, rollModifier }) =
 
         <section className="hero-container">
           <h4>Apply Damage to Heroes</h4>
+
           <ul className="hero-list">
             <li onClick={addToSelected}>Gwyn</li>
             <li onClick={addToSelected}>Magnus</li>

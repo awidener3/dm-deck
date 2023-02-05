@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import { Form, Nav, Navbar, NavItem, NavDropdown, NavbarBrand } from 'react-bootstrap'
+import { Nav, Navbar, NavItem, NavDropdown, NavbarBrand } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Link } from 'react-router-dom'
-import { FaSun, FaMoon } from 'react-icons/fa'
 import Auth from 'utils/auth'
 import './header.scss'
 
-const Header = ({ theme, handleTheme }) => {
+const Header = () => {
   const [expanded, setExpanded] = useState(false)
   return (
     <>
@@ -107,12 +106,6 @@ const Header = ({ theme, handleTheme }) => {
                 Submit a bug
               </a>
             </NavDropdown>
-
-            {/* Light/Dark mode */}
-            <div className="d-flex align-items-center ms-2">
-              <Form.Check type="switch" onChange={handleTheme} />
-              {theme === 'light' ? <FaMoon color="#e6e6e6" /> : <FaSun color="#e6e6e6" />}
-            </div>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

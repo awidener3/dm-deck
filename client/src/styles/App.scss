@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap');
+
+@import './forms.scss';
+@import './colors.scss';
+@import './mediaSizes.scss';
+@import './layoutSizes.scss';
+
+// Fonts
+@font-face {
+  font-family: 'Draconis';
+  src: local('Draconis'), url(../assets/fonts/Draconis/Draconis.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-weight: 900;
+  src: local('Draconis'), url(../assets/fonts/Draconis/DraconisBold.ttf);
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-style: italic;
+  src: local('Draconis'), url(../assets/fonts/Draconis/DraconisItalic.ttf);
+}
+
+@font-face {
+  font-family: 'Draconis';
+  font-weight: 900;
+  font-style: italic;
+  src: local('Draconis'), url(../assets/fonts/Draconis/DraconisBoldItalic.ttf);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+// Borders + Cards
+$card-outline-offset: -5px;
+
+html,
+body {
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: $background;
+}
+
+// Asul 400 or 700 weight available
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Asul', sans-serif;
+}
+
+// Mukta 200-700 available
+p,
+li,
+a {
+  font-family: 'Mukta Vaani', sans-serif;
+}
+
+a {
+  color: $text-primary;
+}
+
+.App {
+  background: $background;
+  color: $text-primary;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.wrapper {
+  position: absolute;
+}
+
+article {
+  position: absolute;
+  transition: all 1s;
+}
+
+// Forms
+input {
+  background-color: $field-background !important;
+  color: $text-primary !important;
+}
+
+.dice-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  .dice-input {
+    width: 125px;
+    height: 70px;
+    font-family: 'Mukta Vaani', sans-serif;
+    text-align: end;
+    font-size: 2.2rem;
+    padding-right: 15px;
+    border: none;
+    border-radius: 0;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &::before {
+      content: 'test';
+    }
+
+    -moz-appearance: textfield;
+  }
+
+  .input-icon {
+    font-size: 2rem;
+    position: absolute;
+    left: 0;
+    margin: 15px;
+  }
+}
+
+.form-label {
+  font-family: 'Asul', sans-serif;
+  font-size: 1.1rem;
+}
+
+.form-name-input,
+.form-input {
+  border: none;
+  border-radius: 0;
+  font-family: 'Mukta Vaani', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 0;
+
+  @media screen and (max-width: $lg) {
+    font-size: 1.7rem;
+  }
+
+  @media screen and (max-width: $sm) {
+    font-size: 1.5rem;
+  }
+}
+
+.form-input {
+  font-size: 1.3rem;
+}
+
+.form-number-input {
+  width: 75px;
+  height: 70px;
+  font-family: 'Mukta Vaani', sans-serif;
+  text-align: center;
+  font-size: 2.2rem;
+  border: none;
+  border-radius: 0;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+}
+
+// Conditions
+.condition {
+  padding: 0 4px;
+  margin: 1px 2px;
+  font-weight: 500;
+  border-radius: 10px;
+  font-size: 0.6rem;
+}
+
+.invis {
+  color: $text-secondary;
+  background-color: $invisible;
+}
+
+.poison {
+  color: $text-secondary;
+  background-color: $poison;
+}
+
+.hex {
+  color: $text-secondary;
+  background-color: $hex;
+}
+
+.blind {
+  color: $text-primary;
+  background-color: $blind;
+}
+
+.charm {
+  color: $text-secondary;
+  background-color: $charm;
+}
+
+.deaf {
+  color: $text-primary;
+  font-weight: 400;
+  background-color: $deaf;
+}
+
+.fright {
+  color: $text-secondary;
+  background-color: $fright;
+}
+
+.grapple {
+  color: $text-primary;
+  background-color: $grapple;
+}
+
+.incapacitate {
+  color: $text-primary;
+  background-color: $incapacitate;
+}
+
+.paralyze {
+  color: $text-secondary;
+  background-color: $paralyze;
+}
+
+.petrify {
+  color: $text-primary;
+  background-color: $petrify;
+}
+
+.prone {
+  color: $text-primary;
+  background-color: $prone;
+}
+
+.restrain {
+  color: $text-secondary;
+  background-color: $restrain;
+}
+
+.stun {
+  color: $text-secondary;
+  background-color: $stun;
+}
+
+.unconscious {
+  color: $text-primary;
+  background-color: $unconcious;
+}

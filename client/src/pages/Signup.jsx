@@ -6,8 +6,6 @@ import Auth from 'utils/auth'
 import { ADD_USER } from 'utils/mutations/userMutations'
 import { FiInfo } from 'react-icons/fi'
 
-import './signup.scss'
-
 const SignUp = () => {
   const [formState, setFormState] = useState({
     username: '',
@@ -20,7 +18,7 @@ const SignUp = () => {
 
   const handleFormSubmit = async event => {
     event.preventDefault()
-    console.log('form submitted:', formState)
+
     try {
       const mutationResponse = await addUser({
         variables: {
@@ -29,6 +27,7 @@ const SignUp = () => {
           password: formState.password
         }
       })
+
       const token = mutationResponse.data.addUser.token
       Auth.login(token)
     } catch (error) {
@@ -45,9 +44,10 @@ const SignUp = () => {
   }
 
   return (
-    <div className="p-4 d-flex flex-column justify-content-center align-items-center container">
-      <div className="form-container">
+    <section className="signup-container container">
+      <section className="signup-form">
         <h1>Welcome, Adventurer!</h1>
+
         <Form onSubmit={handleFormSubmit}>
           <FormGroup>
             <FormLabel>Email Address</FormLabel>
@@ -60,6 +60,7 @@ const SignUp = () => {
             />
             <FormText>We'll never share your email with anyone else.</FormText>
           </FormGroup>
+
           <FormGroup>
             <FormLabel>
               Username{' '}
@@ -74,6 +75,7 @@ const SignUp = () => {
               required
             />
           </FormGroup>
+
           <FormGroup>
             <FormLabel>
               Password{' '}
@@ -81,6 +83,7 @@ const SignUp = () => {
                 <span className="invalid">Passwords do not match</span>
               )}
             </FormLabel>
+
             <FormControl
               type="password"
               name="password"
@@ -89,10 +92,13 @@ const SignUp = () => {
               onChange={handleChange}
               required
             />
+
             <FormText>Must contain at least one letter and one number</FormText>
           </FormGroup>
+
           <FormGroup>
             <FormLabel>Confirm Password</FormLabel>
+
             <FormControl
               type="password"
               name="confirm_password"
@@ -104,14 +110,14 @@ const SignUp = () => {
 
           <Link to={'/login'}>Have an account? Login!</Link>
 
-          <div className="d-flex justify-content-center">
+          <section className="d-flex justify-content-center">
             <Button className="mt-2" variant="primary" type="submit">
               Signup
             </Button>
-          </div>
+          </section>
         </Form>
-      </div>
-    </div>
+      </section>
+    </section>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { GiPocketBow, GiBattleAxe, GiTwirlCenter, GiThrownSpear } from 'react-icons/gi'
 import useSound from 'use-sound'
 import diceSfx from 'assets/audio/dice-roll.mp3'

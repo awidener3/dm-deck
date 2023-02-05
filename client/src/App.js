@@ -1,4 +1,3 @@
-import useLocalStorage from 'use-local-storage'
 import { Outlet } from 'react-router-dom'
 import { setContext } from '@apollo/client/link/context'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -12,10 +11,10 @@ import CharacterBuilder from 'pages/CharacterBuilder/CharacterBuilder'
 import MonsterBuilder from 'pages/MonsterBuilder/MonsterBuilder'
 import Legal from 'pages/Legal'
 import Login from 'pages/Login/Login'
-import Signup from 'pages/Signup/Signup'
+import Signup from 'pages/Signup'
 import Profile from 'pages/Profile/Profile'
 import Collection from 'pages/BattleSelect/Collection'
-import './App.scss'
+import './styles/App.scss'
 
 const httpLink = createHttpLink({
   uri: '/graphql'
@@ -40,22 +39,12 @@ const client = new ApolloClient({
 })
 
 const App = () => {
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light')
-
-  const switchTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
-  }
-
-  document.querySelector('#root').dataset.theme = theme
-
   return (
     <ApolloProvider client={client}>
       {/* Controls all routes in the application */}
       <Router>
-        <div className="App" data-theme={theme}>
-          <Header theme={theme} handleTheme={switchTheme} />
+        <div className="App">
+          <Header />
 
           <Routes>
             <Route path="/" element={<Home />} />

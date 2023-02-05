@@ -1,6 +1,6 @@
 {
 	"name": "dm-deck",
-	"version": "1.0.0",
+	"version": "0.1.7",
 	"description": "A tool for D&D dungeon masters to run battles smoothly in a TCG format",
 	"main": "server/server.js",
 	"scripts": {
@@ -8,10 +8,9 @@
 		"develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
 		"install": "cd server && npm i && cd ../client && npm i",
 		"seed": "cd server && npm run seed",
-		"seed:monsters": "cd server && npm run seedMonsters",
 		"build": "cd client && npm run build"
 	},
-	"author": "",
+	"author": "Alex Widener",
 	"license": "ISC",
 	"devDependencies": {
 		"concurrently": "^5.3.0"

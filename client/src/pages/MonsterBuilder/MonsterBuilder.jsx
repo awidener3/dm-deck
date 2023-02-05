@@ -1,31 +1,24 @@
-import { useState } from 'react'
-import { Form, FloatingLabel, Row, Col, Alert, FormGroup, FormLabel, FormControl } from 'react-bootstrap'
-import { RiHeartFill, RiShieldFill } from 'react-icons/ri'
-import { FaArrowCircleRight } from 'react-icons/fa'
 import './monsterBuilder.scss'
 import PageHeader from 'components/PageHeader/PageHeader'
+import UnderConstruction from 'components/UnderConstruction'
 import stats from './monsterStats.json'
+import { useState } from 'react'
+import { Form, FloatingLabel, Row, Col, FormGroup, FormLabel, FormControl } from 'react-bootstrap'
+import { RiHeartFill, RiShieldFill } from 'react-icons/ri'
+import { FaArrowCircleRight } from 'react-icons/fa'
 
 const MonsterBuilder = () => {
-  const [values, setValues] = useState({
-    name: ''
-  })
+  const [values, setValues] = useState({ name: '' })
 
   const handleChange = e => {
     const { name, value } = e.target
-    setValues({
-      ...values,
-      [name]: value
-    })
+    setValues({ ...values, [name]: value })
   }
 
   return (
-    <div>
+    <section>
       <PageHeader image={`url(${require('assets/images/card_backs/back_3.jpg')})`} pageTitle={'Monster Builder'} />
-      <Alert variant="danger">
-        <Alert.Heading className="my-2 text-center">🚧 UNDER CONSTRUCTION 🚧</Alert.Heading>
-        <p className="text-center m-0">The kobolds are still working here, updates coming soon!</p>
-      </Alert>
+      <UnderConstruction />
 
       <Form onSubmit={e => e.preventDefault()} className="container d-flex flex-column">
         <FormGroup>
@@ -88,13 +81,15 @@ const MonsterBuilder = () => {
         <Row className="my-2">
           {/* HIT POINTS */}
           <Col className="d-flex flex-column gap-1">
-            <div className="d-flex justify-content-center align-items-center">
+            <section className="d-flex justify-content-center align-items-center">
               <RiHeartFill className="me-2" />
               <h4 className="m-0">Hit Points</h4>
-            </div>
+            </section>
+
             <FloatingLabel label="Hit Points">
               <Form.Control type="number" min={0} max={200} className="form-input" placeholder="Hit Points" />
             </FloatingLabel>
+
             <FloatingLabel label='Hit Dice ("1d4+2")'>
               <Form.Control type="text" className="form-input" placeholder='Hit Dice (i.e. "1d4+2")' />
             </FloatingLabel>
@@ -102,13 +97,15 @@ const MonsterBuilder = () => {
 
           {/* ARMOR CLASS */}
           <Col className="d-flex flex-column gap-1">
-            <div className="d-flex justify-content-center align-items-center">
+            <section className="d-flex justify-content-center align-items-center">
               <RiShieldFill className="me-2" />
               <h4 className="m-0">Armor Class</h4>
-            </div>
+            </section>
+
             <FloatingLabel label="Armor Class">
               <Form.Control type="number" min={0} max={40} className="form-input" placeholder="Armor Class" />
             </FloatingLabel>
+
             <FloatingLabel label="Armor Type">
               <Form.Select>
                 {stats.armorTypes.map(s => (
@@ -120,22 +117,12 @@ const MonsterBuilder = () => {
 
           {/* SPEED */}
           <Col className="d-flex flex-column gap-1">
-            <div className="d-flex justify-content-center align-items-center">
+            <section className="d-flex justify-content-center align-items-center">
               <FaArrowCircleRight className="me-2" />
               <h4 className="m-0">Speed</h4>
-            </div>
-            <FloatingLabel label="Walking">
-              <Form.Control type="text" className="form-input" placeholder="Walking" />
-            </FloatingLabel>
-            <FloatingLabel label="Swimming">
-              <Form.Control type="text" className="form-input" placeholder="Swimming" />
-            </FloatingLabel>
-            <FloatingLabel label="Climbing">
-              <Form.Control type="text" className="form-input" placeholder="Climbing" />
-            </FloatingLabel>
-            <FloatingLabel label="Flying">
-              <Form.Control type="text" className="form-input" placeholder="Flying" />
-            </FloatingLabel>
+            </section>
+
+            <Form.Control type="text" className="form-input" placeholder="Speed" />
           </Col>
         </Row>
 
@@ -146,22 +133,27 @@ const MonsterBuilder = () => {
             <Form.Label className="m-0">STR</Form.Label>
             <Form.Control type="number" min={0} max={25} className="form-input" placeholder="0" />
           </Col>
+
           <Col className="text-center">
             <Form.Label className="m-0">DEX</Form.Label>
             <Form.Control type="number" min={0} max={25} className="form-input" placeholder="0" />
           </Col>
+
           <Col className="text-center">
             <Form.Label className="m-0">CON</Form.Label>
             <Form.Control type="number" min={0} max={25} className="form-input" placeholder="0" />
           </Col>
+
           <Col className="text-center">
             <Form.Label className="m-0">INT</Form.Label>
             <Form.Control type="number" min={0} max={25} className="form-input" placeholder="0" />
           </Col>
+
           <Col className="text-center">
             <Form.Label className="m-0">WIS</Form.Label>
             <Form.Control type="number" min={0} max={25} className="form-input" placeholder="0" />
           </Col>
+
           <Col className="text-center">
             <Form.Label className="m-0">CHA</Form.Label>
             <Form.Control type="number" min={0} max={25} className="form-input" placeholder="0" />
@@ -170,7 +162,7 @@ const MonsterBuilder = () => {
 
         <hr />
       </Form>
-    </div>
+    </section>
   )
 }
 

@@ -1,0 +1,22 @@
+@import './layoutSizes.scss';
+@import './colors.scss';
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: $p-4;
+
+  .signup-form {
+    max-width: 500px;
+    padding: 20px;
+    border-radius: $border-radius;
+    background: $background-secondary;
+
+    .invalid {
+      font-size: 0.75rem;
+      color: $icon-red;
+    }
+  }
+}

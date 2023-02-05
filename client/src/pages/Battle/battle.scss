@@ -1,3 +1,5 @@
+@import '../../styles/App.scss';
+
 .prevCard {
   left: 0%;
   opacity: 0;
@@ -16,11 +18,12 @@
 }
 
 .card-btn {
-  color: var(--card-button-color);
-  border-color: var(--card-button-color);
+  color: $card-button-color;
+  border-color: $card-button-color;
+
   &:hover {
-    color: var(--card-button-color-hover);
-    background-color: var(--card-button-color);
+    color: $card-button-color-hover;
+    background-color: $card-button-color;
   }
 }
 
@@ -78,17 +81,18 @@
 }
 
 .modal-content {
-  background-color: var(--background);
-  color: var(--text-primary);
+  background-color: $background;
+  color: $text-primary;
 }
 
 .btn-close {
-  color: var(--text-primary);
+  color: $text-primary;
   background: none;
+
   &::after {
     content: '\2716';
     font-size: 1.5rem;
-    color: var(--text-primary);
+    color: $text-primary;
     position: absolute;
     top: 0;
     right: 0;
@@ -110,15 +114,142 @@
   border: none;
   border-radius: 0;
   margin-right: 10px;
+
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  -moz-appearance: textfield;
 }
 
 .initiative-name {
   font-size: 1.3rem;
   margin: 0;
+}
+
+#rollModal {
+  display: flex;
+  justify-content: center;
+
+  .roll-modal-content {
+    display: flex;
+    width: 100%;
+    padding: 0 15px 15px 15px;
+
+    .roll {
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-container {
+      flex: 2;
+
+      .hero-list {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 3px;
+          padding: 5px 10px;
+          border-radius: $border-radius;
+          border: $gray-border;
+          text-align: center;
+
+          &:hover {
+            cursor: pointer;
+            background-color: $gray;
+          }
+        }
+      }
+    }
+  }
+}
+
+.monster-data {
+  background-color: $background-secondary;
+  color: $text-primary;
+  overflow-x: auto;
+  width: 100vw;
+  display: flex;
+
+  .monster-data-card {
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 5px;
+    min-width: 100px;
+    transition: background-color 0.2s;
+    display: flex;
+    flex-direction: column;
+
+    h5 {
+      font-size: 1rem;
+      flex: 1;
+    }
+
+    p {
+      font-size: 1rem;
+
+      .hp-icon {
+        color: $icon-red;
+        font-size: 1rem;
+      }
+
+      .ac-icon {
+        color: $icon-green;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .monster-data-card:hover {
+    background-color: $field-hover;
+  }
+
+  .current {
+    background-color: $field-selected;
+  }
+
+  .current:hover {
+    background-color: $field-selected-hover;
+  }
+  .dead {
+    position: relative;
+
+    &::after {
+      content: '';
+      z-index: 10;
+      display: block;
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba($color: #000000, $alpha: 0.5);
+    }
+  }
+
+  .dead-icon {
+    position: absolute;
+    z-index: 11;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+  }
+}
+
+.condition-markers {
+  height: 12px;
+  display: flex;
+
+  .condition-marker {
+    visibility: visible !important;
+    width: 10px;
+    height: 10px;
+    margin: 0px 2px;
+    border-radius: 100%;
+  }
 }

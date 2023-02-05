@@ -1,6 +1,5 @@
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri'
 import { FaSkull } from 'react-icons/fa'
-import './quickView.scss'
 
 const QuickView = ({ battleOrder, turn, setTurn, setIndex }) => {
   const getConditions = creature => {
