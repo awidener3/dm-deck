@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { useParams } from 'react-router-dom'
-import Monster from './Monster'
-import Hero from './Hero'
+import Monster from './Monster/Monster'
+import Hero from './Hero/Hero'
 import InfoModal from './InfoModal'
-import RollModal from './RollModal'
-import MonstersModal from './MonstersModal'
+import RollModal from './RollModal/RollModal'
+import MonstersModal from './MonstersModal/MonstersModal'
 import InitiativeModal from './InitiativeModal'
-import QuickView from './QuickView'
+import QuickView from './QuickView/QuickView'
 import { slideLeft, slideRight } from 'utils/slideAnimations'
 import { rollDie } from 'utils/diceRolls'
 import { QUERY_BATTLE } from 'utils/queries/battleQueries'
 import { FaChevronLeft, FaChevronRight, FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'
 import 'App.scss'
 import './battle.scss'
-import Loading from 'components/Loading'
+import Loading from 'components/Loading/Loading'
 
 const Battle = () => {
   // Get ID from URL parameters
@@ -45,7 +45,7 @@ const Battle = () => {
   const handleCloseInfoModal = () => setShowInfoModal(false)
   const handleCloseMonstersModal = () => setShowMonstersModal(false)
   const handleCloseInitiativeModal = () => setShowInitiativeModal(false)
-  const handleHeroAttack = () => setShowMonstersModal(true)
+  const showMonsterModal = () => setShowMonstersModal(true)
 
   // Dice rolls
   const [rollModifier, setRollModifier] = useState(0)
@@ -153,6 +153,7 @@ const Battle = () => {
             cardStyle={position}
             handleRollDice={handleRollDice}
             handleShowInfo={handleShowInfo}
+            showMonsterModal={showMonsterModal}
             handleSetHp={handleSetHp}
             setbattleOrder={setbattleOrder}
             handlePointerEvent={handlePointerEvent}
@@ -164,7 +165,7 @@ const Battle = () => {
             key={`${creature.character_name}-${i}`}
             hero={creature}
             cardStyle={position}
-            handleHeroAttack={handleHeroAttack}
+            showMonsterModal={showMonsterModal}
             handlePointerEvent={handlePointerEvent}
           />
         )

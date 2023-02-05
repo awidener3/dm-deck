@@ -2,7 +2,7 @@ import './monster.scss'
 import Conditions from './Conditions'
 // import Circles from './Circles'
 import Stats from './Stats'
-import Actions from './Actions'
+import Actions from './Actions/Actions'
 import BaseStats from './BaseStats'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { FaSkull } from 'react-icons/fa'
@@ -41,7 +41,7 @@ const Monster = props => {
             </h1>
           </section>
 
-          <BaseStats monster={monster} />
+          <BaseStats monster={monster} showMonsterModal={props.showMonsterModal} />
 
           <AbilityScores monster={monster} />
 

@@ -1,10 +1,10 @@
 import { RiHeartFill, RiShieldFill } from 'react-icons/ri'
 import { FaArrowCircleRight } from 'react-icons/fa'
 
-const BaseStats = ({ monster }) => {
+const BaseStats = ({ monster, showMonsterModal }) => {
   return (
     <section className="dmd-card-row d-flex justify-content-between align-items-center pb-2 border-bottom">
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center" onClick={showMonsterModal}>
         <RiHeartFill className="dmd-card-icon hp-icon me-1" />
         <p className="stat-title m-0">
           HP{' '}

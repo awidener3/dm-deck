@@ -2,8 +2,7 @@
 
 @font-face {
   font-family: 'Draconis';
-  src: local('Draconis'),
-    url(./assets/fonts/Draconis/Draconis.ttf) format('truetype');
+  src: local('Draconis'), url(./assets/fonts/Draconis/Draconis.ttf) format('truetype');
 }
 
 @font-face {
@@ -37,6 +36,7 @@ $xxl: 1400px;
 $light-gray: #d4d4d4;
 $gray: #aaa;
 $dark-gray: #6b6b6b;
+$green: #276d36;
 
 // Borders + Cards
 $border-radius: 0.3rem;
