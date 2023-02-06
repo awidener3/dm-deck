@@ -45,17 +45,15 @@ const resolvers = {
 				.populate('monsters');
 
 			const copy = JSON.parse(JSON.stringify(battle));
-			console.log(copy);
-
-			let num = 1;
 
 			for (let i = 0; i < copy.monsters.length; i++) {
+				let num = 1;
 				const current = copy.monsters[i];
 
-				for (let j = i; j < copy.monsters.length; j++) {
+				for (let j = i + 1; j < copy.monsters.length; j++) {
 					const compare = copy.monsters[j];
 					if (current.name === compare.name) {
-						current.name = `${current.name} ${num}`;
+						current.name = `${current.name} ${num + 1}`;
 						num++;
 
 						break;

@@ -11,12 +11,14 @@ const CreateBattleForm = ({
   battleName,
   heroes,
   selectedHeroes,
+  selectedNpcs,
   monsters,
   selectedMonsters,
   handleSelectHero,
   handleSelectMonster,
   handleSelectNpc,
   handleRemoveHero,
+  handleRemoveNpc,
   handleRemoveMonster
 }) => {
   const [monsterSearchInput, setMonsterSearchInput] = useState('')
@@ -51,7 +53,6 @@ const CreateBattleForm = ({
 
   return (
     <section className="m-md-4 container">
-      {/* Battle name */}
       <Form className="battle-form">
         <FormGroup>
           <FormLabel>Encounter Name</FormLabel>
@@ -67,7 +68,6 @@ const CreateBattleForm = ({
         </FormGroup>
       </Form>
 
-      {/* Hero table */}
       <section className="table-header" onClick={() => toggleTable('hero')}>
         <FormLabel className="mt-2">{heroTableVisible ? <FaChevronUp /> : <FaChevronDown />} Hero Select</FormLabel>
         <Link to={'/character-builder'} className="add-character-btn btn btn-success">
@@ -100,10 +100,12 @@ const CreateBattleForm = ({
             onChange={handleNpcSearchChange}
             value={npcSearchInput}
           />
-          <CreatureTable
-            monsters={monsters}
-            monsterSearchInput={npcSearchInput}
-            handleSelectMonster={handleSelectNpc}
+          <NpcTable
+            npcs={monsters}
+            npcSearchInput={npcSearchInput}
+            selectedNpcs={selectedNpcs}
+            handleSelectNpc={handleSelectNpc}
+            handleRemoveNpc={handleRemoveNpc}
           />
         </FormGroup>
       )}
@@ -124,7 +126,7 @@ const CreateBattleForm = ({
             onChange={handleMonsterSearchChange}
             value={monsterSearchInput}
           />
-          <CreatureTable
+          <MonsterTable
             monsters={monsters}
             selectedMonsters={selectedMonsters}
             monsterSearchInput={monsterSearchInput}
@@ -186,13 +188,64 @@ const HeroTable = ({ heroes, selectedHeroes, handleSelectHero, handleRemoveHero 
   )
 }
 
-const CreatureTable = ({
-  monsters,
-  selectedMonsters,
-  monsterSearchInput,
-  handleSelectMonster,
-  handleRemoveMonster
-}) => {
+const NpcTable = ({ npcs, selectedNpcs, npcSearchInput, handleSelectNpc, handleRemoveNpc }) => {
+  const filteredNpcs = npcs.filter(npc => {
+    if (npcSearchInput === '') {
+      return npc
+    } else {
+      return npc.name.toLowerCase().match(npcSearchInput.toLowerCase())
+    }
+  })
+
+  return (
+    <Table className="table monsters">
+      <thead>
+        <tr>
+          <th>NPC</th>
+          <th>Size / Type</th>
+          <th>Source</th>
+          <th>CR</th>
+          <th>XP</th>
+          <th>Add</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredNpcs.map(monster => (
+          <tr key={monster._id}>
+            <td>{monster.name}</td>
+            <td>
+              {monster.size} / {monster.type} {monster.subtype && `(${monster.subtype})`}
+            </td>
+            <td>{monster.source}</td>
+            <td>{monster.challenge_rating}</td>
+            <td>{getXp(monster)}</td>
+            <td>
+              {!selectedNpcs.some(m => m._id === monster._id) ? (
+                <button
+                  type="button"
+                  className="btn btn-outline-success btn-sm m-0"
+                  onClick={() => handleSelectNpc(monster)}
+                >
+                  ADD
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-outline-danger btn-sm m-0"
+                  onClick={() => handleRemoveNpc(monster)}
+                >
+                  DEL
+                </button>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  )
+}
+
+const MonsterTable = ({ monsters, selectedMonsters, monsterSearchInput, handleSelectMonster, handleRemoveMonster }) => {
   const filteredMonsters = monsters.filter(monster => {
     if (monsterSearchInput === '') {
       return monster
@@ -224,18 +277,11 @@ const CreatureTable = ({
             <td>{monster.challenge_rating}</td>
             <td>{getXp(monster)}</td>
             <td>
-              <button
-                type="button"
-                className="btn btn-outline-success btn-sm m-0"
-                onClick={() => handleSelectMonster(monster)}
-              >
-                ADD
-              </button>
               {!selectedMonsters.some(m => m._id === monster._id) ? (
                 <button
                   type="button"
                   className="btn btn-outline-success btn-sm m-0"
-                  onClick={() => handleSelectMonster(monster._id)}
+                  onClick={() => handleSelectMonster(monster)}
                 >
                   ADD
                 </button>

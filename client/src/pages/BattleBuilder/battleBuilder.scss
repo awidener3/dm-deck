@@ -1,5 +1,13 @@
 @import '../../styles/App.scss';
 
+#battleBuilder {
+  display: flex;
+
+  @media screen and (max-width: $xl) {
+    flex-direction: column;
+  }
+}
+
 .battle-form {
   .battle-name-input {
     border: none;
@@ -203,7 +211,7 @@
 // card found at bottom/side of battle builder
 .summary-card {
   color: $card-text;
-  width: 24rem;
+  width: 500px;
   min-height: 35rem;
   background-color: $card-background;
   border: $card-border;
@@ -211,6 +219,11 @@
   outline-offset: -5px;
   border-radius: 0.5rem;
   padding: 20px;
+
+  @media screen and (max-width: $lg) {
+    width: 500px;
+  }
+
   .summary-card-title {
     margin: 0;
     text-align: center;

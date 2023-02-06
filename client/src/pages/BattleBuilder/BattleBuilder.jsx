@@ -159,12 +159,13 @@ const BattleBuilder = () => {
   return (
     <section>
       <PageHeader image={`url(${require('assets/images/card_backs/back_4.jpg')})`} pageTitle={'Battle Builder'} />
-      <section className="container d-flex flex-column py-3">
+      <section id="battleBuilder" className="container py-3">
         <CreateBattleForm
           setBattleName={setBattleName}
           battleName={battleName}
           heroes={data.userCharacters}
           selectedHeroes={selectedHeroes}
+          selectedNpcs={selectedNpcs}
           monsters={data.monsters}
           selectedMonsters={selectedMonsters}
           handleSelectMonster={handleSelectMonster}
@@ -172,6 +173,7 @@ const BattleBuilder = () => {
           handleSelectNpc={handleSelectNpc}
           handleRemoveHero={handleRemoveHero}
           handleRemoveMonster={handleRemoveMonster}
+          handleRemoveNpc={handleRemoveNpc}
         />
 
         <CreateBattleSummary

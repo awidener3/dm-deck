@@ -17,7 +17,7 @@ import './battle.scss'
 import Loading from 'components/Loading/Loading'
 
 const Battle = () => {
-  // Get ID from URL parameters
+  // Get ID from URL parameters (battle/:battleId)
   const { battleId } = useParams()
 
   // Get battle order (may be saved in localstorage)
