@@ -1,22 +1,28 @@
 {
 	"name": "dm-deck",
+	"author": "Alex Widener",
+	"private": true,
+	"type": "module",
 	"version": "0.1.7",
 	"description": "A tool for D&D dungeon masters to run battles smoothly in a TCG format",
-	"main": "server/server.js",
 	"scripts": {
-		"start": "node server/server.js --ignore client",
-		"develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-		"install": "cd server && npm i && cd ../client && npm i",
-		"seed": "cd server && npm run seed",
-		"build": "cd client && npm run build"
-	},
-	"author": "Alex Widener",
-	"license": "ISC",
-	"devDependencies": {
-		"concurrently": "^5.3.0"
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
 	},
 	"dependencies": {
-		"html-react-parser": "^3.0.8",
-		"uuid": "^8.3.2"
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-icons": "^4.7.1",
+		"react-router-dom": "^6.8.1"
+	},
+	"devDependencies": {
+		"@types/react": "^18.0.28",
+		"@types/react-dom": "^18.0.11",
+		"@vitejs/plugin-react": "^3.1.0",
+		"autoprefixer": "^10.4.13",
+		"postcss": "^8.4.21",
+		"tailwindcss": "^3.2.7",
+		"vite": "^4.1.3"
 	}
 }
