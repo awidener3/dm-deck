@@ -8,6 +8,9 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/awidener3/dm-deck)
 
 
+## Hosting
+To host the Vite application on your local network, run `npm run dev -- --host`
+
 ## Planning 
 
 View the [Project Board](https://github.com/awidener3/dm-deck/projects/2) here! Currently the project is being maintained and developed solo.

@@ -1,3 +1,9 @@
+import Splash from '../components/splash';
+
 export default function BattleBuilder() {
-	return <h2>Battle Builder</h2>;
+	return (
+		<>
+			<Splash heading={'Battle Builder'} background={'bg-back-4'} />
+		</>
+	);
 }

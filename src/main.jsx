@@ -3,19 +3,21 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import Root from './routes/root';
-import Error from './error';
 import Index from './routes';
 import BattleBuilder from './routes/battleBuilder';
-import CharacterBuilder from './routes/characterBuilder';
+import PartyBuilder from './routes/partyBuilder';
+import BattleSelect from './routes/battleSelect';
+import ErrorPage from './error-page';
+import MonsterBuilder from './routes/monsterBuilder';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    errorElement: <Error />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        errorElement: <Error />,
+        errorElement: <ErrorPage />,
         children: [
           { index: true, element: <Index /> },
           {
@@ -23,9 +25,17 @@ const router = createBrowserRouter([
             element: <BattleBuilder />
           },
           {
-            path:'build/character',
-            element: <CharacterBuilder />
-          }
+            path:'build/party',
+            element: <PartyBuilder />
+          },
+          {
+            path: 'build/monster',
+            element: <MonsterBuilder />
+          },
+          {
+            path: 'battles',
+            element: <BattleSelect />
+          },
         ]
       }
     ]

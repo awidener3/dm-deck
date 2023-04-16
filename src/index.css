@@ -18,26 +18,26 @@ a.active {
 @font-face {
 	font-family: 'Draconis';
 	src: local('Draconis'),
-		url(../assets/fonts/Draconis/Draconis.ttf) format('truetype');
+		url(./assets/fonts/Draconis/Draconis.ttf) format('truetype');
 }
 
 @font-face {
 	font-family: 'Draconis';
 	font-weight: 900;
-	src: local('Draconis'), url(../assets/fonts/Draconis/DraconisBold.ttf);
+	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBold.ttf);
 }
 
 @font-face {
 	font-family: 'Draconis';
 	font-style: italic;
-	src: local('Draconis'), url(../assets/fonts/Draconis/DraconisItalic.ttf);
+	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisItalic.ttf);
 }
 
 @font-face {
 	font-family: 'Draconis';
 	font-weight: 900;
 	font-style: italic;
-	src: local('Draconis'), url(../assets/fonts/Draconis/DraconisBoldItalic.ttf);
+	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBoldItalic.ttf);
 }
 
 :root {
