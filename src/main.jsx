@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
 import Root from './routes/root';
 import Index from './routes';
 import BattleBuilder from './routes/battleBuilder';
@@ -9,7 +8,9 @@ import PartyBuilder from './routes/partyBuilder';
 import BattleSelect from './routes/battleSelect';
 import ErrorPage from './error-page';
 import MonsterBuilder from './routes/monsterBuilder';
+import './index.less';
 
+// this is where routes are defined and combined with a react element
 const router = createBrowserRouter([
   {
     path: '/',

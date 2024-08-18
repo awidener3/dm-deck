@@ -26,16 +26,12 @@ export default function Root() {
 		<>
 			<Header mobile={isMobile} />
 
-			<div
+			<main
 				id="content"
-				className={
-					navigation.state === 'loading'
-						? 'loading'
-						: 'flex flex-col justify-center items-center'
-				}
+				className={navigation.state}
 			>
 				<Outlet />
-			</div>
+			</main>
 		</>
 	);
 }

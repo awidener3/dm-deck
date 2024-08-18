@@ -3,6 +3,30 @@ import battle_deck_select from 'assets/images/battle_deck_select.png';
 import character_builder from 'assets/images/character_builder.png';
 import battle_builder from 'assets/images/battle_builder.png';
 import monster_builder from 'assets/images/monster_builder.png';
+import './home.scss'
+
+const Home = () => {
+  return (
+    <>
+      <figure className="splash-screen">
+        <h1 className="splash-logo-text">
+          DM
+          <span className="splash-logo-subtext">Deck</span>
+        </h1>
+      </figure>
+
+      <section className="home-content p-4 container">
+        <h1>Welcome to DM Deck!</h1>
+        <p>
+          This app allows you, the dungeon master, to track your epic D&D Battles in a Trading Card Game style, like
+          Pokemon or Magic! Create battles on the fly, or prepare ahead of time by saving your battles!
+        </p>
+
+        <HomeLinks />
+      </section>
+    </>
+  )
+}
 
 const HomeLinks = () => {
 	const linkImages = [
@@ -49,4 +73,4 @@ const HomeLinks = () => {
 	);
 };
 
-export default HomeLinks;
+export default Home

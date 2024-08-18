@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap'
+import { Alert, Form, FormGroup, FormLabel, FormControl, Button } from 'react-bootstrap'
 import { useMutation } from '@apollo/client'
 import { LOGIN } from 'utils/mutations/userMutations'
-import Auth from 'utils/auth'
-import ErrorMessage from './ErrorMessage'
 import { FiLogIn } from 'react-icons/fi'
-import './login.scss'
+import { GiBrokenAxe } from 'react-icons/gi';
 import { v4 as uuidv4 } from 'uuid'
+import Auth from 'utils/auth'
+import './login.scss'
+
 
 const Login = () => {
   const navigate = useNavigate()
@@ -86,5 +87,23 @@ const Login = () => {
     </div>
   )
 }
+
+const ErrorMessage = () => {
+	return (
+		<Alert
+			variant="warning"
+			className="p-2 d-flex align-items-center flex-column flex-sm-row"
+		>
+			<GiBrokenAxe size={'50px'} className="mx-3" />
+			<div className="d-flex flex-column">
+				<p className="m-0 fw-bold">Uh oh! The kobolds could not sign you in.</p>
+				<p className="m-0">
+					Double check your email address and password, and make sure it's in
+					Common!
+				</p>
+			</div>
+		</Alert>
+	);
+};
 
 export default Login

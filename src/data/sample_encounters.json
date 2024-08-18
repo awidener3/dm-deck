@@ -1,0 +1,40 @@
+[
+	{
+		"id": "0",
+		"name": "First Fight",
+		"characters": [
+			"bed6ca6c-05a0-48d8-80c1-6e46897f8726",
+			"9289c762-97a7-414b-b427-6fe768d2ccfa",
+			"da3c3980-1cec-437f-9096-f0da870158a3",
+			"3857f6ac-5817-40ff-a73c-60ee159bbefe"
+		],
+		"monsters": [
+			{
+				"id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+				"quantity": 5
+			},
+			{
+				"id": "0620c943-ff2d-41a2-8b96-ebcf85614c80",
+				"quantity": 1
+			}
+		],
+		"npcs": []
+	},
+	{
+		"id": "1",
+		"name": "TPK",
+		"characters": ["bed6ca6c-05a0-48d8-80c1-6e46897f8726", "9289c762-97a7-414b-b427-6fe768d2ccfa"],
+		"monsters": [
+			{
+				"id": "054ac528-83a1-447c-8960-4bddf4ef8733",
+				"quantity": 1
+			}
+		],
+		"npcs": [
+			{
+				"id": "ae87e7ab-dbd3-43f2-b18b-5c79779d2c47",
+				"quantity": 1
+			}
+		]
+	}
+]
