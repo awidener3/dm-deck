@@ -82,7 +82,8 @@
 				}
 			],
 			"id": "191f73f7-9905-4c7d-8ff0-dab15838419c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "aboleth"
 		},
 		{
 			"name": "Acolyte",
@@ -121,7 +122,8 @@
 				}
 			],
 			"id": "05f67648-4144-46c7-866f-10793cf94296",
-			"source": "srd"
+			"source": "srd",
+			"slug": "acolyte"
 		},
 		{
 			"name": "Adult Black Dragon",
@@ -213,7 +215,8 @@
 				}
 			],
 			"id": "054ac528-83a1-447c-8960-4bddf4ef8733",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-black-dragon"
 		},
 		{
 			"name": "Adult Blue Dracolich",
@@ -302,7 +305,8 @@
 				}
 			],
 			"id": "f4f7d732-bddb-4326-9865-ee08c92a97c3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-blue-dracolich"
 		},
 		{
 			"name": "Adult Blue Dragon",
@@ -390,7 +394,8 @@
 				}
 			],
 			"id": "c392dbc7-f21a-4ca9-8d8b-e94885dc402e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-blue-dragon"
 		},
 		{
 			"name": "Adult Brass Dragon",
@@ -461,7 +466,8 @@
 				}
 			],
 			"id": "3157eab3-e2a9-434e-a7d8-00d1a890cb22",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-brass-dragon"
 		},
 		{
 			"name": "Adult Bronze Dragon",
@@ -554,7 +560,8 @@
 				}
 			],
 			"id": "05ef392f-ce08-4c07-a581-aab40377af0e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-bronze-dragon"
 		},
 		{
 			"name": "Adult Copper Dragon",
@@ -643,7 +650,8 @@
 				}
 			],
 			"id": "f0f66f52-c0b6-46ab-a5b1-90c27b7f18d5",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-copper-dragon"
 		},
 		{
 			"name": "Adult Gold Dragon",
@@ -737,7 +745,8 @@
 				}
 			],
 			"id": "62f1b9de-5d3d-4308-a9ad-2eaffcf5ad6c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-gold-dragon"
 		},
 		{
 			"name": "Adult Green Dragon",
@@ -833,7 +842,8 @@
 				}
 			],
 			"id": "12062aa1-8fb7-4e55-9300-295cac7cf37e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-green-dragon"
 		},
 		{
 			"name": "Adult Red Dragon",
@@ -925,7 +935,8 @@
 				}
 			],
 			"id": "a8605349-f848-4ab2-82de-60d1798fd958",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-red-dragon"
 		},
 		{
 			"name": "Adult Silver Dragon",
@@ -1015,7 +1026,8 @@
 				}
 			],
 			"id": "d7fc85a0-5809-4448-8933-42df0e2ac7e8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-silver-dragon"
 		},
 		{
 			"name": "Adult White Dragon",
@@ -1107,7 +1119,8 @@
 				}
 			],
 			"id": "fad4e855-b1bb-49d9-a29c-623223801c2c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "adult-white-dragon"
 		},
 		{
 			"name": "Air Elemental",
@@ -1156,7 +1169,8 @@
 				}
 			],
 			"id": "5afaf3dd-a9a6-48e9-9495-67b6522535ff",
-			"source": "srd"
+			"source": "srd",
+			"slug": "air-elemental"
 		},
 		{
 			"name": "Ancient Black Dragon",
@@ -1252,7 +1266,8 @@
 				}
 			],
 			"id": "2b2f0fab-47bf-4ebd-957a-23a851ce7837",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-black-dragon"
 		},
 		{
 			"name": "Ancient Blue Dragon",
@@ -1334,7 +1349,8 @@
 				}
 			],
 			"id": "a8764ab8-5e10-4820-bcfc-5617bc50090c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-blue-dragon"
 		},
 		{
 			"name": "Ancient Brass Dragon",
@@ -1428,7 +1444,8 @@
 				}
 			],
 			"id": "efb59310-a321-42b7-a140-0e643ce7a4d8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-brass-dragon"
 		},
 		{
 			"name": "Ancient Bronze Dragon",
@@ -1524,7 +1541,8 @@
 				}
 			],
 			"id": "aa131e16-9d7f-4480-abea-6be5b150aff2",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-bronze-dragon"
 		},
 		{
 			"name": "Ancient Copper Dragon",
@@ -1617,7 +1635,8 @@
 				}
 			],
 			"id": "8904b2e3-efbb-43d4-8bb8-40b712a179ca",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-copper-dragon"
 		},
 		{
 			"name": "Ancient Gold Dragon",
@@ -1715,7 +1734,8 @@
 				}
 			],
 			"id": "b88d6e83-f12c-4b4f-b263-0d202a1d5453",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-gold-dragon"
 		},
 		{
 			"name": "Ancient Green Dragon",
@@ -1811,7 +1831,8 @@
 				}
 			],
 			"id": "262c2d39-4d30-476e-b4bf-15dc75960acc",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-green-dragon"
 		},
 		{
 			"name": "Ancient Red Dragon",
@@ -1899,7 +1920,8 @@
 				}
 			],
 			"id": "3b51a33d-7f96-48d3-8d41-84081c53ef54",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-red-dragon"
 		},
 		{
 			"name": "Ancient Silver Dragon",
@@ -1996,7 +2018,8 @@
 				}
 			],
 			"id": "025c3044-8571-44fe-855a-19a4decf2dc6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-silver-dragon"
 		},
 		{
 			"name": "Ancient White Dragon",
@@ -2088,7 +2111,8 @@
 				}
 			],
 			"id": "0f1f7457-31ce-462c-a920-3c10f96b6330",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ancient-white-dragon"
 		},
 		{
 			"name": "Androsphinx",
@@ -2166,7 +2190,8 @@
 				}
 			],
 			"id": "ff313283-9c1c-437c-a4a1-e6a8353ba57a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "androsphinx"
 		},
 		{
 			"name": "Animated Armor",
@@ -2212,7 +2237,8 @@
 				}
 			],
 			"id": "e8ea81ef-e0dc-48ab-aecc-a935dfeb3d10",
-			"source": "srd"
+			"source": "srd",
+			"slug": "animated-armor"
 		},
 		{
 			"name": "Ankheg",
@@ -2246,7 +2272,8 @@
 				}
 			],
 			"id": "45fc7430-816c-4e6b-a73a-267326a32a64",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ankheg"
 		},
 		{
 			"name": "Ape",
@@ -2289,7 +2316,8 @@
 				}
 			],
 			"id": "24e4f03f-4de0-472b-8838-c11330a4b8d2",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ape"
 		},
 		{
 			"name": "Archmage",
@@ -2335,7 +2363,8 @@
 				}
 			],
 			"id": "d8733743-364a-4324-a402-85b855f1c699",
-			"source": "srd"
+			"source": "srd",
+			"slug": "archmage"
 		},
 		{
 			"name": "Assassin",
@@ -2398,7 +2427,8 @@
 				}
 			],
 			"id": "d706936e-ae5f-429c-b187-03d28cb73199",
-			"source": "srd"
+			"source": "srd",
+			"slug": "assassin"
 		},
 		{
 			"name": "Awakened Shrub",
@@ -2436,7 +2466,8 @@
 				}
 			],
 			"id": "2c0a0e27-c157-4c99-b332-abcbe4e0f3df",
-			"source": "srd"
+			"source": "srd",
+			"slug": "awakened-shrub"
 		},
 		{
 			"name": "Awakened Tree",
@@ -2474,7 +2505,8 @@
 				}
 			],
 			"id": "1f1af649-7861-4e31-98c1-61a2d7812beb",
-			"source": "srd"
+			"source": "srd",
+			"slug": "awakened-tree"
 		},
 		{
 			"name": "Axe Beak",
@@ -2504,7 +2536,8 @@
 				}
 			],
 			"id": "c7445a31-518e-401f-bf4a-29d531c9fbc8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "axe-beak"
 		},
 		{
 			"name": "Azer",
@@ -2551,7 +2584,8 @@
 				}
 			],
 			"id": "e09c87e4-716f-4c84-a425-948f715a3af1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "azer"
 		},
 		{
 			"name": "Baboon",
@@ -2587,7 +2621,8 @@
 				}
 			],
 			"id": "19c151ad-9616-45b5-851c-017ed6de42ef",
-			"source": "srd"
+			"source": "srd",
+			"slug": "baboon"
 		},
 		{
 			"name": "Badger",
@@ -2622,7 +2657,8 @@
 				}
 			],
 			"id": "de828c35-6bef-4289-8197-9dc6ad279412",
-			"source": "srd"
+			"source": "srd",
+			"slug": "badger"
 		},
 		{
 			"name": "Balor",
@@ -2697,7 +2733,8 @@
 				}
 			],
 			"id": "550daed8-98e0-47c8-9409-5f180d7cbbd1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "balor"
 		},
 		{
 			"name": "Bandit",
@@ -2735,7 +2772,8 @@
 				}
 			],
 			"id": "4c8d6e6f-7ec5-41a1-a0b8-dd9961f8fdc4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bandit"
 		},
 		{
 			"name": "Bandit Captain",
@@ -2788,7 +2826,8 @@
 				}
 			],
 			"id": "1c7ba433-eb3c-4dde-a410-21b23f1c0e3c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bandit-captain"
 		},
 		{
 			"name": "Barbed Devil",
@@ -2860,7 +2899,8 @@
 				}
 			],
 			"id": "7cb99236-eaba-486a-a798-e94810782f97",
-			"source": "srd"
+			"source": "srd",
+			"slug": "barbed-devil"
 		},
 		{
 			"name": "Basilisk",
@@ -2896,7 +2936,8 @@
 				}
 			],
 			"id": "6aad3166-5752-45ff-bbf5-3c897614b6ed",
-			"source": "srd"
+			"source": "srd",
+			"slug": "basilisk"
 		},
 		{
 			"name": "Bat",
@@ -2934,7 +2975,8 @@
 				}
 			],
 			"id": "edabf32d-3b65-4b47-8495-6a285f661877",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bat"
 		},
 		{
 			"name": "Bearded Devil",
@@ -2996,7 +3038,8 @@
 				}
 			],
 			"id": "7fd0b152-755a-4b60-a96e-c8dde1919200",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bearded-devil"
 		},
 		{
 			"name": "Behir",
@@ -3048,7 +3091,8 @@
 				}
 			],
 			"id": "4420e72d-7580-4a14-b700-ee942557bdc3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "behir"
 		},
 		{
 			"name": "Berserker",
@@ -3085,7 +3129,8 @@
 				}
 			],
 			"id": "54161766-6c72-4b13-9bcd-7161cc148a27",
-			"source": "srd"
+			"source": "srd",
+			"slug": "berserker"
 		},
 		{
 			"name": "Black Bear",
@@ -3132,7 +3177,8 @@
 				}
 			],
 			"id": "51168ef1-ef23-4348-ad31-9d39b762eced",
-			"source": "srd"
+			"source": "srd",
+			"slug": "black-bear"
 		},
 		{
 			"name": "Black Dragon Wyrmling",
@@ -3179,7 +3225,8 @@
 				}
 			],
 			"id": "0d3b8053-03c9-4d5d-a03c-a173d1ff2427",
-			"source": "srd"
+			"source": "srd",
+			"slug": "black-dragon-wyrmling"
 		},
 		{
 			"name": "Black Pudding",
@@ -3231,7 +3278,8 @@
 				}
 			],
 			"id": "c1b3f87b-6a85-4fe7-a01e-54b0a55840d8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "black-pudding"
 		},
 		{
 			"name": "Blink Dog",
@@ -3273,7 +3321,8 @@
 				}
 			],
 			"id": "1259013d-9c95-41cc-9ae3-b327a47898fc",
-			"source": "srd"
+			"source": "srd",
+			"slug": "blink-dog"
 		},
 		{
 			"name": "Blood Hawk",
@@ -3314,7 +3363,8 @@
 				}
 			],
 			"id": "a6eb8013-db5c-4fb7-b022-622fb8ff9942",
-			"source": "srd"
+			"source": "srd",
+			"slug": "blood-hawk"
 		},
 		{
 			"name": "Blue Dragon Wyrmling",
@@ -3355,7 +3405,8 @@
 				}
 			],
 			"id": "417aed80-1a8c-4cfa-a193-011773e6ac0a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "blue-dragon-wyrmling"
 		},
 		{
 			"name": "Boar",
@@ -3395,7 +3446,8 @@
 				}
 			],
 			"id": "a87a11e0-c8e9-4719-b745-54b1652576d3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "boar"
 		},
 		{
 			"name": "Bone Devil",
@@ -3473,7 +3525,8 @@
 				}
 			],
 			"id": "d9b6a007-9765-474d-9ecd-3a03ebd3fcf9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bone-devil"
 		},
 		{
 			"name": "Brass Dragon Wyrmling",
@@ -3514,7 +3567,8 @@
 				}
 			],
 			"id": "9d40c392-82e9-4de7-b01f-eb8157662c13",
-			"source": "srd"
+			"source": "srd",
+			"slug": "brass-dragon-wyrmling"
 		},
 		{
 			"name": "Bronze Dragon Wyrmling",
@@ -3561,7 +3615,8 @@
 				}
 			],
 			"id": "3b832d73-7bec-4630-bf39-259ba5ad096f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bronze-dragon-wyrmling"
 		},
 		{
 			"name": "Brown Bear",
@@ -3609,7 +3664,8 @@
 				}
 			],
 			"id": "2c9b250c-a081-415a-b502-63ad515fc015",
-			"source": "srd"
+			"source": "srd",
+			"slug": "brown-bear"
 		},
 		{
 			"name": "Bugbear",
@@ -3659,7 +3715,8 @@
 				}
 			],
 			"id": "0620c943-ff2d-41a2-8b96-ebcf85614c80",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bugbear"
 		},
 		{
 			"name": "Bulette",
@@ -3700,7 +3757,8 @@
 				}
 			],
 			"id": "1082aa42-67a3-46e1-acbb-024ff29678bf",
-			"source": "srd"
+			"source": "srd",
+			"slug": "bulette"
 		},
 		{
 			"name": "Camel",
@@ -3729,7 +3787,8 @@
 				}
 			],
 			"id": "2dda0a1d-0bdc-4c70-bd34-80a46f0b09ed",
-			"source": "srd"
+			"source": "srd",
+			"slug": "camel"
 		},
 		{
 			"name": "Carrion Crawler",
@@ -3781,7 +3840,8 @@
 				}
 			],
 			"id": "fb38f1a1-55e6-4346-ac90-5ad969244e76",
-			"source": "srd"
+			"source": "srd",
+			"slug": "carrion-crawler"
 		},
 		{
 			"name": "Cat",
@@ -3817,7 +3877,8 @@
 				}
 			],
 			"id": "221d6e77-70e5-4842-a3b4-048023d2a27b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "cat"
 		},
 		{
 			"name": "Cave Bear",
@@ -3865,7 +3926,8 @@
 				}
 			],
 			"id": "a06f1cf9-4371-46ab-834c-4ae677a68e93",
-			"source": "srd"
+			"source": "srd",
+			"slug": "cave-bear"
 		},
 		{
 			"name": "Centaur",
@@ -3922,7 +3984,8 @@
 				}
 			],
 			"id": "4f916891-7cf2-43f4-b5d7-462f7cf2a82c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "centaur"
 		},
 		{
 			"name": "Chain Devil",
@@ -3980,7 +4043,8 @@
 				}
 			],
 			"id": "c264a93b-d5bd-4d97-a4c0-0f11f6b338c9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "chain-devil"
 		},
 		{
 			"name": "Chimera",
@@ -4033,7 +4097,8 @@
 				}
 			],
 			"id": "8ec9f47d-f74f-4a53-8fba-c29def35fc18",
-			"source": "srd"
+			"source": "srd",
+			"slug": "chimera"
 		},
 		{
 			"name": "Chuul",
@@ -4084,7 +4149,8 @@
 				}
 			],
 			"id": "50389eec-069b-41c5-aa40-9acefc1a5c53",
-			"source": "srd"
+			"source": "srd",
+			"slug": "chuul"
 		},
 		{
 			"name": "Clay Golem",
@@ -4146,7 +4212,8 @@
 				}
 			],
 			"id": "5519add6-e5b9-4f42-866a-389c4f62d1eb",
-			"source": "srd"
+			"source": "srd",
+			"slug": "clay-golem"
 		},
 		{
 			"name": "Cloaker",
@@ -4210,7 +4277,8 @@
 				}
 			],
 			"id": "90d83e4f-b85d-4470-ae24-79d6fcd262be",
-			"source": "srd"
+			"source": "srd",
+			"slug": "cloaker"
 		},
 		{
 			"name": "Cloud Giant",
@@ -4266,7 +4334,8 @@
 				}
 			],
 			"id": "9be1e1f8-fc9f-487a-9c24-f5748328f8ed",
-			"source": "srd"
+			"source": "srd",
+			"slug": "cloud-giant"
 		},
 		{
 			"name": "Cockatrice",
@@ -4296,7 +4365,8 @@
 				}
 			],
 			"id": "11572933-f41c-4a7b-9b39-4cebd97adc56",
-			"source": "srd"
+			"source": "srd",
+			"slug": "cockatrice"
 		},
 		{
 			"name": "Commoner",
@@ -4326,7 +4396,8 @@
 				}
 			],
 			"id": "f9acbdb6-9bd6-4e55-9fc3-82bb30844be4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "commoner"
 		},
 		{
 			"name": "Constrictor Snake",
@@ -4363,7 +4434,8 @@
 				}
 			],
 			"id": "7f5f0dc5-962d-450d-a852-5530f3b72a03",
-			"source": "srd"
+			"source": "srd",
+			"slug": "constrictor-snake"
 		},
 		{
 			"name": "Copper Dragon Wyrmling",
@@ -4404,7 +4476,8 @@
 				}
 			],
 			"id": "6769faff-1b1a-4c35-80d9-5790717d3e00",
-			"source": "srd"
+			"source": "srd",
+			"slug": "copper-dragon-wyrmling"
 		},
 		{
 			"name": "Couatl",
@@ -4464,7 +4537,8 @@
 				}
 			],
 			"id": "e1823784-bef8-4387-a8b6-844ea8111a51",
-			"source": "srd"
+			"source": "srd",
+			"slug": "couatl"
 		},
 		{
 			"name": "Crab",
@@ -4499,7 +4573,8 @@
 				}
 			],
 			"id": "a31a68a7-b2ff-4016-9216-cc095a458394",
-			"source": "srd"
+			"source": "srd",
+			"slug": "crab"
 		},
 		{
 			"name": "Crocodile",
@@ -4536,7 +4611,8 @@
 				}
 			],
 			"id": "dbae50c7-277f-4b29-84f4-803ca7700735",
-			"source": "srd"
+			"source": "srd",
+			"slug": "crocodile"
 		},
 		{
 			"name": "Cult Fanatic",
@@ -4584,7 +4660,8 @@
 				}
 			],
 			"id": "633d105e-5c95-4b07-97bf-4d104f2c71da",
-			"source": "srd"
+			"source": "srd",
+			"slug": "cult-fanatic"
 		},
 		{
 			"name": "Cultist",
@@ -4623,7 +4700,8 @@
 				}
 			],
 			"id": "15bde456-8e83-4eaf-a760-e1993babea37",
-			"source": "srd"
+			"source": "srd",
+			"slug": "cultist"
 		},
 		{
 			"name": "Darkmantle",
@@ -4668,7 +4746,8 @@
 				}
 			],
 			"id": "c8cac50d-deac-4afb-9771-8c7d095eb13d",
-			"source": "srd"
+			"source": "srd",
+			"slug": "darkmantle"
 		},
 		{
 			"name": "Death Dog",
@@ -4710,7 +4789,8 @@
 				}
 			],
 			"id": "365338b3-9f9b-45ce-8c2b-d0a51e8bc1fc",
-			"source": "srd"
+			"source": "srd",
+			"slug": "death-dog"
 		},
 		{
 			"name": "Deep Gnome (Svirfneblin)",
@@ -4765,7 +4845,8 @@
 				}
 			],
 			"id": "3b9fb88a-241f-412d-9dbb-bbe3f45c1a01",
-			"source": "srd"
+			"source": "srd",
+			"slug": "deep-gnome-(svirfneblin)"
 		},
 		{
 			"name": "Deer",
@@ -4794,7 +4875,8 @@
 				}
 			],
 			"id": "d02de2ca-b7c5-49be-a1b7-8bf520d671bf",
-			"source": "srd"
+			"source": "srd",
+			"slug": "deer"
 		},
 		{
 			"name": "Deva",
@@ -4856,7 +4938,8 @@
 				}
 			],
 			"id": "fedab555-bf73-4377-be2d-c7d9846e7427",
-			"source": "srd"
+			"source": "srd",
+			"slug": "deva"
 		},
 		{
 			"name": "Dire Wolf",
@@ -4898,7 +4981,8 @@
 				}
 			],
 			"id": "b87dfe7e-7367-411b-9d89-2da26b97c729",
-			"source": "srd"
+			"source": "srd",
+			"slug": "dire-wolf"
 		},
 		{
 			"name": "Djinni",
@@ -4954,7 +5038,8 @@
 				}
 			],
 			"id": "ee9574c4-2526-4381-b7e5-703b73b2f2a1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "djinni"
 		},
 		{
 			"name": "Doppelganger",
@@ -5010,7 +5095,8 @@
 				}
 			],
 			"id": "b806e39b-874d-483c-880e-3298e7455dd4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "doppelganger"
 		},
 		{
 			"name": "Draft Horse",
@@ -5040,7 +5126,8 @@
 				}
 			],
 			"id": "29f2962f-ccf6-4cee-a011-c87a79c10e40",
-			"source": "srd"
+			"source": "srd",
+			"slug": "draft-horse"
 		},
 		{
 			"name": "Dragon Turtle",
@@ -5102,7 +5189,8 @@
 				}
 			],
 			"id": "18ed2e4e-1e8a-44be-8043-2f6fc22cf0d1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "dragon-turtle"
 		},
 		{
 			"name": "Dretch",
@@ -5149,7 +5237,8 @@
 				}
 			],
 			"id": "70d7724b-6c78-4055-808a-904cf12f1ab2",
-			"source": "srd"
+			"source": "srd",
+			"slug": "dretch"
 		},
 		{
 			"name": "Drider",
@@ -5221,7 +5310,8 @@
 				}
 			],
 			"id": "53c8a815-14b8-4874-8966-f22ceb892aee",
-			"source": "srd"
+			"source": "srd",
+			"slug": "drider"
 		},
 		{
 			"name": "Drow",
@@ -5275,7 +5365,8 @@
 				}
 			],
 			"id": "b03cf467-d893-4a76-bcc1-7c396864b753",
-			"source": "srd"
+			"source": "srd",
+			"slug": "drow"
 		},
 		{
 			"name": "Druid",
@@ -5314,7 +5405,8 @@
 				}
 			],
 			"id": "a8701cad-9a97-4446-b1f8-67ef1817f798",
-			"source": "srd"
+			"source": "srd",
+			"slug": "druid"
 		},
 		{
 			"name": "Dryad",
@@ -5367,7 +5459,8 @@
 				}
 			],
 			"id": "51e40dcc-d209-4169-b070-3fd9c43ca331",
-			"source": "srd"
+			"source": "srd",
+			"slug": "dryad"
 		},
 		{
 			"name": "Duergar",
@@ -5424,7 +5517,8 @@
 				}
 			],
 			"id": "cdac8925-7e0e-42f6-9484-32b089b78d6b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "duergar"
 		},
 		{
 			"name": "Dust Mephit",
@@ -5477,7 +5571,8 @@
 				}
 			],
 			"id": "43a1990b-dbe3-4552-8e30-c3304d515038",
-			"source": "srd"
+			"source": "srd",
+			"slug": "dust-mephit"
 		},
 		{
 			"name": "Eagle",
@@ -5514,7 +5609,8 @@
 				}
 			],
 			"id": "c39a1d90-e2df-4e56-8c3c-b3fc2e5d2ef8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "eagle"
 		},
 		{
 			"name": "Earth Elemental",
@@ -5562,7 +5658,8 @@
 				}
 			],
 			"id": "e5e7d53c-635d-4c26-b810-c6f46ade61e1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "earth-elemental"
 		},
 		{
 			"name": "Efreeti",
@@ -5620,7 +5717,8 @@
 				}
 			],
 			"id": "7c5e4e3c-1cf3-4bf1-806f-71aa443397cb",
-			"source": "srd"
+			"source": "srd",
+			"slug": "efreeti"
 		},
 		{
 			"name": "Elephant",
@@ -5663,7 +5761,8 @@
 				}
 			],
 			"id": "c0030c12-1602-4e0a-9208-a33f0aea89bc",
-			"source": "srd"
+			"source": "srd",
+			"slug": "elephant"
 		},
 		{
 			"name": "Elk",
@@ -5700,7 +5799,8 @@
 				}
 			],
 			"id": "86754581-48b6-4cfb-b5bb-90ac5f3193e9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "elk"
 		},
 		{
 			"name": "Erinyes",
@@ -5769,7 +5869,8 @@
 				}
 			],
 			"id": "234ba07b-7cd9-471b-8c80-6a52f222f7a4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "erinyes"
 		},
 		{
 			"name": "Ettercap",
@@ -5838,7 +5939,8 @@
 				}
 			],
 			"id": "4d735edf-a69b-4df6-ba4e-df4500fc1460",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ettercap"
 		},
 		{
 			"name": "Ettin",
@@ -5890,7 +5992,8 @@
 				}
 			],
 			"id": "3ef91285-3e4c-4272-8c40-beb049ea2183",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ettin"
 		},
 		{
 			"name": "Fire Elemental",
@@ -5941,7 +6044,8 @@
 				}
 			],
 			"id": "2a354db4-5b3d-4fe5-b204-de3df1c92416",
-			"source": "srd"
+			"source": "srd",
+			"slug": "fire-elemental"
 		},
 		{
 			"name": "Fire Giant",
@@ -5988,7 +6092,8 @@
 				}
 			],
 			"id": "724be2f3-0fe5-4560-a37f-e11a7e7a3ef4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "fire-giant"
 		},
 		{
 			"name": "Flesh Golem",
@@ -6050,7 +6155,8 @@
 				}
 			],
 			"id": "1310a008-8810-4c07-87e1-bc535435a973",
-			"source": "srd"
+			"source": "srd",
+			"slug": "flesh-golem"
 		},
 		{
 			"name": "Flying Snake",
@@ -6085,7 +6191,8 @@
 				}
 			],
 			"id": "8bb2c214-bbff-4498-9567-abcc82a609de",
-			"source": "srd"
+			"source": "srd",
+			"slug": "flying-snake"
 		},
 		{
 			"name": "Flying Sword",
@@ -6128,7 +6235,8 @@
 				}
 			],
 			"id": "76fd0c80-e708-4ff0-942c-86b41b9aa616",
-			"source": "srd"
+			"source": "srd",
+			"slug": "flying-sword"
 		},
 		{
 			"name": "Frog",
@@ -6161,7 +6269,8 @@
 				}
 			],
 			"id": "f5e25af8-9954-4cb4-9677-259ba488c512",
-			"source": "srd"
+			"source": "srd",
+			"slug": "frog"
 		},
 		{
 			"name": "Frost Giant",
@@ -6208,7 +6317,8 @@
 				}
 			],
 			"id": "8e698a94-1d1e-401a-8a91-aa3281cbb5ce",
-			"source": "srd"
+			"source": "srd",
+			"slug": "frost-giant"
 		},
 		{
 			"name": "Gargoyle",
@@ -6258,7 +6368,8 @@
 				}
 			],
 			"id": "1ee82579-ff97-4978-b000-a02f4e9eea51",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gargoyle"
 		},
 		{
 			"name": "Gelatinous Cube",
@@ -6302,7 +6413,8 @@
 				}
 			],
 			"id": "4f7d9db2-8f7f-4347-8950-48e966aa345c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gelatinous-cube"
 		},
 		{
 			"name": "Ghast",
@@ -6351,7 +6463,8 @@
 				}
 			],
 			"id": "b4264212-894e-4afe-9670-e5fa8aee7479",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ghast"
 		},
 		{
 			"name": "Ghost",
@@ -6406,7 +6519,8 @@
 				}
 			],
 			"id": "6920dce6-2d6d-4cc2-a478-e3822cf613c2",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ghost"
 		},
 		{
 			"name": "Ghoul",
@@ -6437,11 +6551,15 @@
 				},
 				{
 					"name": "Claws",
-					"desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 7 (2d4 + 2) slashing damage. If the target is a creature other than an elf or undead, it must succeed on a DC 10 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+					"desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 7 (2d4 + 2) slashing damage. If the target is a creature other than an elf or undead, it must succeed on a DC 10 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.",
+					"attack_bonus": 4,
+					"damage_dice": "2d4",
+					"damage_bonus": 2
 				}
 			],
 			"id": "321f3a68-b733-415a-98a0-9dfba146f47c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ghoul"
 		},
 		{
 			"name": "Giant Ape",
@@ -6484,7 +6602,8 @@
 				}
 			],
 			"id": "450bc33c-463a-40fb-820c-0b7d9f0315b8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-ape"
 		},
 		{
 			"name": "Giant Badger",
@@ -6531,7 +6650,8 @@
 				}
 			],
 			"id": "88acf1e3-06f1-4d7f-a026-ef3f624291ff",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-badger"
 		},
 		{
 			"name": "Giant Bat",
@@ -6571,7 +6691,8 @@
 				}
 			],
 			"id": "278d1cc3-52e5-48b3-ab96-865fb524e88c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-bat"
 		},
 		{
 			"name": "Giant Boar",
@@ -6611,7 +6732,8 @@
 				}
 			],
 			"id": "54ee6bac-66dd-4a87-bb04-d1c88efcc1af",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-boar"
 		},
 		{
 			"name": "Giant Centipede",
@@ -6641,7 +6763,8 @@
 				}
 			],
 			"id": "8d72fff0-8f87-4af2-a256-96f98e85655f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-centipede"
 		},
 		{
 			"name": "Giant Constrictor Snake",
@@ -6679,7 +6802,8 @@
 				}
 			],
 			"id": "676e2ab9-33b0-4cc5-816c-82157b052e89",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-constrictor-snake"
 		},
 		{
 			"name": "Giant Crab",
@@ -6716,7 +6840,8 @@
 				}
 			],
 			"id": "1099a278-e4c5-4d96-afb4-8beef0ceab90",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-crab"
 		},
 		{
 			"name": "Giant Crocodile",
@@ -6764,7 +6889,8 @@
 				}
 			],
 			"id": "5b7c4872-2518-4f96-a70b-7d4c877b3cce",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-crocodile"
 		},
 		{
 			"name": "Giant Eagle",
@@ -6812,7 +6938,8 @@
 				}
 			],
 			"id": "6d614a4d-6493-4706-9461-8840680107d1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-eagle"
 		},
 		{
 			"name": "Giant Elk",
@@ -6856,7 +6983,8 @@
 				}
 			],
 			"id": "0994cdcc-2c30-46b2-94d1-7542f260d09c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-elk"
 		},
 		{
 			"name": "Giant Fire Beetle",
@@ -6892,7 +7020,8 @@
 				}
 			],
 			"id": "e5918ba8-2d26-4dfa-85b8-b57a42b07b6f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-fire-beetle"
 		},
 		{
 			"name": "Giant Frog",
@@ -6938,7 +7067,8 @@
 				}
 			],
 			"id": "bbdfa9dc-82e3-4a16-b4dd-0da758e4a86b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-frog"
 		},
 		{
 			"name": "Giant Goat",
@@ -6978,7 +7108,8 @@
 				}
 			],
 			"id": "38d31253-41a1-482b-ae60-fb252c9cbc84",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-goat"
 		},
 		{
 			"name": "Giant Hyena",
@@ -7015,7 +7146,8 @@
 				}
 			],
 			"id": "daa421a5-94e0-4609-9e4c-65de36138341",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-hyena"
 		},
 		{
 			"name": "Giant Lizard",
@@ -7055,7 +7187,8 @@
 				}
 			],
 			"id": "079809fd-9bf3-43cd-b8d3-9366db9c7fea",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-lizard"
 		},
 		{
 			"name": "Giant Octopus",
@@ -7105,7 +7238,8 @@
 				}
 			],
 			"id": "a3bf5d56-4476-42f9-8d32-16c896ede3ec",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-octopus"
 		},
 		{
 			"name": "Giant Owl",
@@ -7147,7 +7281,8 @@
 				}
 			],
 			"id": "947de2fa-33ae-42e0-a41b-b59acb0cee45",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-owl"
 		},
 		{
 			"name": "Giant Poisonous Snake",
@@ -7178,7 +7313,8 @@
 				}
 			],
 			"id": "4dfcc232-8884-41b2-ae14-a84f45d00873",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-poisonous-snake"
 		},
 		{
 			"name": "Giant Rat",
@@ -7218,7 +7354,8 @@
 				}
 			],
 			"id": "c558ac40-04e9-433b-b8f7-8e6365e545b8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-rat"
 		},
 		{
 			"name": "Giant Rat (Diseased)",
@@ -7248,7 +7385,8 @@
 				}
 			],
 			"id": "1c1e3f16-4ad2-4b08-bfe7-d83d7a8047d0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-rat-(diseased)"
 		},
 		{
 			"name": "Giant Scorpion",
@@ -7289,7 +7427,8 @@
 				}
 			],
 			"id": "69108d4b-dc53-4faf-a6a0-e9b5cccd20d1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-scorpion"
 		},
 		{
 			"name": "Giant Sea Horse",
@@ -7329,7 +7468,8 @@
 				}
 			],
 			"id": "4aecfeb5-63fb-41b3-a36f-9a7dddf87963",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-sea-horse"
 		},
 		{
 			"name": "Giant Shark",
@@ -7370,7 +7510,8 @@
 				}
 			],
 			"id": "d728dac3-8e35-471a-832d-d56a71601bf4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-shark"
 		},
 		{
 			"name": "Giant Spider",
@@ -7420,7 +7561,8 @@
 				}
 			],
 			"id": "73599a0a-e579-47e3-a2cb-8f8d0ff52f2a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-spider"
 		},
 		{
 			"name": "Giant Toad",
@@ -7464,7 +7606,8 @@
 				}
 			],
 			"id": "dcf80b06-887b-4981-acab-04abcea268e5",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-toad"
 		},
 		{
 			"name": "Giant Vulture",
@@ -7516,7 +7659,8 @@
 				}
 			],
 			"id": "e4622b9e-ac22-4a84-8003-c7bae01e7a20",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-vulture"
 		},
 		{
 			"name": "Giant Wasp",
@@ -7546,7 +7690,8 @@
 				}
 			],
 			"id": "6f535587-08be-47eb-a1b5-b20ebe0237c3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-wasp"
 		},
 		{
 			"name": "Giant Weasel",
@@ -7584,7 +7729,8 @@
 				}
 			],
 			"id": "b0b37c30-c758-44a0-b964-23b590be476e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-weasel"
 		},
 		{
 			"name": "Giant Wolf Spider",
@@ -7630,7 +7776,8 @@
 				}
 			],
 			"id": "27187937-b706-487c-8b2e-648392cc8d05",
-			"source": "srd"
+			"source": "srd",
+			"slug": "giant-wolf-spider"
 		},
 		{
 			"name": "Gibbering Mouther",
@@ -7678,7 +7825,8 @@
 				}
 			],
 			"id": "40fb434a-fa4f-4ca2-849e-54f97a6a6b4a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gibbering-mouther"
 		},
 		{
 			"name": "Glabrezu",
@@ -7741,7 +7889,8 @@
 				}
 			],
 			"id": "e2e08d5b-98f7-4d4d-aa9b-97d93b47a128",
-			"source": "srd"
+			"source": "srd",
+			"slug": "glabrezu"
 		},
 		{
 			"name": "Gladiator",
@@ -7804,7 +7953,8 @@
 				}
 			],
 			"id": "ae87e7ab-dbd3-43f2-b18b-5c79779d2c47",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gladiator"
 		},
 		{
 			"name": "Gnoll",
@@ -7855,7 +8005,8 @@
 				}
 			],
 			"id": "2c3ecaa6-c102-4984-9bef-1a066af99739",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gnoll"
 		},
 		{
 			"name": "Goat",
@@ -7895,7 +8046,8 @@
 				}
 			],
 			"id": "aa68c7e2-5e30-450a-86e8-7beddae8b4bb",
-			"source": "srd"
+			"source": "srd",
+			"slug": "goat"
 		},
 		{
 			"name": "Goblin",
@@ -7940,7 +8092,8 @@
 				}
 			],
 			"id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "goblin"
 		},
 		{
 			"name": "Gold Dragon Wyrmling",
@@ -7987,7 +8140,8 @@
 				}
 			],
 			"id": "d39fbdb2-bd4e-4552-877d-79b92582565a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gold-dragon-wyrmling"
 		},
 		{
 			"name": "Gorgon",
@@ -8036,7 +8190,8 @@
 				}
 			],
 			"id": "c930d89d-01f0-4684-b7c8-b2dfc14d273e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gorgon"
 		},
 		{
 			"name": "Gray Ooze",
@@ -8083,7 +8238,8 @@
 				}
 			],
 			"id": "47efaf11-769e-4d93-9618-b2a9f5bdddc8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gray-ooze"
 		},
 		{
 			"name": "Green Dragon Wyrmling",
@@ -8131,7 +8287,8 @@
 				}
 			],
 			"id": "7c4396f9-719f-49d9-b762-f4ebf2ea3710",
-			"source": "srd"
+			"source": "srd",
+			"slug": "green-dragon-wyrmling"
 		},
 		{
 			"name": "Green Hag",
@@ -8199,7 +8356,8 @@
 				}
 			],
 			"id": "631ddec4-e2aa-44d6-b1ba-924a80912c85",
-			"source": "srd"
+			"source": "srd",
+			"slug": "green-hag"
 		},
 		{
 			"name": "Grick",
@@ -8247,7 +8405,8 @@
 				}
 			],
 			"id": "35be58e6-dddb-4fd9-b4ed-5493882cf69a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "grick"
 		},
 		{
 			"name": "Griffon",
@@ -8295,7 +8454,8 @@
 				}
 			],
 			"id": "7f390fd5-e795-4595-8eaf-57778c755e9d",
-			"source": "srd"
+			"source": "srd",
+			"slug": "griffon"
 		},
 		{
 			"name": "Grimlock",
@@ -8344,7 +8504,8 @@
 				}
 			],
 			"id": "8281e31e-ec64-485b-b7d7-78c39754a293",
-			"source": "srd"
+			"source": "srd",
+			"slug": "grimlock"
 		},
 		{
 			"name": "Guard",
@@ -8376,7 +8537,8 @@
 				}
 			],
 			"id": "1075cbcd-8a1c-4e6f-92e4-a518dfbf23af",
-			"source": "srd"
+			"source": "srd",
+			"slug": "guard"
 		},
 		{
 			"name": "Guardian Naga",
@@ -8429,7 +8591,8 @@
 				}
 			],
 			"id": "9f200511-5485-4e28-a27b-b1bf332e06d9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "guardian-naga"
 		},
 		{
 			"name": "Gynosphinx",
@@ -8498,7 +8661,8 @@
 				}
 			],
 			"id": "9ccafe99-214e-4fc6-abf0-700a46ca4763",
-			"source": "srd"
+			"source": "srd",
+			"slug": "gynosphinx"
 		},
 		{
 			"name": "Half-Red Dragon Veteran",
@@ -8552,7 +8716,8 @@
 				}
 			],
 			"id": "a63a0b55-8daf-4561-9030-d3e1b11008ca",
-			"source": "srd"
+			"source": "srd",
+			"slug": "half-red-dragon-veteran"
 		},
 		{
 			"name": "Harpy",
@@ -8597,7 +8762,8 @@
 				}
 			],
 			"id": "9a30de0c-2452-4f48-899b-1a66b8627752",
-			"source": "srd"
+			"source": "srd",
+			"slug": "harpy"
 		},
 		{
 			"name": "Hawk",
@@ -8633,7 +8799,8 @@
 				}
 			],
 			"id": "ca59fabd-af2a-41b7-b0d5-39bdbcfc5e5f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hawk"
 		},
 		{
 			"name": "Hell Hound",
@@ -8679,7 +8846,8 @@
 				}
 			],
 			"id": "82bccd60-fd70-4b40-bc38-06a7a822cb54",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hell-hound"
 		},
 		{
 			"name": "Hezrou",
@@ -8741,7 +8909,8 @@
 				}
 			],
 			"id": "440b506b-d21a-4c06-b257-4a8a5a02ea55",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hezrou"
 		},
 		{
 			"name": "Hill Giant",
@@ -8783,7 +8952,8 @@
 				}
 			],
 			"id": "0a0f91cb-c808-4e3a-91f8-f9e8435f4646",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hill-giant"
 		},
 		{
 			"name": "Hippogriff",
@@ -8831,7 +9001,8 @@
 				}
 			],
 			"id": "f1d26330-7704-4529-ad9c-a5ab9e493440",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hippogriff"
 		},
 		{
 			"name": "Hobgoblin",
@@ -8875,7 +9046,8 @@
 				}
 			],
 			"id": "8e0968c6-e0b5-445a-9bac-2a4c3cd632ba",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hobgoblin"
 		},
 		{
 			"name": "Homunculus",
@@ -8912,7 +9084,8 @@
 				}
 			],
 			"id": "2ffa26f2-ecf8-44b8-82eb-8a0799d2bc2a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "homunculus"
 		},
 		{
 			"name": "Horned Devil",
@@ -8977,7 +9150,8 @@
 				}
 			],
 			"id": "f369ce1e-1f85-41fd-a2e6-97eb260d331c",
-			"source": "srd"
+			"source": "srd",
+			"slug": "horned-devil"
 		},
 		{
 			"name": "Hunter Shark",
@@ -9018,7 +9192,8 @@
 				}
 			],
 			"id": "645576ce-595b-4a30-9326-3909c3f9a3e4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hunter-shark"
 		},
 		{
 			"name": "Hydra",
@@ -9071,7 +9246,8 @@
 				}
 			],
 			"id": "78d2702f-f6fd-4918-a633-0bbb79818f71",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hydra"
 		},
 		{
 			"name": "Hyena",
@@ -9107,7 +9283,8 @@
 				}
 			],
 			"id": "a91d64c0-572e-4cba-aaf1-ca37a7391ed2",
-			"source": "srd"
+			"source": "srd",
+			"slug": "hyena"
 		},
 		{
 			"name": "Ice Devil",
@@ -9177,7 +9354,8 @@
 				}
 			],
 			"id": "5bf383a9-43f6-4fb1-8125-0b65f1c702bf",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ice-devil"
 		},
 		{
 			"name": "Ice Mephit",
@@ -9234,7 +9412,8 @@
 				}
 			],
 			"id": "7dd7db94-9117-4695-9b60-f1a0806b559b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ice-mephit"
 		},
 		{
 			"name": "Imp",
@@ -9294,7 +9473,8 @@
 				}
 			],
 			"id": "ddc400f2-8c1c-4b21-9f84-95e72097fcbb",
-			"source": "srd"
+			"source": "srd",
+			"slug": "imp"
 		},
 		{
 			"name": "Invisible Stalker",
@@ -9343,7 +9523,8 @@
 				}
 			],
 			"id": "2b416539-1b4d-4d15-9225-cc9f338529fa",
-			"source": "srd"
+			"source": "srd",
+			"slug": "invisible-stalker"
 		},
 		{
 			"name": "Iron Golem",
@@ -9408,7 +9589,8 @@
 				}
 			],
 			"id": "b569388b-1c75-4f66-a2a2-2ed926fca3a1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "iron-golem"
 		},
 		{
 			"name": "Jackal",
@@ -9449,7 +9631,8 @@
 				}
 			],
 			"id": "759c824a-d094-4070-8215-264b82dc1ef8",
-			"source": "srd"
+			"source": "srd",
+			"slug": "jackal"
 		},
 		{
 			"name": "Killer Whale",
@@ -9491,7 +9674,8 @@
 				}
 			],
 			"id": "fd8a0b50-134c-43a9-9820-cbacc9711419",
-			"source": "srd"
+			"source": "srd",
+			"slug": "killer-whale"
 		},
 		{
 			"name": "Knight",
@@ -9550,7 +9734,8 @@
 				}
 			],
 			"id": "825913c2-36bf-463d-9bab-433a0ecbe7ae",
-			"source": "srd"
+			"source": "srd",
+			"slug": "knight"
 		},
 		{
 			"name": "Kobold",
@@ -9598,7 +9783,8 @@
 				}
 			],
 			"id": "e5dff7e0-ae14-44d5-ac61-98461164d4ca",
-			"source": "srd"
+			"source": "srd",
+			"slug": "kobold"
 		},
 		{
 			"name": "Kraken",
@@ -9683,7 +9869,8 @@
 				}
 			],
 			"id": "070a7998-5af9-486c-9044-e3b5eb3f786f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "kraken"
 		},
 		{
 			"name": "Lamia",
@@ -9737,7 +9924,8 @@
 				}
 			],
 			"id": "09fb2b55-4c13-4204-8dbe-9194a78966c1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "lamia"
 		},
 		{
 			"name": "Lemure",
@@ -9780,7 +9968,8 @@
 				}
 			],
 			"id": "1a45266f-72e2-4869-9253-fdd243f22537",
-			"source": "srd"
+			"source": "srd",
+			"slug": "lemure"
 		},
 		{
 			"name": "Lich",
@@ -9855,7 +10044,8 @@
 				}
 			],
 			"id": "dc6bb04b-62e2-4b38-ac00-58651b5179c3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "lich"
 		},
 		{
 			"name": "Lion",
@@ -9912,7 +10102,8 @@
 				}
 			],
 			"id": "f8bb63e7-d7e0-403f-8ebf-edf8c069d59e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "lion"
 		},
 		{
 			"name": "Lizard",
@@ -9940,7 +10131,8 @@
 				}
 			],
 			"id": "eca877d2-8347-4870-af99-1bc8fcfa1847",
-			"source": "srd"
+			"source": "srd",
+			"slug": "lizard"
 		},
 		{
 			"name": "Lizardfolk",
@@ -10005,7 +10197,8 @@
 				}
 			],
 			"id": "ea4cedd0-2e03-48bb-a4c7-7d1ce984ea2b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "lizardfolk"
 		},
 		{
 			"name": "Mage",
@@ -10046,7 +10239,8 @@
 				}
 			],
 			"id": "60185faf-8a4a-4207-a39f-84a638211aa0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "mage"
 		},
 		{
 			"name": "Magma Mephit",
@@ -10102,7 +10296,8 @@
 				}
 			],
 			"id": "04820ed0-d10d-4334-a208-a059f99cbd9f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "magma-mephit"
 		},
 		{
 			"name": "Magmin",
@@ -10143,7 +10338,8 @@
 				}
 			],
 			"id": "d7fb303d-94e0-4b9a-994f-f84f71ccd0ab",
-			"source": "srd"
+			"source": "srd",
+			"slug": "magmin"
 		},
 		{
 			"name": "Mammoth",
@@ -10186,7 +10382,8 @@
 				}
 			],
 			"id": "d14269fc-cc07-4940-8187-479126662b17",
-			"source": "srd"
+			"source": "srd",
+			"slug": "mammoth"
 		},
 		{
 			"name": "Manticore",
@@ -10240,7 +10437,8 @@
 				}
 			],
 			"id": "27585049-20d2-4023-b44d-bc1edf81deb3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "manticore"
 		},
 		{
 			"name": "Marilith",
@@ -10317,7 +10515,8 @@
 				}
 			],
 			"id": "0e1bffae-3bfa-48b0-abf8-c8bae6e5968f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "marilith"
 		},
 		{
 			"name": "Mastiff",
@@ -10354,7 +10553,8 @@
 				}
 			],
 			"id": "94412ad6-d636-49be-85d1-74288891fad1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "mastiff"
 		},
 		{
 			"name": "Medusa",
@@ -10411,7 +10611,8 @@
 				}
 			],
 			"id": "841d3c04-bad8-4512-bd17-9d59bc12ef0b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "medusa"
 		},
 		{
 			"name": "Merfolk",
@@ -10448,7 +10649,8 @@
 				}
 			],
 			"id": "22a6c9c5-19f6-4bb8-bd77-67f9bd1695bb",
-			"source": "srd"
+			"source": "srd",
+			"slug": "merfolk"
 		},
 		{
 			"name": "Merrow",
@@ -10502,7 +10704,8 @@
 				}
 			],
 			"id": "a57bd1cd-ead3-4a94-8b82-a221b64ab2d0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "merrow"
 		},
 		{
 			"name": "Mimic",
@@ -10561,7 +10764,8 @@
 				}
 			],
 			"id": "016ad1e5-9f9e-4e4c-8ea3-5a6ac80dcf48",
-			"source": "srd"
+			"source": "srd",
+			"slug": "mimic"
 		},
 		{
 			"name": "Minotaur",
@@ -10613,7 +10817,8 @@
 				}
 			],
 			"id": "691bf9af-e693-4a60-821a-0840189e8365",
-			"source": "srd"
+			"source": "srd",
+			"slug": "minotaur"
 		},
 		{
 			"name": "Minotaur Skeleton",
@@ -10659,7 +10864,8 @@
 				}
 			],
 			"id": "7870de9f-3110-421e-ac03-055db17793a6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "minotaur-skeleton"
 		},
 		{
 			"name": "Mule",
@@ -10699,7 +10905,8 @@
 				}
 			],
 			"id": "7575c67c-227c-460d-b9b9-964a8a4f92f6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "mule"
 		},
 		{
 			"name": "Mummy",
@@ -10741,7 +10948,8 @@
 				}
 			],
 			"id": "8fdd1ae5-c045-45b0-bec1-4f9c813b4677",
-			"source": "srd"
+			"source": "srd",
+			"slug": "mummy"
 		},
 		{
 			"name": "Mummy Lord",
@@ -10824,7 +11032,8 @@
 				}
 			],
 			"id": "06a1eb78-9c4e-44ad-8383-3a3a7a51f959",
-			"source": "srd"
+			"source": "srd",
+			"slug": "mummy-lord"
 		},
 		{
 			"name": "Nalfeshnee",
@@ -10891,7 +11100,8 @@
 				}
 			],
 			"id": "5bd1565c-2589-42b1-9b9c-ddc7d1dc5a88",
-			"source": "srd"
+			"source": "srd",
+			"slug": "nalfeshnee"
 		},
 		{
 			"name": "Night Hag",
@@ -10965,7 +11175,8 @@
 				}
 			],
 			"id": "f3431fa1-102b-42ad-829b-27fb95f9c845",
-			"source": "srd"
+			"source": "srd",
+			"slug": "night-hag"
 		},
 		{
 			"name": "Nightmare",
@@ -11010,7 +11221,8 @@
 				}
 			],
 			"id": "7cadea13-b099-4ffd-969a-24ae392df188",
-			"source": "srd"
+			"source": "srd",
+			"slug": "nightmare"
 		},
 		{
 			"name": "Noble",
@@ -11050,7 +11262,8 @@
 				}
 			],
 			"id": "eb75386f-323d-47a8-8586-410a537071f3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "noble"
 		},
 		{
 			"name": "Ochre Jelly",
@@ -11099,7 +11312,8 @@
 				}
 			],
 			"id": "fcb8f8cc-461c-4cce-b386-fc9d1501ed7f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ochre-jelly"
 		},
 		{
 			"name": "Octopus",
@@ -11148,7 +11362,8 @@
 				}
 			],
 			"id": "c0238b3a-650b-46eb-b42a-1dd92c000eb4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "octopus"
 		},
 		{
 			"name": "Ogre",
@@ -11185,7 +11400,8 @@
 				}
 			],
 			"id": "9ac28566-5173-4448-8f56-80b5d3ae3654",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ogre"
 		},
 		{
 			"name": "Ogre Zombie",
@@ -11224,7 +11440,8 @@
 				}
 			],
 			"id": "9aa315db-f35b-43a6-ba3c-3f92ea5aef83",
-			"source": "srd"
+			"source": "srd",
+			"slug": "ogre-zombie"
 		},
 		{
 			"name": "Oni",
@@ -11290,7 +11507,8 @@
 				}
 			],
 			"id": "55f6d88d-0e4f-4bea-8381-938f89ba9a61",
-			"source": "srd"
+			"source": "srd",
+			"slug": "oni"
 		},
 		{
 			"name": "Orc",
@@ -11335,7 +11553,8 @@
 				}
 			],
 			"id": "5d25f7cf-7845-426c-b4f0-821c532a44d3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "orc"
 		},
 		{
 			"name": "Otyugh",
@@ -11387,7 +11606,8 @@
 				}
 			],
 			"id": "993543b9-f3fa-4c7d-9b30-51af2eed53dd",
-			"source": "srd"
+			"source": "srd",
+			"slug": "otyugh"
 		},
 		{
 			"name": "Owl",
@@ -11428,7 +11648,8 @@
 				}
 			],
 			"id": "ceb2a800-9bd8-48c5-b843-16a2a5959234",
-			"source": "srd"
+			"source": "srd",
+			"slug": "owl"
 		},
 		{
 			"name": "Owlbear",
@@ -11476,7 +11697,8 @@
 				}
 			],
 			"id": "962669ef-169a-4f06-add5-f34dbb318bc6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "owlbear"
 		},
 		{
 			"name": "Panther",
@@ -11525,7 +11747,8 @@
 				}
 			],
 			"id": "9b7ac4a0-bdf8-4875-99c9-0b3f0a06e2b0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "panther"
 		},
 		{
 			"name": "Pegasus",
@@ -11559,7 +11782,8 @@
 				}
 			],
 			"id": "76d47c21-c0ce-43b7-adcf-0376c000ae40",
-			"source": "srd"
+			"source": "srd",
+			"slug": "pegasus"
 		},
 		{
 			"name": "Phase Spider",
@@ -11604,7 +11828,8 @@
 				}
 			],
 			"id": "101e23aa-c38f-4c8b-a68c-819a65bf58a6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "phase-spider"
 		},
 		{
 			"name": "Pit Fiend",
@@ -11684,7 +11909,8 @@
 				}
 			],
 			"id": "064e5ddd-efb6-4fe7-a35e-563503c3e9c4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "pit-fiend"
 		},
 		{
 			"name": "Planetar",
@@ -11746,7 +11972,8 @@
 				}
 			],
 			"id": "be326736-92ba-4bcf-b0b5-f0bd0c358d5a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "planetar"
 		},
 		{
 			"name": "Plesiosaurus",
@@ -11784,7 +12011,8 @@
 				}
 			],
 			"id": "ddc973bc-fba0-484a-ba01-bfc1764419a1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "plesiosaurus"
 		},
 		{
 			"name": "Poisonous Snake",
@@ -11813,7 +12041,8 @@
 				}
 			],
 			"id": "2aa42cb7-7f7a-44a5-b819-7da6f45a675f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "poisonous-snake"
 		},
 		{
 			"name": "Polar Bear",
@@ -11861,7 +12090,8 @@
 				}
 			],
 			"id": "360c8fc7-8324-4ddc-9c4e-b1237462d886",
-			"source": "srd"
+			"source": "srd",
+			"slug": "polar-bear"
 		},
 		{
 			"name": "Pony",
@@ -11891,7 +12121,8 @@
 				}
 			],
 			"id": "5445bbe3-1283-4791-96aa-a26904f35cd1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "pony"
 		},
 		{
 			"name": "Priest",
@@ -11934,7 +12165,8 @@
 				}
 			],
 			"id": "cfad3c3c-e1da-4c00-a611-5cefbe6f09b1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "priest"
 		},
 		{
 			"name": "Pseudodragon",
@@ -11991,7 +12223,8 @@
 				}
 			],
 			"id": "bf234522-1c08-4b61-b950-587130a3a917",
-			"source": "srd"
+			"source": "srd",
+			"slug": "pseudodragon"
 		},
 		{
 			"name": "Purple Worm",
@@ -12040,7 +12273,8 @@
 				}
 			],
 			"id": "e9667370-98ed-4a29-8d10-c78a36fcd2f1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "purple-worm"
 		},
 		{
 			"name": "Quasit",
@@ -12097,7 +12331,8 @@
 				}
 			],
 			"id": "3930ff15-159a-4c41-8537-824f2efed463",
-			"source": "srd"
+			"source": "srd",
+			"slug": "quasit"
 		},
 		{
 			"name": "Quipper",
@@ -12136,7 +12371,8 @@
 				}
 			],
 			"id": "03d8a748-e440-4257-a68e-3603e3ef2234",
-			"source": "srd"
+			"source": "srd",
+			"slug": "quipper"
 		},
 		{
 			"name": "Rakshasa",
@@ -12184,7 +12420,8 @@
 				}
 			],
 			"id": "56708eb7-ff03-426f-8b8b-f58154ca2ba3",
-			"source": "srd"
+			"source": "srd",
+			"slug": "rakshasa"
 		},
 		{
 			"name": "Rat",
@@ -12218,7 +12455,8 @@
 				}
 			],
 			"id": "72ee684a-c997-4f68-a9ea-eca3d773e6dc",
-			"source": "srd"
+			"source": "srd",
+			"slug": "rat"
 		},
 		{
 			"name": "Raven",
@@ -12252,7 +12490,8 @@
 				}
 			],
 			"id": "304e4704-817b-44e7-af00-f24908626b87",
-			"source": "srd"
+			"source": "srd",
+			"slug": "raven"
 		},
 		{
 			"name": "Red Dragon Wyrmling",
@@ -12293,7 +12532,8 @@
 				}
 			],
 			"id": "aa4163b6-fe91-4974-ae5b-ddd6a8675841",
-			"source": "srd"
+			"source": "srd",
+			"slug": "red-dragon-wyrmling"
 		},
 		{
 			"name": "Reef Shark",
@@ -12334,7 +12574,8 @@
 				}
 			],
 			"id": "5dc4d828-6289-41b6-a102-0151fa5cf30f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "reef-shark"
 		},
 		{
 			"name": "Remorhaz",
@@ -12375,7 +12616,8 @@
 				}
 			],
 			"id": "e65e1017-4486-4f64-b34b-ba2b81f87f92",
-			"source": "srd"
+			"source": "srd",
+			"slug": "remorhaz"
 		},
 		{
 			"name": "Rhinoceros",
@@ -12411,7 +12653,8 @@
 				}
 			],
 			"id": "e3f0c99b-a852-40b5-b4f8-6b8baa557ec0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "rhinoceros"
 		},
 		{
 			"name": "Riding Horse",
@@ -12441,7 +12684,8 @@
 				}
 			],
 			"id": "eac35da2-15fe-4fbe-9363-107eb6fe8594",
-			"source": "srd"
+			"source": "srd",
+			"slug": "riding-horse"
 		},
 		{
 			"name": "Roc",
@@ -12493,7 +12737,8 @@
 				}
 			],
 			"id": "8aa91e8f-9f29-4544-9d92-7dafaa1338dc",
-			"source": "srd"
+			"source": "srd",
+			"slug": "roc"
 		},
 		{
 			"name": "Roper",
@@ -12552,7 +12797,8 @@
 				}
 			],
 			"id": "0ce417b8-dc9d-41da-93fa-ea212fffb7e6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "roper"
 		},
 		{
 			"name": "Rug of Smothering",
@@ -12597,7 +12843,8 @@
 				}
 			],
 			"id": "97026d9b-61cb-4811-9c99-4889ae2edf1b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "rug-of-smothering"
 		},
 		{
 			"name": "Rust Monster",
@@ -12641,7 +12888,8 @@
 				}
 			],
 			"id": "f5794d71-11b7-4268-9ad9-34d7820629f4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "rust-monster"
 		},
 		{
 			"name": "Saber-Toothed Tiger",
@@ -12690,7 +12938,8 @@
 				}
 			],
 			"id": "37682f7b-60dd-477c-a3e5-e9cbea1aa911",
-			"source": "srd"
+			"source": "srd",
+			"slug": "saber-toothed-tiger"
 		},
 		{
 			"name": "Sahuagin",
@@ -12754,7 +13003,8 @@
 				}
 			],
 			"id": "6170ed6c-fdbb-4fa3-a55f-40814bec4cb5",
-			"source": "srd"
+			"source": "srd",
+			"slug": "sahuagin"
 		},
 		{
 			"name": "Salamander",
@@ -12808,7 +13058,8 @@
 				}
 			],
 			"id": "7f3b02e5-10f0-45ec-95cc-c450e909d216",
-			"source": "srd"
+			"source": "srd",
+			"slug": "salamander"
 		},
 		{
 			"name": "Satyr",
@@ -12865,7 +13116,8 @@
 				}
 			],
 			"id": "f83dae8c-e2dc-40b5-93ba-233cee704e74",
-			"source": "srd"
+			"source": "srd",
+			"slug": "satyr"
 		},
 		{
 			"name": "Scorpion",
@@ -12894,7 +13146,8 @@
 				}
 			],
 			"id": "c4c3abc7-2e26-4d76-8be0-cba761252bf7",
-			"source": "srd"
+			"source": "srd",
+			"slug": "scorpion"
 		},
 		{
 			"name": "Scout",
@@ -12946,7 +13199,8 @@
 				}
 			],
 			"id": "81f73067-46e9-4086-8b08-4364c4b65f35",
-			"source": "srd"
+			"source": "srd",
+			"slug": "scout"
 		},
 		{
 			"name": "Sea Hag",
@@ -13006,7 +13260,8 @@
 				}
 			],
 			"id": "084d08fb-ed27-4b16-9e17-2eb91908f685",
-			"source": "srd"
+			"source": "srd",
+			"slug": "sea-hag"
 		},
 		{
 			"name": "Sea Horse",
@@ -13033,7 +13288,8 @@
 				}
 			],
 			"id": "ff23fed0-4d55-42f2-bb9e-9cb66d16cff6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "sea-horse"
 		},
 		{
 			"name": "Shadow",
@@ -13082,7 +13338,8 @@
 				}
 			],
 			"id": "90f2a4e9-618c-4486-9ea8-fb6566720345",
-			"source": "srd"
+			"source": "srd",
+			"slug": "shadow"
 		},
 		{
 			"name": "Shambling Mound",
@@ -13130,7 +13387,8 @@
 				}
 			],
 			"id": "786147e1-c9df-4f14-a94b-406941709df5",
-			"source": "srd"
+			"source": "srd",
+			"slug": "shambling-mound"
 		},
 		{
 			"name": "Shield Guardian",
@@ -13186,7 +13444,8 @@
 				}
 			],
 			"id": "fb3bbcb6-4e3d-43c0-803f-fc854c3a2047",
-			"source": "srd"
+			"source": "srd",
+			"slug": "shield-guardian"
 		},
 		{
 			"name": "Shrieker",
@@ -13220,7 +13479,8 @@
 				}
 			],
 			"id": "fd241475-3f42-4204-b9fc-69f872671c58",
-			"source": "srd"
+			"source": "srd",
+			"slug": "shrieker"
 		},
 		{
 			"name": "Silver Dragon Wyrmling",
@@ -13261,7 +13521,8 @@
 				}
 			],
 			"id": "9ede560d-5bbb-400a-8469-ad3a5dd29eee",
-			"source": "srd"
+			"source": "srd",
+			"slug": "silver-dragon-wyrmling"
 		},
 		{
 			"name": "Skeleton",
@@ -13300,7 +13561,8 @@
 				}
 			],
 			"id": "93f4db5b-3ebc-479a-bc12-26f7dcc4f4c5",
-			"source": "srd"
+			"source": "srd",
+			"slug": "skeleton"
 		},
 		{
 			"name": "Solar",
@@ -13388,7 +13650,8 @@
 				}
 			],
 			"id": "db474c6d-2900-4507-92fc-134345218bfc",
-			"source": "srd"
+			"source": "srd",
+			"slug": "solar"
 		},
 		{
 			"name": "Specter",
@@ -13430,7 +13693,8 @@
 				}
 			],
 			"id": "91f8ce84-6dbb-4f66-84f8-f6d988bfc7ae",
-			"source": "srd"
+			"source": "srd",
+			"slug": "specter"
 		},
 		{
 			"name": "Spider",
@@ -13474,7 +13738,8 @@
 				}
 			],
 			"id": "d5b0907e-5e64-457e-b88f-be3f92e8ec77",
-			"source": "srd"
+			"source": "srd",
+			"slug": "spider"
 		},
 		{
 			"name": "Spirit Naga",
@@ -13520,7 +13785,8 @@
 				}
 			],
 			"id": "0286da97-a8f5-4d00-b1ba-f9091c5b8ea1",
-			"source": "srd"
+			"source": "srd",
+			"slug": "spirit-naga"
 		},
 		{
 			"name": "Sprite",
@@ -13565,7 +13831,8 @@
 				}
 			],
 			"id": "a8b6ab53-1857-4f13-8d92-b32c133cf73f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "sprite"
 		},
 		{
 			"name": "Spy",
@@ -13623,7 +13890,8 @@
 				}
 			],
 			"id": "eb27db0d-670c-49d3-8f96-36fa3c351a51",
-			"source": "srd"
+			"source": "srd",
+			"slug": "spy"
 		},
 		{
 			"name": "Steam Mephit",
@@ -13672,7 +13940,8 @@
 				}
 			],
 			"id": "e8e75355-c05e-4b8f-8233-46382223ff54",
-			"source": "srd"
+			"source": "srd",
+			"slug": "steam-mephit"
 		},
 		{
 			"name": "Stirge",
@@ -13702,7 +13971,8 @@
 				}
 			],
 			"id": "99a0e452-43d7-4818-a36c-b3bd461f2fba",
-			"source": "srd"
+			"source": "srd",
+			"slug": "stirge"
 		},
 		{
 			"name": "Stone Giant",
@@ -13760,7 +14030,8 @@
 				}
 			],
 			"id": "7cfb66b6-e230-4be2-b20c-1eb123440e23",
-			"source": "srd"
+			"source": "srd",
+			"slug": "stone-giant"
 		},
 		{
 			"name": "Stone Golem",
@@ -13814,7 +14085,8 @@
 				}
 			],
 			"id": "3bd499e0-0209-426e-afa1-3c0890382122",
-			"source": "srd"
+			"source": "srd",
+			"slug": "stone-golem"
 		},
 		{
 			"name": "Storm Giant",
@@ -13879,7 +14151,8 @@
 				}
 			],
 			"id": "9e08611d-e320-49b0-be7c-bee75cfe7c0d",
-			"source": "srd"
+			"source": "srd",
+			"slug": "storm-giant"
 		},
 		{
 			"name": "Succubus/Incubus",
@@ -13940,7 +14213,8 @@
 				}
 			],
 			"id": "a96f6d1b-daee-4178-826f-d477a7fd81d7",
-			"source": "srd"
+			"source": "srd",
+			"slug": "succubus/incubus"
 		},
 		{
 			"name": "Swarm of Bats",
@@ -13985,7 +14259,8 @@
 				}
 			],
 			"id": "bf28c1fa-b238-4487-b5ff-84a49a5dce1b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-bats"
 		},
 		{
 			"name": "Swarm of Beetles",
@@ -14022,7 +14297,8 @@
 				}
 			],
 			"id": "2381c73f-a9e4-47c9-909a-7c76215e11d6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-beetles"
 		},
 		{
 			"name": "Swarm of Centipedes",
@@ -14059,7 +14335,8 @@
 				}
 			],
 			"id": "ba5a378a-3b75-470d-9455-277495c6857a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-centipedes"
 		},
 		{
 			"name": "Swarm of Insects",
@@ -14096,7 +14373,8 @@
 				}
 			],
 			"id": "224c3ae1-1dec-4a50-91cd-6a77ab04b989",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-insects"
 		},
 		{
 			"name": "Swarm of Poisonous Snakes",
@@ -14133,7 +14411,8 @@
 				}
 			],
 			"id": "887fda0e-6c37-44c7-8cfe-0d4cb3e5c17b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-poisonous-snakes"
 		},
 		{
 			"name": "Swarm of Quippers",
@@ -14178,7 +14457,8 @@
 				}
 			],
 			"id": "ce846e75-b448-440c-a985-cde9e86ef771",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-quippers"
 		},
 		{
 			"name": "Swarm of Rats",
@@ -14219,7 +14499,8 @@
 				}
 			],
 			"id": "e1a6b82f-46f8-4dbb-bf65-5b57a6419b8f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-rats"
 		},
 		{
 			"name": "Swarm of Ravens",
@@ -14256,7 +14537,8 @@
 				}
 			],
 			"id": "8dcde5ad-8cbf-4620-a793-f11e9e4c8f99",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-ravens"
 		},
 		{
 			"name": "Swarm of Spiders",
@@ -14305,7 +14587,8 @@
 				}
 			],
 			"id": "66e44c7e-b965-44ae-b191-63b284e9387e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-spiders"
 		},
 		{
 			"name": "Swarm of Wasps",
@@ -14342,7 +14625,8 @@
 				}
 			],
 			"id": "8f8ca62a-c268-4c78-bcda-95e91202724d",
-			"source": "srd"
+			"source": "srd",
+			"slug": "swarm-of-wasps"
 		},
 		{
 			"name": "Tarrasque",
@@ -14443,7 +14727,8 @@
 				}
 			],
 			"id": "67abdf0c-1cbe-4d0f-ac71-bc2065f047b6",
-			"source": "srd"
+			"source": "srd",
+			"slug": "tarrasque"
 		},
 		{
 			"name": "Thug",
@@ -14491,7 +14776,8 @@
 				}
 			],
 			"id": "feeddc05-85ec-4dd1-bcc3-ab9fba012328",
-			"source": "srd"
+			"source": "srd",
+			"slug": "thug"
 		},
 		{
 			"name": "Tiger",
@@ -14537,7 +14823,8 @@
 				}
 			],
 			"id": "9d43d393-d2a9-4afa-9c18-6ea180e2f973",
-			"source": "srd"
+			"source": "srd",
+			"slug": "tiger"
 		},
 		{
 			"name": "Treant",
@@ -14594,7 +14881,8 @@
 				}
 			],
 			"id": "ff4b2820-1a2b-49f9-88ee-d6fcee06a67f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "treant"
 		},
 		{
 			"name": "Tribal Warrior",
@@ -14631,7 +14919,8 @@
 				}
 			],
 			"id": "188b2659-5582-437d-bc38-5f124b0f98b9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "tribal-warrior"
 		},
 		{
 			"name": "Triceratops",
@@ -14674,7 +14963,8 @@
 				}
 			],
 			"id": "d51eb2f2-efac-4850-8db7-28faef0b8b2a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "triceratops"
 		},
 		{
 			"name": "Troll",
@@ -14730,7 +15020,8 @@
 				}
 			],
 			"id": "d5256b33-cdce-437f-9497-03e3c172de41",
-			"source": "srd"
+			"source": "srd",
+			"slug": "troll"
 		},
 		{
 			"name": "Tyrannosaurus Rex",
@@ -14772,7 +15063,8 @@
 				}
 			],
 			"id": "2f06bb5c-2e8b-4596-a867-6cfd79d4db23",
-			"source": "srd"
+			"source": "srd",
+			"slug": "tyrannosaurus-rex"
 		},
 		{
 			"name": "Unicorn",
@@ -14855,7 +15147,8 @@
 				}
 			],
 			"id": "97625aae-0d9d-493f-aa84-8bfc4b102e19",
-			"source": "srd"
+			"source": "srd",
+			"slug": "unicorn"
 		},
 		{
 			"name": "Vampire",
@@ -14951,7 +15244,8 @@
 				}
 			],
 			"id": "d8b7f64a-4719-4241-ba93-3fa7c8cb21b9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "vampire"
 		},
 		{
 			"name": "Vampire Spawn",
@@ -15009,7 +15303,8 @@
 				}
 			],
 			"id": "191f9ea7-3267-4a53-bd74-dbcfedc6c8c0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "vampire-spawn"
 		},
 		{
 			"name": "Veteran",
@@ -15060,7 +15355,8 @@
 				}
 			],
 			"id": "723fa376-9261-4aa0-a126-dbf648a92454",
-			"source": "srd"
+			"source": "srd",
+			"slug": "veteran"
 		},
 		{
 			"name": "Violet Fungus",
@@ -15100,7 +15396,8 @@
 				}
 			],
 			"id": "b758b883-9958-45f7-9b71-9ac2c3c996ff",
-			"source": "srd"
+			"source": "srd",
+			"slug": "violet-fungus"
 		},
 		{
 			"name": "Vrock",
@@ -15166,7 +15463,8 @@
 				}
 			],
 			"id": "829061a7-535a-4bff-bd02-e708318820fd",
-			"source": "srd"
+			"source": "srd",
+			"slug": "vrock"
 		},
 		{
 			"name": "Vulture",
@@ -15206,7 +15504,8 @@
 				}
 			],
 			"id": "7e978d42-65d7-44b5-a72f-d25ca993b5fe",
-			"source": "srd"
+			"source": "srd",
+			"slug": "vulture"
 		},
 		{
 			"name": "Warhorse",
@@ -15242,7 +15541,8 @@
 				}
 			],
 			"id": "e8410173-2d8b-4330-b370-000930e1fd96",
-			"source": "srd"
+			"source": "srd",
+			"slug": "warhorse"
 		},
 		{
 			"name": "Warhorse Skeleton",
@@ -15275,7 +15575,8 @@
 				}
 			],
 			"id": "b64f6a1e-209d-496e-86cb-416474c85fd0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "warhorse-skeleton"
 		},
 		{
 			"name": "Water Elemental",
@@ -15326,7 +15627,8 @@
 				}
 			],
 			"id": "3d68ba87-ef2c-4a2d-8781-6561b8c8ce3f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "water-elemental"
 		},
 		{
 			"name": "Weasel",
@@ -15363,7 +15665,8 @@
 				}
 			],
 			"id": "16dc7c3e-4b85-4d93-be51-db3d56316bb0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "weasel"
 		},
 		{
 			"name": "Werebear",
@@ -15424,7 +15727,8 @@
 				}
 			],
 			"id": "9268053d-1102-4d0e-a27e-1ff6e342b580",
-			"source": "srd"
+			"source": "srd",
+			"slug": "werebear"
 		},
 		{
 			"name": "Wereboar",
@@ -15482,7 +15786,8 @@
 				}
 			],
 			"id": "845707ff-5edd-4e9f-be23-d1407542b7dd",
-			"source": "srd"
+			"source": "srd",
+			"slug": "wereboar"
 		},
 		{
 			"name": "Wererat",
@@ -15544,7 +15849,8 @@
 				}
 			],
 			"id": "e6635b6e-8a47-4c65-af4d-c187f0bcad9e",
-			"source": "srd"
+			"source": "srd",
+			"slug": "wererat"
 		},
 		{
 			"name": "Weretiger",
@@ -15617,7 +15923,8 @@
 				}
 			],
 			"id": "fa132ed0-b942-4329-9c8e-8154e00e7da2",
-			"source": "srd"
+			"source": "srd",
+			"slug": "weretiger"
 		},
 		{
 			"name": "Werewolf",
@@ -15678,7 +15985,8 @@
 				}
 			],
 			"id": "e6c21654-1f7a-45e8-a746-d3d7e9d313db",
-			"source": "srd"
+			"source": "srd",
+			"slug": "werewolf"
 		},
 		{
 			"name": "White Dragon Wyrmling",
@@ -15719,7 +16027,8 @@
 				}
 			],
 			"id": "1e8df103-9680-4d35-badc-ad800677e033",
-			"source": "srd"
+			"source": "srd",
+			"slug": "white-dragon-wyrmling"
 		},
 		{
 			"name": "Wight",
@@ -15777,7 +16086,8 @@
 				}
 			],
 			"id": "8355efc1-f95b-4fe6-94ac-669bed7728f0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "wight"
 		},
 		{
 			"name": "Will-o'-Wisp",
@@ -15831,7 +16141,8 @@
 				}
 			],
 			"id": "a8ef9b28-1d70-43a6-bc15-6bd6d9224d6f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "will-o'-wisp"
 		},
 		{
 			"name": "Winter Wolf",
@@ -15882,7 +16193,8 @@
 				}
 			],
 			"id": "58c5ab05-7904-449d-9f38-d47284599607",
-			"source": "srd"
+			"source": "srd",
+			"slug": "winter-wolf"
 		},
 		{
 			"name": "Wolf",
@@ -15924,7 +16236,8 @@
 				}
 			],
 			"id": "3a537cff-3275-463b-91f6-a3c54a4d5ee4",
-			"source": "srd"
+			"source": "srd",
+			"slug": "wolf"
 		},
 		{
 			"name": "Worg",
@@ -15961,7 +16274,8 @@
 				}
 			],
 			"id": "c1686390-e29d-4b58-8cb4-98f9eb69f2f7",
-			"source": "srd"
+			"source": "srd",
+			"slug": "worg"
 		},
 		{
 			"name": "Wraith",
@@ -16008,7 +16322,8 @@
 				}
 			],
 			"id": "cc73c881-0bfb-443f-825a-eec8c6ba513a",
-			"source": "srd"
+			"source": "srd",
+			"slug": "wraith"
 		},
 		{
 			"name": "Wyvern",
@@ -16057,7 +16372,8 @@
 				}
 			],
 			"id": "0330a641-e8dd-4182-8991-a19b3c9ee9ee",
-			"source": "srd"
+			"source": "srd",
+			"slug": "wyvern"
 		},
 		{
 			"name": "Xorn",
@@ -16115,7 +16431,8 @@
 				}
 			],
 			"id": "229915c8-ce2e-48c0-96d2-f72959118c7b",
-			"source": "srd"
+			"source": "srd",
+			"slug": "xorn"
 		},
 		{
 			"name": "Young Black Dragon",
@@ -16173,7 +16490,8 @@
 				}
 			],
 			"id": "efa8d87b-c695-4ae5-9045-5fd30bbad71f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-black-dragon"
 		},
 		{
 			"name": "Young Blue Dragon",
@@ -16225,7 +16543,8 @@
 				}
 			],
 			"id": "2ad52d76-8eec-41e3-a3d0-f83d4a719a6f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-blue-dragon"
 		},
 		{
 			"name": "Young Brass Dragon",
@@ -16278,7 +16597,8 @@
 				}
 			],
 			"id": "537ab74f-abec-421f-be6f-2058f9fcfeb9",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-brass-dragon"
 		},
 		{
 			"name": "Young Bronze Dragon",
@@ -16337,7 +16657,8 @@
 				}
 			],
 			"id": "ce079991-7cae-445b-bb8f-549f255d4608",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-bronze-dragon"
 		},
 		{
 			"name": "Young Copper Dragon",
@@ -16390,7 +16711,8 @@
 				}
 			],
 			"id": "8d75df80-4030-408a-a606-2b242049fdff",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-copper-dragon"
 		},
 		{
 			"name": "Young Gold Dragon",
@@ -16450,7 +16772,8 @@
 				}
 			],
 			"id": "607f49d3-5afd-4dd0-a947-664a9e129e16",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-gold-dragon"
 		},
 		{
 			"name": "Young Green Dragon",
@@ -16510,7 +16833,8 @@
 				}
 			],
 			"id": "3011f7d5-444e-4254-ac48-ffd533f7d4b0",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-green-dragon"
 		},
 		{
 			"name": "Young Red Dragon",
@@ -16562,7 +16886,8 @@
 				}
 			],
 			"id": "050dc0fb-5fe0-4280-8d0b-cf48b4103561",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-red-dragon"
 		},
 		{
 			"name": "Young Silver Dragon",
@@ -16616,7 +16941,8 @@
 				}
 			],
 			"id": "ff1517a3-c1ce-4b28-8d9b-7dc08fa4519f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-silver-dragon"
 		},
 		{
 			"name": "Young White Dragon",
@@ -16674,7 +17000,8 @@
 				}
 			],
 			"id": "b83defce-7a79-4a8e-a717-12f628f66551",
-			"source": "srd"
+			"source": "srd",
+			"slug": "young-white-dragon"
 		},
 		{
 			"name": "Zombie",
@@ -16712,7 +17039,8 @@
 				}
 			],
 			"id": "84d7f22d-95f5-4904-bcb0-7f96f97ed07f",
-			"source": "srd"
+			"source": "srd",
+			"slug": "zombie"
 		}
 	],
 	"license": [

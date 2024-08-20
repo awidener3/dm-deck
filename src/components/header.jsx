@@ -22,8 +22,8 @@ export default function Header({ mobile }) {
 		},
 		{
 			path: '/battles',
-			title: 'Battle Select',
-		},
+			title: 'Battles',
+		}
 	];
 
 	const mobileRoutes = [

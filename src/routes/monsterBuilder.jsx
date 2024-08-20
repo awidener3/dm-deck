@@ -1,5 +1,5 @@
 import Splash from '../components/splash';
-import monsterStats from '../data/monster_stats.json'
+import monsterStats from '../../data/monster_stats.json'
 import { useState } from 'react';
 
 export default function MonsterBuilder() {

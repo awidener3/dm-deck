@@ -6,9 +6,10 @@ import Index from './routes';
 import BattleBuilder from './routes/battleBuilder';
 import PartyBuilder from './routes/partyBuilder';
 import BattleSelect from './routes/battleSelect';
-import ErrorPage from './error-page';
+import ErrorPage from './components/errorPage';
 import MonsterBuilder from './routes/monsterBuilder';
 import './index.less';
+import BattleViewer from './routes/battleViewer';
 
 // this is where routes are defined and combined with a react element
 const router = createBrowserRouter([
@@ -22,21 +23,25 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Index /> },
           {
+            element: <BattleBuilder />,
             path:'build/battle',
-            element: <BattleBuilder />
           },
           {
+            element: <PartyBuilder />,
             path:'build/party',
-            element: <PartyBuilder />
           },
           {
+            element: <MonsterBuilder />,
             path: 'build/monster',
-            element: <MonsterBuilder />
           },
           {
+            element: <BattleSelect />,
             path: 'battles',
-            element: <BattleSelect />
           },
+          {
+            element: <BattleViewer />, 
+            path: 'battles/:battleId',
+          }
         ]
       }
     ]

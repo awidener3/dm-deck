@@ -27,7 +27,7 @@ export default function Root() {
 			<Header mobile={isMobile} />
 
 			<main
-				id="content"
+				id="page"
 				className={navigation.state}
 			>
 				<Outlet />
