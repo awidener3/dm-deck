@@ -168,16 +168,21 @@ function Card({ data }) {
 							<li key={action.name} className="card-action">
 								{action.name}{' '}
 								<menu>
-									<li>
-										<button>
-											{getDamageBonus(action.attack_bonus)} to hit
-										</button>
-									</li>
-									<li>
-										<button>
-											{action.damage_dice} {getDamageBonus(action.damage_bonus)}
-										</button>
-									</li>
+									{action?.attack_bonus && (
+										<li>
+											<button>
+												{getDamageBonus(action.attack_bonus)} to hit
+											</button>
+										</li>
+									)}
+									{action?.damage_dice && (
+										<li>
+											<button>
+												{action.damage_dice}{' '}
+												{getDamageBonus(action.damage_bonus)}
+											</button>
+										</li>
+									)}
 								</menu>
 							</li>
 						))}
