@@ -7,14 +7,17 @@
     "enemies": [
       {
         "id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+        "nickname": "Goblin A",
         "current_hit_points": 7
       },
       {
         "id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+        "nickname": "Goblin B",
         "current_hit_points": 7
       },
       {
         "id": "0620c943-ff2d-41a2-8b96-ebcf85614c80",
+        "nickname": "Goblin C",
         "current_hit_points": 27
       }
     ]

@@ -1,73 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Mukta+Vaani:wght@200;300;400;500;600;700;800&display=swap');
 
 @font-face {
-	font-family: 'Draconis';
-	src: local('Draconis'),
-		url(./assets/fonts/Draconis/Draconis.ttf) format('truetype');
+  font-family: 'Draconis';
+  src: local('Draconis'), url(./assets/fonts/Draconis/Draconis.ttf) format('truetype');
 }
 
 @font-face {
-	font-family: 'Draconis';
-	font-weight: 900;
-	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBold.ttf);
+  font-family: 'Draconis';
+  font-weight: 900;
+  src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBold.ttf);
 }
 
 @font-face {
-	font-family: 'Draconis';
-	font-style: italic;
-	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisItalic.ttf);
+  font-family: 'Draconis';
+  font-style: italic;
+  src: local('Draconis'), url(./assets/fonts/Draconis/DraconisItalic.ttf);
 }
 
 @font-face {
-	font-family: 'Draconis';
-	font-weight: 900;
-	font-style: italic;
-	src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBoldItalic.ttf);
+  font-family: 'Draconis';
+  font-weight: 900;
+  font-style: italic;
+  src: local('Draconis'), url(./assets/fonts/Draconis/DraconisBoldItalic.ttf);
 }
 
 :root {
-	// colors
-	--text-light: #d8d8d8;
-	--text-primary: #d8d8d8;
-	--text-secondary: #292929;
-	--background: #111111;
-	--background-secondary: #111111;
-	--field-background: #363636;
-	--field-hover: #63636344;
-	--field-selected: #276d36;
-	--field-selected-hover: #3b864c;
+  // colors
+  --text-light: #d8d8d8;
+  --text-primary: #d8d8d8;
+  --text-secondary: #292929;
+  --background: #111111;
+  --background-secondary: #111111;
+  --field-background: #363636;
+  --field-hover: #63636344;
+  --field-selected: #276d36;
+  --field-selected-hover: #3b864c;
 
-	font-family: 'Mukta Vaani', sans-serif;
-	line-height: 1.5;
-	font-weight: 400;
+  font-family: 'Mukta Vaani', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-	color-scheme: light dark;
-	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 @media (prefers-color-scheme: light) {
-	:root {
-		--text-primary: #292929;
-		--text-secondary: #d8d8d8;
+  :root {
+    --text-primary: #292929;
+    --text-secondary: #d8d8d8;
 
-		color: #213547;
-		background-color: #e9e9e9;
-	}
+    color: #213547;
+    background-color: #e9e9e9;
+  }
 
-	a:hover {
-		color: #747bff;
-	}
+  a:hover {
+    color: #747bff;
+  }
 
-	button {
-		background-color: #f9f9f9;
-	}
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
 // breakpoints
@@ -76,9 +75,9 @@
 @medium: 1400px; // 12-column grid
 
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -167,12 +166,12 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -186,29 +185,29 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 blockquote,
 q {
-	quotes: none;
+  quotes: none;
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 h1,
@@ -217,314 +216,348 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0;
-	font-family: 'Asul', sans-serif;
+  margin: 0;
+  font-family: 'Asul', sans-serif;
 }
 
 p {
-	margin: 0;
+  margin: 0;
 }
 
 a {
-	font-weight: 500;
-	color: #646cff;
-	text-decoration: inherit;
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
 }
 
 a:hover {
-	color: #535bf2;
+  color: #535bf2;
 }
 
 body {
-	margin: 0;
-	display: flex;
-	flex-direction: column;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
+  font-size: 3.2em;
+  line-height: 1.1;
 }
 
 ul,
 menu {
-	margin: 0;
-	list-style-type: none;
+  margin: 0;
+  list-style-type: none;
 }
 
 button {
-	border-radius: 4px;
-	padding: 4px;
-	border: 1px solid transparent;
-	background-color: var(--background);
-	color: var(--text-primary);
-	cursor: pointer;
-	transition: border-color 0.25s;
+  border-radius: 4px;
+  padding: 4px;
+  border: 1px solid transparent;
+  background-color: var(--background);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 
 button:hover {
-	border-color: #646cff;
+  border-color: #646cff;
 }
 
 button:focus,
 button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto -webkit-focus-ring-color;
 }
 
 // main screen
 #root {
-	height: 100vh;
-	overflow: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 #page {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #content {
-	width: 60%;
-	margin: 0 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex-wrap: wrap;
+  width: 60%;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
 
-	@media screen and (max-width: @medium) {
-		width: 75%;
-	}
+  @media screen and (max-width: @medium) {
+    width: 75%;
+  }
 
-	@media screen and (max-width: @small) {
-		width: 98%;
-	}
+  @media screen and (max-width: @small) {
+    width: 98%;
+  }
 
-	@media screen and (max-width: @extra-small) {
-		width: 98%;
-	}
+  @media screen and (max-width: @extra-small) {
+    width: 98%;
+  }
 }
 
 // headers/splashes/etc.
 .header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background: black;
-	padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: black;
+  padding: 10px;
 
-	h1 {
-		font-size: 24px;
-	}
+  h1 {
+    font-size: 24px;
+  }
 
-	ul {
-		display: flex;
-		gap: 8px;
+  ul {
+    display: flex;
+    gap: 8px;
 
-		li > a.active {
-			color: rgb(171, 24, 24);
-		}
-	}
+    li > a.active {
+      color: rgb(171, 24, 24);
+    }
+  }
 
-	a {
-		color: white;
-	}
+  a {
+    color: white;
+  }
 
-	// todo: need mobile size
+  // todo: need mobile size
 }
 
 .splash {
-	width: 100%;
-	margin: 0;
-	background: #111111;
-	color: white;
+  width: 100%;
+  margin: 0;
+  background: #111111;
+  color: white;
 }
 
 #page.loading {
-	opacity: 0.25;
-	transition: opacity 200ms;
-	transition-delay: 200ms;
+  opacity: 0.25;
+  transition: opacity 200ms;
+  transition-delay: 200ms;
 }
 
 // forms
 .form-radio-container {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 
-	.form-radio {
-		padding: 2px 4px;
-		input[type='radio'] {
-			// this maintains browser support
-			position: fixed;
-			opacity: 0;
-			pointer-events: none;
-		}
+  .form-radio {
+    padding: 2px 4px;
+    input[type='radio'] {
+      // this maintains browser support
+      position: fixed;
+      opacity: 0;
+      pointer-events: none;
+    }
 
-		input[type='radio'] + label {
-			font-weight: normal;
-		}
+    input[type='radio'] + label {
+      font-weight: normal;
+    }
 
-		input[type='radio']:checked + label {
-			background-color: var(--field-selected);
-		}
+    input[type='radio']:checked + label {
+      background-color: var(--field-selected);
+    }
 
-		input[type='radio']:focus + label {
-			outline: 1px dotted var(--text-light);
-		}
+    input[type='radio']:focus + label {
+      outline: 1px dotted var(--text-light);
+    }
 
-		label {
-			cursor: pointer;
-			background-color: var(--field-background);
-			color: var(--text-light);
-			border-radius: 4px;
-			padding: 0 4px;
-		}
-	}
+    label {
+      cursor: pointer;
+      background-color: var(--field-background);
+      color: var(--text-light);
+      border-radius: 4px;
+      padding: 0 4px;
+    }
+  }
 }
 
 // tables
 table {
-	width: 100%;
+  width: 100%;
 
-	td,
-	th {
-		// border: 1px solid #ddd;
-		padding: 8px;
-	}
+  td,
+  th {
+    // border: 1px solid #ddd;
+    padding: 8px;
+  }
 
-	thead {
-		tr {
-			border-bottom: 1px solid var(--text-primary);
+  thead {
+    tr {
+      border-bottom: 1px solid var(--text-primary);
 
-			th {
-				text-align: left;
-				font-weight: 500;
-			}
-		}
-	}
+      th {
+        text-align: left;
+        font-weight: 500;
+      }
+    }
+  }
 
-	.table-options {
-		menu {
-			display: flex;
-			gap: 5px;
-		}
+  .table-options {
+    menu {
+      display: flex;
+      gap: 5px;
+    }
 
-		button {
-			display: flex;
-			font-size: 20px;
-		}
-	}
+    button {
+      display: flex;
+      font-size: 20px;
+    }
+  }
 }
 
 // viewer
 #cardContent {
-	display: flex;
-	flex-direction: column;
-	margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
 
-	.card {
-		color: var(--text-primary);
-		background: var(--background-secondary);
-		width: 500px;
-		height: 700px;
-		padding: 10px;
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
+  .card {
+    color: var(--text-primary);
+    background: var(--background-secondary);
+    width: 500px;
+    height: 700px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
 
-		border-radius: 10px;
+    input,
+    button {
+      font-family: 'Mukta Vaani', sans-serif;
+    }
 
-		.card-header {
-			position: relative;
-			font-size: 32px;
-			background: var(--field-background);
-			text-align: center;
-			border-radius: 5px;
-			padding: 8px 0;
+    .card-header {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-size: 32px;
+      background: var(--field-background);
+      text-align: center;
+      border-radius: 5px;
+      padding: 8px 0;
 
-			input {
-				font-family: 'Mukta Vaani', sans-serif;
-			}
+      h2 {
+        margin: 0 40px; // leave space for the AC and HP items
+        padding: 4px 8px;
+        word-break: break-all;
+      }
 
-			.card-armor-class {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				margin-top: auto;
-				margin-bottom: auto;
-				left: 4px;
-				background: rgb(11, 11, 161);
-				width: 40px;
-				height: 40px;
-				border-radius: 100%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 28px;
-			}
+      .card-armor-class {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+        left: 4px;
+        background: rgb(11, 11, 161);
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+      }
 
-			.card-hit-points {
-				position: absolute;
-				top: 0;
-				right: 4px;
-				top: 0;
-				bottom: 0;
-				margin-top: auto;
-				margin-bottom: auto;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background: rgb(161, 16, 11);
-				width: 40px;
-				height: 40px;
-				border-radius: 100%;
+      .card-hit-points {
+        position: absolute;
+        top: 0;
+        right: 4px;
+        top: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(161, 16, 11);
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
 
-				input {
-					width: 100%;
-					outline: none;
-					border: none;
-					background: transparent;
-					font-size: 28px;
-					text-size-adjust: auto;
-					text-align: center;
-				}
-			}
-		}
+        input {
+          width: 100%;
+          outline: none;
+          border: none;
+          background: transparent;
+          font-size: 28px;
+          text-size-adjust: auto;
+          text-align: center;
+        }
 
-		.card-section {
-			position: relative;
-			font-size: 32px;
-			background: var(--field-background);
-			text-align: center;
-			border-radius: 5px;
-			padding: 8px;
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
 
-			.card-stats {
-				display: flex;
-				justify-content: space-evenly;
-				font-size: 0.75em;
+        /* Firefox */
+        input[type='number'] {
+          appearance: none;
+          -moz-appearance: textfield;
+        }
+      }
+    }
 
-				dt {
-					font-size: 0.7em;
-				}
-			}
+    .card-section {
+      position: relative;
+      font-size: 32px;
+      background: var(--field-background);
+      text-align: center;
+      border-radius: 5px;
+      padding: 8px;
 
-			.card-action {
-				display: flex;
-				justify-content: space-between;
-				font-size: 0.75em;
+      &.full {
+        flex: 1;
+      }
 
-				menu {
-					display: flex;
-					gap: 5px;
-				}
-			}
-		}
-	}
+      .card-stats {
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 0.75em;
+
+        dt {
+          font-size: 0.7em;
+        }
+      }
+
+      fieldset {
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+
+      .card-action {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75em;
+
+        menu {
+          display: flex;
+          gap: 5px;
+        }
+      }
+    }
+  }
 }
 
 #cardNavigation {
-	display: flex;
-	gap: 5px;
+  display: flex;
+  gap: 5px;
 }
