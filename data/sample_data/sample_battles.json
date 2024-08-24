@@ -1,0 +1,73 @@
+[
+  {
+    "version": "0.2.0",
+    "id": "03742af1-d01c-487e-9c1a-519591c82ffb",
+    "title": "Engagement at the Whispering Wall",
+    "enemyCount": 3,
+    "enemies": [
+      {
+        "id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+        "nickname": "Goblin A",
+        "current_hit_points": 7
+      },
+      {
+        "id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+        "nickname": "Goblin B",
+        "current_hit_points": 7
+      },
+      {
+        "id": "0620c943-ff2d-41a2-8b96-ebcf85614c80",
+        "nickname": "Goblin C",
+        "current_hit_points": 27
+      }
+    ]
+  },
+  {
+    "version": "0.2.0",
+    "id": "fe640f31-6d75-4023-a9d1-ea961cc0dfdf",
+    "title": "Skirmish at the Fallen Keep",
+    "enemyCount": 3,
+    "enemies": [
+      {
+        "id": "e5dff7e0-ae14-44d5-ac61-98461164d4ca",
+        "current_hit_points": 5
+      },
+      {
+        "id": "e5dff7e0-ae14-44d5-ac61-98461164d4ca",
+        "current_hit_points": 5
+      }
+    ]
+  },
+  {
+    "version": "0.2.0",
+    "id": "3fea8d26-ad73-4d60-a1f3-fd532094b6d5",
+    "title": "Engagement at Grim Hollow",
+    "enemyCount": 3,
+    "enemies": [
+      {
+        "id": "84d7f22d-95f5-4904-bcb0-7f96f97ed07f",
+        "current_hit_points": 22
+      },
+      {
+        "id": "84d7f22d-95f5-4904-bcb0-7f96f97ed07f",
+        "current_hit_points": 22
+      },
+      {
+        "id": "321f3a68-b733-415a-98a0-9dfba146f47c",
+        "current_hit_points": 22
+      }
+    ]
+  },
+  {
+    "version": "0.2.0",
+    "id": "2e814ff8-e6e5-4e7b-a696-760de3cbf6c3",
+    "title": "Siege of the Broken Spire",
+    "enemyCount": 1,
+    "enemies": [
+      {
+        "id": "962669ef-169a-4f06-add5-f34dbb318bc6",
+        "current_hit_points": 59
+      }
+    ]
+  }
+]

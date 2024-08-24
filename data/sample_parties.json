@@ -1,0 +1,12 @@
+[
+	{
+		"id": 0,
+		"name": "The Big Leagues",
+		"character_ids": [0, 1, 2]
+	},
+	{
+		"id": 1,
+		"name": "The Breakouts",
+		"character_ids": [3]
+	}
+]

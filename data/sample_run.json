@@ -1,0 +1,66 @@
+{
+	"id": "0",
+	"run_id": "7efdf581-7079-44d5-a8bb-563583daa350",
+	"start_timestamp": 1683849609831,
+	"completed": false,
+	"duration": 1200,
+	"round": 1,
+	"initiative_position": 0,
+	"initiative_order": [
+		{
+			"id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+			"creature_type": "monster",
+			"initiative": 20,
+			"suffix": "1"
+		},
+		{
+			"id": "bed6ca6c-05a0-48d8-80c1-6e46897f8726",
+			"creature_type": "character",
+			"initiative": 18
+		},
+		{
+			"id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+			"creature_type": "monster",
+			"initiative": 17,
+			"suffix": "2"
+		},
+		{
+			"id": "9289c762-97a7-414b-b427-6fe768d2ccfa",
+			"creature_type": "character",
+			"initiative": 16
+		},
+		{
+			"id": "0620c943-ff2d-41a2-8b96-ebcf85614c80",
+			"creature_type": "monster",
+			"initiative": 14
+		},
+		{
+			"id": "da3c3980-1cec-437f-9096-f0da870158a3",
+			"creature_type": "character",
+			"initiative": 13
+		},
+		{
+			"id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+			"creature_type": "monster",
+			"initiative": 12,
+			"suffix": "3"
+		},
+		{
+			"id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+			"creature_type": "monster",
+			"initiative": 8,
+			"suffix": "4"
+		},
+		{
+			"id": "3857f6ac-5817-40ff-a73c-60ee159bbefe",
+			"creature_type": "character",
+			"initiative": 5
+		},
+		{
+			"id": "8ee94721-02d5-4513-9ac1-4f4eed77f2f9",
+			"creature_type": "monster",
+			"initiative": 1,
+			"suffix": "5"
+		}
+	]
+}
